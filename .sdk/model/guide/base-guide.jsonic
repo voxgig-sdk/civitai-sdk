@@ -1,0 +1,46 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 5
+  metrics: count: path: 7
+  metrics: count: method: 7
+
+  entity: creator: {
+    path: "/creators": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: image: {
+    path: "/images": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: model: {
+    path: "/models": {
+      op: list: method: *GET
+    }
+    path: "/models/{modelId}": {
+      rename: param: "modelId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: model_version: {
+    path: "/model-versions/by-hash/{hash}": {
+      op: load: method: *GET
+    }
+    path: "/model-versions/{modelVersionId}": {
+      rename: param: "modelVersionId": *"id"
+      op: load: method: *GET
+    }
+  }
+
+  entity: tag: {
+    path: "/tags": {
+      op: list: method: *GET
+    }
+  }
+
+}

@@ -1,0 +1,179 @@
+# Entity: image
+
+main: kit: entity: image: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "created_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "hash"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "height"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "meta"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "nsfw"
+      req: false
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "nsfw_level"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "post_id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "stat"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "username"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "width"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "image"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "model_id"
+                orig: "model_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "model_version_id"
+                orig: "model_version_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "nsfw"
+                orig: "nsfw"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "period"
+                orig: "period"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "post_id"
+                orig: "post_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "sort"
+                orig: "sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "username"
+                orig: "username"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/images"
+          parts: [
+            "images"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "model_id"
+              "model_version_id"
+              "nsfw"
+              "page"
+              "period"
+              "post_id"
+              "sort"
+              "username"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

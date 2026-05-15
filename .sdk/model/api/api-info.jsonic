@@ -1,0 +1,24 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        name: "Civitai Developer Portal"
+        url: "https://developer.civitai.com/docs/api/public-rest"
+      }
+      description: "REST API for accessing Civitai creators, images, models, model versions, and tags. Provides endpoints for retrieving specific resources like models by ID or model versions by hash."
+      servers: [
+        {
+          description: "Civitai API v1 Production Server"
+          url: "https://civitai.com/api/v1"
+        }
+      ]
+      title: "Civitai API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

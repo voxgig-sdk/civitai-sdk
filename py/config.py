@@ -1,0 +1,882 @@
+# Civitai SDK configuration
+
+
+def make_config():
+    return {
+        "main": {
+            "name": "Civitai",
+        },
+        "feature": {
+            "test": {
+        "options": {
+          "active": False,
+        },
+      },
+        },
+        "options": {
+            "base": "https://civitai.com/api/v1",
+            "auth": {
+                "prefix": "Bearer",
+            },
+            "headers": {
+        "content-type": "application/json",
+      },
+            "entity": {
+                "creator": {},
+                "image": {},
+                "model": {},
+                "model_version": {},
+                "tag": {},
+            },
+        },
+        "entity": {
+      "creator": {
+        "fields": [
+          {
+            "name": "link",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 0,
+          },
+          {
+            "name": "model_count",
+            "req": False,
+            "type": "`$INTEGER`",
+            "active": True,
+            "index$": 1,
+          },
+          {
+            "name": "username",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 2,
+          },
+        ],
+        "name": "creator",
+        "op": {
+          "list": {
+            "name": "list",
+            "points": [
+              {
+                "args": {
+                  "query": [
+                    {
+                      "example": 20,
+                      "kind": "query",
+                      "name": "limit",
+                      "orig": "limit",
+                      "reqd": False,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                    {
+                      "example": 1,
+                      "kind": "query",
+                      "name": "page",
+                      "orig": "page",
+                      "reqd": False,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "query",
+                      "orig": "query",
+                      "reqd": False,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                  ],
+                },
+                "method": "GET",
+                "orig": "/creators",
+                "parts": [
+                  "creators",
+                ],
+                "select": {
+                  "exist": [
+                    "limit",
+                    "page",
+                    "query",
+                  ],
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "active": True,
+                "index$": 0,
+              },
+            ],
+            "input": "data",
+            "key$": "list",
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "image": {
+        "fields": [
+          {
+            "name": "created_at",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 0,
+          },
+          {
+            "name": "hash",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 1,
+          },
+          {
+            "name": "height",
+            "req": False,
+            "type": "`$INTEGER`",
+            "active": True,
+            "index$": 2,
+          },
+          {
+            "name": "id",
+            "req": False,
+            "type": "`$INTEGER`",
+            "active": True,
+            "index$": 3,
+          },
+          {
+            "name": "meta",
+            "req": False,
+            "type": "`$OBJECT`",
+            "active": True,
+            "index$": 4,
+          },
+          {
+            "name": "nsfw",
+            "req": False,
+            "type": "`$BOOLEAN`",
+            "active": True,
+            "index$": 5,
+          },
+          {
+            "name": "nsfw_level",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 6,
+          },
+          {
+            "name": "post_id",
+            "req": False,
+            "type": "`$INTEGER`",
+            "active": True,
+            "index$": 7,
+          },
+          {
+            "name": "stat",
+            "req": False,
+            "type": "`$OBJECT`",
+            "active": True,
+            "index$": 8,
+          },
+          {
+            "name": "url",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 9,
+          },
+          {
+            "name": "username",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 10,
+          },
+          {
+            "name": "width",
+            "req": False,
+            "type": "`$INTEGER`",
+            "active": True,
+            "index$": 11,
+          },
+        ],
+        "name": "image",
+        "op": {
+          "list": {
+            "name": "list",
+            "points": [
+              {
+                "args": {
+                  "query": [
+                    {
+                      "example": 100,
+                      "kind": "query",
+                      "name": "limit",
+                      "orig": "limit",
+                      "reqd": False,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "model_id",
+                      "orig": "model_id",
+                      "reqd": False,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "model_version_id",
+                      "orig": "model_version_id",
+                      "reqd": False,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "nsfw",
+                      "orig": "nsfw",
+                      "reqd": False,
+                      "type": "`$ANY`",
+                      "active": True,
+                    },
+                    {
+                      "example": 1,
+                      "kind": "query",
+                      "name": "page",
+                      "orig": "page",
+                      "reqd": False,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "period",
+                      "orig": "period",
+                      "reqd": False,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "post_id",
+                      "orig": "post_id",
+                      "reqd": False,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "sort",
+                      "orig": "sort",
+                      "reqd": False,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "username",
+                      "orig": "username",
+                      "reqd": False,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                  ],
+                },
+                "method": "GET",
+                "orig": "/images",
+                "parts": [
+                  "images",
+                ],
+                "select": {
+                  "exist": [
+                    "limit",
+                    "model_id",
+                    "model_version_id",
+                    "nsfw",
+                    "page",
+                    "period",
+                    "post_id",
+                    "sort",
+                    "username",
+                  ],
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "active": True,
+                "index$": 0,
+              },
+            ],
+            "input": "data",
+            "key$": "list",
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "model": {
+        "fields": [
+          {
+            "name": "creator",
+            "req": False,
+            "type": "`$OBJECT`",
+            "active": True,
+            "index$": 0,
+          },
+          {
+            "name": "description",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 1,
+          },
+          {
+            "name": "id",
+            "req": False,
+            "type": "`$INTEGER`",
+            "active": True,
+            "index$": 2,
+          },
+          {
+            "name": "mode",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 3,
+          },
+          {
+            "name": "model_version",
+            "req": False,
+            "type": "`$ARRAY`",
+            "active": True,
+            "index$": 4,
+          },
+          {
+            "name": "name",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 5,
+          },
+          {
+            "name": "nsfw",
+            "req": False,
+            "type": "`$BOOLEAN`",
+            "active": True,
+            "index$": 6,
+          },
+          {
+            "name": "stat",
+            "req": False,
+            "type": "`$OBJECT`",
+            "active": True,
+            "index$": 7,
+          },
+          {
+            "name": "tag",
+            "req": False,
+            "type": "`$ARRAY`",
+            "active": True,
+            "index$": 8,
+          },
+          {
+            "name": "type",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 9,
+          },
+        ],
+        "name": "model",
+        "op": {
+          "list": {
+            "name": "list",
+            "points": [
+              {
+                "args": {
+                  "query": [
+                    {
+                      "kind": "query",
+                      "name": "allow_commercial_use",
+                      "orig": "allow_commercial_use",
+                      "reqd": False,
+                      "type": "`$BOOLEAN`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "allow_derivatif",
+                      "orig": "allow_derivatif",
+                      "reqd": False,
+                      "type": "`$BOOLEAN`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "allow_different_license",
+                      "orig": "allow_different_license",
+                      "reqd": False,
+                      "type": "`$BOOLEAN`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "allow_no_credit",
+                      "orig": "allow_no_credit",
+                      "reqd": False,
+                      "type": "`$BOOLEAN`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "favorite",
+                      "orig": "favorite",
+                      "reqd": False,
+                      "type": "`$BOOLEAN`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "hidden",
+                      "orig": "hidden",
+                      "reqd": False,
+                      "type": "`$BOOLEAN`",
+                      "active": True,
+                    },
+                    {
+                      "example": 100,
+                      "kind": "query",
+                      "name": "limit",
+                      "orig": "limit",
+                      "reqd": False,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "nsfw",
+                      "orig": "nsfw",
+                      "reqd": False,
+                      "type": "`$BOOLEAN`",
+                      "active": True,
+                    },
+                    {
+                      "example": 1,
+                      "kind": "query",
+                      "name": "page",
+                      "orig": "page",
+                      "reqd": False,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "period",
+                      "orig": "period",
+                      "reqd": False,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "primary_file_only",
+                      "orig": "primary_file_only",
+                      "reqd": False,
+                      "type": "`$BOOLEAN`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "query",
+                      "orig": "query",
+                      "reqd": False,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "rating",
+                      "orig": "rating",
+                      "reqd": False,
+                      "type": "`$NUMBER`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "sort",
+                      "orig": "sort",
+                      "reqd": False,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "supports_generation",
+                      "orig": "supports_generation",
+                      "reqd": False,
+                      "type": "`$BOOLEAN`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "tag",
+                      "orig": "tag",
+                      "reqd": False,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "type",
+                      "orig": "type",
+                      "reqd": False,
+                      "type": "`$ARRAY`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "username",
+                      "orig": "username",
+                      "reqd": False,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                  ],
+                },
+                "method": "GET",
+                "orig": "/models",
+                "parts": [
+                  "models",
+                ],
+                "select": {
+                  "exist": [
+                    "allow_commercial_use",
+                    "allow_derivatif",
+                    "allow_different_license",
+                    "allow_no_credit",
+                    "favorite",
+                    "hidden",
+                    "limit",
+                    "nsfw",
+                    "page",
+                    "period",
+                    "primary_file_only",
+                    "query",
+                    "rating",
+                    "sort",
+                    "supports_generation",
+                    "tag",
+                    "type",
+                    "username",
+                  ],
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "active": True,
+                "index$": 0,
+              },
+            ],
+            "input": "data",
+            "key$": "list",
+          },
+          "load": {
+            "name": "load",
+            "points": [
+              {
+                "args": {
+                  "params": [
+                    {
+                      "kind": "param",
+                      "name": "id",
+                      "orig": "model_id",
+                      "reqd": True,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                  ],
+                },
+                "method": "GET",
+                "orig": "/models/{modelId}",
+                "parts": [
+                  "models",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "modelId": "id",
+                  },
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "active": True,
+                "index$": 0,
+              },
+            ],
+            "input": "data",
+            "key$": "load",
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+      "model_version": {
+        "fields": [
+          {
+            "name": "created_at",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 0,
+          },
+          {
+            "name": "description",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 1,
+          },
+          {
+            "name": "download_url",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 2,
+          },
+          {
+            "name": "file",
+            "req": False,
+            "type": "`$ARRAY`",
+            "active": True,
+            "index$": 3,
+          },
+          {
+            "name": "id",
+            "req": False,
+            "type": "`$INTEGER`",
+            "active": True,
+            "index$": 4,
+          },
+          {
+            "name": "image",
+            "req": False,
+            "type": "`$ARRAY`",
+            "active": True,
+            "index$": 5,
+          },
+          {
+            "name": "name",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 6,
+          },
+          {
+            "name": "stat",
+            "req": False,
+            "type": "`$OBJECT`",
+            "active": True,
+            "index$": 7,
+          },
+          {
+            "name": "trained_word",
+            "req": False,
+            "type": "`$ARRAY`",
+            "active": True,
+            "index$": 8,
+          },
+        ],
+        "name": "model_version",
+        "op": {
+          "load": {
+            "name": "load",
+            "points": [
+              {
+                "args": {
+                  "params": [
+                    {
+                      "kind": "param",
+                      "name": "hash",
+                      "orig": "hash",
+                      "reqd": True,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                  ],
+                },
+                "method": "GET",
+                "orig": "/model-versions/by-hash/{hash}",
+                "parts": [
+                  "model-versions",
+                  "by-hash",
+                  "{hash}",
+                ],
+                "select": {
+                  "exist": [
+                    "hash",
+                  ],
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "active": True,
+                "index$": 0,
+              },
+              {
+                "args": {
+                  "params": [
+                    {
+                      "kind": "param",
+                      "name": "id",
+                      "orig": "model_version_id",
+                      "reqd": True,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                  ],
+                },
+                "method": "GET",
+                "orig": "/model-versions/{modelVersionId}",
+                "parts": [
+                  "model-versions",
+                  "{id}",
+                ],
+                "rename": {
+                  "param": {
+                    "modelVersionId": "id",
+                  },
+                },
+                "select": {
+                  "exist": [
+                    "id",
+                  ],
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "active": True,
+                "index$": 1,
+              },
+            ],
+            "input": "data",
+            "key$": "load",
+          },
+        },
+        "relations": {
+          "ancestors": [
+            [
+              "by_hash",
+            ],
+          ],
+        },
+      },
+      "tag": {
+        "fields": [
+          {
+            "name": "link",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 0,
+          },
+          {
+            "name": "model_count",
+            "req": False,
+            "type": "`$INTEGER`",
+            "active": True,
+            "index$": 1,
+          },
+          {
+            "name": "name",
+            "req": False,
+            "type": "`$STRING`",
+            "active": True,
+            "index$": 2,
+          },
+        ],
+        "name": "tag",
+        "op": {
+          "list": {
+            "name": "list",
+            "points": [
+              {
+                "args": {
+                  "query": [
+                    {
+                      "example": 20,
+                      "kind": "query",
+                      "name": "limit",
+                      "orig": "limit",
+                      "reqd": False,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                    {
+                      "example": 1,
+                      "kind": "query",
+                      "name": "page",
+                      "orig": "page",
+                      "reqd": False,
+                      "type": "`$INTEGER`",
+                      "active": True,
+                    },
+                    {
+                      "kind": "query",
+                      "name": "query",
+                      "orig": "query",
+                      "reqd": False,
+                      "type": "`$STRING`",
+                      "active": True,
+                    },
+                  ],
+                },
+                "method": "GET",
+                "orig": "/tags",
+                "parts": [
+                  "tags",
+                ],
+                "select": {
+                  "exist": [
+                    "limit",
+                    "page",
+                    "query",
+                  ],
+                },
+                "transform": {
+                  "req": "`reqdata`",
+                  "res": "`body`",
+                },
+                "active": True,
+                "index$": 0,
+              },
+            ],
+            "input": "data",
+            "key$": "list",
+          },
+        },
+        "relations": {
+          "ancestors": [],
+        },
+      },
+    },
+    }

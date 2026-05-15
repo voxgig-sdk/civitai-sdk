@@ -1,0 +1,141 @@
+# Entity: model_version
+
+main: kit: entity: model_version: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "created_at"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "description"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "download_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "file"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "image"
+      req: false
+      type: "`$ARRAY`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "stat"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "trained_word"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "model_version"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "hash"
+                orig: "hash"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/model-versions/by-hash/{hash}"
+          parts: [
+            "model-versions"
+            "by-hash"
+            "{hash}"
+          ]
+          select: {
+            exist: [
+              "hash"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "model_version_id"
+                reqd: true
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/model-versions/{modelVersionId}"
+          parts: [
+            "model-versions"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              modelVersionId: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "by_hash"
+      ]
+    ]
+  }
+
+
+
+}

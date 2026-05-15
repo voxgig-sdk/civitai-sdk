@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "model": {
+      "MODEL00": {
+        "creator": {},
+        "description": "s65",
+        "id": "MODEL00",
+        "mode": "s67",
+        "model_version": [],
+        "name": "s69",
+        "nsfw": true,
+        "stat": {},
+        "tag": [],
+        "type": "s6d"
+      },
+      "MODEL01": {
+        "creator": {},
+        "description": "sc9",
+        "id": "MODEL01",
+        "mode": "scb",
+        "model_version": [],
+        "name": "scd",
+        "nsfw": true,
+        "stat": {},
+        "tag": [],
+        "type": "sd1"
+      },
+      "MODEL02": {
+        "creator": {},
+        "description": "s12d",
+        "id": "MODEL02",
+        "mode": "s12f",
+        "model_version": [],
+        "name": "s131",
+        "nsfw": true,
+        "stat": {},
+        "tag": [],
+        "type": "s135"
+      }
+    }
+  },
+  "new": {
+    "model": {
+      "model_ref01": {
+        "creator": {},
+        "description": "s191",
+        "mode": "s193",
+        "model_version": [],
+        "name": "s195",
+        "nsfw": true,
+        "stat": {},
+        "tag": [],
+        "type": "s199"
+      }
+    }
+  }
+}

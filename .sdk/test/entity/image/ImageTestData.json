@@ -1,0 +1,65 @@
+{
+  "existing": {
+    "image": {
+      "IMAGE00": {
+        "created_at": "s78",
+        "hash": "s79",
+        "height": "s7a",
+        "id": "IMAGE00",
+        "meta": {},
+        "nsfw": false,
+        "nsfw_level": "s7e",
+        "post_id": "POST01",
+        "stat": {},
+        "url": "s81",
+        "username": "s82",
+        "width": "s83"
+      },
+      "IMAGE01": {
+        "created_at": "sf0",
+        "hash": "sf1",
+        "height": "sf2",
+        "id": "IMAGE01",
+        "meta": {},
+        "nsfw": false,
+        "nsfw_level": "sf6",
+        "post_id": "POST01",
+        "stat": {},
+        "url": "sf9",
+        "username": "sfa",
+        "width": "sfb"
+      },
+      "IMAGE02": {
+        "created_at": "s168",
+        "hash": "s169",
+        "height": "s16a",
+        "id": "IMAGE02",
+        "meta": {},
+        "nsfw": false,
+        "nsfw_level": "s16e",
+        "post_id": "POST01",
+        "stat": {},
+        "url": "s171",
+        "username": "s172",
+        "width": "s173"
+      }
+    }
+  },
+  "new": {
+    "image": {
+      "image_ref01": {
+        "created_at": "s1e0",
+        "hash": "s1e1",
+        "height": "s1e2",
+        "meta": {},
+        "nsfw": false,
+        "nsfw_level": "s1e6",
+        "post_id": "POST01",
+        "stat": {},
+        "url": "s1e9",
+        "username": "s1ea",
+        "width": "s1eb"
+      }
+    }
+  }
+}

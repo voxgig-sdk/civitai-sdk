@@ -1,0 +1,22 @@
+# BasicCreatorFlow
+
+main: kit: flow: BasicCreatorFlow:
+{
+  entity: "creator",
+  kind: "basic",
+  name: "BasicCreatorFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "creator_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCreatorFlow"
+}

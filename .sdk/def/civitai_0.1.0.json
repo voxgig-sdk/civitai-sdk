@@ -1,0 +1,1088 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Civitai API",
+    "description": "REST API for accessing Civitai creators, images, models, model versions, and tags. Provides endpoints for retrieving specific resources like models by ID or model versions by hash.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Civitai Developer Portal",
+      "url": "https://developer.civitai.com/docs/api/public-rest"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://civitai.com/api/v1",
+      "description": "Civitai API v1 Production Server"
+    }
+  ],
+  "security": [
+    {
+      "BearerAuth": []
+    },
+    {
+      "QueryToken": []
+    },
+    {}
+  ],
+  "paths": {
+    "/creators": {
+      "get": {
+        "summary": "Get Creators",
+        "description": "Retrieve a list of creators with their model counts and links",
+        "operationId": "getCreators",
+        "tags": [
+          "Creators"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of results to be returned per page. This can be a number between 0 and 200. By default, each page will return 20 results. If set to 0, it'll return all the creators",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 200,
+              "default": 20
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page from which to start fetching creators",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Search query to filter creators by username",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "username": {
+                            "type": "string",
+                            "description": "The username of the creator"
+                          },
+                          "modelCount": {
+                            "type": "integer",
+                            "description": "The amount of models linked to this user"
+                          },
+                          "link": {
+                            "type": "string",
+                            "description": "Url to get all models from this user"
+                          }
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/PaginationMetadata"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/images": {
+      "get": {
+        "summary": "Get Images",
+        "description": "Retrieve a list of images from Civitai with optional filters",
+        "operationId": "getImages",
+        "tags": [
+          "Images"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of results to be returned per page. This can be a number between 0 and 200. By default, each page will return 100 results.",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 200,
+              "default": 100
+            }
+          },
+          {
+            "name": "postId",
+            "in": "query",
+            "description": "The ID of a post to get images from",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "modelId",
+            "in": "query",
+            "description": "The ID of a model to get images from (model gallery)",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "modelVersionId",
+            "in": "query",
+            "description": "The ID of a model version to get images from (model gallery filtered to version)",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "description": "Filter to images from a specific user",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "nsfw",
+            "in": "query",
+            "description": "Filter to images that contain mature content flags or not (undefined returns all)",
+            "required": false,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "type": "string",
+                  "enum": [
+                    "None",
+                    "Soft",
+                    "Mature",
+                    "X"
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "The order in which you wish to sort the results",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Most Reactions",
+                "Most Comments",
+                "Newest"
+              ]
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "description": "The time frame in which the images will be sorted",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AllTime",
+                "Year",
+                "Month",
+                "Week",
+                "Day"
+              ]
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page from which to start fetching creators",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Image"
+                      }
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/CursorPaginationMetadata"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/models": {
+      "get": {
+        "summary": "Get Models",
+        "description": "Retrieve a list of models with various filter options",
+        "operationId": "getModels",
+        "tags": [
+          "Models"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of results to be returned per page. This can be a number between 1 and 100. By default, each page will return 100 results",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "default": 100
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page from which to start fetching models",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Search query to filter models by name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "tag",
+            "in": "query",
+            "description": "Search query to filter models by tag",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "username",
+            "in": "query",
+            "description": "Search query to filter models by user",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "types",
+            "in": "query",
+            "description": "The type of model you want to filter with. If none is specified, it will return all types",
+            "required": false,
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Checkpoint",
+                  "TextualInversion",
+                  "Hypernetwork",
+                  "AestheticGradient",
+                  "LORA",
+                  "Controlnet",
+                  "Poses"
+                ]
+              }
+            }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "The order in which you wish to sort the results",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Highest Rated",
+                "Most Downloaded",
+                "Newest"
+              ]
+            }
+          },
+          {
+            "name": "period",
+            "in": "query",
+            "description": "The time frame in which the models will be sorted",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "AllTime",
+                "Year",
+                "Month",
+                "Week",
+                "Day"
+              ]
+            }
+          },
+          {
+            "name": "rating",
+            "in": "query",
+            "description": "The rating you wish to filter the models with. If none is specified, it will return models with any rating (Deprecated)",
+            "required": false,
+            "deprecated": true,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "name": "favorites",
+            "in": "query",
+            "description": "Filter to favorites of the authenticated user (this requires an API token or session cookie)",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "hidden",
+            "in": "query",
+            "description": "Filter to hidden models of the authenticated user (this requires an API token or session cookie)",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "primaryFileOnly",
+            "in": "query",
+            "description": "Only include the primary file for each model (This will use your preferred format options if you use an API token or session cookie)",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "allowNoCredit",
+            "in": "query",
+            "description": "Filter to models that require or don't require crediting the creator",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "allowDerivatives",
+            "in": "query",
+            "description": "Filter to models that allow or don't allow creating derivatives",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "allowDifferentLicenses",
+            "in": "query",
+            "description": "Filter to models that allow or don't allow derivatives to have a different license",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "allowCommercialUse",
+            "in": "query",
+            "description": "Filter to models based on their commercial permissions",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "None",
+                "Image",
+                "Rent",
+                "Sell"
+              ]
+            }
+          },
+          {
+            "name": "nsfw",
+            "in": "query",
+            "description": "If false, will return safer images and hide models that don't have safe images",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "supportsGeneration",
+            "in": "query",
+            "description": "If true, will return models that support generation",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Model"
+                      }
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/PaginationMetadata"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/models/{modelId}": {
+      "get": {
+        "summary": "Get Model by ID",
+        "description": "Retrieve a specific model by its ID",
+        "operationId": "getModelById",
+        "tags": [
+          "Models"
+        ],
+        "parameters": [
+          {
+            "name": "modelId",
+            "in": "path",
+            "description": "The ID of the model to retrieve",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Model"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Model not found"
+          }
+        }
+      }
+    },
+    "/model-versions/{modelVersionId}": {
+      "get": {
+        "summary": "Get Model Version by ID",
+        "description": "Retrieve a specific model version by its ID",
+        "operationId": "getModelVersionById",
+        "tags": [
+          "Model Versions"
+        ],
+        "parameters": [
+          {
+            "name": "modelVersionId",
+            "in": "path",
+            "description": "The ID of the model version to retrieve",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelVersion"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Model version not found"
+          }
+        }
+      }
+    },
+    "/model-versions/by-hash/{hash}": {
+      "get": {
+        "summary": "Get Model Version by Hash",
+        "description": "Retrieve a specific model version by its hash",
+        "operationId": "getModelVersionByHash",
+        "tags": [
+          "Model Versions"
+        ],
+        "parameters": [
+          {
+            "name": "hash",
+            "in": "path",
+            "description": "The hash of the model version to retrieve",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ModelVersion"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Model version not found"
+          }
+        }
+      }
+    },
+    "/tags": {
+      "get": {
+        "summary": "Get Tags",
+        "description": "Retrieve a list of tags",
+        "operationId": "getTags",
+        "tags": [
+          "Tags"
+        ],
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "The number of results to be returned per page",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 200,
+              "default": 20
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "description": "The page from which to start fetching tags",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "default": 1
+            }
+          },
+          {
+            "name": "query",
+            "in": "query",
+            "description": "Search query to filter tags",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "items": {
+                      "type": "array",
+                      "items": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "modelCount": {
+                            "type": "integer"
+                          },
+                          "link": {
+                            "type": "string"
+                          }
+                        }
+                      }
+                    },
+                    "metadata": {
+                      "$ref": "#/components/schemas/PaginationMetadata"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "BearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "description": "Use your API key as a Bearer token in the Authorization header"
+      },
+      "QueryToken": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "token",
+        "description": "Pass your API key as a query parameter"
+      }
+    },
+    "schemas": {
+      "PaginationMetadata": {
+        "type": "object",
+        "properties": {
+          "totalItems": {
+            "type": "integer",
+            "description": "The total number of items available"
+          },
+          "currentPage": {
+            "type": "integer",
+            "description": "The current page you are at"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "The size of the batch"
+          },
+          "totalPages": {
+            "type": "integer",
+            "description": "The total number of pages"
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true,
+            "description": "The url to get the next batch of items"
+          },
+          "prevPage": {
+            "type": "string",
+            "nullable": true,
+            "description": "The url to get the previous batch of items"
+          }
+        }
+      },
+      "CursorPaginationMetadata": {
+        "type": "object",
+        "properties": {
+          "nextCursor": {
+            "type": "integer",
+            "nullable": true,
+            "description": "The id of the first image in the next batch"
+          },
+          "currentPage": {
+            "type": "integer",
+            "description": "The current page you are at (if paging)"
+          },
+          "pageSize": {
+            "type": "integer",
+            "description": "The size of the batch (if paging)"
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true,
+            "description": "The url to get the next batch of items"
+          }
+        }
+      },
+      "Image": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The id of the image"
+          },
+          "url": {
+            "type": "string",
+            "description": "The url of the image at its source resolution"
+          },
+          "hash": {
+            "type": "string",
+            "description": "The blurhash of the image"
+          },
+          "width": {
+            "type": "integer",
+            "description": "The width of the image"
+          },
+          "height": {
+            "type": "integer",
+            "description": "The height of the image"
+          },
+          "nsfw": {
+            "type": "boolean",
+            "description": "If the image has any mature content labels"
+          },
+          "nsfwLevel": {
+            "type": "string",
+            "enum": [
+              "None",
+              "Soft",
+              "Mature",
+              "X"
+            ],
+            "description": "The NSFW level of the image"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date the image was posted"
+          },
+          "postId": {
+            "type": "integer",
+            "description": "The ID of the post the image belongs to"
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "cryCount": {
+                "type": "integer",
+                "description": "The number of cry reactions"
+              },
+              "laughCount": {
+                "type": "integer",
+                "description": "The number of laugh reactions"
+              },
+              "likeCount": {
+                "type": "integer",
+                "description": "The number of like reactions"
+              },
+              "dislikeCount": {
+                "type": "integer",
+                "description": "The number of dislike reactions"
+              },
+              "heartCount": {
+                "type": "integer",
+                "description": "The number of heart reactions"
+              },
+              "commentCount": {
+                "type": "integer",
+                "description": "The number of comment reactions"
+              }
+            }
+          },
+          "meta": {
+            "type": "object",
+            "nullable": true,
+            "description": "The generation parameters parsed or input for the image",
+            "additionalProperties": true
+          },
+          "username": {
+            "type": "string",
+            "description": "The username of the creator"
+          }
+        }
+      },
+      "Model": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The identifier for the model"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the model"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the model (HTML)"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "Checkpoint",
+              "TextualInversion",
+              "Hypernetwork",
+              "AestheticGradient",
+              "LORA",
+              "Controlnet",
+              "Poses"
+            ],
+            "description": "The model type"
+          },
+          "nsfw": {
+            "type": "boolean",
+            "description": "Whether the model is NSFW or not"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The tags associated with the model"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "Archived",
+              "TakenDown"
+            ],
+            "nullable": true,
+            "description": "The mode in which the model is currently on. If Archived, files field will be empty. If TakenDown, images field will be empty"
+          },
+          "creator": {
+            "type": "object",
+            "properties": {
+              "username": {
+                "type": "string",
+                "description": "The name of the creator"
+              },
+              "image": {
+                "type": "string",
+                "nullable": true,
+                "description": "The url of the creators avatar"
+              }
+            }
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "downloadCount": {
+                "type": "integer",
+                "description": "The number of downloads the model has"
+              },
+              "favoriteCount": {
+                "type": "integer",
+                "description": "The number of favorites the model has"
+              },
+              "commentCount": {
+                "type": "integer",
+                "description": "The number of comments the model has"
+              },
+              "ratingCount": {
+                "type": "integer",
+                "description": "The number of ratings the model has"
+              },
+              "rating": {
+                "type": "number",
+                "description": "The average rating of the model"
+              }
+            }
+          },
+          "modelVersions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ModelVersion"
+            }
+          }
+        }
+      },
+      "ModelVersion": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "The identifier for the model version"
+          },
+          "name": {
+            "type": "string",
+            "description": "The name of the model version"
+          },
+          "description": {
+            "type": "string",
+            "description": "The description of the model version (usually a changelog)"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date in which the version was created"
+          },
+          "downloadUrl": {
+            "type": "string",
+            "description": "The download url to get the model file for this specific version"
+          },
+          "trainedWords": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The words used to trigger the model"
+          },
+          "files": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "sizeKb": {
+                  "type": "number",
+                  "description": "The size of the model file in KB"
+                },
+                "pickleScanResult": {
+                  "type": "string",
+                  "enum": [
+                    "Pending",
+                    "Success",
+                    "Danger",
+                    "Error"
+                  ],
+                  "description": "Status of the pickle scan"
+                },
+                "virusScanResult": {
+                  "type": "string",
+                  "enum": [
+                    "Pending",
+                    "Success",
+                    "Danger",
+                    "Error"
+                  ],
+                  "description": "Status of the virus scan"
+                },
+                "scannedAt": {
+                  "type": "string",
+                  "format": "date-time",
+                  "nullable": true,
+                  "description": "The date in which the file was scanned"
+                },
+                "primary": {
+                  "type": "boolean",
+                  "description": "If the file is the primary file for the model version"
+                },
+                "metadata": {
+                  "type": "object",
+                  "properties": {
+                    "fp": {
+                      "type": "string",
+                      "enum": [
+                        "fp16",
+                        "fp32"
+                      ],
+                      "description": "The specified floating point for the file"
+                    },
+                    "size": {
+                      "type": "string",
+                      "enum": [
+                        "full",
+                        "pruned"
+                      ],
+                      "description": "The specified model size for the file"
+                    },
+                    "format": {
+                      "type": "string",
+                      "enum": [
+                        "SafeTensor",
+                        "PickleTensor",
+                        "Other"
+                      ],
+                      "description": "The specified model format for the file"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "images": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "The id for the image"
+                },
+                "url": {
+                  "type": "string",
+                  "description": "The url for the image"
+                },
+                "nsfw": {
+                  "type": "string",
+                  "description": "Whether or not the image is NSFW"
+                },
+                "width": {
+                  "type": "integer",
+                  "description": "The original width of the image"
+                },
+                "height": {
+                  "type": "integer",
+                  "description": "The original height of the image"
+                },
+                "hash": {
+                  "type": "string",
+                  "description": "The blurhash of the image"
+                },
+                "meta": {
+                  "type": "object",
+                  "nullable": true,
+                  "description": "The generation params of the image",
+                  "additionalProperties": true
+                }
+              }
+            }
+          },
+          "stats": {
+            "type": "object",
+            "properties": {
+              "downloadCount": {
+                "type": "integer",
+                "description": "The number of downloads the model version has"
+              },
+              "ratingCount": {
+                "type": "integer",
+                "description": "The number of ratings the model version has"
+              },
+              "rating": {
+                "type": "number",
+                "description": "The average rating of the model version"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

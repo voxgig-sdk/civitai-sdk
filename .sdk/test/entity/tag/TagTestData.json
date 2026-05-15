@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "tag": {
+      "TAG00": {
+        "link": "s1e",
+        "model_count": "s1f",
+        "name": "s20"
+      },
+      "TAG01": {
+        "link": "s3c",
+        "model_count": "s3d",
+        "name": "s3e"
+      },
+      "TAG02": {
+        "link": "s5a",
+        "model_count": "s5b",
+        "name": "s5c"
+      }
+    }
+  },
+  "new": {
+    "tag": {
+      "tag_ref01": {
+        "link": "s78",
+        "model_count": "s79",
+        "name": "s7a"
+      }
+    }
+  }
+}
