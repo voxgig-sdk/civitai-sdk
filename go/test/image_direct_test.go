@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/civitai-sdk"
-	"github.com/voxgig-sdk/civitai-sdk/core"
+	sdk "github.com/voxgig-sdk/civitai-sdk/go"
+	"github.com/voxgig-sdk/civitai-sdk/go/core"
 )
 
 func TestImageDirect(t *testing.T) {
