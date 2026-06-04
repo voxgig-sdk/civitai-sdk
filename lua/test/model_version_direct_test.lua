@@ -72,14 +72,12 @@ function model_version_direct_setup(mockres)
   local env = runner.env_override({
     ["CIVITAI_TEST_MODEL_VERSION_ENTID"] = {},
     ["CIVITAI_TEST_LIVE"] = "FALSE",
-    ["CIVITAI_APIKEY"] = "NONE",
   })
 
   local live = env["CIVITAI_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["CIVITAI_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

@@ -62,14 +62,12 @@ def creator_direct_setup(mockres)
   env = Runner.env_override({
     "CIVITAI_TEST_CREATOR_ENTID" => {},
     "CIVITAI_TEST_LIVE" => "FALSE",
-    "CIVITAI_APIKEY" => "NONE",
   })
 
   live = env["CIVITAI_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["CIVITAI_APIKEY"],
     }
     client = CivitaiSDK.new(merged_opts)
     return {

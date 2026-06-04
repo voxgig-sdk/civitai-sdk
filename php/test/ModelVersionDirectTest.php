@@ -77,14 +77,12 @@ function model_version_direct_setup($mockres)
     $env = Runner::env_override([
         "CIVITAI_TEST_MODEL_VERSION_ENTID" => [],
         "CIVITAI_TEST_LIVE" => "FALSE",
-        "CIVITAI_APIKEY" => "NONE",
     ]);
 
     $live = $env["CIVITAI_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["CIVITAI_APIKEY"],
         ];
         $client = new CivitaiSDK($merged_opts);
         return [

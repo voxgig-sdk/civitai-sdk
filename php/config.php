@@ -20,9 +20,6 @@ class CivitaiConfig
             ],
             "options" => [
                 "base" => "https://civitai.com/api/v1",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

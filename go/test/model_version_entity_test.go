@@ -123,7 +123,6 @@ func model_versionBasicSetup(extra map[string]any) *entityTestSetup {
 		"CIVITAI_TEST_MODEL_VERSION_ENTID": idmap,
 		"CIVITAI_TEST_LIVE":      "FALSE",
 		"CIVITAI_TEST_EXPLAIN":   "FALSE",
-		"CIVITAI_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["CIVITAI_TEST_MODEL_VERSION_ENTID"])
@@ -134,7 +133,6 @@ func model_versionBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["CIVITAI_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["CIVITAI_APIKEY"],
 			},
 			extra,
 		})

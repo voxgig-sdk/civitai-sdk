@@ -120,7 +120,6 @@ function basicSetup(extra?: any) {
     'CIVITAI_TEST_MODEL_ENTID': idmap,
     'CIVITAI_TEST_LIVE': 'FALSE',
     'CIVITAI_TEST_EXPLAIN': 'FALSE',
-    'CIVITAI_APIKEY': 'NONE',
   })
 
   idmap = env['CIVITAI_TEST_MODEL_ENTID']
@@ -130,7 +129,6 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new CivitaiSDK(merge([
       {
-        apikey: env.CIVITAI_APIKEY,
       },
       extra
     ]))

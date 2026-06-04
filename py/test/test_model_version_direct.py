@@ -69,14 +69,12 @@ def _model_version_direct_setup(mockres):
     env = runner.env_override({
         "CIVITAI_TEST_MODEL_VERSION_ENTID": {},
         "CIVITAI_TEST_LIVE": "FALSE",
-        "CIVITAI_APIKEY": "NONE",
     })
 
     live = env.get("CIVITAI_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("CIVITAI_APIKEY"),
         }
         client = CivitaiSDK(merged_opts)
         return {
