@@ -10,7 +10,7 @@ The Python SDK for the Civitai API — an entity-oriented client following Pytho
 
 ## Install
 ```bash
-pip install civitai-sdk
+pip install voxgig-sdk-civitai
 ```
 
 Or install from source:

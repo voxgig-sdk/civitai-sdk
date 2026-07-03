@@ -10,7 +10,7 @@ The PHP SDK for the Civitai API — an entity-oriented client using PHP conventi
 
 ## Install
 ```bash
-composer require voxgig/civitai-sdk
+composer require voxgig-sdk/civitai
 ```
 
 

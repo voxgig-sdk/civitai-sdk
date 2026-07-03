@@ -10,13 +10,13 @@ The Ruby SDK for the Civitai API — an entity-oriented client using idiomatic R
 
 ## Install
 ```bash
-gem install civitai-sdk
+gem install voxgig-sdk-civitai
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "civitai-sdk"
+gem "voxgig-sdk-civitai"
 ```
 
 Then run:

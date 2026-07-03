@@ -8,12 +8,14 @@ source = {
   dir = "civitai-sdk/lua"
 }
 description = {
-  summary = "Civitai SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Civitai public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/civitai-sdk",
+  issues_url = "https://github.com/voxgig-sdk/civitai-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "civitai" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

@@ -10,7 +10,7 @@ The TypeScript SDK for the Civitai API — a type-safe, entity-oriented client w
 
 ## Install
 ```bash
-npm install civitai
+npm install @voxgig-sdk/civitai
 ```
 ## Tutorial: your first API call
 

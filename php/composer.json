@@ -1,8 +1,17 @@
 {
   "name": "voxgig-sdk/civitai",
-  "description": "Civitai SDK for PHP",
+  "description": "Unofficial generated PHP SDK for the Civitai public API. Not affiliated with or endorsed by the upstream API provider.",
   "type": "library",
+  "keywords": ["voxgig", "sdk", "generated-sdk", "openapi", "api-client", "civitai"],
+  "homepage": "https://github.com/voxgig-sdk/civitai-sdk",
   "license": "MIT",
+  "authors": [
+    { "name": "Voxgig", "homepage": "https://voxgig.com" }
+  ],
+  "support": {
+    "issues": "https://github.com/voxgig-sdk/civitai-sdk/issues",
+    "source": "https://github.com/voxgig-sdk/civitai-sdk"
+  },
   "minimum-stability": "stable",
   "require": {
     "php": ">=8.2"

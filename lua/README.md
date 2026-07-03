@@ -10,7 +10,7 @@ The Lua SDK for the Civitai API — an entity-oriented client using Lua conventi
 
 ## Install
 ```bash
-luarocks install civitai-sdk
+luarocks install voxgig-sdk-civitai
 ```
 
 If the module is not yet published, add the source directory to
