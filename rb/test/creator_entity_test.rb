@@ -83,6 +83,7 @@ def creator_basic_setup(extra)
     "CIVITAI_TEST_CREATOR_ENTID" => idmap,
     "CIVITAI_TEST_LIVE" => "FALSE",
     "CIVITAI_TEST_EXPLAIN" => "FALSE",
+    "CIVITAI_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,6 +95,7 @@ def creator_basic_setup(extra)
   if env["CIVITAI_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
+        "apikey" => env["CIVITAI_APIKEY"],
       },
       extra || {},
     ])

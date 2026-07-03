@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -118,7 +118,7 @@ local creator = client:Creator(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Creator(nil):list(nil, nil)
+local results, err = client:Creator():list()
 ```
 
 ### Common Methods
@@ -181,7 +181,7 @@ local image = client:Image(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Image(nil):list(nil, nil)
+local results, err = client:Image():list()
 ```
 
 ### Common Methods
@@ -242,7 +242,7 @@ local model = client:Model(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Model(nil):list(nil, nil)
+local results, err = client:Model():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -250,7 +250,7 @@ local results, err = client:Model(nil):list(nil, nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Model(nil):load({ id = "model_id" }, nil)
+local result, err = client:Model():load({ id = "model_id" })
 ```
 
 ### Common Methods
@@ -310,7 +310,7 @@ local model_version = client:ModelVersion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ModelVersion(nil):load({ id = "model_version_id" }, nil)
+local result, err = client:ModelVersion():load({ id = "model_version_id" })
 ```
 
 ### Common Methods
@@ -364,7 +364,7 @@ local tag = client:Tag(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Tag(nil):list(nil, nil)
+local results, err = client:Tag():list()
 ```
 
 ### Common Methods

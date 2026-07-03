@@ -80,12 +80,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'CIVITAI_TEST_MODEL_VERSION_ENTID': {},
     'CIVITAI_TEST_LIVE': 'FALSE',
+    'CIVITAI_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.CIVITAI_TEST_LIVE
 
   if (live) {
     const client = new CivitaiSDK({
+      apikey: env.CIVITAI_APIKEY,
     })
 
     let idmap: any = env['CIVITAI_TEST_MODEL_VERSION_ENTID']

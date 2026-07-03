@@ -1,21 +1,8 @@
 # Civitai SDK
 
-Browse Civitai's catalogue of community-shared Stable Diffusion models, image generations, creators, and tags
+Civitai API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Civitai API
-
-[Civitai](https://civitai.com) is a community hub for sharing AI image-generation models, primarily Stable Diffusion checkpoints, LoRAs, embeddings, and the images they produce. The site API exposes the same catalogue that powers civitai.com so applications can discover models, look up versions by file hash, and browse creator profiles and tagged content.
-
-What you can do with the API:
-
-- List and search models, with filters and SFW toggles
-- Fetch a specific model or a model version (including lookup by file hash)
-- Browse images posted to the site, with SFW filters
-- List creators and tags used across the catalogue
-
-The API is served from `https://civitai.com/api/v1` and has CORS enabled, so it can be called from browser apps. A separate Orchestration API and OAuth flow (authorization code + PKCE, scoped tokens, per-app buzz limits) are available from [developer.civitai.com](https://developer.civitai.com) for apps that need to act on behalf of users or submit generation workflows.
 
 ## Try it
 
@@ -49,29 +36,31 @@ gem install civitai-sdk
 luarocks install civitai-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { CivitaiSDK } from 'civitai'
 
-const client = new CivitaiSDK({})
+const client = new CivitaiSDK({
+  apikey: process.env.CIVITAI_APIKEY,
+})
 
 // List all creators
 const creators = await client.Creator().list()
+console.log(creators.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -101,11 +90,11 @@ The API exposes 5 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Creator** | A user profile that has published models or images on Civitai; listed via the creators endpoint under `/api/v1`. | `/creators` |
-| **Image** | An image post on Civitai, typically a generation output, retrievable with SFW filtering through the images endpoint. | `/images` |
-| **Model** | A published AI model entry (e.g. Stable Diffusion checkpoint, LoRA, embedding) browsable and fetchable by ID via the models endpoint. | `/models` |
-| **ModelVersion** | A specific version of a model with its own files and metadata; can be fetched by ID or by file hash. | `/model-versions/by-hash/{hash}` |
-| **Tag** | A label used to categorise models and images across the Civitai catalogue. | `/tags` |
+| **Creator** |  | `/creators` |
+| **Image** |  | `/images` |
+| **Model** |  | `/models` |
+| **ModelVersion** |  | `/model-versions/by-hash/{hash}` |
+| **Tag** |  | `/tags` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -115,12 +104,16 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from civitai_sdk import CivitaiSDK
 
-client = CivitaiSDK({})
+client = CivitaiSDK({
+    "apikey": os.environ.get("CIVITAI_APIKEY"),
+})
 
 # List all creators
-creators, err = client.Creator(None).list(None, None)
+creators, err = client.Creator().list()
+print(creators)
 ```
 
 ### PHP
@@ -129,10 +122,13 @@ creators, err = client.Creator(None).list(None, None)
 <?php
 require_once 'civitai_sdk.php';
 
-$client = new CivitaiSDK([]);
+$client = new CivitaiSDK([
+    "apikey" => getenv("CIVITAI_APIKEY"),
+]);
 
 // List all creators
-[$creators, $err] = $client->Creator(null)->list(null, null);
+[$creators, $err] = $client->Creator()->list();
+print_r($creators);
 ```
 
 ### Golang
@@ -140,10 +136,13 @@ $client = new CivitaiSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/civitai-sdk/go"
 
-client := sdk.NewCivitaiSDK(map[string]any{})
+client := sdk.NewCivitaiSDK(map[string]any{
+    "apikey": os.Getenv("CIVITAI_APIKEY"),
+})
 
 // List all creators
 creators, err := client.Creator(nil).List(nil, nil)
+fmt.Println(creators)
 ```
 
 ### Ruby
@@ -151,10 +150,13 @@ creators, err := client.Creator(nil).List(nil, nil)
 ```ruby
 require_relative "Civitai_sdk"
 
-client = CivitaiSDK.new({})
+client = CivitaiSDK.new({
+  "apikey" => ENV["CIVITAI_APIKEY"],
+})
 
 # List all creators
-creators, err = client.Creator(nil).list(nil, nil)
+creators, err = client.Creator().list
+puts creators
 ```
 
 ### Lua
@@ -162,10 +164,13 @@ creators, err = client.Creator(nil).list(nil, nil)
 ```lua
 local sdk = require("civitai_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("CIVITAI_APIKEY"),
+})
 
 -- List all creators
-local creators, err = client:Creator(nil):list(nil, nil)
+local creators, err = client:Creator():list()
+print(creators)
 ```
 
 ## Unit testing in offline mode
@@ -184,25 +189,21 @@ const result = await client.Creator().load({ id: 'test01' })
 ### Python
 
 ```python
-client = CivitaiSDK.test(None, None)
-result, err = client.Creator(None).load(
-    {"id": "test01"}, None
-)
+client = CivitaiSDK.test()
+result, err = client.Creator().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = CivitaiSDK::test(null, null);
-[$result, $err] = $client->Creator(null)->load(
-    ["id" => "test01"], null
-);
+$client = CivitaiSDK::test();
+[$result, $err] = $client->Creator()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Creator(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -211,19 +212,15 @@ result, err := client.Creator(nil).Load(
 ### Ruby
 
 ```ruby
-client = CivitaiSDK.test(nil, nil)
-result, err = client.Creator(nil).load(
-  { "id" => "test01" }, nil
-)
+client = CivitaiSDK.test
+result, err = client.Creator().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Creator(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Creator():load({ id = "test01" })
 ```
 
 ## How it works
@@ -327,11 +324,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Civitai API
-
-- Upstream: [https://civitai.com](https://civitai.com)
-- API docs: [https://developer.civitai.com](https://developer.civitai.com)
 
 ---
 

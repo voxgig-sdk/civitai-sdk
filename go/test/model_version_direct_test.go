@@ -117,12 +117,14 @@ func model_versionDirectSetup(mockres any) *model_versionDirectSetupResult {
 	env := envOverride(map[string]any{
 		"CIVITAI_TEST_MODEL_VERSION_ENTID": map[string]any{},
 		"CIVITAI_TEST_LIVE":    "FALSE",
+		"CIVITAI_APIKEY":       "NONE",
 	})
 
 	live := env["CIVITAI_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["CIVITAI_APIKEY"],
 		}
 		client := sdk.NewCivitaiSDK(mergedOpts)
 

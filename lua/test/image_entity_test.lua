@@ -92,6 +92,7 @@ function image_basic_setup(extra)
     ["CIVITAI_TEST_IMAGE_ENTID"] = idmap,
     ["CIVITAI_TEST_LIVE"] = "FALSE",
     ["CIVITAI_TEST_EXPLAIN"] = "FALSE",
+    ["CIVITAI_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -103,6 +104,7 @@ function image_basic_setup(extra)
   if env["CIVITAI_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["CIVITAI_APIKEY"],
       },
       extra or {},
     })

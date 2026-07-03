@@ -93,12 +93,14 @@ func tagDirectSetup(mockres any) *tagDirectSetupResult {
 	env := envOverride(map[string]any{
 		"CIVITAI_TEST_TAG_ENTID": map[string]any{},
 		"CIVITAI_TEST_LIVE":    "FALSE",
+		"CIVITAI_APIKEY":       "NONE",
 	})
 
 	live := env["CIVITAI_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["CIVITAI_APIKEY"],
 		}
 		client := sdk.NewCivitaiSDK(mergedOpts)
 
