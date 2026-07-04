@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/civitai-sdk/go=../civitai-sdk/go
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,32 +43,23 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/civitai-sdk/go"
-    "github.com/voxgig-sdk/civitai-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewCivitaiSDK(map[string]any{
         "apikey": os.Getenv("CIVITAI_APIKEY"),
     })
-```
 
-### 2. List creators
-
-```go
-    result, err := client.Creator(nil).List(nil, nil)
+    // List creator records — the value is the array of records itself.
+    creators, err := client.Creator(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
-
-    rm := core.ToMapAny(result)
-    if rm["ok"] == true {
-        for _, item := range rm["data"].([]any) {
-            p := core.ToMapAny(item)
-            fmt.Println(p["id"], p["name"])
-        }
+    for _, item := range creators.([]any) {
+        fmt.Println(item)
     }
+}
 ```
 
 
@@ -113,10 +109,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Creator(nil).Load(
+creator, err := client.Creator(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(creator) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -196,7 +195,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
 | `Creator` | `(data map[string]any) CivitaiEntity` | Create a Creator entity instance. |
-| `Image` | `(data map[string]any) CivitaiEntity` | Create a Image entity instance. |
+| `Image` | `(data map[string]any) CivitaiEntity` | Create an Image entity instance. |
 | `Model` | `(data map[string]any) CivitaiEntity` | Create a Model entity instance. |
 | `ModelVersion` | `(data map[string]any) CivitaiEntity` | Create a ModelVersion entity instance. |
 | `Tag` | `(data map[string]any) CivitaiEntity` | Create a Tag entity instance. |
@@ -219,17 +218,24 @@ All entities implement the `CivitaiEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    creator, err := client.Creator(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // creator is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -341,7 +347,11 @@ Create an instance: `creator := client.Creator(nil)`
 #### Example: List
 
 ```go
-results, err := client.Creator(nil).List(nil, nil)
+creators, err := client.Creator(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(creators) // the array of records
 ```
 
 
@@ -375,7 +385,11 @@ Create an instance: `image := client.Image(nil)`
 #### Example: List
 
 ```go
-results, err := client.Image(nil).List(nil, nil)
+images, err := client.Image(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(images) // the array of records
 ```
 
 
@@ -408,13 +422,21 @@ Create an instance: `model := client.Model(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Model(nil).Load(map[string]any{"id": "model_id"}, nil)
+model, err := client.Model(nil).Load(map[string]any{"id": "model_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(model) // the loaded record
 ```
 
 #### Example: List
 
 ```go
-results, err := client.Model(nil).List(nil, nil)
+models, err := client.Model(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(models) // the array of records
 ```
 
 
@@ -445,7 +467,11 @@ Create an instance: `model_version := client.ModelVersion(nil)`
 #### Example: Load
 
 ```go
-result, err := client.ModelVersion(nil).Load(map[string]any{"id": "model_version_id"}, nil)
+model_version, err := client.ModelVersion(nil).Load(map[string]any{"id": "model_version_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(model_version) // the loaded record
 ```
 
 
@@ -470,7 +496,11 @@ Create an instance: `tag := client.Tag(nil)`
 #### Example: List
 
 ```go
-results, err := client.Tag(nil).List(nil, nil)
+tags, err := client.Tag(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(tags) // the array of records
 ```
 
 

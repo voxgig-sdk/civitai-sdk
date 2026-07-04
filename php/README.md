@@ -31,18 +31,16 @@ $client = new CivitaiSDK([
 ]);
 ```
 
-### 2. List creators
+### 2. List creator records
 
 ```php
 try {
-    $result = $client->creator()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Creator records — iterate directly.
+    $creators = $client->Creator()->list();
+    foreach ($creators as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -88,13 +86,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = CivitaiSDK::test();
+$client = CivitaiSDK::test([
+    "entity" => ["creator" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->creator()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$creator = $client->Creator()->load(["id" => "test01"]);
+print_r($creator);
 ```
 
 ### Use a custom fetch function
@@ -176,7 +178,7 @@ Creates a test-mode client with mock transport. Both arguments may be `null`.
 | `prepare` | `(array $fetchargs): array` | Build an HTTP request definition without sending. |
 | `direct` | `(array $fetchargs): array` | Build and send an HTTP request. |
 | `Creator` | `($data): CreatorEntity` | Create a Creator entity instance. |
-| `Image` | `($data): ImageEntity` | Create a Image entity instance. |
+| `Image` | `($data): ImageEntity` | Create an Image entity instance. |
 | `Model` | `($data): ModelEntity` | Create a Model entity instance. |
 | `ModelVersion` | `($data): ModelVersionEntity` | Create a ModelVersion entity instance. |
 | `Tag` | `($data): TagEntity` | Create a Tag entity instance. |
@@ -308,7 +310,7 @@ API path: `/tags`
 
 ### Creator
 
-Create an instance: `const creator = client.creator`
+Create an instance: `$creator = $client->Creator();`
 
 #### Operations
 
@@ -326,14 +328,15 @@ Create an instance: `const creator = client.creator`
 
 #### Example: List
 
-```ts
-const creators = await client.creator.list()
+```php
+// list() returns an array of Creator records (throws on error).
+$creators = $client->Creator()->list();
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `$image = $client->Image();`
 
 #### Operations
 
@@ -360,14 +363,15 @@ Create an instance: `const image = client.image`
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```php
+// list() returns an array of Image records (throws on error).
+$images = $client->Image()->list();
 ```
 
 
 ### Model
 
-Create an instance: `const model = client.model`
+Create an instance: `$model = $client->Model();`
 
 #### Operations
 
@@ -393,20 +397,22 @@ Create an instance: `const model = client.model`
 
 #### Example: Load
 
-```ts
-const model = await client.model.load({ id: 'model_id' })
+```php
+// load() returns the bare Model record (throws on error).
+$model = $client->Model()->load(["id" => "model_id"]);
 ```
 
 #### Example: List
 
-```ts
-const models = await client.model.list()
+```php
+// list() returns an array of Model records (throws on error).
+$models = $client->Model()->list();
 ```
 
 
 ### ModelVersion
 
-Create an instance: `const model_version = client.model_version`
+Create an instance: `$model_version = $client->ModelVersion();`
 
 #### Operations
 
@@ -430,14 +436,15 @@ Create an instance: `const model_version = client.model_version`
 
 #### Example: Load
 
-```ts
-const model_version = await client.model_version.load({ id: 'model_version_id' })
+```php
+// load() returns the bare ModelVersion record (throws on error).
+$model_version = $client->ModelVersion()->load(["id" => "model_version_id"]);
 ```
 
 
 ### Tag
 
-Create an instance: `const tag = client.tag`
+Create an instance: `$tag = $client->Tag();`
 
 #### Operations
 
@@ -455,8 +462,9 @@ Create an instance: `const tag = client.tag`
 
 #### Example: List
 
-```ts
-const tags = await client.tag.list()
+```php
+// list() returns an array of Tag records (throws on error).
+$tags = $client->Tag()->list();
 ```
 
 
@@ -531,7 +539,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$creator = $client->creator();
+$creator = $client->Creator();
 $creator->load(["id" => "example_id"]);
 
 // $creator->dataGet() now returns the loaded creator data

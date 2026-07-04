@@ -158,7 +158,7 @@ Alias for `CivitaiSDK.test()`.
 ## CreatorEntity
 
 ```ts
-const creator = client.creator
+const creator = client.Creator()
 ```
 
 ### Fields
@@ -176,7 +176,7 @@ const creator = client.creator
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.creator.list()
+const results = await client.Creator().list()
 ```
 
 ### Common Methods
@@ -210,7 +210,7 @@ Return a copy of the entity options.
 ## ImageEntity
 
 ```ts
-const image = client.image
+const image = client.Image()
 ```
 
 ### Fields
@@ -237,7 +237,7 @@ const image = client.image
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.image.list()
+const results = await client.Image().list()
 ```
 
 ### Common Methods
@@ -271,7 +271,7 @@ Return a copy of the entity options.
 ## ModelEntity
 
 ```ts
-const model = client.model
+const model = client.Model()
 ```
 
 ### Fields
@@ -296,7 +296,7 @@ const model = client.model
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.model.list()
+const results = await client.Model().list()
 ```
 
 #### `load(match: object, ctrl?: object)`
@@ -304,7 +304,7 @@ const results = await client.model.list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.model.load({ id: 'model_id' })
+const result = await client.Model().load({ id: 'model_id' })
 ```
 
 ### Common Methods
@@ -338,7 +338,7 @@ Return a copy of the entity options.
 ## ModelVersionEntity
 
 ```ts
-const model_version = client.model_version
+const model_version = client.ModelVersion()
 ```
 
 ### Fields
@@ -362,7 +362,7 @@ const model_version = client.model_version
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.model_version.load({ id: 'model_version_id' })
+const result = await client.ModelVersion().load({ id: 'model_version_id' })
 ```
 
 ### Common Methods
@@ -396,7 +396,7 @@ Return a copy of the entity options.
 ## TagEntity
 
 ```ts
-const tag = client.tag
+const tag = client.Tag()
 ```
 
 ### Fields
@@ -414,7 +414,7 @@ const tag = client.tag
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.tag.list()
+const results = await client.Tag().list()
 ```
 
 ### Common Methods

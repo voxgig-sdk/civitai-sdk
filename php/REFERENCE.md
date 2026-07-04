@@ -102,7 +102,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## CreatorEntity
 
 ```php
-$creator = $client->creator();
+$creator = $client->Creator();
 ```
 
 ### Fields
@@ -120,7 +120,7 @@ $creator = $client->creator();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->creator()->list([]);
+$results = $client->Creator()->list([]);
 ```
 
 ### Common Methods
@@ -156,7 +156,7 @@ Return the entity name.
 ## ImageEntity
 
 ```php
-$image = $client->image();
+$image = $client->Image();
 ```
 
 ### Fields
@@ -183,7 +183,7 @@ $image = $client->image();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->image()->list([]);
+$results = $client->Image()->list([]);
 ```
 
 ### Common Methods
@@ -219,7 +219,7 @@ Return the entity name.
 ## ModelEntity
 
 ```php
-$model = $client->model();
+$model = $client->Model();
 ```
 
 ### Fields
@@ -244,7 +244,7 @@ $model = $client->model();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->model()->list([]);
+$results = $client->Model()->list([]);
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -252,7 +252,7 @@ $results = $client->model()->list([]);
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->model()->load(["id" => "model_id"]);
+$result = $client->Model()->load(["id" => "model_id"]);
 ```
 
 ### Common Methods
@@ -288,7 +288,7 @@ Return the entity name.
 ## ModelVersionEntity
 
 ```php
-$model_version = $client->model_version();
+$model_version = $client->ModelVersion();
 ```
 
 ### Fields
@@ -312,7 +312,7 @@ $model_version = $client->model_version();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->model_version()->load(["id" => "model_version_id"]);
+$result = $client->ModelVersion()->load(["id" => "model_version_id"]);
 ```
 
 ### Common Methods
@@ -348,7 +348,7 @@ Return the entity name.
 ## TagEntity
 
 ```php
-$tag = $client->tag();
+$tag = $client->Tag();
 ```
 
 ### Fields
@@ -366,7 +366,7 @@ $tag = $client->tag();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->tag()->list([]);
+$results = $client->Tag()->list([]);
 ```
 
 ### Common Methods

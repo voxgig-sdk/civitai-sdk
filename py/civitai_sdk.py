@@ -220,89 +220,39 @@ class CivitaiSDK:
         }
 
 
-    @property
-    def creator(self):
-        """Idiomatic facade: client.creator.list() / client.creator.load({"id": ...})."""
-        from entity.creator_entity import CreatorEntity
-        cached = getattr(self, "_creator", None)
-        if cached is None:
-            cached = CreatorEntity(self, None)
-            self._creator = cached
-        return cached
-
-    def Creator(self, data=None):
-        # Deprecated: use client.creator instead.
+    def Creator(self, data=None) -> "CreatorEntity":
+        """Entity factory: client.Creator().list({}) / client.Creator().load({"id": ...})."""
         from entity.creator_entity import CreatorEntity
         return CreatorEntity(self, data)
 
 
-    @property
-    def image(self):
-        """Idiomatic facade: client.image.list() / client.image.load({"id": ...})."""
-        from entity.image_entity import ImageEntity
-        cached = getattr(self, "_image", None)
-        if cached is None:
-            cached = ImageEntity(self, None)
-            self._image = cached
-        return cached
-
-    def Image(self, data=None):
-        # Deprecated: use client.image instead.
+    def Image(self, data=None) -> "ImageEntity":
+        """Entity factory: client.Image().list({}) / client.Image().load({"id": ...})."""
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
-    @property
-    def model(self):
-        """Idiomatic facade: client.model.list() / client.model.load({"id": ...})."""
-        from entity.model_entity import ModelEntity
-        cached = getattr(self, "_model", None)
-        if cached is None:
-            cached = ModelEntity(self, None)
-            self._model = cached
-        return cached
-
-    def Model(self, data=None):
-        # Deprecated: use client.model instead.
+    def Model(self, data=None) -> "ModelEntity":
+        """Entity factory: client.Model().list({}) / client.Model().load({"id": ...})."""
         from entity.model_entity import ModelEntity
         return ModelEntity(self, data)
 
 
-    @property
-    def model_version(self):
-        """Idiomatic facade: client.model_version.list() / client.model_version.load({"id": ...})."""
-        from entity.model_version_entity import ModelVersionEntity
-        cached = getattr(self, "_model_version", None)
-        if cached is None:
-            cached = ModelVersionEntity(self, None)
-            self._model_version = cached
-        return cached
-
-    def ModelVersion(self, data=None):
-        # Deprecated: use client.model_version instead.
+    def ModelVersion(self, data=None) -> "ModelVersionEntity":
+        """Entity factory: client.ModelVersion().list({}) / client.ModelVersion().load({"id": ...})."""
         from entity.model_version_entity import ModelVersionEntity
         return ModelVersionEntity(self, data)
 
 
-    @property
-    def tag(self):
-        """Idiomatic facade: client.tag.list() / client.tag.load({"id": ...})."""
-        from entity.tag_entity import TagEntity
-        cached = getattr(self, "_tag", None)
-        if cached is None:
-            cached = TagEntity(self, None)
-            self._tag = cached
-        return cached
-
-    def Tag(self, data=None):
-        # Deprecated: use client.tag instead.
+    def Tag(self, data=None) -> "TagEntity":
+        """Entity factory: client.Tag().list({}) / client.Tag().load({"id": ...})."""
         from entity.tag_entity import TagEntity
         return TagEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "CivitaiSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -322,3 +272,13 @@ class CivitaiSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.creator_entity import CreatorEntity
+    from entity.image_entity import ImageEntity
+    from entity.model_entity import ModelEntity
+    from entity.model_version_entity import ModelVersionEntity
+    from entity.tag_entity import TagEntity

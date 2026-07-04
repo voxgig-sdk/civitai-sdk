@@ -30,16 +30,14 @@ client = CivitaiSDK.new({
 })
 ```
 
-### 2. List creators
+### 2. List creator records
 
 ```ruby
 begin
-  result = client.creator.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Creator records — iterate directly.
+  creators = client.Creator.list
+  creators.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -87,13 +85,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = CivitaiSDK.test
+client = CivitaiSDK.test({
+  "entity" => { "creator" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.creator.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+creator = client.Creator.load({ "id" => "test01" })
+puts creator
 ```
 
 ### Use a custom fetch function
@@ -172,7 +174,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `Creator` | `(data) -> CreatorEntity` | Create a Creator entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 | `Model` | `(data) -> ModelEntity` | Create a Model entity instance. |
 | `ModelVersion` | `(data) -> ModelVersionEntity` | Create a ModelVersion entity instance. |
 | `Tag` | `(data) -> TagEntity` | Create a Tag entity instance. |
@@ -303,7 +305,7 @@ API path: `/tags`
 
 ### Creator
 
-Create an instance: `const creator = client.creator`
+Create an instance: `creator = client.Creator`
 
 #### Operations
 
@@ -321,14 +323,15 @@ Create an instance: `const creator = client.creator`
 
 #### Example: List
 
-```ts
-const creators = await client.creator.list()
+```ruby
+# list returns an Array of Creator records (raises on error).
+creators = client.Creator.list
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `image = client.Image`
 
 #### Operations
 
@@ -355,14 +358,15 @@ Create an instance: `const image = client.image`
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```ruby
+# list returns an Array of Image records (raises on error).
+images = client.Image.list
 ```
 
 
 ### Model
 
-Create an instance: `const model = client.model`
+Create an instance: `model = client.Model`
 
 #### Operations
 
@@ -388,20 +392,22 @@ Create an instance: `const model = client.model`
 
 #### Example: Load
 
-```ts
-const model = await client.model.load({ id: 'model_id' })
+```ruby
+# load returns the bare Model record (raises on error).
+model = client.Model.load({ "id" => "model_id" })
 ```
 
 #### Example: List
 
-```ts
-const models = await client.model.list()
+```ruby
+# list returns an Array of Model records (raises on error).
+models = client.Model.list
 ```
 
 
 ### ModelVersion
 
-Create an instance: `const model_version = client.model_version`
+Create an instance: `model_version = client.ModelVersion`
 
 #### Operations
 
@@ -425,14 +431,15 @@ Create an instance: `const model_version = client.model_version`
 
 #### Example: Load
 
-```ts
-const model_version = await client.model_version.load({ id: 'model_version_id' })
+```ruby
+# load returns the bare ModelVersion record (raises on error).
+model_version = client.ModelVersion.load({ "id" => "model_version_id" })
 ```
 
 
 ### Tag
 
-Create an instance: `const tag = client.tag`
+Create an instance: `tag = client.Tag`
 
 #### Operations
 
@@ -450,8 +457,9 @@ Create an instance: `const tag = client.tag`
 
 #### Example: List
 
-```ts
-const tags = await client.tag.list()
+```ruby
+# list returns an Array of Tag records (raises on error).
+tags = client.Tag.list
 ```
 
 
@@ -526,7 +534,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-creator = client.creator
+creator = client.Creator
 creator.load({ "id" => "example_id" })
 
 # creator.data_get now returns the loaded creator data

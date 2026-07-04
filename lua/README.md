@@ -33,17 +33,17 @@ local client = sdk.new({
 })
 ```
 
-### 2. List creators
+### 2. List creator records
+
+Entity operations return `(value, err)`. For `list`, `value` is the
+array of records itself — iterate it directly (there is no wrapper).
 
 ```lua
-local result, err = client:creator():list()
+local creators, err = client:Creator():list()
 if err then error(err) end
 
-if type(result) == "table" then
-  for _, item in ipairs(result) do
-    local d = item:data_get()
-    print(d["id"], d["name"])
-  end
+for _, item in ipairs(creators) do
+  print(item["id"], item["name"])
 end
 ```
 
@@ -90,8 +90,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:creator():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:Creator():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -172,7 +172,7 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `prepare` | `(fetchargs) -> table, err` | Build an HTTP request definition without sending. |
 | `direct` | `(fetchargs) -> table, err` | Build and send an HTTP request. |
 | `Creator` | `(data) -> CreatorEntity` | Create a Creator entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 | `Model` | `(data) -> ModelEntity` | Create a Model entity instance. |
 | `ModelVersion` | `(data) -> ModelVersionEntity` | Create a ModelVersion entity instance. |
 | `Tag` | `(data) -> TagEntity` | Create a Tag entity instance. |
@@ -197,17 +197,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local creator, err = client:Creator():load({ id = "example_id" })
+    if err then error(err) end
+    -- creator is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -300,7 +305,7 @@ API path: `/tags`
 
 ### Creator
 
-Create an instance: `const creator = client.creator`
+Create an instance: `local creator = client:Creator(nil)`
 
 #### Operations
 
@@ -318,14 +323,14 @@ Create an instance: `const creator = client.creator`
 
 #### Example: List
 
-```ts
-const creators = await client.creator.list()
+```lua
+local creators, err = client:Creator():list()
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `local image = client:Image(nil)`
 
 #### Operations
 
@@ -352,14 +357,14 @@ Create an instance: `const image = client.image`
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```lua
+local images, err = client:Image():list()
 ```
 
 
 ### Model
 
-Create an instance: `const model = client.model`
+Create an instance: `local model = client:Model(nil)`
 
 #### Operations
 
@@ -385,20 +390,20 @@ Create an instance: `const model = client.model`
 
 #### Example: Load
 
-```ts
-const model = await client.model.load({ id: 'model_id' })
+```lua
+local model, err = client:Model():load({ id = "model_id" })
 ```
 
 #### Example: List
 
-```ts
-const models = await client.model.list()
+```lua
+local models, err = client:Model():list()
 ```
 
 
 ### ModelVersion
 
-Create an instance: `const model_version = client.model_version`
+Create an instance: `local model_version = client:ModelVersion(nil)`
 
 #### Operations
 
@@ -422,14 +427,14 @@ Create an instance: `const model_version = client.model_version`
 
 #### Example: Load
 
-```ts
-const model_version = await client.model_version.load({ id: 'model_version_id' })
+```lua
+local model_version, err = client:ModelVersion():load({ id = "model_version_id" })
 ```
 
 
 ### Tag
 
-Create an instance: `const tag = client.tag`
+Create an instance: `local tag = client:Tag(nil)`
 
 #### Operations
 
@@ -447,8 +452,8 @@ Create an instance: `const tag = client.tag`
 
 #### Example: List
 
-```ts
-const tags = await client.tag.list()
+```lua
+local tags, err = client:Tag():list()
 ```
 
 
@@ -523,7 +528,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local creator = client:creator()
+local creator = client:Creator()
 creator:load({ id = "example_id" })
 
 -- creator:data_get() now returns the loaded creator data

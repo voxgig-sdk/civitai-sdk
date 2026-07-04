@@ -208,70 +208,35 @@ class CivitaiSDK {
 
 
 
-  _creator?: CreatorEntity
-
-  // Idiomatic facade: `client.creator.list()` / `client.creator.load({ id })`.
-  get creator(): CreatorEntity {
-    return (this._creator ??= new CreatorEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.creator` instead. */
+  // Entity access: `client.Creator().list()` / `client.Creator().load({ id })`.
   Creator(data?: any) {
     const self = this
     return new CreatorEntity(self,data)
   }
 
 
-  _image?: ImageEntity
-
-  // Idiomatic facade: `client.image.list()` / `client.image.load({ id })`.
-  get image(): ImageEntity {
-    return (this._image ??= new ImageEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.image` instead. */
+  // Entity access: `client.Image().list()` / `client.Image().load({ id })`.
   Image(data?: any) {
     const self = this
     return new ImageEntity(self,data)
   }
 
 
-  _model?: ModelEntity
-
-  // Idiomatic facade: `client.model.list()` / `client.model.load({ id })`.
-  get model(): ModelEntity {
-    return (this._model ??= new ModelEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.model` instead. */
+  // Entity access: `client.Model().list()` / `client.Model().load({ id })`.
   Model(data?: any) {
     const self = this
     return new ModelEntity(self,data)
   }
 
 
-  _model_version?: ModelVersionEntity
-
-  // Idiomatic facade: `client.model_version.list()` / `client.model_version.load({ id })`.
-  get model_version(): ModelVersionEntity {
-    return (this._model_version ??= new ModelVersionEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.model_version` instead. */
+  // Entity access: `client.ModelVersion().list()` / `client.ModelVersion().load({ id })`.
   ModelVersion(data?: any) {
     const self = this
     return new ModelVersionEntity(self,data)
   }
 
 
-  _tag?: TagEntity
-
-  // Idiomatic facade: `client.tag.list()` / `client.tag.load({ id })`.
-  get tag(): TagEntity {
-    return (this._tag ??= new TagEntity(this, undefined))
-  }
-
-  /** @deprecated Use `client.tag` instead. */
+  // Entity access: `client.Tag().list()` / `client.Tag().load({ id })`.
   Tag(data?: any) {
     const self = this
     return new TagEntity(self,data)

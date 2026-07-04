@@ -28,9 +28,11 @@ const client = new CivitaiSDK({
   apikey: process.env.CIVITAI_APIKEY,
 })
 
-// List all creators
-const creators = await client.creator.list()
-console.log(creators.data)
+// List all creators (returns Creator[])
+const creators = await client.Creator().list()
+for (const creator of creators) {
+  console.log(creator)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -92,9 +94,10 @@ client = CivitaiSDK({
     "apikey": os.environ.get("CIVITAI_APIKEY"),
 })
 
-# List all creators
-creators = client.creator.list()
-print(creators)
+# List all creators (returns a list, raises on error)
+creators = client.Creator().list({})
+for creator in creators:
+    print(creator)
 ```
 
 ### PHP
@@ -107,8 +110,8 @@ $client = new CivitaiSDK([
     "apikey" => getenv("CIVITAI_APIKEY"),
 ]);
 
-// List all creators (throws on error)
-$creators = $client->creator()->list();
+// List all creators (returns an array; throws on error)
+$creators = $client->Creator()->list();
 print_r($creators);
 ```
 
@@ -135,8 +138,8 @@ client = CivitaiSDK.new({
   "apikey" => ENV["CIVITAI_APIKEY"],
 })
 
-# List all creators
-creators = client.creator.list
+# List all creators (returns an Array; raises on error)
+creators = client.Creator.list
 puts creators
 ```
 
@@ -150,7 +153,7 @@ local client = sdk.new({
 })
 
 -- List all creators
-local creators, err = client:creator():list()
+local creators, err = client:Creator():list()
 print(creators)
 ```
 
@@ -163,22 +166,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = CivitaiSDK.test()
-const result = await client.creator.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const creator = await client.Creator().load({ id: 'test01' })
+// creator is a bare Creator populated with mock data
+console.log(creator)
 ```
 
 ### Python
 
 ```python
 client = CivitaiSDK.test()
-result = client.creator.load({"id": "test01"})
+creator = client.Creator().load({"id": "test01"})
+print(creator)
 ```
 
 ### PHP
 
 ```php
-$client = CivitaiSDK::test();
-$result = $client->creator()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = CivitaiSDK::test([
+    "entity" => ["creator" => ["test01" => ["id" => "test01"]]],
+]);
+$creator = $client->Creator()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -193,15 +201,18 @@ result, err := client.Creator(nil).Load(
 ### Ruby
 
 ```ruby
-client = CivitaiSDK.test
-result = client.creator.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = CivitaiSDK.test({
+  "entity" => { "creator" => { "test01" => { "id" => "test01" } } },
+})
+creator = client.Creator.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:creator():load({ id = "test01" })
+local result, err = client:Creator():load({ id = "test01" })
 ```
 
 ## How it works
@@ -249,6 +260,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

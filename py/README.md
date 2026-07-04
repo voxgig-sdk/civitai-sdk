@@ -34,14 +34,16 @@ client = CivitaiSDK({
 })
 ```
 
-### 2. List creators
+### 2. List creator records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.creator.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    creators = client.Creator().list({})
+    for creator in creators:
+        print(creator)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -89,8 +91,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CivitaiSDK.test()
 
-result = client.creator.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+creator = client.Creator().load({"id": "test01"})
+# creator contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -169,7 +172,7 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
 | `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Creator` | `(data) -> CreatorEntity` | Create a Creator entity instance. |
-| `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
+| `Image` | `(data) -> ImageEntity` | Create an Image entity instance. |
 | `Model` | `(data) -> ModelEntity` | Create a Model entity instance. |
 | `ModelVersion` | `(data) -> ModelVersionEntity` | Create a ModelVersion entity instance. |
 | `Tag` | `(data) -> TagEntity` | Create a Tag entity instance. |
@@ -301,7 +304,7 @@ API path: `/tags`
 
 ### Creator
 
-Create an instance: `const creator = client.creator`
+Create an instance: `creator = client.Creator()`
 
 #### Operations
 
@@ -319,14 +322,14 @@ Create an instance: `const creator = client.creator`
 
 #### Example: List
 
-```ts
-const creators = await client.creator.list()
+```python
+creators = client.Creator().list({})
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.image`
+Create an instance: `image = client.Image()`
 
 #### Operations
 
@@ -353,14 +356,14 @@ Create an instance: `const image = client.image`
 
 #### Example: List
 
-```ts
-const images = await client.image.list()
+```python
+images = client.Image().list({})
 ```
 
 
 ### Model
 
-Create an instance: `const model = client.model`
+Create an instance: `model = client.Model()`
 
 #### Operations
 
@@ -386,20 +389,20 @@ Create an instance: `const model = client.model`
 
 #### Example: Load
 
-```ts
-const model = await client.model.load({ id: 'model_id' })
+```python
+model = client.Model().load({"id": "model_id"})
 ```
 
 #### Example: List
 
-```ts
-const models = await client.model.list()
+```python
+models = client.Model().list({})
 ```
 
 
 ### ModelVersion
 
-Create an instance: `const model_version = client.model_version`
+Create an instance: `model_version = client.ModelVersion()`
 
 #### Operations
 
@@ -423,14 +426,14 @@ Create an instance: `const model_version = client.model_version`
 
 #### Example: Load
 
-```ts
-const model_version = await client.model_version.load({ id: 'model_version_id' })
+```python
+model_version = client.ModelVersion().load({"id": "model_version_id"})
 ```
 
 
 ### Tag
 
-Create an instance: `const tag = client.tag`
+Create an instance: `tag = client.Tag()`
 
 #### Operations
 
@@ -448,8 +451,8 @@ Create an instance: `const tag = client.tag`
 
 #### Example: List
 
-```ts
-const tags = await client.tag.list()
+```python
+tags = client.Tag().list({})
 ```
 
 
@@ -523,7 +526,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-creator = client.creator
+creator = client.Creator()
 creator.load({"id": "example_id"})
 
 # creator.data_get() now returns the loaded creator data

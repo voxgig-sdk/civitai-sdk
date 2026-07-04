@@ -4,121 +4,114 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Creator:
-    link: Optional[str] = None
-    model_count: Optional[int] = None
-    username: Optional[str] = None
+class Creator(TypedDict, total=False):
+    link: str
+    model_count: int
+    username: str
 
 
-@dataclass
-class CreatorListMatch:
-    link: Optional[str] = None
-    model_count: Optional[int] = None
-    username: Optional[str] = None
+class CreatorListMatch(TypedDict, total=False):
+    link: str
+    model_count: int
+    username: str
 
 
-@dataclass
-class Image:
-    created_at: Optional[str] = None
-    hash: Optional[str] = None
-    height: Optional[int] = None
-    id: Optional[int] = None
-    meta: Optional[dict] = None
-    nsfw: Optional[bool] = None
-    nsfw_level: Optional[str] = None
-    post_id: Optional[int] = None
-    stat: Optional[dict] = None
-    url: Optional[str] = None
-    username: Optional[str] = None
-    width: Optional[int] = None
+class Image(TypedDict, total=False):
+    created_at: str
+    hash: str
+    height: int
+    id: int
+    meta: dict
+    nsfw: bool
+    nsfw_level: str
+    post_id: int
+    stat: dict
+    url: str
+    username: str
+    width: int
 
 
-@dataclass
-class ImageListMatch:
-    created_at: Optional[str] = None
-    hash: Optional[str] = None
-    height: Optional[int] = None
-    id: Optional[int] = None
-    meta: Optional[dict] = None
-    nsfw: Optional[bool] = None
-    nsfw_level: Optional[str] = None
-    post_id: Optional[int] = None
-    stat: Optional[dict] = None
-    url: Optional[str] = None
-    username: Optional[str] = None
-    width: Optional[int] = None
+class ImageListMatch(TypedDict, total=False):
+    created_at: str
+    hash: str
+    height: int
+    id: int
+    meta: dict
+    nsfw: bool
+    nsfw_level: str
+    post_id: int
+    stat: dict
+    url: str
+    username: str
+    width: int
 
 
-@dataclass
-class Model:
-    creator: Optional[dict] = None
-    description: Optional[str] = None
-    id: Optional[int] = None
-    mode: Optional[str] = None
-    model_version: Optional[list] = None
-    name: Optional[str] = None
-    nsfw: Optional[bool] = None
-    stat: Optional[dict] = None
-    tag: Optional[list] = None
-    type: Optional[str] = None
+class Model(TypedDict, total=False):
+    creator: dict
+    description: str
+    id: int
+    mode: str
+    model_version: list
+    name: str
+    nsfw: bool
+    stat: dict
+    tag: list
+    type: str
 
 
-@dataclass
-class ModelLoadMatch:
+class ModelLoadMatch(TypedDict):
     id: int
 
 
-@dataclass
-class ModelListMatch:
-    creator: Optional[dict] = None
-    description: Optional[str] = None
-    id: Optional[int] = None
-    mode: Optional[str] = None
-    model_version: Optional[list] = None
-    name: Optional[str] = None
-    nsfw: Optional[bool] = None
-    stat: Optional[dict] = None
-    tag: Optional[list] = None
-    type: Optional[str] = None
+class ModelListMatch(TypedDict, total=False):
+    creator: dict
+    description: str
+    id: int
+    mode: str
+    model_version: list
+    name: str
+    nsfw: bool
+    stat: dict
+    tag: list
+    type: str
 
 
-@dataclass
-class ModelVersion:
-    created_at: Optional[str] = None
-    description: Optional[str] = None
-    download_url: Optional[str] = None
-    file: Optional[list] = None
-    id: Optional[int] = None
-    image: Optional[list] = None
-    name: Optional[str] = None
-    stat: Optional[dict] = None
-    trained_word: Optional[list] = None
+class ModelVersion(TypedDict, total=False):
+    created_at: str
+    description: str
+    download_url: str
+    file: list
+    id: int
+    image: list
+    name: str
+    stat: dict
+    trained_word: list
 
 
-@dataclass
-class ModelVersionLoadMatch:
+class ModelVersionLoadMatch(TypedDict):
     hash: str
     id: int
 
 
-@dataclass
-class Tag:
-    link: Optional[str] = None
-    model_count: Optional[int] = None
-    name: Optional[str] = None
+class Tag(TypedDict, total=False):
+    link: str
+    model_count: int
+    name: str
 
 
-@dataclass
-class TagListMatch:
-    link: Optional[str] = None
-    model_count: Optional[int] = None
-    name: Optional[str] = None
-
+class TagListMatch(TypedDict, total=False):
+    link: str
+    model_count: int
+    name: str

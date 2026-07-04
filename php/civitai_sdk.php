@@ -233,10 +233,10 @@ class CivitaiSDK
 
     private $_creator = null;
 
-    // Idiomatic facade: $client->creator()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Creator() (PHP method
-    // names are case-insensitive).
-    public function creator($data = null)
+    // Canonical facade: $client->Creator()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->creator()
+    // resolves here too.
+    public function Creator($data = null)
     {
         require_once __DIR__ . '/entity/creator_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class CivitaiSDK
 
     private $_image = null;
 
-    // Idiomatic facade: $client->image()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Image() (PHP method
-    // names are case-insensitive).
-    public function image($data = null)
+    // Canonical facade: $client->Image()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->image()
+    // resolves here too.
+    public function Image($data = null)
     {
         require_once __DIR__ . '/entity/image_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class CivitaiSDK
 
     private $_model = null;
 
-    // Idiomatic facade: $client->model()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Model() (PHP method
-    // names are case-insensitive).
-    public function model($data = null)
+    // Canonical facade: $client->Model()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->model()
+    // resolves here too.
+    public function Model($data = null)
     {
         require_once __DIR__ . '/entity/model_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class CivitaiSDK
 
     private $_model_version = null;
 
-    // Idiomatic facade: $client->model_version()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias ModelVersion() (PHP method
-    // names are case-insensitive).
-    public function model_version($data = null)
+    // Canonical facade: $client->ModelVersion()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->model_version()
+    // resolves here too.
+    public function ModelVersion($data = null)
     {
         require_once __DIR__ . '/entity/model_version_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class CivitaiSDK
 
     private $_tag = null;
 
-    // Idiomatic facade: $client->tag()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Tag() (PHP method
-    // names are case-insensitive).
-    public function tag($data = null)
+    // Canonical facade: $client->Tag()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->tag()
+    // resolves here too.
+    public function Tag($data = null)
     {
         require_once __DIR__ . '/entity/tag_entity.php';
         if ($data === null) {

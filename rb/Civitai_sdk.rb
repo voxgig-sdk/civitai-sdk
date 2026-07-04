@@ -208,65 +208,35 @@ class CivitaiSDK
   end
 
 
-  # Idiomatic facade: client.creator.list / client.creator.load({ "id" => ... })
-  def creator
-    require_relative 'entity/creator_entity'
-    @creator ||= CreatorEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.creator instead.
+  # Canonical facade: client.Creator.list / client.Creator.load({ "id" => ... })
   def Creator(data = nil)
     require_relative 'entity/creator_entity'
     CreatorEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.image.list / client.image.load({ "id" => ... })
-  def image
-    require_relative 'entity/image_entity'
-    @image ||= ImageEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.image instead.
+  # Canonical facade: client.Image.list / client.Image.load({ "id" => ... })
   def Image(data = nil)
     require_relative 'entity/image_entity'
     ImageEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.model.list / client.model.load({ "id" => ... })
-  def model
-    require_relative 'entity/model_entity'
-    @model ||= ModelEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.model instead.
+  # Canonical facade: client.Model.list / client.Model.load({ "id" => ... })
   def Model(data = nil)
     require_relative 'entity/model_entity'
     ModelEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.model_version.list / client.model_version.load({ "id" => ... })
-  def model_version
-    require_relative 'entity/model_version_entity'
-    @model_version ||= ModelVersionEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.model_version instead.
+  # Canonical facade: client.ModelVersion.list / client.ModelVersion.load({ "id" => ... })
   def ModelVersion(data = nil)
     require_relative 'entity/model_version_entity'
     ModelVersionEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.tag.list / client.tag.load({ "id" => ... })
-  def tag
-    require_relative 'entity/tag_entity'
-    @tag ||= TagEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.tag instead.
+  # Canonical facade: client.Tag.list / client.Tag.load({ "id" => ... })
   def Tag(data = nil)
     require_relative 'entity/tag_entity'
     TagEntity.new(self, data)

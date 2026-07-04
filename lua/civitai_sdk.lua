@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:creator():list() / client:creator():load({ id = ... })
-function CivitaiSDK:creator(data)
+-- Idiomatic facade: client:Creator():list() / client:Creator():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CivitaiSDK:Creator(data)
   local EntityMod = require("entity.creator_entity")
   if data == nil then
     if self._creator == nil then
@@ -256,15 +257,10 @@ function CivitaiSDK:creator(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:creator() instead.
-function CivitaiSDK:Creator(data)
-  local EntityMod = require("entity.creator_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:image():list() / client:image():load({ id = ... })
-function CivitaiSDK:image(data)
+-- Idiomatic facade: client:Image():list() / client:Image():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CivitaiSDK:Image(data)
   local EntityMod = require("entity.image_entity")
   if data == nil then
     if self._image == nil then
@@ -275,15 +271,10 @@ function CivitaiSDK:image(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:image() instead.
-function CivitaiSDK:Image(data)
-  local EntityMod = require("entity.image_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:model():list() / client:model():load({ id = ... })
-function CivitaiSDK:model(data)
+-- Idiomatic facade: client:Model():list() / client:Model():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CivitaiSDK:Model(data)
   local EntityMod = require("entity.model_entity")
   if data == nil then
     if self._model == nil then
@@ -294,15 +285,10 @@ function CivitaiSDK:model(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:model() instead.
-function CivitaiSDK:Model(data)
-  local EntityMod = require("entity.model_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:model_version():list() / client:model_version():load({ id = ... })
-function CivitaiSDK:model_version(data)
+-- Idiomatic facade: client:ModelVersion():list() / client:ModelVersion():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CivitaiSDK:ModelVersion(data)
   local EntityMod = require("entity.model_version_entity")
   if data == nil then
     if self._model_version == nil then
@@ -313,15 +299,10 @@ function CivitaiSDK:model_version(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:model_version() instead.
-function CivitaiSDK:ModelVersion(data)
-  local EntityMod = require("entity.model_version_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:tag():list() / client:tag():load({ id = ... })
-function CivitaiSDK:tag(data)
+-- Idiomatic facade: client:Tag():list() / client:Tag():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function CivitaiSDK:Tag(data)
   local EntityMod = require("entity.tag_entity")
   if data == nil then
     if self._tag == nil then
@@ -329,12 +310,6 @@ function CivitaiSDK:tag(data)
     end
     return self._tag
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:tag() instead.
-function CivitaiSDK:Tag(data)
-  local EntityMod = require("entity.tag_entity")
   return EntityMod.new(self, data)
 end
 

@@ -97,7 +97,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## CreatorEntity
 
 ```python
-creator = client.creator
+creator = client.Creator()
 ```
 
 ### Fields
@@ -115,7 +115,9 @@ creator = client.creator
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.creator.list({})
+results = client.Creator().list({})
+for creator in results:
+    print(creator)
 ```
 
 ### Common Methods
@@ -150,7 +152,7 @@ Return the entity name.
 ## ImageEntity
 
 ```python
-image = client.image
+image = client.Image()
 ```
 
 ### Fields
@@ -177,7 +179,9 @@ image = client.image
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.image.list({})
+results = client.Image().list({})
+for image in results:
+    print(image)
 ```
 
 ### Common Methods
@@ -212,7 +216,7 @@ Return the entity name.
 ## ModelEntity
 
 ```python
-model = client.model
+model = client.Model()
 ```
 
 ### Fields
@@ -237,7 +241,9 @@ model = client.model
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.model.list({})
+results = client.Model().list({})
+for model in results:
+    print(model)
 ```
 
 #### `load(reqmatch, ctrl=None) -> dict`
@@ -245,7 +251,7 @@ results = client.model.list({})
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.model.load({"id": "model_id"})
+result = client.Model().load({"id": "model_id"})
 ```
 
 ### Common Methods
@@ -280,7 +286,7 @@ Return the entity name.
 ## ModelVersionEntity
 
 ```python
-model_version = client.model_version
+model_version = client.ModelVersion()
 ```
 
 ### Fields
@@ -304,7 +310,7 @@ model_version = client.model_version
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.model_version.load({"id": "model_version_id"})
+result = client.ModelVersion().load({"id": "model_version_id"})
 ```
 
 ### Common Methods
@@ -339,7 +345,7 @@ Return the entity name.
 ## TagEntity
 
 ```python
-tag = client.tag
+tag = client.Tag()
 ```
 
 ### Fields
@@ -357,7 +363,9 @@ tag = client.tag
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.tag.list({})
+results = client.Tag().list({})
+for tag in results:
+    print(tag)
 ```
 
 ### Common Methods
