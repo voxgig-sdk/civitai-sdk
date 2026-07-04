@@ -50,8 +50,7 @@ class CreatorEntityTest extends TestCase
         $creator_ref01_ent = $client->Creator(null);
         $creator_ref01_match = [];
 
-        [$creator_ref01_list_result, $err] = $creator_ref01_ent->list($creator_ref01_match, null);
-        $this->assertNull($err);
+        $creator_ref01_list_result = $creator_ref01_ent->list($creator_ref01_match, null);
         $this->assertIsArray($creator_ref01_list_result);
 
     }

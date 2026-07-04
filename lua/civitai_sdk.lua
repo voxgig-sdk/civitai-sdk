@@ -244,30 +244,95 @@ end
 
 
 
+-- Idiomatic facade: client:creator():list() / client:creator():load({ id = ... })
+function CivitaiSDK:creator(data)
+  local EntityMod = require("entity.creator_entity")
+  if data == nil then
+    if self._creator == nil then
+      self._creator = EntityMod.new(self, nil)
+    end
+    return self._creator
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:creator() instead.
 function CivitaiSDK:Creator(data)
   local EntityMod = require("entity.creator_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:image():list() / client:image():load({ id = ... })
+function CivitaiSDK:image(data)
+  local EntityMod = require("entity.image_entity")
+  if data == nil then
+    if self._image == nil then
+      self._image = EntityMod.new(self, nil)
+    end
+    return self._image
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:image() instead.
 function CivitaiSDK:Image(data)
   local EntityMod = require("entity.image_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:model():list() / client:model():load({ id = ... })
+function CivitaiSDK:model(data)
+  local EntityMod = require("entity.model_entity")
+  if data == nil then
+    if self._model == nil then
+      self._model = EntityMod.new(self, nil)
+    end
+    return self._model
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:model() instead.
 function CivitaiSDK:Model(data)
   local EntityMod = require("entity.model_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:model_version():list() / client:model_version():load({ id = ... })
+function CivitaiSDK:model_version(data)
+  local EntityMod = require("entity.model_version_entity")
+  if data == nil then
+    if self._model_version == nil then
+      self._model_version = EntityMod.new(self, nil)
+    end
+    return self._model_version
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:model_version() instead.
 function CivitaiSDK:ModelVersion(data)
   local EntityMod = require("entity.model_version_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:tag():list() / client:tag():load({ id = ... })
+function CivitaiSDK:tag(data)
+  local EntityMod = require("entity.tag_entity")
+  if data == nil then
+    if self._tag == nil then
+      self._tag = EntityMod.new(self, nil)
+    end
+    return self._tag
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:tag() instead.
 function CivitaiSDK:Tag(data)
   local EntityMod = require("entity.tag_entity")
   return EntityMod.new(self, data)

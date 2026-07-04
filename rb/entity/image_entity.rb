@@ -45,6 +45,7 @@ class ImageEntity
     end
   end
 
+  # @return [Image, Hash] the current Image data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class ImageEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Image fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class ImageEntity
   
 
   
+  # List Image items matching the given filter.
+  #
+  # @param reqmatch [ImageListMatch, Hash, nil] match filter (any subset of Image fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Image>, Array] the matching Image items; raises CivitaiError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

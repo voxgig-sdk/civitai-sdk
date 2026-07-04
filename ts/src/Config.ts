@@ -642,7 +642,8 @@ class Config {
                     "name": "id",
                     "orig": "model_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ]
               },
@@ -758,7 +759,8 @@ class Config {
                     "name": "hash",
                     "orig": "hash",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },
@@ -790,7 +792,8 @@ class Config {
                     "name": "id",
                     "orig": "model_version_id",
                     "reqd": true,
-                    "type": "`$INTEGER`"
+                    "type": "`$INTEGER`",
+                    "index$": 0
                   }
                 ]
               },

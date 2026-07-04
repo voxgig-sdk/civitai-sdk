@@ -45,6 +45,7 @@ class ModelVersionEntity
     end
   end
 
+  # @return [ModelVersion, Hash] the current ModelVersion data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class ModelVersionEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of ModelVersion fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single ModelVersion.
+  #
+  # @param reqmatch [ModelVersionLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [ModelVersion, Hash] the loaded ModelVersion; raises CivitaiError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

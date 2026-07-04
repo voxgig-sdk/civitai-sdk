@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch CreatorListMatch
+---@param ctrl? table
+---@return Creator[]
+---@return string? err
 function CreatorEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

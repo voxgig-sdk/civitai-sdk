@@ -72,7 +72,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -86,11 +89,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -98,7 +102,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## CreatorEntity
 
 ```php
-$creator = $client->Creator();
+$creator = $client->creator();
 ```
 
 ### Fields
@@ -111,12 +115,12 @@ $creator = $client->Creator();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Creator()->list([]);
+$results = $client->creator()->list([]);
 ```
 
 ### Common Methods
@@ -152,7 +156,7 @@ Return the entity name.
 ## ImageEntity
 
 ```php
-$image = $client->Image();
+$image = $client->image();
 ```
 
 ### Fields
@@ -174,12 +178,12 @@ $image = $client->Image();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Image()->list([]);
+$results = $client->image()->list([]);
 ```
 
 ### Common Methods
@@ -215,7 +219,7 @@ Return the entity name.
 ## ModelEntity
 
 ```php
-$model = $client->Model();
+$model = $client->model();
 ```
 
 ### Fields
@@ -235,20 +239,20 @@ $model = $client->Model();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Model()->list([]);
+$results = $client->model()->list([]);
 ```
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Model()->load(["id" => "model_id"]);
+$result = $client->model()->load(["id" => "model_id"]);
 ```
 
 ### Common Methods
@@ -284,7 +288,7 @@ Return the entity name.
 ## ModelVersionEntity
 
 ```php
-$model_version = $client->ModelVersion();
+$model_version = $client->model_version();
 ```
 
 ### Fields
@@ -303,12 +307,12 @@ $model_version = $client->ModelVersion();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->ModelVersion()->load(["id" => "model_version_id"]);
+$result = $client->model_version()->load(["id" => "model_version_id"]);
 ```
 
 ### Common Methods
@@ -344,7 +348,7 @@ Return the entity name.
 ## TagEntity
 
 ```php
-$tag = $client->Tag();
+$tag = $client->tag();
 ```
 
 ### Fields
@@ -357,12 +361,12 @@ $tag = $client->Tag();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->Tag()->list([]);
+$results = $client->tag()->list([]);
 ```
 
 ### Common Methods

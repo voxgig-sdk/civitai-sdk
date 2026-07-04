@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ModelVersionLoadMatch
+---@param ctrl? table
+---@return ModelVersion
+---@return string? err
 function ModelVersionEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

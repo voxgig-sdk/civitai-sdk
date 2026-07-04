@@ -9,11 +9,9 @@ The Python SDK for the Civitai API — an entity-oriented client following Pytho
 
 
 ## Install
-```bash
-pip install voxgig-sdk-civitai
-```
-
-Or install from source:
+This package is not yet published to PyPI. Install it from the GitHub
+release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/civitai-sdk/releases)) or
+from a source checkout:
 
 ```bash
 pip install -e .
@@ -39,14 +37,13 @@ client = CivitaiSDK({
 ### 2. List creators
 
 ```python
-result, err = client.Creator().list()
-if err:
-    raise Exception(err)
-
-if isinstance(result, list):
+try:
+    result = client.creator.list()
     for item in result:
         d = item.data_get()
         print(d["id"], d["name"])
+except Exception as err:
+    print(f"list failed: {err}")
 ```
 
 
@@ -57,29 +54,28 @@ if isinstance(result, list):
 For endpoints not covered by entity methods:
 
 ```python
-result, err = client.direct({
+result = client.direct({
     "path": "/api/resource/{id}",
     "method": "GET",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
+else:
+    print(result["err"])     # error value
 ```
 
 ### Prepare a request without sending it
 
 ```python
-fetchdef, err = client.prepare({
+# prepare() returns the fetch definition and raises on error.
+fetchdef = client.prepare({
     "path": "/api/resource/{id}",
     "method": "DELETE",
     "params": {"id": "example"},
 })
-if err:
-    raise Exception(err)
 
 print(fetchdef["url"])
 print(fetchdef["method"])
@@ -93,7 +89,7 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CivitaiSDK.test()
 
-result, err = client.Civitai().load({"id": "test01"})
+result = client.creator.load({"id": "test01"})
 # result contains mock response data
 ```
 
@@ -170,8 +166,8 @@ Creates a test-mode client with mock transport. Both arguments may be `None`.
 | --- | --- | --- |
 | `options_map` | `() -> dict` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> (dict, err)` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> (dict, err)` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> dict` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> dict` | Build and send an HTTP request. Returns a result dict (branch on `ok`). |
 | `Creator` | `(data) -> CreatorEntity` | Create a Creator entity instance. |
 | `Image` | `(data) -> ImageEntity` | Create a Image entity instance. |
 | `Model` | `(data) -> ModelEntity` | Create a Model entity instance. |
@@ -184,11 +180,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> (any, err)` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> (any, err)` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> (any, err)` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> (any, err)` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> (any, err)` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -198,8 +194,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`dict` with these keys:
+Entity operations return the bare result data (a `dict` for single-entity
+ops, a `list` for `list`) and raise on error. Wrap calls in
+`try`/`except` to handle failures.
+
+The `direct()` escape hatch never raises — it returns a result `dict`
+you branch on via `result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -301,7 +301,7 @@ API path: `/tags`
 
 ### Creator
 
-Create an instance: `const creator = client.Creator()`
+Create an instance: `const creator = client.creator`
 
 #### Operations
 
@@ -320,13 +320,13 @@ Create an instance: `const creator = client.Creator()`
 #### Example: List
 
 ```ts
-const creators = await client.Creator().list()
+const creators = await client.creator.list()
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -354,13 +354,13 @@ Create an instance: `const image = client.Image()`
 #### Example: List
 
 ```ts
-const images = await client.Image().list()
+const images = await client.image.list()
 ```
 
 
 ### Model
 
-Create an instance: `const model = client.Model()`
+Create an instance: `const model = client.model`
 
 #### Operations
 
@@ -387,19 +387,19 @@ Create an instance: `const model = client.Model()`
 #### Example: Load
 
 ```ts
-const model = await client.Model().load({ id: 'model_id' })
+const model = await client.model.load({ id: 'model_id' })
 ```
 
 #### Example: List
 
 ```ts
-const models = await client.Model().list()
+const models = await client.model.list()
 ```
 
 
 ### ModelVersion
 
-Create an instance: `const model_version = client.ModelVersion()`
+Create an instance: `const model_version = client.model_version`
 
 #### Operations
 
@@ -424,13 +424,13 @@ Create an instance: `const model_version = client.ModelVersion()`
 #### Example: Load
 
 ```ts
-const model_version = await client.ModelVersion().load({ id: 'model_version_id' })
+const model_version = await client.model_version.load({ id: 'model_version_id' })
 ```
 
 
 ### Tag
 
-Create an instance: `const tag = client.Tag()`
+Create an instance: `const tag = client.tag`
 
 #### Operations
 
@@ -449,7 +449,7 @@ Create an instance: `const tag = client.Tag()`
 #### Example: List
 
 ```ts
-const tags = await client.Tag().list()
+const tags = await client.tag.list()
 ```
 
 
@@ -523,11 +523,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-moon = client.Moon()
-moon.load({"planet_id": "earth", "id": "luna"})
+creator = client.creator
+creator.load({"id": "example_id"})
 
-# moon.data_get() now returns the loaded moon data
-# moon.match_get() returns the last match criteria
+# creator.data_get() now returns the loaded creator data
+# creator.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

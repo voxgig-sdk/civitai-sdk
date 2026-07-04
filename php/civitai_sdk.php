@@ -103,7 +103,7 @@ class CivitaiSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class CivitaiSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class CivitaiSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,52 +216,107 @@ class CivitaiSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function Creator($data = null)
+    private $_creator = null;
+
+    // Idiomatic facade: $client->creator()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Creator() (PHP method
+    // names are case-insensitive).
+    public function creator($data = null)
     {
         require_once __DIR__ . '/entity/creator_entity.php';
+        if ($data === null) {
+            if ($this->_creator === null) {
+                $this->_creator = new CreatorEntity($this, null);
+            }
+            return $this->_creator;
+        }
         return new CreatorEntity($this, $data);
     }
 
 
-    public function Image($data = null)
+    private $_image = null;
+
+    // Idiomatic facade: $client->image()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Image() (PHP method
+    // names are case-insensitive).
+    public function image($data = null)
     {
         require_once __DIR__ . '/entity/image_entity.php';
+        if ($data === null) {
+            if ($this->_image === null) {
+                $this->_image = new ImageEntity($this, null);
+            }
+            return $this->_image;
+        }
         return new ImageEntity($this, $data);
     }
 
 
-    public function Model($data = null)
+    private $_model = null;
+
+    // Idiomatic facade: $client->model()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Model() (PHP method
+    // names are case-insensitive).
+    public function model($data = null)
     {
         require_once __DIR__ . '/entity/model_entity.php';
+        if ($data === null) {
+            if ($this->_model === null) {
+                $this->_model = new ModelEntity($this, null);
+            }
+            return $this->_model;
+        }
         return new ModelEntity($this, $data);
     }
 
 
-    public function ModelVersion($data = null)
+    private $_model_version = null;
+
+    // Idiomatic facade: $client->model_version()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias ModelVersion() (PHP method
+    // names are case-insensitive).
+    public function model_version($data = null)
     {
         require_once __DIR__ . '/entity/model_version_entity.php';
+        if ($data === null) {
+            if ($this->_model_version === null) {
+                $this->_model_version = new ModelVersionEntity($this, null);
+            }
+            return $this->_model_version;
+        }
         return new ModelVersionEntity($this, $data);
     }
 
 
-    public function Tag($data = null)
+    private $_tag = null;
+
+    // Idiomatic facade: $client->tag()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Tag() (PHP method
+    // names are case-insensitive).
+    public function tag($data = null)
     {
         require_once __DIR__ . '/entity/tag_entity.php';
+        if ($data === null) {
+            if ($this->_tag === null) {
+                $this->_tag = new TagEntity($this, null);
+            }
+            return $this->_tag;
+        }
         return new TagEntity($this, $data);
     }
 

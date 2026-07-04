@@ -9,12 +9,9 @@ The Lua SDK for the Civitai API — an entity-oriented client using Lua conventi
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-civitai
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/civitai-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -39,7 +36,7 @@ local client = sdk.new({
 ### 2. List creators
 
 ```lua
-local result, err = client:Creator():list()
+local result, err = client:creator():list()
 if err then error(err) end
 
 if type(result) == "table" then
@@ -93,7 +90,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Civitai():load({ id = "test01" })
+local result, err = client:creator():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -303,7 +300,7 @@ API path: `/tags`
 
 ### Creator
 
-Create an instance: `const creator = client.Creator()`
+Create an instance: `const creator = client.creator`
 
 #### Operations
 
@@ -322,13 +319,13 @@ Create an instance: `const creator = client.Creator()`
 #### Example: List
 
 ```ts
-const creators = await client.Creator().list()
+const creators = await client.creator.list()
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -356,13 +353,13 @@ Create an instance: `const image = client.Image()`
 #### Example: List
 
 ```ts
-const images = await client.Image().list()
+const images = await client.image.list()
 ```
 
 
 ### Model
 
-Create an instance: `const model = client.Model()`
+Create an instance: `const model = client.model`
 
 #### Operations
 
@@ -389,19 +386,19 @@ Create an instance: `const model = client.Model()`
 #### Example: Load
 
 ```ts
-const model = await client.Model().load({ id: 'model_id' })
+const model = await client.model.load({ id: 'model_id' })
 ```
 
 #### Example: List
 
 ```ts
-const models = await client.Model().list()
+const models = await client.model.list()
 ```
 
 
 ### ModelVersion
 
-Create an instance: `const model_version = client.ModelVersion()`
+Create an instance: `const model_version = client.model_version`
 
 #### Operations
 
@@ -426,13 +423,13 @@ Create an instance: `const model_version = client.ModelVersion()`
 #### Example: Load
 
 ```ts
-const model_version = await client.ModelVersion().load({ id: 'model_version_id' })
+const model_version = await client.model_version.load({ id: 'model_version_id' })
 ```
 
 
 ### Tag
 
-Create an instance: `const tag = client.Tag()`
+Create an instance: `const tag = client.tag`
 
 #### Operations
 
@@ -451,7 +448,7 @@ Create an instance: `const tag = client.Tag()`
 #### Example: List
 
 ```ts
-const tags = await client.Tag().list()
+const tags = await client.tag.list()
 ```
 
 
@@ -526,11 +523,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local creator = client:creator()
+creator:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- creator:data_get() now returns the loaded creator data
+-- creator:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -6,6 +6,8 @@ import { ModelEntity } from './entity/ModelEntity'
 import { ModelVersionEntity } from './entity/ModelVersionEntity'
 import { TagEntity } from './entity/TagEntity'
 
+export type * from './CivitaiTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -206,30 +208,70 @@ class CivitaiSDK {
 
 
 
+  _creator?: CreatorEntity
+
+  // Idiomatic facade: `client.creator.list()` / `client.creator.load({ id })`.
+  get creator(): CreatorEntity {
+    return (this._creator ??= new CreatorEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.creator` instead. */
   Creator(data?: any) {
     const self = this
     return new CreatorEntity(self,data)
   }
 
 
+  _image?: ImageEntity
+
+  // Idiomatic facade: `client.image.list()` / `client.image.load({ id })`.
+  get image(): ImageEntity {
+    return (this._image ??= new ImageEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.image` instead. */
   Image(data?: any) {
     const self = this
     return new ImageEntity(self,data)
   }
 
 
+  _model?: ModelEntity
+
+  // Idiomatic facade: `client.model.list()` / `client.model.load({ id })`.
+  get model(): ModelEntity {
+    return (this._model ??= new ModelEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.model` instead. */
   Model(data?: any) {
     const self = this
     return new ModelEntity(self,data)
   }
 
 
+  _model_version?: ModelVersionEntity
+
+  // Idiomatic facade: `client.model_version.list()` / `client.model_version.load({ id })`.
+  get model_version(): ModelVersionEntity {
+    return (this._model_version ??= new ModelVersionEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.model_version` instead. */
   ModelVersion(data?: any) {
     const self = this
     return new ModelVersionEntity(self,data)
   }
 
 
+  _tag?: TagEntity
+
+  // Idiomatic facade: `client.tag.list()` / `client.tag.load({ id })`.
+  get tag(): TagEntity {
+    return (this._tag ??= new TagEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.tag` instead. */
   Tag(data?: any) {
     const self = this
     return new TagEntity(self,data)

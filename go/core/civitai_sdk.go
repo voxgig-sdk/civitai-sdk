@@ -245,26 +245,41 @@ func (sdk *CivitaiSDK) Direct(fetchargs map[string]any) (map[string]any, error) 
 }
 
 
+// Creator returns a Creator entity bound to this client.
+// Idiomatic usage: client.Creator(nil).List(nil, nil) or
+// client.Creator(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CivitaiSDK) Creator(data map[string]any) CivitaiEntity {
 	return NewCreatorEntityFunc(sdk, data)
 }
 
 
+// Image returns a Image entity bound to this client.
+// Idiomatic usage: client.Image(nil).List(nil, nil) or
+// client.Image(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CivitaiSDK) Image(data map[string]any) CivitaiEntity {
 	return NewImageEntityFunc(sdk, data)
 }
 
 
+// Model returns a Model entity bound to this client.
+// Idiomatic usage: client.Model(nil).List(nil, nil) or
+// client.Model(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CivitaiSDK) Model(data map[string]any) CivitaiEntity {
 	return NewModelEntityFunc(sdk, data)
 }
 
 
+// ModelVersion returns a ModelVersion entity bound to this client.
+// Idiomatic usage: client.ModelVersion(nil).List(nil, nil) or
+// client.ModelVersion(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CivitaiSDK) ModelVersion(data map[string]any) CivitaiEntity {
 	return NewModelVersionEntityFunc(sdk, data)
 }
 
 
+// Tag returns a Tag entity bound to this client.
+// Idiomatic usage: client.Tag(nil).List(nil, nil) or
+// client.Tag(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *CivitaiSDK) Tag(data map[string]any) CivitaiEntity {
 	return NewTagEntityFunc(sdk, data)
 }

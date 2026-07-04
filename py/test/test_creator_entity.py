@@ -50,8 +50,7 @@ class TestCreatorEntity:
         creator_ref01_ent = client.Creator(None)
         creator_ref01_match = {}
 
-        creator_ref01_list_result, err = creator_ref01_ent.list(creator_ref01_match, None)
-        assert err is None
+        creator_ref01_list_result = creator_ref01_ent.list(creator_ref01_match, None)
         assert isinstance(creator_ref01_list_result, list)
 
 

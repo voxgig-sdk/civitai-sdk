@@ -45,6 +45,7 @@ class TagEntity
     end
   end
 
+  # @return [Tag, Hash] the current Tag data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class TagEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Tag fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class TagEntity
   
 
   
+  # List Tag items matching the given filter.
+  #
+  # @param reqmatch [TagListMatch, Hash, nil] match filter (any subset of Tag fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Tag>, Array] the matching Tag items; raises CivitaiError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

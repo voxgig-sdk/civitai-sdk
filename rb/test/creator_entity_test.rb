@@ -43,8 +43,7 @@ class CreatorEntityTest < Minitest::Test
     creator_ref01_ent = client.Creator(nil)
     creator_ref01_match = {}
 
-    creator_ref01_list_result, err = creator_ref01_ent.list(creator_ref01_match, nil)
-    assert_nil err
+    creator_ref01_list_result = creator_ref01_ent.list(creator_ref01_match, nil)
     assert creator_ref01_list_result.is_a?(Array)
 
   end

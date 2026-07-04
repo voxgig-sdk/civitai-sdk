@@ -50,8 +50,7 @@ class TagEntityTest extends TestCase
         $tag_ref01_ent = $client->Tag(null);
         $tag_ref01_match = [];
 
-        [$tag_ref01_list_result, $err] = $tag_ref01_ent->list($tag_ref01_match, null);
-        $this->assertNull($err);
+        $tag_ref01_list_result = $tag_ref01_ent->list($tag_ref01_match, null);
         $this->assertIsArray($tag_ref01_list_result);
 
     }

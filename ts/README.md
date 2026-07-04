@@ -9,9 +9,12 @@ The TypeScript SDK for the Civitai API — a type-safe, entity-oriented client w
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/civitai
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/civitai-sdk/releases](https://github.com/voxgig-sdk/civitai-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,7 +23,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { CivitaiSDK } from 'civitai'
+import { CivitaiSDK } from '@voxgig-sdk/civitai'
 
 const client = new CivitaiSDK({
   apikey: process.env.CIVITAI_APIKEY,
@@ -30,7 +33,7 @@ const client = new CivitaiSDK({
 ### 2. List creators
 
 ```ts
-const result = await client.Creator().list()
+const result = await client.creator.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +84,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = CivitaiSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.creator.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -98,7 +101,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.creator
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -344,7 +347,7 @@ API path: `/tags`
 
 ### Creator
 
-Create an instance: `const creator = client.Creator()`
+Create an instance: `const creator = client.creator`
 
 #### Operations
 
@@ -363,13 +366,13 @@ Create an instance: `const creator = client.Creator()`
 #### Example: List
 
 ```ts
-const creators = await client.Creator().list()
+const creators = await client.creator.list()
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -397,13 +400,13 @@ Create an instance: `const image = client.Image()`
 #### Example: List
 
 ```ts
-const images = await client.Image().list()
+const images = await client.image.list()
 ```
 
 
 ### Model
 
-Create an instance: `const model = client.Model()`
+Create an instance: `const model = client.model`
 
 #### Operations
 
@@ -430,19 +433,19 @@ Create an instance: `const model = client.Model()`
 #### Example: Load
 
 ```ts
-const model = await client.Model().load({ id: 'model_id' })
+const model = await client.model.load({ id: 'model_id' })
 ```
 
 #### Example: List
 
 ```ts
-const models = await client.Model().list()
+const models = await client.model.list()
 ```
 
 
 ### ModelVersion
 
-Create an instance: `const model_version = client.ModelVersion()`
+Create an instance: `const model_version = client.model_version`
 
 #### Operations
 
@@ -467,13 +470,13 @@ Create an instance: `const model_version = client.ModelVersion()`
 #### Example: Load
 
 ```ts
-const model_version = await client.ModelVersion().load({ id: 'model_version_id' })
+const model_version = await client.model_version.load({ id: 'model_version_id' })
 ```
 
 
 ### Tag
 
-Create an instance: `const tag = client.Tag()`
+Create an instance: `const tag = client.tag`
 
 #### Operations
 
@@ -492,7 +495,7 @@ Create an instance: `const tag = client.Tag()`
 #### Example: List
 
 ```ts
-const tags = await client.Tag().list()
+const tags = await client.tag.list()
 ```
 
 
@@ -553,7 +556,7 @@ civitai/
 Import the SDK from the package root:
 
 ```ts
-import { CivitaiSDK } from 'civitai'
+import { CivitaiSDK } from '@voxgig-sdk/civitai'
 ```
 
 ### Entity state
@@ -563,11 +566,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const creator = client.creator
+await creator.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// creator.data() now returns the loaded creator data
+// creator.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

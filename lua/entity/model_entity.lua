@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch ModelLoadMatch
+---@param ctrl? table
+---@return Model
+---@return string? err
 function ModelEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
@@ -104,6 +108,10 @@ end
 
 
 
+---@param reqmatch ModelListMatch
+---@param ctrl? table
+---@return Model[]
+---@return string? err
 function ModelEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

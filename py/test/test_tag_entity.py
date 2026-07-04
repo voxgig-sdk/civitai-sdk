@@ -50,8 +50,7 @@ class TestTagEntity:
         tag_ref01_ent = client.Tag(None)
         tag_ref01_match = {}
 
-        tag_ref01_list_result, err = tag_ref01_ent.list(tag_ref01_match, None)
-        assert err is None
+        tag_ref01_list_result = tag_ref01_ent.list(tag_ref01_match, None)
         assert isinstance(tag_ref01_list_result, list)
 
 

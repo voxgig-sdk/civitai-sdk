@@ -144,16 +144,23 @@ class CivitaiSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class CivitaiSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,35 +212,90 @@ class CivitaiSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def creator(self):
+        """Idiomatic facade: client.creator.list() / client.creator.load({"id": ...})."""
+        from entity.creator_entity import CreatorEntity
+        cached = getattr(self, "_creator", None)
+        if cached is None:
+            cached = CreatorEntity(self, None)
+            self._creator = cached
+        return cached
 
     def Creator(self, data=None):
+        # Deprecated: use client.creator instead.
         from entity.creator_entity import CreatorEntity
         return CreatorEntity(self, data)
 
 
+    @property
+    def image(self):
+        """Idiomatic facade: client.image.list() / client.image.load({"id": ...})."""
+        from entity.image_entity import ImageEntity
+        cached = getattr(self, "_image", None)
+        if cached is None:
+            cached = ImageEntity(self, None)
+            self._image = cached
+        return cached
+
     def Image(self, data=None):
+        # Deprecated: use client.image instead.
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
+    @property
+    def model(self):
+        """Idiomatic facade: client.model.list() / client.model.load({"id": ...})."""
+        from entity.model_entity import ModelEntity
+        cached = getattr(self, "_model", None)
+        if cached is None:
+            cached = ModelEntity(self, None)
+            self._model = cached
+        return cached
+
     def Model(self, data=None):
+        # Deprecated: use client.model instead.
         from entity.model_entity import ModelEntity
         return ModelEntity(self, data)
 
 
+    @property
+    def model_version(self):
+        """Idiomatic facade: client.model_version.list() / client.model_version.load({"id": ...})."""
+        from entity.model_version_entity import ModelVersionEntity
+        cached = getattr(self, "_model_version", None)
+        if cached is None:
+            cached = ModelVersionEntity(self, None)
+            self._model_version = cached
+        return cached
+
     def ModelVersion(self, data=None):
+        # Deprecated: use client.model_version instead.
         from entity.model_version_entity import ModelVersionEntity
         return ModelVersionEntity(self, data)
 
 
+    @property
+    def tag(self):
+        """Idiomatic facade: client.tag.list() / client.tag.load({"id": ...})."""
+        from entity.tag_entity import TagEntity
+        cached = getattr(self, "_tag", None)
+        if cached is None:
+            cached = TagEntity(self, None)
+            self._tag = cached
+        return cached
+
     def Tag(self, data=None):
+        # Deprecated: use client.tag instead.
         from entity.tag_entity import TagEntity
         return TagEntity(self, data)
 

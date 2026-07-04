@@ -50,8 +50,7 @@ class ImageEntityTest extends TestCase
         $image_ref01_ent = $client->Image(null);
         $image_ref01_match = [];
 
-        [$image_ref01_list_result, $err] = $image_ref01_ent->list($image_ref01_match, null);
-        $this->assertNull($err);
+        $image_ref01_list_result = $image_ref01_ent->list($image_ref01_match, null);
         $this->assertIsArray($image_ref01_list_result);
 
     }

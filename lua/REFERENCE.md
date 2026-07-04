@@ -100,7 +100,7 @@ same parameters as `direct()`.
 ## CreatorEntity
 
 ```lua
-local creator = client:Creator(nil)
+local creator = client:creator(nil)
 ```
 
 ### Fields
@@ -118,7 +118,7 @@ local creator = client:Creator(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Creator():list()
+local results, err = client:creator():list()
 ```
 
 ### Common Methods
@@ -154,7 +154,7 @@ Return the entity name.
 ## ImageEntity
 
 ```lua
-local image = client:Image(nil)
+local image = client:image(nil)
 ```
 
 ### Fields
@@ -181,7 +181,7 @@ local image = client:Image(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Image():list()
+local results, err = client:image():list()
 ```
 
 ### Common Methods
@@ -217,7 +217,7 @@ Return the entity name.
 ## ModelEntity
 
 ```lua
-local model = client:Model(nil)
+local model = client:model(nil)
 ```
 
 ### Fields
@@ -242,7 +242,7 @@ local model = client:Model(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Model():list()
+local results, err = client:model():list()
 ```
 
 #### `load(reqmatch, ctrl) -> any, err`
@@ -250,7 +250,7 @@ local results, err = client:Model():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Model():load({ id = "model_id" })
+local result, err = client:model():load({ id = "model_id" })
 ```
 
 ### Common Methods
@@ -286,7 +286,7 @@ Return the entity name.
 ## ModelVersionEntity
 
 ```lua
-local model_version = client:ModelVersion(nil)
+local model_version = client:model_version(nil)
 ```
 
 ### Fields
@@ -310,7 +310,7 @@ local model_version = client:ModelVersion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ModelVersion():load({ id = "model_version_id" })
+local result, err = client:model_version():load({ id = "model_version_id" })
 ```
 
 ### Common Methods
@@ -346,7 +346,7 @@ Return the entity name.
 ## TagEntity
 
 ```lua
-local tag = client:Tag(nil)
+local tag = client:tag(nil)
 ```
 
 ### Fields
@@ -364,7 +364,7 @@ local tag = client:Tag(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Tag():list()
+local results, err = client:tag():list()
 ```
 
 ### Common Methods

@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch TagListMatch
+---@param ctrl? table
+---@return Tag[]
+---@return string? err
 function TagEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

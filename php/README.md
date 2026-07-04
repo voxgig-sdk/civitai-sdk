@@ -9,9 +9,10 @@ The PHP SDK for the Civitai API — an entity-oriented client using PHP conventi
 
 
 ## Install
-```bash
-composer require voxgig-sdk/civitai
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/civitai-sdk/releases](https://github.com/voxgig-sdk/civitai-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -33,14 +34,16 @@ $client = new CivitaiSDK([
 ### 2. List creators
 
 ```php
-[$result, $err] = $client->Creator()->list();
-if ($err) { throw new \Exception($err); }
-
-if (is_array($result)) {
-    foreach ($result as $item) {
-        $d = $item->data_get();
-        echo $d["id"] . " " . $d["name"] . "\n";
+try {
+    $result = $client->creator()->list();
+    if (is_array($result)) {
+        foreach ($result as $item) {
+            $d = $item->data_get();
+            echo $d["id"] . " " . $d["name"] . "\n";
+        }
     }
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
 }
 ```
 
@@ -52,28 +55,31 @@ if (is_array($result)) {
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -87,7 +93,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = CivitaiSDK::test();
 
-[$result, $err] = $client->Civitai()->load(["id" => "test01"]);
+$result = $client->creator()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -195,8 +201,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -298,7 +308,7 @@ API path: `/tags`
 
 ### Creator
 
-Create an instance: `const creator = client.Creator()`
+Create an instance: `const creator = client.creator`
 
 #### Operations
 
@@ -317,13 +327,13 @@ Create an instance: `const creator = client.Creator()`
 #### Example: List
 
 ```ts
-const creators = await client.Creator().list()
+const creators = await client.creator.list()
 ```
 
 
 ### Image
 
-Create an instance: `const image = client.Image()`
+Create an instance: `const image = client.image`
 
 #### Operations
 
@@ -351,13 +361,13 @@ Create an instance: `const image = client.Image()`
 #### Example: List
 
 ```ts
-const images = await client.Image().list()
+const images = await client.image.list()
 ```
 
 
 ### Model
 
-Create an instance: `const model = client.Model()`
+Create an instance: `const model = client.model`
 
 #### Operations
 
@@ -384,19 +394,19 @@ Create an instance: `const model = client.Model()`
 #### Example: Load
 
 ```ts
-const model = await client.Model().load({ id: 'model_id' })
+const model = await client.model.load({ id: 'model_id' })
 ```
 
 #### Example: List
 
 ```ts
-const models = await client.Model().list()
+const models = await client.model.list()
 ```
 
 
 ### ModelVersion
 
-Create an instance: `const model_version = client.ModelVersion()`
+Create an instance: `const model_version = client.model_version`
 
 #### Operations
 
@@ -421,13 +431,13 @@ Create an instance: `const model_version = client.ModelVersion()`
 #### Example: Load
 
 ```ts
-const model_version = await client.ModelVersion().load({ id: 'model_version_id' })
+const model_version = await client.model_version.load({ id: 'model_version_id' })
 ```
 
 
 ### Tag
 
-Create an instance: `const tag = client.Tag()`
+Create an instance: `const tag = client.tag`
 
 #### Operations
 
@@ -446,7 +456,7 @@ Create an instance: `const tag = client.Tag()`
 #### Example: List
 
 ```ts
-const tags = await client.Tag().list()
+const tags = await client.tag.list()
 ```
 
 
@@ -521,11 +531,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$creator = $client->creator();
+$creator->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $creator->dataGet() now returns the loaded creator data
+// $creator->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

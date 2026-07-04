@@ -14,9 +14,14 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Model,
+  ModelLoadMatch,
+  ModelListMatch,
+} from '../CivitaiTypes'
 
 // TODO: needs Entity superclass
-class ModelEntity extends CivitaiEntityBase {
+class ModelEntity extends CivitaiEntityBase<Model> {
 
   constructor(client: CivitaiSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +37,7 @@ class ModelEntity extends CivitaiEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ModelLoadMatch, ctrl?: Control): Promise<Model> {
 
     const utility = this._utility
 
@@ -136,14 +141,16 @@ class ModelEntity extends CivitaiEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Model> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: ModelListMatch, ctrl?: Control): Promise<Model[]> {
 
     const utility = this._utility
 
@@ -243,7 +250,9 @@ class ModelEntity extends CivitaiEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Model[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

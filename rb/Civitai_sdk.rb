@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Civitai_types'
+
 
 class CivitaiSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class CivitaiSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class CivitaiSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue CivitaiError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = CivitaiHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class CivitaiSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,40 +198,75 @@ class CivitaiSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.creator.list / client.creator.load({ "id" => ... })
+  def creator
+    require_relative 'entity/creator_entity'
+    @creator ||= CreatorEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.creator instead.
   def Creator(data = nil)
     require_relative 'entity/creator_entity'
     CreatorEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.image.list / client.image.load({ "id" => ... })
+  def image
+    require_relative 'entity/image_entity'
+    @image ||= ImageEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.image instead.
   def Image(data = nil)
     require_relative 'entity/image_entity'
     ImageEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.model.list / client.model.load({ "id" => ... })
+  def model
+    require_relative 'entity/model_entity'
+    @model ||= ModelEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.model instead.
   def Model(data = nil)
     require_relative 'entity/model_entity'
     ModelEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.model_version.list / client.model_version.load({ "id" => ... })
+  def model_version
+    require_relative 'entity/model_version_entity'
+    @model_version ||= ModelVersionEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.model_version instead.
   def ModelVersion(data = nil)
     require_relative 'entity/model_version_entity'
     ModelVersionEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.tag.list / client.tag.load({ "id" => ... })
+  def tag
+    require_relative 'entity/tag_entity'
+    @tag ||= TagEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.tag instead.
   def Tag(data = nil)
     require_relative 'entity/tag_entity'
     TagEntity.new(self, data)

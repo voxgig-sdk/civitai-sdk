@@ -44,8 +44,7 @@ class ModelVersionEntityTest < Minitest::Test
     model_version_ref01_match_dt0 = {
       "id" => model_version_ref01_data["id"],
     }
-    model_version_ref01_data_dt0_loaded, err = model_version_ref01_ent.load(model_version_ref01_match_dt0, nil)
-    assert_nil err
+    model_version_ref01_data_dt0_loaded = model_version_ref01_ent.load(model_version_ref01_match_dt0, nil)
     model_version_ref01_data_dt0_load_result = Helpers.to_map(model_version_ref01_data_dt0_loaded)
     assert !model_version_ref01_data_dt0_load_result.nil?
     assert_equal model_version_ref01_data_dt0_load_result["id"], model_version_ref01_data["id"]

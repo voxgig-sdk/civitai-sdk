@@ -45,6 +45,7 @@ class CreatorEntity
     end
   end
 
+  # @return [Creator, Hash] the current Creator data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class CreatorEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Creator fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class CreatorEntity
   
 
   
+  # List Creator items matching the given filter.
+  #
+  # @param reqmatch [CreatorListMatch, Hash, nil] match filter (any subset of Creator fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Creator>, Array] the matching Creator items; raises CivitaiError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

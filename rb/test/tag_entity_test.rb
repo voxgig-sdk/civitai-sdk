@@ -43,8 +43,7 @@ class TagEntityTest < Minitest::Test
     tag_ref01_ent = client.Tag(nil)
     tag_ref01_match = {}
 
-    tag_ref01_list_result, err = tag_ref01_ent.list(tag_ref01_match, nil)
-    assert_nil err
+    tag_ref01_list_result = tag_ref01_ent.list(tag_ref01_match, nil)
     assert tag_ref01_list_result.is_a?(Array)
 
   end

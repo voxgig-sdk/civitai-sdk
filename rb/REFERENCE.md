@@ -70,9 +70,11 @@ Return a deep copy of the current SDK options.
 
 Return a copy of the SDK utility object.
 
-#### `direct(fetchargs = {}) -> Hash, err`
+#### `direct(fetchargs = {}) -> Hash`
 
-Make a direct HTTP request to any API endpoint.
+Make a direct HTTP request to any API endpoint. Returns a result hash
+(`{ "ok" => ..., "status" => ..., "data" => ..., "err" => ... }`); it
+does not raise — inspect `result["ok"]`.
 
 **Parameters:**
 
@@ -86,14 +88,14 @@ Make a direct HTTP request to any API endpoint.
 | `fetchargs["body"]` | `any` | Request body (hashes are JSON-serialized). |
 | `fetchargs["ctrl"]` | `Hash` | Control options (e.g. `{ "explain" => true }`). |
 
-**Returns:** `Hash, err`
+**Returns:** `Hash`
 
-#### `prepare(fetchargs = {}) -> Hash, err`
+#### `prepare(fetchargs = {}) -> Hash`
 
 Prepare a fetch definition without sending the request. Accepts the
-same parameters as `direct()`.
+same parameters as `direct()`. Raises on error.
 
-**Returns:** `Hash, err`
+**Returns:** `Hash` (the fetch definition; raises on error)
 
 
 ---
@@ -101,7 +103,7 @@ same parameters as `direct()`.
 ## CreatorEntity
 
 ```ruby
-creator = client.Creator
+creator = client.creator
 ```
 
 ### Fields
@@ -114,12 +116,12 @@ creator = client.Creator
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Creator.list(nil)
+results = client.creator.list(nil)
 ```
 
 ### Common Methods
@@ -155,7 +157,7 @@ Return the entity name.
 ## ImageEntity
 
 ```ruby
-image = client.Image
+image = client.image
 ```
 
 ### Fields
@@ -177,12 +179,12 @@ image = client.Image
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Image.list(nil)
+results = client.image.list(nil)
 ```
 
 ### Common Methods
@@ -218,7 +220,7 @@ Return the entity name.
 ## ModelEntity
 
 ```ruby
-model = client.Model
+model = client.model
 ```
 
 ### Fields
@@ -238,20 +240,20 @@ model = client.Model
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Model.list(nil)
+results = client.model.list(nil)
 ```
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.Model.load({ "id" => "model_id" })
+result = client.model.load({ "id" => "model_id" })
 ```
 
 ### Common Methods
@@ -287,7 +289,7 @@ Return the entity name.
 ## ModelVersionEntity
 
 ```ruby
-model_version = client.ModelVersion
+model_version = client.model_version
 ```
 
 ### Fields
@@ -306,12 +308,12 @@ model_version = client.ModelVersion
 
 ### Operations
 
-#### `load(reqmatch, ctrl = nil) -> result, err`
+#### `load(reqmatch, ctrl = nil) -> result`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result, err = client.ModelVersion.load({ "id" => "model_version_id" })
+result = client.model_version.load({ "id" => "model_version_id" })
 ```
 
 ### Common Methods
@@ -347,7 +349,7 @@ Return the entity name.
 ## TagEntity
 
 ```ruby
-tag = client.Tag
+tag = client.tag
 ```
 
 ### Fields
@@ -360,12 +362,12 @@ tag = client.Tag
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> result, err`
+#### `list(reqmatch, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results, err = client.Tag.list(nil)
+results = client.tag.list(nil)
 ```
 
 ### Common Methods
