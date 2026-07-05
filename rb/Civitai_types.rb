@@ -25,7 +25,7 @@ Creator = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Creator#list (any subset of Creator fields).
+# Request payload for Creator#list.
 #
 # @!attribute [rw] link
 #   @return [String, nil]
@@ -95,7 +95,7 @@ Image = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Image#list (any subset of Image fields).
+# Request payload for Image#list.
 #
 # @!attribute [rw] created_at
 #   @return [String, nil]
@@ -202,7 +202,7 @@ ModelLoadMatch = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Model#list (any subset of Model fields).
+# Request payload for Model#list.
 #
 # @!attribute [rw] creator
 #   @return [Hash, nil]
@@ -318,7 +318,7 @@ Tag = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Tag#list (any subset of Tag fields).
+# Request payload for Tag#list.
 #
 # @!attribute [rw] link
 #   @return [String, nil]

@@ -20,7 +20,7 @@ class Creator
     public ?string $username = null;
 }
 
-/** Match filter for Creator#list (any subset of Creator fields). */
+/** Request payload for Creator#list. */
 class CreatorListMatch
 {
     public ?string $link = null;
@@ -45,7 +45,7 @@ class Image
     public ?int $width = null;
 }
 
-/** Match filter for Image#list (any subset of Image fields). */
+/** Request payload for Image#list. */
 class ImageListMatch
 {
     public ?string $created_at = null;
@@ -83,7 +83,7 @@ class ModelLoadMatch
     public int $id;
 }
 
-/** Match filter for Model#list (any subset of Model fields). */
+/** Request payload for Model#list. */
 class ModelListMatch
 {
     public ?array $creator = null;
@@ -127,7 +127,7 @@ class Tag
     public ?string $name = null;
 }
 
-/** Match filter for Tag#list (any subset of Tag fields). */
+/** Request payload for Tag#list. */
 class TagListMatch
 {
     public ?string $link = null;

@@ -165,9 +165,9 @@ const creator = client.Creator()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `username` | ``$STRING`` | No |  |
+| `link` | `string` | No |  |
+| `model_count` | `number` | No |  |
+| `username` | `string` | No |  |
 
 ### Operations
 
@@ -217,18 +217,18 @@ const image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `hash` | ``$STRING`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `nsfw_level` | ``$STRING`` | No |  |
-| `post_id` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `username` | ``$STRING`` | No |  |
-| `width` | ``$INTEGER`` | No |  |
+| `created_at` | `string` | No |  |
+| `hash` | `string` | No |  |
+| `height` | `number` | No |  |
+| `id` | `number` | No |  |
+| `meta` | `Record<string, any>` | No |  |
+| `nsfw` | `boolean` | No |  |
+| `nsfw_level` | `string` | No |  |
+| `post_id` | `number` | No |  |
+| `stat` | `Record<string, any>` | No |  |
+| `url` | `string` | No |  |
+| `username` | `string` | No |  |
+| `width` | `number` | No |  |
 
 ### Operations
 
@@ -278,16 +278,16 @@ const model = client.Model()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `creator` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `model_version` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `creator` | `Record<string, any>` | No |  |
+| `description` | `string` | No |  |
+| `id` | `number` | No |  |
+| `mode` | `string` | No |  |
+| `model_version` | `any[]` | No |  |
+| `name` | `string` | No |  |
+| `nsfw` | `boolean` | No |  |
+| `stat` | `Record<string, any>` | No |  |
+| `tag` | `any[]` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -304,7 +304,7 @@ const results = await client.Model().list()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Model().load({ id: 'model_id' })
+const result = await client.Model().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -345,15 +345,15 @@ const model_version = client.ModelVersion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `download_url` | ``$STRING`` | No |  |
-| `file` | ``$ARRAY`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `trained_word` | ``$ARRAY`` | No |  |
+| `created_at` | `string` | No |  |
+| `description` | `string` | No |  |
+| `download_url` | `string` | No |  |
+| `file` | `any[]` | No |  |
+| `id` | `number` | No |  |
+| `image` | `any[]` | No |  |
+| `name` | `string` | No |  |
+| `stat` | `Record<string, any>` | No |  |
+| `trained_word` | `any[]` | No |  |
 
 ### Operations
 
@@ -362,7 +362,7 @@ const model_version = client.ModelVersion()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.ModelVersion().load({ id: 'model_version_id' })
+const result = await client.ModelVersion().load({ id: 1 })
 ```
 
 ### Common Methods
@@ -403,9 +403,9 @@ const tag = client.Tag()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `link` | `string` | No |  |
+| `model_count` | `number` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 

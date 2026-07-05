@@ -12,6 +12,9 @@
 ---@field username? string
 
 ---@class CreatorListMatch
+---@field link? string
+---@field model_count? number
+---@field username? string
 
 ---@class Image
 ---@field created_at? string
@@ -28,6 +31,18 @@
 ---@field width? number
 
 ---@class ImageListMatch
+---@field created_at? string
+---@field hash? string
+---@field height? number
+---@field id? number
+---@field meta? table
+---@field nsfw? boolean
+---@field nsfw_level? string
+---@field post_id? number
+---@field stat? table
+---@field url? string
+---@field username? string
+---@field width? number
 
 ---@class Model
 ---@field creator? table
@@ -45,6 +60,16 @@
 ---@field id number
 
 ---@class ModelListMatch
+---@field creator? table
+---@field description? string
+---@field id? number
+---@field mode? string
+---@field model_version? table
+---@field name? string
+---@field nsfw? boolean
+---@field stat? table
+---@field tag? table
+---@field type? string
 
 ---@class ModelVersion
 ---@field created_at? string
@@ -67,6 +92,9 @@
 ---@field name? string
 
 ---@class TagListMatch
+---@field link? string
+---@field model_count? number
+---@field name? string
 
 local M = {}
 

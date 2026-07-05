@@ -8,7 +8,7 @@ Complete API reference for the Civitai Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'civitai_sdk'
+require_relative 'Civitai_sdk'
 
 client = CivitaiSDK.new(options)
 ```
@@ -110,18 +110,18 @@ creator = client.Creator
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `username` | ``$STRING`` | No |  |
+| `link` | `String` | No |  |
+| `model_count` | `Integer` | No |  |
+| `username` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Creator.list(nil)
+results = client.Creator.list
 ```
 
 ### Common Methods
@@ -164,27 +164,27 @@ image = client.Image
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `hash` | ``$STRING`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `nsfw_level` | ``$STRING`` | No |  |
-| `post_id` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `username` | ``$STRING`` | No |  |
-| `width` | ``$INTEGER`` | No |  |
+| `created_at` | `String` | No |  |
+| `hash` | `String` | No |  |
+| `height` | `Integer` | No |  |
+| `id` | `Integer` | No |  |
+| `meta` | `Hash` | No |  |
+| `nsfw` | `Boolean` | No |  |
+| `nsfw_level` | `String` | No |  |
+| `post_id` | `Integer` | No |  |
+| `stat` | `Hash` | No |  |
+| `url` | `String` | No |  |
+| `username` | `String` | No |  |
+| `width` | `Integer` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Image.list(nil)
+results = client.Image.list
 ```
 
 ### Common Methods
@@ -227,25 +227,25 @@ model = client.Model
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `creator` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `model_version` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `creator` | `Hash` | No |  |
+| `description` | `String` | No |  |
+| `id` | `Integer` | No |  |
+| `mode` | `String` | No |  |
+| `model_version` | `Array` | No |  |
+| `name` | `String` | No |  |
+| `nsfw` | `Boolean` | No |  |
+| `stat` | `Hash` | No |  |
+| `tag` | `Array` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Model.list(nil)
+results = client.Model.list
 ```
 
 #### `load(reqmatch, ctrl = nil) -> result`
@@ -296,15 +296,15 @@ model_version = client.ModelVersion
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `download_url` | ``$STRING`` | No |  |
-| `file` | ``$ARRAY`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `trained_word` | ``$ARRAY`` | No |  |
+| `created_at` | `String` | No |  |
+| `description` | `String` | No |  |
+| `download_url` | `String` | No |  |
+| `file` | `Array` | No |  |
+| `id` | `Integer` | No |  |
+| `image` | `Array` | No |  |
+| `name` | `String` | No |  |
+| `stat` | `Hash` | No |  |
+| `trained_word` | `Array` | No |  |
 
 ### Operations
 
@@ -356,18 +356,18 @@ tag = client.Tag
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `link` | `String` | No |  |
+| `model_count` | `Integer` | No |  |
+| `name` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Tag.list(nil)
+results = client.Tag.list
 ```
 
 ### Common Methods

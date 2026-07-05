@@ -221,31 +221,31 @@ class CivitaiSDK:
 
 
     def Creator(self, data=None) -> "CreatorEntity":
-        """Entity factory: client.Creator().list({}) / client.Creator().load({"id": ...})."""
+        """Entity factory: client.Creator().list() / client.Creator().load({"id": ...})."""
         from entity.creator_entity import CreatorEntity
         return CreatorEntity(self, data)
 
 
     def Image(self, data=None) -> "ImageEntity":
-        """Entity factory: client.Image().list({}) / client.Image().load({"id": ...})."""
+        """Entity factory: client.Image().list() / client.Image().load({"id": ...})."""
         from entity.image_entity import ImageEntity
         return ImageEntity(self, data)
 
 
     def Model(self, data=None) -> "ModelEntity":
-        """Entity factory: client.Model().list({}) / client.Model().load({"id": ...})."""
+        """Entity factory: client.Model().list() / client.Model().load({"id": ...})."""
         from entity.model_entity import ModelEntity
         return ModelEntity(self, data)
 
 
     def ModelVersion(self, data=None) -> "ModelVersionEntity":
-        """Entity factory: client.ModelVersion().list({}) / client.ModelVersion().load({"id": ...})."""
+        """Entity factory: client.ModelVersion().list() / client.ModelVersion().load({"id": ...})."""
         from entity.model_version_entity import ModelVersionEntity
         return ModelVersionEntity(self, data)
 
 
     def Tag(self, data=None) -> "TagEntity":
-        """Entity factory: client.Tag().list({}) / client.Tag().load({"id": ...})."""
+        """Entity factory: client.Tag().list() / client.Tag().load({"id": ...})."""
         from entity.tag_entity import TagEntity
         return TagEntity(self, data)
 

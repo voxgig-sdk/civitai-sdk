@@ -114,9 +114,9 @@ creator := client.Creator(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `username` | ``$STRING`` | No |  |
+| `link` | `string` | No |  |
+| `model_count` | `int` | No |  |
+| `username` | `string` | No |  |
 
 ### Operations
 
@@ -162,18 +162,18 @@ image := client.Image(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `hash` | ``$STRING`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `nsfw_level` | ``$STRING`` | No |  |
-| `post_id` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `username` | ``$STRING`` | No |  |
-| `width` | ``$INTEGER`` | No |  |
+| `created_at` | `string` | No |  |
+| `hash` | `string` | No |  |
+| `height` | `int` | No |  |
+| `id` | `int` | No |  |
+| `meta` | `map[string]any` | No |  |
+| `nsfw` | `bool` | No |  |
+| `nsfw_level` | `string` | No |  |
+| `post_id` | `int` | No |  |
+| `stat` | `map[string]any` | No |  |
+| `url` | `string` | No |  |
+| `username` | `string` | No |  |
+| `width` | `int` | No |  |
 
 ### Operations
 
@@ -219,16 +219,16 @@ model := client.Model(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `creator` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `model_version` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `creator` | `map[string]any` | No |  |
+| `description` | `string` | No |  |
+| `id` | `int` | No |  |
+| `mode` | `string` | No |  |
+| `model_version` | `[]any` | No |  |
+| `name` | `string` | No |  |
+| `nsfw` | `bool` | No |  |
+| `stat` | `map[string]any` | No |  |
+| `tag` | `[]any` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -282,15 +282,15 @@ model_version := client.ModelVersion(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `download_url` | ``$STRING`` | No |  |
-| `file` | ``$ARRAY`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `trained_word` | ``$ARRAY`` | No |  |
+| `created_at` | `string` | No |  |
+| `description` | `string` | No |  |
+| `download_url` | `string` | No |  |
+| `file` | `[]any` | No |  |
+| `id` | `int` | No |  |
+| `image` | `[]any` | No |  |
+| `name` | `string` | No |  |
+| `stat` | `map[string]any` | No |  |
+| `trained_word` | `[]any` | No |  |
 
 ### Operations
 
@@ -336,9 +336,9 @@ tag := client.Tag(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `link` | `string` | No |  |
+| `model_count` | `int` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 

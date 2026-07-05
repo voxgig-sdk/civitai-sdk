@@ -104,18 +104,18 @@ creator = client.Creator()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `username` | ``$STRING`` | No |  |
+| `link` | `str` | No |  |
+| `model_count` | `int` | No |  |
+| `username` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Creator().list({})
+results = client.Creator().list()
 for creator in results:
     print(creator)
 ```
@@ -159,27 +159,27 @@ image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `hash` | ``$STRING`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `nsfw_level` | ``$STRING`` | No |  |
-| `post_id` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `username` | ``$STRING`` | No |  |
-| `width` | ``$INTEGER`` | No |  |
+| `created_at` | `str` | No |  |
+| `hash` | `str` | No |  |
+| `height` | `int` | No |  |
+| `id` | `int` | No |  |
+| `meta` | `dict` | No |  |
+| `nsfw` | `bool` | No |  |
+| `nsfw_level` | `str` | No |  |
+| `post_id` | `int` | No |  |
+| `stat` | `dict` | No |  |
+| `url` | `str` | No |  |
+| `username` | `str` | No |  |
+| `width` | `int` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Image().list({})
+results = client.Image().list()
 for image in results:
     print(image)
 ```
@@ -223,25 +223,25 @@ model = client.Model()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `creator` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `model_version` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `creator` | `dict` | No |  |
+| `description` | `str` | No |  |
+| `id` | `int` | No |  |
+| `mode` | `str` | No |  |
+| `model_version` | `list` | No |  |
+| `name` | `str` | No |  |
+| `nsfw` | `bool` | No |  |
+| `stat` | `dict` | No |  |
+| `tag` | `list` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Model().list({})
+results = client.Model().list()
 for model in results:
     print(model)
 ```
@@ -293,15 +293,15 @@ model_version = client.ModelVersion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `download_url` | ``$STRING`` | No |  |
-| `file` | ``$ARRAY`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `trained_word` | ``$ARRAY`` | No |  |
+| `created_at` | `str` | No |  |
+| `description` | `str` | No |  |
+| `download_url` | `str` | No |  |
+| `file` | `list` | No |  |
+| `id` | `int` | No |  |
+| `image` | `list` | No |  |
+| `name` | `str` | No |  |
+| `stat` | `dict` | No |  |
+| `trained_word` | `list` | No |  |
 
 ### Operations
 
@@ -352,18 +352,18 @@ tag = client.Tag()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `link` | `str` | No |  |
+| `model_count` | `int` | No |  |
+| `name` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Tag().list({})
+results = client.Tag().list()
 for tag in results:
     print(tag)
 ```

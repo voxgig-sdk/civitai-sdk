@@ -62,11 +62,11 @@ Create a new `ModelVersionEntity` instance. Pass `null` for no initial data.
 
 Create a new `TagEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): CivitaiUtility`
 
 Return a copy of the SDK utility object.
 
@@ -109,35 +109,35 @@ $creator = $client->Creator();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `username` | ``$STRING`` | No |  |
+| `link` | `string` | No |  |
+| `model_count` | `int` | No |  |
+| `username` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Creator()->list([]);
+$results = $client->Creator()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -146,7 +146,7 @@ Set the entity match criteria.
 Create a new `CreatorEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -163,44 +163,44 @@ $image = $client->Image();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `hash` | ``$STRING`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `nsfw_level` | ``$STRING`` | No |  |
-| `post_id` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `username` | ``$STRING`` | No |  |
-| `width` | ``$INTEGER`` | No |  |
+| `created_at` | `string` | No |  |
+| `hash` | `string` | No |  |
+| `height` | `int` | No |  |
+| `id` | `int` | No |  |
+| `meta` | `array` | No |  |
+| `nsfw` | `bool` | No |  |
+| `nsfw_level` | `string` | No |  |
+| `post_id` | `int` | No |  |
+| `stat` | `array` | No |  |
+| `url` | `string` | No |  |
+| `username` | `string` | No |  |
+| `width` | `int` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Image()->list([]);
+$results = $client->Image()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -209,7 +209,7 @@ Set the entity match criteria.
 Create a new `ImageEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -226,25 +226,25 @@ $model = $client->Model();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `creator` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `model_version` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `creator` | `array` | No |  |
+| `description` | `string` | No |  |
+| `id` | `int` | No |  |
+| `mode` | `string` | No |  |
+| `model_version` | `array` | No |  |
+| `name` | `string` | No |  |
+| `nsfw` | `bool` | No |  |
+| `stat` | `array` | No |  |
+| `tag` | `array` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Model()->list([]);
+$results = $client->Model()->list();
 ```
 
 #### `load(array $reqmatch, ?array $ctrl = null): mixed`
@@ -257,19 +257,19 @@ $result = $client->Model()->load(["id" => "model_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -278,7 +278,7 @@ Set the entity match criteria.
 Create a new `ModelEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -295,15 +295,15 @@ $model_version = $client->ModelVersion();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `download_url` | ``$STRING`` | No |  |
-| `file` | ``$ARRAY`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `trained_word` | ``$ARRAY`` | No |  |
+| `created_at` | `string` | No |  |
+| `description` | `string` | No |  |
+| `download_url` | `string` | No |  |
+| `file` | `array` | No |  |
+| `id` | `int` | No |  |
+| `image` | `array` | No |  |
+| `name` | `string` | No |  |
+| `stat` | `array` | No |  |
+| `trained_word` | `array` | No |  |
 
 ### Operations
 
@@ -317,19 +317,19 @@ $result = $client->ModelVersion()->load(["id" => "model_version_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -338,7 +338,7 @@ Set the entity match criteria.
 Create a new `ModelVersionEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -355,35 +355,35 @@ $tag = $client->Tag();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `link` | `string` | No |  |
+| `model_count` | `int` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Tag()->list([]);
+$results = $client->Tag()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -392,7 +392,7 @@ Set the entity match criteria.
 Create a new `TagEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

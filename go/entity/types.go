@@ -15,8 +15,7 @@ type Creator struct {
 	Username *string `json:"username,omitempty"`
 }
 
-// CreatorListMatch mirrors the creator fields as an all-optional match
-// filter (Go analog of Partial<Creator>).
+// CreatorListMatch is the typed request payload for Creator.ListTyped.
 type CreatorListMatch struct {
 	Link *string `json:"link,omitempty"`
 	ModelCount *int `json:"model_count,omitempty"`
@@ -39,8 +38,7 @@ type Image struct {
 	Width *int `json:"width,omitempty"`
 }
 
-// ImageListMatch mirrors the image fields as an all-optional match
-// filter (Go analog of Partial<Image>).
+// ImageListMatch is the typed request payload for Image.ListTyped.
 type ImageListMatch struct {
 	CreatedAt *string `json:"created_at,omitempty"`
 	Hash *string `json:"hash,omitempty"`
@@ -75,8 +73,7 @@ type ModelLoadMatch struct {
 	Id int `json:"id"`
 }
 
-// ModelListMatch mirrors the model fields as an all-optional match
-// filter (Go analog of Partial<Model>).
+// ModelListMatch is the typed request payload for Model.ListTyped.
 type ModelListMatch struct {
 	Creator *map[string]any `json:"creator,omitempty"`
 	Description *string `json:"description,omitempty"`
@@ -116,8 +113,7 @@ type Tag struct {
 	Name *string `json:"name,omitempty"`
 }
 
-// TagListMatch mirrors the tag fields as an all-optional match
-// filter (Go analog of Partial<Tag>).
+// TagListMatch is the typed request payload for Tag.ListTyped.
 type TagListMatch struct {
 	Link *string `json:"link,omitempty"`
 	ModelCount *int `json:"model_count,omitempty"`

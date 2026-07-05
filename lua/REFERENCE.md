@@ -107,9 +107,9 @@ local creator = client:Creator(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `username` | ``$STRING`` | No |  |
+| `link` | `string` | No |  |
+| `model_count` | `number` | No |  |
+| `username` | `string` | No |  |
 
 ### Operations
 
@@ -161,18 +161,18 @@ local image = client:Image(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `hash` | ``$STRING`` | No |  |
-| `height` | ``$INTEGER`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `nsfw_level` | ``$STRING`` | No |  |
-| `post_id` | ``$INTEGER`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `url` | ``$STRING`` | No |  |
-| `username` | ``$STRING`` | No |  |
-| `width` | ``$INTEGER`` | No |  |
+| `created_at` | `string` | No |  |
+| `hash` | `string` | No |  |
+| `height` | `number` | No |  |
+| `id` | `number` | No |  |
+| `meta` | `table` | No |  |
+| `nsfw` | `boolean` | No |  |
+| `nsfw_level` | `string` | No |  |
+| `post_id` | `number` | No |  |
+| `stat` | `table` | No |  |
+| `url` | `string` | No |  |
+| `username` | `string` | No |  |
+| `width` | `number` | No |  |
 
 ### Operations
 
@@ -224,16 +224,16 @@ local model = client:Model(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `creator` | ``$OBJECT`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `mode` | ``$STRING`` | No |  |
-| `model_version` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `nsfw` | ``$BOOLEAN`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `tag` | ``$ARRAY`` | No |  |
-| `type` | ``$STRING`` | No |  |
+| `creator` | `table` | No |  |
+| `description` | `string` | No |  |
+| `id` | `number` | No |  |
+| `mode` | `string` | No |  |
+| `model_version` | `table` | No |  |
+| `name` | `string` | No |  |
+| `nsfw` | `boolean` | No |  |
+| `stat` | `table` | No |  |
+| `tag` | `table` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -293,15 +293,15 @@ local model_version = client:ModelVersion(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | ``$STRING`` | No |  |
-| `description` | ``$STRING`` | No |  |
-| `download_url` | ``$STRING`` | No |  |
-| `file` | ``$ARRAY`` | No |  |
-| `id` | ``$INTEGER`` | No |  |
-| `image` | ``$ARRAY`` | No |  |
-| `name` | ``$STRING`` | No |  |
-| `stat` | ``$OBJECT`` | No |  |
-| `trained_word` | ``$ARRAY`` | No |  |
+| `created_at` | `string` | No |  |
+| `description` | `string` | No |  |
+| `download_url` | `string` | No |  |
+| `file` | `table` | No |  |
+| `id` | `number` | No |  |
+| `image` | `table` | No |  |
+| `name` | `string` | No |  |
+| `stat` | `table` | No |  |
+| `trained_word` | `table` | No |  |
 
 ### Operations
 
@@ -353,9 +353,9 @@ local tag = client:Tag(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | ``$STRING`` | No |  |
-| `model_count` | ``$INTEGER`` | No |  |
-| `name` | ``$STRING`` | No |  |
+| `link` | `string` | No |  |
+| `model_count` | `number` | No |  |
+| `name` | `string` | No |  |
 
 ### Operations
 

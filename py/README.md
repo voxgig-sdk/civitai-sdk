@@ -4,6 +4,11 @@
 
 The Python SDK for the Civitai API — an entity-oriented client following Pythonic conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `client.Creator()` — each
+carrying a small, uniform set of operations (`list`, `load`) instead of raw URL
+paths and query strings. You work with named resources and verbs, which
+keeps the cognitive load low.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -41,11 +46,39 @@ error — iterate it directly.
 
 ```python
 try:
-    creators = client.Creator().list({})
+    creators = client.Creator().list()
     for creator in creators:
         print(creator)
 except Exception as err:
     print(f"list failed: {err}")
+```
+
+
+## Error handling
+
+Entity operations raise on failure, so wrap them in `try` / `except`:
+
+```python
+try:
+    creators = client.Creator().list()
+    print(creators)
+except Exception as err:
+    print(f"list failed: {err}")
+```
+
+`direct()` does **not** raise — it returns the result envelope. Branch
+on `ok`; on failure `status` holds the HTTP status (for error responses)
+and `err` holds a transport error, so read both defensively:
+
+```python
+result = client.direct({
+    "path": "/api/resource/{id}",
+    "method": "GET",
+    "params": {"id": "example_id"},
+})
+
+if not result["ok"]:
+    print("request failed:", result.get("status"), result.get("err"))
 ```
 
 
@@ -66,7 +99,10 @@ if result["ok"]:
     print(result["status"])  # 200
     print(result["data"])    # response body
 else:
-    print(result["err"])     # error value
+    # A non-2xx response carries status + data (the error body); a
+    # transport-level failure carries err instead. Only one is present, so
+    # read both with .get() rather than indexing a key that may be absent.
+    print(result.get("status"), result.get("err"))
 ```
 
 ### Prepare a request without sending it
@@ -92,7 +128,7 @@ Create a mock client for unit testing — no server required:
 client = CivitaiSDK.test()
 
 # Entity ops return the bare record and raise on error.
-creator = client.Creator().load({"id": "test01"})
+creator = client.Creator().list()
 # creator contains the mock response record
 ```
 
@@ -185,9 +221,6 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
 | `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
-| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
-| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
-| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -310,20 +343,20 @@ Create an instance: `creator = client.Creator()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$STRING`` |  |
-| `model_count` | ``$INTEGER`` |  |
-| `username` | ``$STRING`` |  |
+| `link` | `str` |  |
+| `model_count` | `int` |  |
+| `username` | `str` |  |
 
 #### Example: List
 
 ```python
-creators = client.Creator().list({})
+creators = client.Creator().list()
 ```
 
 
@@ -335,29 +368,29 @@ Create an instance: `image = client.Image()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | ``$STRING`` |  |
-| `hash` | ``$STRING`` |  |
-| `height` | ``$INTEGER`` |  |
-| `id` | ``$INTEGER`` |  |
-| `meta` | ``$OBJECT`` |  |
-| `nsfw` | ``$BOOLEAN`` |  |
-| `nsfw_level` | ``$STRING`` |  |
-| `post_id` | ``$INTEGER`` |  |
-| `stat` | ``$OBJECT`` |  |
-| `url` | ``$STRING`` |  |
-| `username` | ``$STRING`` |  |
-| `width` | ``$INTEGER`` |  |
+| `created_at` | `str` |  |
+| `hash` | `str` |  |
+| `height` | `int` |  |
+| `id` | `int` |  |
+| `meta` | `dict` |  |
+| `nsfw` | `bool` |  |
+| `nsfw_level` | `str` |  |
+| `post_id` | `int` |  |
+| `stat` | `dict` |  |
+| `url` | `str` |  |
+| `username` | `str` |  |
+| `width` | `int` |  |
 
 #### Example: List
 
 ```python
-images = client.Image().list({})
+images = client.Image().list()
 ```
 
 
@@ -369,23 +402,23 @@ Create an instance: `model = client.Model()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 | `load(match)` | Load a single entity by match criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `creator` | ``$OBJECT`` |  |
-| `description` | ``$STRING`` |  |
-| `id` | ``$INTEGER`` |  |
-| `mode` | ``$STRING`` |  |
-| `model_version` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `nsfw` | ``$BOOLEAN`` |  |
-| `stat` | ``$OBJECT`` |  |
-| `tag` | ``$ARRAY`` |  |
-| `type` | ``$STRING`` |  |
+| `creator` | `dict` |  |
+| `description` | `str` |  |
+| `id` | `int` |  |
+| `mode` | `str` |  |
+| `model_version` | `list` |  |
+| `name` | `str` |  |
+| `nsfw` | `bool` |  |
+| `stat` | `dict` |  |
+| `tag` | `list` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -396,7 +429,7 @@ model = client.Model().load({"id": "model_id"})
 #### Example: List
 
 ```python
-models = client.Model().list({})
+models = client.Model().list()
 ```
 
 
@@ -414,15 +447,15 @@ Create an instance: `model_version = client.ModelVersion()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | ``$STRING`` |  |
-| `description` | ``$STRING`` |  |
-| `download_url` | ``$STRING`` |  |
-| `file` | ``$ARRAY`` |  |
-| `id` | ``$INTEGER`` |  |
-| `image` | ``$ARRAY`` |  |
-| `name` | ``$STRING`` |  |
-| `stat` | ``$OBJECT`` |  |
-| `trained_word` | ``$ARRAY`` |  |
+| `created_at` | `str` |  |
+| `description` | `str` |  |
+| `download_url` | `str` |  |
+| `file` | `list` |  |
+| `id` | `int` |  |
+| `image` | `list` |  |
+| `name` | `str` |  |
+| `stat` | `dict` |  |
+| `trained_word` | `list` |  |
 
 #### Example: Load
 
@@ -439,29 +472,33 @@ Create an instance: `tag = client.Tag()`
 
 | Method | Description |
 | --- | --- |
-| `list(match)` | List entities matching the criteria. |
+| `list()` | List entities, optionally matching the given criteria. |
 
 #### Fields
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | ``$STRING`` |  |
-| `model_count` | ``$INTEGER`` |  |
-| `name` | ``$STRING`` |  |
+| `link` | `str` |  |
+| `model_count` | `int` |  |
+| `name` | `str` |  |
 
 #### Example: List
 
 ```python
-tags = client.Tag().list({})
+tags = client.Tag().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -478,8 +515,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return tuple.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -522,14 +560,14 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
 creator = client.Creator()
-creator.load({"id": "example_id"})
+creator.list()
 
-# creator.data_get() now returns the loaded creator data
+# creator.data_get() now returns the creator data from the last list
 # creator.match_get() returns the last match criteria
 ```
 

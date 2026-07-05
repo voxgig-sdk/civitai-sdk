@@ -17,8 +17,6 @@ go build -o civitai-cli ./...
 ```sh
 # One-shot: arguments form a single AQL expression
 ./civitai-cli list creator
-./civitai-cli load 1 creator
-./civitai-cli load '{id:1}' creator
 
 # REPL
 ./civitai-cli
@@ -30,7 +28,6 @@ go build -o civitai-cli ./...
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).
