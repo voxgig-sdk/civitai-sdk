@@ -423,7 +423,7 @@ Create an instance: `model = client.Model()`
 #### Example: Load
 
 ```python
-model = client.Model().load({"id": "model_id"})
+model = client.Model().load({"id": 1})
 ```
 
 #### Example: List
@@ -460,7 +460,7 @@ Create an instance: `model_version = client.ModelVersion()`
 #### Example: Load
 
 ```python
-model_version = client.ModelVersion().load({"id": "model_version_id"})
+model_version = client.ModelVersion().load({"id": 1})
 ```
 
 

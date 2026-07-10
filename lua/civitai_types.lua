@@ -83,8 +83,8 @@
 ---@field trained_word? table
 
 ---@class ModelVersionLoadMatch
----@field hash string
----@field id number
+---@field hash? string
+---@field id? number
 
 ---@class Tag
 ---@field link? string

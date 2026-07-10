@@ -250,7 +250,7 @@ local results, err = client:Model():list()
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Model():load({ id = "model_id" })
+local result, err = client:Model():load({ id = 1 })
 ```
 
 ### Common Methods
@@ -310,7 +310,7 @@ local model_version = client:ModelVersion(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:ModelVersion():load({ id = "model_version_id" })
+local result, err = client:ModelVersion():load({ id = 1 })
 ```
 
 ### Common Methods

@@ -251,7 +251,7 @@ for model in results:
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Model().load({"id": "model_id"})
+result = client.Model().load({"id": 1})
 ```
 
 ### Common Methods
@@ -310,7 +310,7 @@ model_version = client.ModelVersion()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.ModelVersion().load({"id": "model_version_id"})
+result = client.ModelVersion().load({"id": 1})
 ```
 
 ### Common Methods

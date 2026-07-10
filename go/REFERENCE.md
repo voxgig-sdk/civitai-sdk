@@ -108,6 +108,7 @@ same parameters as `Direct()`.
 
 ```go
 creator := client.Creator(nil)
+fmt.Println(creator.GetName()) // "creator"
 ```
 
 ### Fields
@@ -126,6 +127,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Creator(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -156,6 +161,7 @@ Return the entity name.
 
 ```go
 image := client.Image(nil)
+fmt.Println(image.GetName()) // "image"
 ```
 
 ### Fields
@@ -183,6 +189,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Image(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -213,6 +223,7 @@ Return the entity name.
 
 ```go
 model := client.Model(nil)
+fmt.Println(model.GetName()) // "model"
 ```
 
 ### Fields
@@ -238,6 +249,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Model(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 #### `Load(reqmatch, ctrl map[string]any) (any, error)`
@@ -245,7 +260,11 @@ results, err := client.Model(nil).List(nil, nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Model(nil).Load(map[string]any{"id": "model_id"}, nil)
+result, err := client.Model(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -275,7 +294,8 @@ Return the entity name.
 ## ModelVersionEntity
 
 ```go
-model_version := client.ModelVersion(nil)
+modelVersion := client.ModelVersion(nil)
+fmt.Println(modelVersion.GetName()) // "model_version"
 ```
 
 ### Fields
@@ -299,7 +319,11 @@ model_version := client.ModelVersion(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.ModelVersion(nil).Load(map[string]any{"id": "model_version_id"}, nil)
+result, err := client.ModelVersion(nil).Load(map[string]any{"id": 1}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -330,6 +354,7 @@ Return the entity name.
 
 ```go
 tag := client.Tag(nil)
+fmt.Println(tag.GetName()) // "tag"
 ```
 
 ### Fields
@@ -348,6 +373,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Tag(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

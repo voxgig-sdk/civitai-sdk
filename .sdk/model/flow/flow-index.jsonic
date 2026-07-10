@@ -1,7 +1,0 @@
-# Flows
-
-@"BasicCreatorFlow.jsonic"
-@"BasicImageFlow.jsonic"
-@"BasicModelFlow.jsonic"
-@"BasicModelVersionFlow.jsonic"
-@"BasicTagFlow.jsonic"

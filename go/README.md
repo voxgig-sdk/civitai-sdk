@@ -450,7 +450,7 @@ Create an instance: `model := client.Model(nil)`
 #### Example: Load
 
 ```go
-model, err := client.Model(nil).Load(map[string]any{"id": "model_id"}, nil)
+model, err := client.Model(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
@@ -470,7 +470,7 @@ fmt.Println(models) // the array of records
 
 ### ModelVersion
 
-Create an instance: `model_version := client.ModelVersion(nil)`
+Create an instance: `modelVersion := client.ModelVersion(nil)`
 
 #### Operations
 
@@ -495,11 +495,11 @@ Create an instance: `model_version := client.ModelVersion(nil)`
 #### Example: Load
 
 ```go
-model_version, err := client.ModelVersion(nil).Load(map[string]any{"id": "model_version_id"}, nil)
+modelVersion, err := client.ModelVersion(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(model_version) // the loaded record
+fmt.Println(modelVersion) // the loaded record
 ```
 
 

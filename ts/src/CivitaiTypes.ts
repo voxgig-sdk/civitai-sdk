@@ -90,8 +90,8 @@ export interface ModelVersion {
 }
 
 export interface ModelVersionLoadMatch {
-  hash: string
-  id: number
+  hash?: string
+  id?: number
 }
 
 export interface Tag {

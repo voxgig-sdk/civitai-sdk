@@ -419,7 +419,7 @@ Create an instance: `model = client.Model`
 
 ```ruby
 # load returns the bare Model record (raises on error).
-model = client.Model.load({ "id" => "model_id" })
+model = client.Model.load({ "id" => 1 })
 ```
 
 #### Example: List
@@ -458,7 +458,7 @@ Create an instance: `model_version = client.ModelVersion`
 
 ```ruby
 # load returns the bare ModelVersion record (raises on error).
-model_version = client.ModelVersion.load({ "id" => "model_version_id" })
+model_version = client.ModelVersion.load({ "id" => 1 })
 ```
 
 

@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -1112,14 +1109,24 @@
           "url": "https://developer.civitai.com/docs/api/public-rest"
         },
         "description": "REST API for accessing Civitai creators, images, models, model versions, and tags. Provides endpoints for retrieving specific resources like models by ID or model versions by hash.",
+        "meta_source": "https://www.freepublicapis.com",
+        "security": {
+          "in": "header",
+          "name": "Authorization",
+          "prefix": "Bearer",
+          "scheme": "BearerAuth",
+          "type": "http"
+        },
         "servers": [
           {
             "description": "Civitai API v1 Production Server",
             "url": "https://civitai.com/api/v1"
           }
         ],
+        "summary": "REST API for accessing Civitai creators, images, models, model versions, and tags.",
         "title": "Civitai API",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://civitai.com"
       },
       "option": {},
       "target": {
@@ -1172,6 +1179,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -1222,6 +1232,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

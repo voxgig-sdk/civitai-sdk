@@ -412,7 +412,7 @@ Create an instance: `local model = client:Model(nil)`
 #### Example: Load
 
 ```lua
-local model, err = client:Model():load({ id = "model_id" })
+local model, err = client:Model():load({ id = 1 })
 ```
 
 #### Example: List
@@ -449,7 +449,7 @@ Create an instance: `local model_version = client:ModelVersion(nil)`
 #### Example: Load
 
 ```lua
-local model_version, err = client:ModelVersion():load({ id = "model_version_id" })
+local model_version, err = client:ModelVersion():load({ id = 1 })
 ```
 
 

@@ -291,10 +291,10 @@ ModelVersion = Struct.new(
 # Request payload for ModelVersion#load.
 #
 # @!attribute [rw] hash
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] id
-#   @return [Integer]
+#   @return [Integer, nil]
 ModelVersionLoadMatch = Struct.new(
   :hash,
   :id,

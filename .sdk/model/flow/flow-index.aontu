@@ -1,0 +1,7 @@
+# Flows
+
+@"BasicCreatorFlow.aontu"
+@"BasicImageFlow.aontu"
+@"BasicModelFlow.aontu"
+@"BasicModelVersionFlow.aontu"
+@"BasicTagFlow.aontu"

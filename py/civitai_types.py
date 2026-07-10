@@ -100,7 +100,7 @@ class ModelVersion(TypedDict, total=False):
     trained_word: list
 
 
-class ModelVersionLoadMatch(TypedDict):
+class ModelVersionLoadMatch(TypedDict, total=False):
     hash: str
     id: int
 

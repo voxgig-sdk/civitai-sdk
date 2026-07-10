@@ -429,7 +429,7 @@ Create an instance: `$model = $client->Model();`
 
 ```php
 // load() returns the bare Model record (throws on error).
-$model = $client->Model()->load(["id" => "model_id"]);
+$model = $client->Model()->load(["id" => 1]);
 ```
 
 #### Example: List
@@ -468,7 +468,7 @@ Create an instance: `$model_version = $client->ModelVersion();`
 
 ```php
 // load() returns the bare ModelVersion record (throws on error).
-$model_version = $client->ModelVersion()->load(["id" => "model_version_id"]);
+$model_version = $client->ModelVersion()->load(["id" => 1]);
 ```
 
 
