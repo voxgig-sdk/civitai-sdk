@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Civitai SDK exists test
 
 local sdk = require("civitai_sdk")
 
