@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Civitai SDK exists test
 
 import pytest
 from civitai_sdk import CivitaiSDK

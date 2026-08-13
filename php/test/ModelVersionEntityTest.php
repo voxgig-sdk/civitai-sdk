@@ -52,7 +52,7 @@ class ModelVersionEntityTest extends TestCase
             "id" => $model_version_ref01_data["id"],
         ];
         $model_version_ref01_data_dt0_loaded = $model_version_ref01_ent->load($model_version_ref01_match_dt0, null);
-        $model_version_ref01_data_dt0_load_result = Helpers::to_map($model_version_ref01_data_dt0_loaded);
+        $model_version_ref01_data_dt0_load_result = Helpers::to_map(is_object($model_version_ref01_data_dt0_loaded) && method_exists($model_version_ref01_data_dt0_loaded, 'data_get') ? $model_version_ref01_data_dt0_loaded->data_get() : $model_version_ref01_data_dt0_loaded);
         $this->assertNotNull($model_version_ref01_data_dt0_load_result);
         $this->assertEquals($model_version_ref01_data_dt0_load_result["id"], $model_version_ref01_data["id"]);
 

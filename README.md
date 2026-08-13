@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = CivitaiSDK.test()
-const creators = await client.Creator().list()
-// creators is an array of bare Creator records populated with mock data
-console.log(creators)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = CivitaiSDK.test({
+  entity: {
+    model: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const models = await client.Model().list()
+// models is an array of Model entities, populated with mock data
+// — call models[0].data() for the record itself
+console.log(models)
 ```
 
 ### Python
 
 ```python
 client = CivitaiSDK.test()
-creators = client.Creator().list()
-print(creators)
+models = client.Model().list()
+print(models)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(creators)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = CivitaiSDK::test([
-    "entity" => ["creator" => ["test01" => []]],
+    "entity" => ["model" => ["test01" => ["id" => "test01"]]],
 ]);
-$creators = $client->Creator()->list();
+$models = $client->Model()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Creator(nil).List(
+result, err := client.Model(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Creator(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = CivitaiSDK.test({
-  "entity" => { "creator" => { "test01" => {} } },
+  "entity" => { "model" => { "test01" => { "id" => "test01" } } },
 })
-creators = client.Creator.list()
+models = client.Model.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Creator():list()
+local results, err = client:Model():list()
 ```
 
 ## Packages
@@ -112,7 +121,7 @@ const client = new CivitaiSDK({
   apikey: process.env.CIVITAI_APIKEY,
 })
 
-// List all creators (returns Creator[])
+// List all creators (returns CreatorEntity[] — .data() for the record)
 const creators = await client.Creator().list()
 for (const creator of creators) {
   console.log(creator)
@@ -360,6 +369,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://developer.civitai.com/docs/api/public-rest](https://developer.civitai.com/docs/api/public-rest)
 

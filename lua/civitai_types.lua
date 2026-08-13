@@ -8,38 +8,38 @@
 
 ---@class Creator
 ---@field link? string
----@field model_count? number
+---@field modelCount? number
 ---@field username? string
 
 ---@class CreatorListMatch
 ---@field link? string
----@field model_count? number
+---@field modelCount? number
 ---@field username? string
 
 ---@class Image
----@field created_at? string
+---@field createdAt? string
 ---@field hash? string
 ---@field height? number
 ---@field id? number
 ---@field meta? table
 ---@field nsfw? boolean
----@field nsfw_level? string
----@field post_id? number
----@field stat? table
+---@field nsfwLevel? string
+---@field postId? number
+---@field stats? table
 ---@field url? string
 ---@field username? string
 ---@field width? number
 
 ---@class ImageListMatch
----@field created_at? string
+---@field createdAt? string
 ---@field hash? string
 ---@field height? number
 ---@field id? number
 ---@field meta? table
 ---@field nsfw? boolean
----@field nsfw_level? string
----@field post_id? number
----@field stat? table
+---@field nsfwLevel? string
+---@field postId? number
+---@field stats? table
 ---@field url? string
 ---@field username? string
 ---@field width? number
@@ -49,11 +49,11 @@
 ---@field description? string
 ---@field id? number
 ---@field mode? string
----@field model_version? table
+---@field modelVersions? table
 ---@field name? string
 ---@field nsfw? boolean
----@field stat? table
----@field tag? table
+---@field stats? table
+---@field tags? table
 ---@field type? string
 
 ---@class ModelLoadMatch
@@ -64,23 +64,23 @@
 ---@field description? string
 ---@field id? number
 ---@field mode? string
----@field model_version? table
+---@field modelVersions? table
 ---@field name? string
 ---@field nsfw? boolean
----@field stat? table
----@field tag? table
+---@field stats? table
+---@field tags? table
 ---@field type? string
 
 ---@class ModelVersion
----@field created_at? string
+---@field createdAt? string
 ---@field description? string
----@field download_url? string
----@field file? table
+---@field downloadUrl? string
+---@field files? table
 ---@field id? number
----@field image? table
+---@field images? table
 ---@field name? string
----@field stat? table
----@field trained_word? table
+---@field stats? table
+---@field trainedWords? table
 
 ---@class ModelVersionLoadMatch
 ---@field hash? string
@@ -88,12 +88,12 @@
 
 ---@class Tag
 ---@field link? string
----@field model_count? number
+---@field modelCount? number
 ---@field name? string
 
 ---@class TagListMatch
 ---@field link? string
----@field model_count? number
+---@field modelCount? number
 ---@field name? string
 
 local M = {}

@@ -16,11 +16,11 @@
 import pytest
 
 from civitai_sdk import CivitaiSDK
-from core.error import CivitaiError
-from core.result import CivitaiResult
-from core.response import CivitaiResponse
-from core.spec import CivitaiSpec
-from feature.base_feature import CivitaiBaseFeature
+from civitai_sdk.core.error import CivitaiError
+from civitai_sdk.core.result import CivitaiResult
+from civitai_sdk.core.response import CivitaiResponse
+from civitai_sdk.core.spec import CivitaiSpec
+from civitai_sdk.feature.base_feature import CivitaiBaseFeature
 
 
 def _client():

@@ -55,7 +55,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $creators = $client->Creator()->list();
+    $models = $client->Model()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -122,14 +122,18 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = CivitaiSDK::test();
+$client = CivitaiSDK::test([
+    "entity" => ["model" => ["test01" => ["id" => "test01"]]],
+]);
 
-// Entity ops return the bare mock record (throws on error).
-$creator = $client->Creator()->list();
-print_r($creator);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$model = $client->Model()->list();
+print_r($model);
 ```
 
 ### Use a custom fetch function
@@ -233,7 +237,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -256,7 +260,7 @@ On error, `ok` is `false` and `$err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `link` |  |
-| `model_count` |  |
+| `modelCount` |  |
 | `username` |  |
 
 Operations: List.
@@ -267,15 +271,15 @@ API path: `/creators`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `hash` |  |
 | `height` |  |
 | `id` |  |
 | `meta` |  |
 | `nsfw` |  |
-| `nsfw_level` |  |
-| `post_id` |  |
-| `stat` |  |
+| `nsfwLevel` |  |
+| `postId` |  |
+| `stats` |  |
 | `url` |  |
 | `username` |  |
 | `width` |  |
@@ -292,11 +296,11 @@ API path: `/images`
 | `description` |  |
 | `id` |  |
 | `mode` |  |
-| `model_version` |  |
+| `modelVersions` |  |
 | `name` |  |
 | `nsfw` |  |
-| `stat` |  |
-| `tag` |  |
+| `stats` |  |
+| `tags` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -307,15 +311,15 @@ API path: `/models`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `description` |  |
-| `download_url` |  |
-| `file` |  |
+| `downloadUrl` |  |
+| `files` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `name` |  |
-| `stat` |  |
-| `trained_word` |  |
+| `stats` |  |
+| `trainedWords` |  |
 
 Operations: Load.
 
@@ -326,7 +330,7 @@ API path: `/model-versions/by-hash/{hash}`
 | Field | Description |
 | --- | --- |
 | `link` |  |
-| `model_count` |  |
+| `modelCount` |  |
 | `name` |  |
 
 Operations: List.
@@ -353,7 +357,7 @@ Create an instance: `$creator = $client->Creator();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `string` |  |
-| `model_count` | `int` |  |
+| `modelCount` | `int` |  |
 | `username` | `string` |  |
 
 #### Example: List
@@ -378,15 +382,15 @@ Create an instance: `$image = $client->Image();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `hash` | `string` |  |
 | `height` | `int` |  |
 | `id` | `int` |  |
 | `meta` | `array` |  |
 | `nsfw` | `bool` |  |
-| `nsfw_level` | `string` |  |
-| `post_id` | `int` |  |
-| `stat` | `array` |  |
+| `nsfwLevel` | `string` |  |
+| `postId` | `int` |  |
+| `stats` | `array` |  |
 | `url` | `string` |  |
 | `username` | `string` |  |
 | `width` | `int` |  |
@@ -418,17 +422,17 @@ Create an instance: `$model = $client->Model();`
 | `description` | `string` |  |
 | `id` | `int` |  |
 | `mode` | `string` |  |
-| `model_version` | `array` |  |
+| `modelVersions` | `array` |  |
 | `name` | `string` |  |
 | `nsfw` | `bool` |  |
-| `stat` | `array` |  |
-| `tag` | `array` |  |
+| `stats` | `array` |  |
+| `tags` | `array` |  |
 | `type` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Model record (throws on error).
+// load() returns the ENTITY — call data_get() for the Model record (throws on error).
 $model = $client->Model()->load(["id" => 1]);
 ```
 
@@ -454,20 +458,20 @@ Create an instance: `$model_version = $client->ModelVersion();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `description` | `string` |  |
-| `download_url` | `string` |  |
-| `file` | `array` |  |
+| `downloadUrl` | `string` |  |
+| `files` | `array` |  |
 | `id` | `int` |  |
-| `image` | `array` |  |
+| `images` | `array` |  |
 | `name` | `string` |  |
-| `stat` | `array` |  |
-| `trained_word` | `array` |  |
+| `stats` | `array` |  |
+| `trainedWords` | `array` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare ModelVersion record (throws on error).
+// load() returns the ENTITY — call data_get() for the ModelVersion record (throws on error).
 $model_version = $client->ModelVersion()->load(["id" => 1]);
 ```
 
@@ -487,7 +491,7 @@ Create an instance: `$tag = $client->Tag();`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `string` |  |
-| `model_count` | `int` |  |
+| `modelCount` | `int` |  |
 | `name` | `string` |  |
 
 #### Example: List
@@ -574,11 +578,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$creator = $client->Creator();
-$creator->list();
+$model = $client->Model();
+$model->list();
 
-// $creator->data_get() now returns the creator data from the last list
-// $creator->match_get() returns the last match criteria
+// $model->data_get() now returns the model data from the last list
+// $model->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

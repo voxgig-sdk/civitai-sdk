@@ -110,7 +110,7 @@ $creator = $client->Creator();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `string` | No |  |
-| `model_count` | `int` | No |  |
+| `modelCount` | `int` | No |  |
 | `username` | `string` | No |  |
 
 ### Operations
@@ -163,15 +163,15 @@ $image = $client->Image();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `hash` | `string` | No |  |
 | `height` | `int` | No |  |
 | `id` | `int` | No |  |
 | `meta` | `array` | No |  |
 | `nsfw` | `bool` | No |  |
-| `nsfw_level` | `string` | No |  |
-| `post_id` | `int` | No |  |
-| `stat` | `array` | No |  |
+| `nsfwLevel` | `string` | No |  |
+| `postId` | `int` | No |  |
+| `stats` | `array` | No |  |
 | `url` | `string` | No |  |
 | `username` | `string` | No |  |
 | `width` | `int` | No |  |
@@ -230,11 +230,11 @@ $model = $client->Model();
 | `description` | `string` | No |  |
 | `id` | `int` | No |  |
 | `mode` | `string` | No |  |
-| `model_version` | `array` | No |  |
+| `modelVersions` | `array` | No |  |
 | `name` | `string` | No |  |
 | `nsfw` | `bool` | No |  |
-| `stat` | `array` | No |  |
-| `tag` | `array` | No |  |
+| `stats` | `array` | No |  |
+| `tags` | `array` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -295,15 +295,15 @@ $model_version = $client->ModelVersion();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `description` | `string` | No |  |
-| `download_url` | `string` | No |  |
-| `file` | `array` | No |  |
+| `downloadUrl` | `string` | No |  |
+| `files` | `array` | No |  |
 | `id` | `int` | No |  |
-| `image` | `array` | No |  |
+| `images` | `array` | No |  |
 | `name` | `string` | No |  |
-| `stat` | `array` | No |  |
-| `trained_word` | `array` | No |  |
+| `stats` | `array` | No |  |
+| `trainedWords` | `array` | No |  |
 
 ### Operations
 
@@ -356,7 +356,7 @@ $tag = $client->Tag();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `string` | No |  |
-| `model_count` | `int` | No |  |
+| `modelCount` | `int` | No |  |
 | `name` | `string` | No |  |
 
 ### Operations

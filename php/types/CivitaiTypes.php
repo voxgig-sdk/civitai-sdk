@@ -16,7 +16,7 @@ declare(strict_types=1);
 class Creator
 {
     public ?string $link = null;
-    public ?int $model_count = null;
+    public ?int $modelCount = null;
     public ?string $username = null;
 }
 
@@ -24,22 +24,22 @@ class Creator
 class CreatorListMatch
 {
     public ?string $link = null;
-    public ?int $model_count = null;
+    public ?int $modelCount = null;
     public ?string $username = null;
 }
 
 /** Image entity data model. */
 class Image
 {
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?string $hash = null;
     public ?int $height = null;
     public ?int $id = null;
     public ?array $meta = null;
     public ?bool $nsfw = null;
-    public ?string $nsfw_level = null;
-    public ?int $post_id = null;
-    public ?array $stat = null;
+    public ?string $nsfwLevel = null;
+    public ?int $postId = null;
+    public ?array $stats = null;
     public ?string $url = null;
     public ?string $username = null;
     public ?int $width = null;
@@ -48,15 +48,15 @@ class Image
 /** Request payload for Image#list. */
 class ImageListMatch
 {
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?string $hash = null;
     public ?int $height = null;
     public ?int $id = null;
     public ?array $meta = null;
     public ?bool $nsfw = null;
-    public ?string $nsfw_level = null;
-    public ?int $post_id = null;
-    public ?array $stat = null;
+    public ?string $nsfwLevel = null;
+    public ?int $postId = null;
+    public ?array $stats = null;
     public ?string $url = null;
     public ?string $username = null;
     public ?int $width = null;
@@ -69,11 +69,11 @@ class Model
     public ?string $description = null;
     public ?int $id = null;
     public ?string $mode = null;
-    public ?array $model_version = null;
+    public ?array $modelVersions = null;
     public ?string $name = null;
     public ?bool $nsfw = null;
-    public ?array $stat = null;
-    public ?array $tag = null;
+    public ?array $stats = null;
+    public ?array $tags = null;
     public ?string $type = null;
 }
 
@@ -90,26 +90,26 @@ class ModelListMatch
     public ?string $description = null;
     public ?int $id = null;
     public ?string $mode = null;
-    public ?array $model_version = null;
+    public ?array $modelVersions = null;
     public ?string $name = null;
     public ?bool $nsfw = null;
-    public ?array $stat = null;
-    public ?array $tag = null;
+    public ?array $stats = null;
+    public ?array $tags = null;
     public ?string $type = null;
 }
 
 /** ModelVersion entity data model. */
 class ModelVersion
 {
-    public ?string $created_at = null;
+    public ?string $createdAt = null;
     public ?string $description = null;
-    public ?string $download_url = null;
-    public ?array $file = null;
+    public ?string $downloadUrl = null;
+    public ?array $files = null;
     public ?int $id = null;
-    public ?array $image = null;
+    public ?array $images = null;
     public ?string $name = null;
-    public ?array $stat = null;
-    public ?array $trained_word = null;
+    public ?array $stats = null;
+    public ?array $trainedWords = null;
 }
 
 /** Request payload for ModelVersion#load. */
@@ -123,7 +123,7 @@ class ModelVersionLoadMatch
 class Tag
 {
     public ?string $link = null;
-    public ?int $model_count = null;
+    public ?int $modelCount = null;
     public ?string $name = null;
 }
 
@@ -131,7 +131,7 @@ class Tag
 class TagListMatch
 {
     public ?string $link = null;
-    public ?int $model_count = null;
+    public ?int $modelCount = null;
     public ?string $name = null;
 }
 

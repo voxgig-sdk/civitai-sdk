@@ -63,7 +63,7 @@ describe('TagEntity', async () => {
     const tag_ref01_ent = client.Tag()
     const tag_ref01_match: any = {}
 
-    const tag_ref01_list = await tag_ref01_ent.list(tag_ref01_match)
+    const tag_ref01_list = (await tag_ref01_ent.list(tag_ref01_match)).map((e: any) => e.data())
 
 
   })

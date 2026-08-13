@@ -37,7 +37,9 @@ const client = new CivitaiSDK({
 
 ### 2. List creator records
 
-`list()` resolves to an array of Creator objects — iterate it directly:
+`list()` resolves to an array of Creator ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const creators = await client.Creator().list()
@@ -54,8 +56,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const creators = await client.Creator().list()
-  console.log(creators)
+  const models = await client.Model().list()
+  console.log(models)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -121,9 +123,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = CivitaiSDK.test()
 
-const creator = await client.Creator().list()
-// creator is a bare entity populated with mock response data
-console.log(creator)
+const model = await client.Model().list()
+// model is the entity, populated with mock response data
+// — call model.data() for the record itself
+console.log(model)
 ```
 
 You can also use the instance method:
@@ -138,14 +141,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Creator()
+const entity = client.Model()
 
 // First call runs the operation and stores its result
 await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data)
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -297,7 +300,7 @@ The `prepare()` method returns:
 | Field | Description |
 | --- | --- |
 | `link` |  |
-| `model_count` |  |
+| `modelCount` |  |
 | `username` |  |
 
 Operations: list.
@@ -308,15 +311,15 @@ API path: `/creators`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `hash` |  |
 | `height` |  |
 | `id` |  |
 | `meta` |  |
 | `nsfw` |  |
-| `nsfw_level` |  |
-| `post_id` |  |
-| `stat` |  |
+| `nsfwLevel` |  |
+| `postId` |  |
+| `stats` |  |
 | `url` |  |
 | `username` |  |
 | `width` |  |
@@ -333,11 +336,11 @@ API path: `/images`
 | `description` |  |
 | `id` |  |
 | `mode` |  |
-| `model_version` |  |
+| `modelVersions` |  |
 | `name` |  |
 | `nsfw` |  |
-| `stat` |  |
-| `tag` |  |
+| `stats` |  |
+| `tags` |  |
 | `type` |  |
 
 Operations: list, load.
@@ -348,15 +351,15 @@ API path: `/models`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `description` |  |
-| `download_url` |  |
-| `file` |  |
+| `downloadUrl` |  |
+| `files` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `name` |  |
-| `stat` |  |
-| `trained_word` |  |
+| `stats` |  |
+| `trainedWords` |  |
 
 Operations: load.
 
@@ -367,7 +370,7 @@ API path: `/model-versions/by-hash/{hash}`
 | Field | Description |
 | --- | --- |
 | `link` |  |
-| `model_count` |  |
+| `modelCount` |  |
 | `name` |  |
 
 Operations: list.
@@ -394,7 +397,7 @@ Create an instance: `const creator = client.Creator()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `string` |  |
-| `model_count` | `number` |  |
+| `modelCount` | `number` |  |
 | `username` | `string` |  |
 
 #### Example: List
@@ -418,15 +421,15 @@ Create an instance: `const image = client.Image()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `hash` | `string` |  |
 | `height` | `number` |  |
 | `id` | `number` |  |
 | `meta` | `Record<string, any>` |  |
 | `nsfw` | `boolean` |  |
-| `nsfw_level` | `string` |  |
-| `post_id` | `number` |  |
-| `stat` | `Record<string, any>` |  |
+| `nsfwLevel` | `string` |  |
+| `postId` | `number` |  |
+| `stats` | `Record<string, any>` |  |
 | `url` | `string` |  |
 | `username` | `string` |  |
 | `width` | `number` |  |
@@ -457,11 +460,11 @@ Create an instance: `const model = client.Model()`
 | `description` | `string` |  |
 | `id` | `number` |  |
 | `mode` | `string` |  |
-| `model_version` | `any[]` |  |
+| `modelVersions` | `any[]` |  |
 | `name` | `string` |  |
 | `nsfw` | `boolean` |  |
-| `stat` | `Record<string, any>` |  |
-| `tag` | `any[]` |  |
+| `stats` | `Record<string, any>` |  |
+| `tags` | `any[]` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -491,15 +494,15 @@ Create an instance: `const model_version = client.ModelVersion()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `description` | `string` |  |
-| `download_url` | `string` |  |
-| `file` | `any[]` |  |
+| `downloadUrl` | `string` |  |
+| `files` | `any[]` |  |
 | `id` | `number` |  |
-| `image` | `any[]` |  |
+| `images` | `any[]` |  |
 | `name` | `string` |  |
-| `stat` | `Record<string, any>` |  |
-| `trained_word` | `any[]` |  |
+| `stats` | `Record<string, any>` |  |
+| `trainedWords` | `any[]` |  |
 
 #### Example: Load
 
@@ -523,7 +526,7 @@ Create an instance: `const tag = client.Tag()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `string` |  |
-| `model_count` | `number` |  |
+| `modelCount` | `number` |  |
 | `name` | `string` |  |
 
 #### Example: List
@@ -602,11 +605,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const creator = client.Creator()
-await creator.list()
+const model = client.Model()
+await model.list()
 
-// creator.data() now returns the creator data from the last `list`
-// creator.match() returns the last match criteria
+// model.data() now returns the model data from the last `list`
+// model.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

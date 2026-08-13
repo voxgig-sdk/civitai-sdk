@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "creator": {
           "active": true,
@@ -33,7 +38,7 @@
             },
             {
               "active": true,
-              "name": "model_count",
+              "name": "modelCount",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -82,6 +87,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/creators",
                   "parts": [
@@ -114,7 +120,7 @@
           "fields": [
             {
               "active": true,
-              "name": "created_at",
+              "name": "createdAt",
               "req": false,
               "type": "`$STRING`"
             },
@@ -150,19 +156,19 @@
             },
             {
               "active": true,
-              "name": "nsfw_level",
+              "name": "nsfwLevel",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "post_id",
+              "name": "postId",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "stat",
+              "name": "stats",
               "req": false,
               "type": "`$OBJECT`"
             },
@@ -275,6 +281,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/images",
                   "parts": [
@@ -337,7 +344,7 @@
             },
             {
               "active": true,
-              "name": "model_version",
+              "name": "modelVersions",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -355,13 +362,13 @@
             },
             {
               "active": true,
-              "name": "stat",
+              "name": "stats",
               "req": false,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "tag",
+              "name": "tags",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -534,6 +541,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/models",
                   "parts": [
@@ -586,6 +594,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/models/{modelId}",
                   "parts": [
@@ -622,7 +631,7 @@
           "fields": [
             {
               "active": true,
-              "name": "created_at",
+              "name": "createdAt",
               "req": false,
               "type": "`$STRING`"
             },
@@ -634,13 +643,13 @@
             },
             {
               "active": true,
-              "name": "download_url",
+              "name": "downloadUrl",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "file",
+              "name": "files",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -652,7 +661,7 @@
             },
             {
               "active": true,
-              "name": "image",
+              "name": "images",
               "req": false,
               "type": "`$ARRAY`"
             },
@@ -664,13 +673,13 @@
             },
             {
               "active": true,
-              "name": "stat",
+              "name": "stats",
               "req": false,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "trained_word",
+              "name": "trainedWords",
               "req": false,
               "type": "`$ARRAY`"
             }
@@ -699,6 +708,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/model-versions/by-hash/{hash}",
                   "parts": [
@@ -730,6 +740,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/model-versions/{modelVersionId}",
                   "parts": [
@@ -776,7 +787,7 @@
             },
             {
               "active": true,
-              "name": "model_count",
+              "name": "modelCount",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -825,6 +836,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/tags",
                   "parts": [
@@ -1129,18 +1141,41 @@
         "website": "https://civitai.com"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "civitai"
+            "goversion": "",
+            "name": "civitai",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1162,22 +1197,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "civitai"
+            "goversion": "",
+            "name": "civitai",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1216,21 +1269,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "civitai"
+            "goversion": "",
+            "name": "civitai",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1269,12 +1340,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -1286,10 +1362,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "civitai"
+            "goversion": "",
+            "name": "civitai",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1311,22 +1400,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "civitai"
+            "goversion": "",
+            "name": "civitai",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1348,13 +1455,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1366,10 +1478,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "civitai"
+            "goversion": "",
+            "name": "civitai",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1391,13 +1516,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1414,10 +1544,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "civitai"
+            "goversion": "",
+            "name": "civitai",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1439,13 +1582,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -1468,10 +1616,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "civitai"
+            "goversion": "",
+            "name": "civitai",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1493,9 +1654,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

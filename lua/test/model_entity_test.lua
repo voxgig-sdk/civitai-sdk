@@ -97,7 +97,7 @@ describe("ModelEntity", function()
     }
     local model_ref01_data_dt0_loaded, err = model_ref01_ent:load(model_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local model_ref01_data_dt0_load_result = helpers.to_map(model_ref01_data_dt0_loaded)
+    local model_ref01_data_dt0_load_result = helpers.to_map(type(model_ref01_data_dt0_loaded) == 'table' and model_ref01_data_dt0_loaded.data_get and model_ref01_data_dt0_loaded:data_get() or model_ref01_data_dt0_loaded)
     assert.is_not_nil(model_ref01_data_dt0_load_result)
     assert.are.equal(model_ref01_data_dt0_load_result["id"], model_ref01_data["id"])
 

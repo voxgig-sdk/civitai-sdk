@@ -6,7 +6,7 @@ main: kit: entity: model_version: {
 
   fields: [
     {
-      name: "created_at"
+      name: "createdAt"
       req: false
       type: "`$STRING`"
     }
@@ -16,12 +16,12 @@ main: kit: entity: model_version: {
       type: "`$STRING`"
     }
     {
-      name: "download_url"
+      name: "downloadUrl"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "file"
+      name: "files"
       req: false
       type: "`$ARRAY`"
     }
@@ -31,7 +31,7 @@ main: kit: entity: model_version: {
       type: "`$INTEGER`"
     }
     {
-      name: "image"
+      name: "images"
       req: false
       type: "`$ARRAY`"
     }
@@ -41,12 +41,12 @@ main: kit: entity: model_version: {
       type: "`$STRING`"
     }
     {
-      name: "stat"
+      name: "stats"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "trained_word"
+      name: "trainedWords"
       req: false
       type: "`$ARRAY`"
     }

@@ -11,7 +11,7 @@ main: kit: entity: tag: {
       type: "`$STRING`"
     }
     {
-      name: "model_count"
+      name: "modelCount"
       req: false
       type: "`$INTEGER`"
     }

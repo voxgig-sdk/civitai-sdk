@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from civitai_sdk.utility.voxgig_struct import voxgig_struct as vs
 from civitai_sdk import CivitaiSDK
-from core import helpers
+from civitai_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -52,7 +52,7 @@ class TestModelVersionEntity:
             "id": model_version_ref01_data["id"],
         }
         model_version_ref01_data_dt0_loaded = model_version_ref01_ent.load(model_version_ref01_match_dt0, None)
-        model_version_ref01_data_dt0_load_result = helpers.to_map(model_version_ref01_data_dt0_loaded)
+        model_version_ref01_data_dt0_load_result = helpers.to_map(runner.entity_data(model_version_ref01_data_dt0_loaded))
         assert model_version_ref01_data_dt0_load_result is not None
         assert model_version_ref01_data_dt0_load_result["id"] == model_version_ref01_data["id"]
 

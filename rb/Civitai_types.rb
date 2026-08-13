@@ -13,14 +13,14 @@
 # @!attribute [rw] link
 #   @return [String, nil]
 #
-# @!attribute [rw] model_count
+# @!attribute [rw] modelCount
 #   @return [Integer, nil]
 #
 # @!attribute [rw] username
 #   @return [String, nil]
 Creator = Struct.new(
   :link,
-  :model_count,
+  :modelCount,
   :username,
   keyword_init: true
 )
@@ -30,21 +30,21 @@ Creator = Struct.new(
 # @!attribute [rw] link
 #   @return [String, nil]
 #
-# @!attribute [rw] model_count
+# @!attribute [rw] modelCount
 #   @return [Integer, nil]
 #
 # @!attribute [rw] username
 #   @return [String, nil]
 CreatorListMatch = Struct.new(
   :link,
-  :model_count,
+  :modelCount,
   :username,
   keyword_init: true
 )
 
 # Image entity data model.
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] hash
@@ -62,13 +62,13 @@ CreatorListMatch = Struct.new(
 # @!attribute [rw] nsfw
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] nsfw_level
+# @!attribute [rw] nsfwLevel
 #   @return [String, nil]
 #
-# @!attribute [rw] post_id
+# @!attribute [rw] postId
 #   @return [Integer, nil]
 #
-# @!attribute [rw] stat
+# @!attribute [rw] stats
 #   @return [Hash, nil]
 #
 # @!attribute [rw] url
@@ -80,15 +80,15 @@ CreatorListMatch = Struct.new(
 # @!attribute [rw] width
 #   @return [Integer, nil]
 Image = Struct.new(
-  :created_at,
+  :createdAt,
   :hash,
   :height,
   :id,
   :meta,
   :nsfw,
-  :nsfw_level,
-  :post_id,
-  :stat,
+  :nsfwLevel,
+  :postId,
+  :stats,
   :url,
   :username,
   :width,
@@ -97,7 +97,7 @@ Image = Struct.new(
 
 # Request payload for Image#list.
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] hash
@@ -115,13 +115,13 @@ Image = Struct.new(
 # @!attribute [rw] nsfw
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] nsfw_level
+# @!attribute [rw] nsfwLevel
 #   @return [String, nil]
 #
-# @!attribute [rw] post_id
+# @!attribute [rw] postId
 #   @return [Integer, nil]
 #
-# @!attribute [rw] stat
+# @!attribute [rw] stats
 #   @return [Hash, nil]
 #
 # @!attribute [rw] url
@@ -133,15 +133,15 @@ Image = Struct.new(
 # @!attribute [rw] width
 #   @return [Integer, nil]
 ImageListMatch = Struct.new(
-  :created_at,
+  :createdAt,
   :hash,
   :height,
   :id,
   :meta,
   :nsfw,
-  :nsfw_level,
-  :post_id,
-  :stat,
+  :nsfwLevel,
+  :postId,
+  :stats,
   :url,
   :username,
   :width,
@@ -162,7 +162,7 @@ ImageListMatch = Struct.new(
 # @!attribute [rw] mode
 #   @return [String, nil]
 #
-# @!attribute [rw] model_version
+# @!attribute [rw] modelVersions
 #   @return [Array, nil]
 #
 # @!attribute [rw] name
@@ -171,10 +171,10 @@ ImageListMatch = Struct.new(
 # @!attribute [rw] nsfw
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] stat
+# @!attribute [rw] stats
 #   @return [Hash, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] type
@@ -184,11 +184,11 @@ Model = Struct.new(
   :description,
   :id,
   :mode,
-  :model_version,
+  :modelVersions,
   :name,
   :nsfw,
-  :stat,
-  :tag,
+  :stats,
+  :tags,
   :type,
   keyword_init: true
 )
@@ -216,7 +216,7 @@ ModelLoadMatch = Struct.new(
 # @!attribute [rw] mode
 #   @return [String, nil]
 #
-# @!attribute [rw] model_version
+# @!attribute [rw] modelVersions
 #   @return [Array, nil]
 #
 # @!attribute [rw] name
@@ -225,10 +225,10 @@ ModelLoadMatch = Struct.new(
 # @!attribute [rw] nsfw
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] stat
+# @!attribute [rw] stats
 #   @return [Hash, nil]
 #
-# @!attribute [rw] tag
+# @!attribute [rw] tags
 #   @return [Array, nil]
 #
 # @!attribute [rw] type
@@ -238,53 +238,53 @@ ModelListMatch = Struct.new(
   :description,
   :id,
   :mode,
-  :model_version,
+  :modelVersions,
   :name,
   :nsfw,
-  :stat,
-  :tag,
+  :stats,
+  :tags,
   :type,
   keyword_init: true
 )
 
 # ModelVersion entity data model.
 #
-# @!attribute [rw] created_at
+# @!attribute [rw] createdAt
 #   @return [String, nil]
 #
 # @!attribute [rw] description
 #   @return [String, nil]
 #
-# @!attribute [rw] download_url
+# @!attribute [rw] downloadUrl
 #   @return [String, nil]
 #
-# @!attribute [rw] file
+# @!attribute [rw] files
 #   @return [Array, nil]
 #
 # @!attribute [rw] id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] image
+# @!attribute [rw] images
 #   @return [Array, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] stat
+# @!attribute [rw] stats
 #   @return [Hash, nil]
 #
-# @!attribute [rw] trained_word
+# @!attribute [rw] trainedWords
 #   @return [Array, nil]
 ModelVersion = Struct.new(
-  :created_at,
+  :createdAt,
   :description,
-  :download_url,
-  :file,
+  :downloadUrl,
+  :files,
   :id,
-  :image,
+  :images,
   :name,
-  :stat,
-  :trained_word,
+  :stats,
+  :trainedWords,
   keyword_init: true
 )
 
@@ -306,14 +306,14 @@ ModelVersionLoadMatch = Struct.new(
 # @!attribute [rw] link
 #   @return [String, nil]
 #
-# @!attribute [rw] model_count
+# @!attribute [rw] modelCount
 #   @return [Integer, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 Tag = Struct.new(
   :link,
-  :model_count,
+  :modelCount,
   :name,
   keyword_init: true
 )
@@ -323,14 +323,14 @@ Tag = Struct.new(
 # @!attribute [rw] link
 #   @return [String, nil]
 #
-# @!attribute [rw] model_count
+# @!attribute [rw] modelCount
 #   @return [Integer, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 TagListMatch = Struct.new(
   :link,
-  :model_count,
+  :modelCount,
   :name,
   keyword_init: true
 )

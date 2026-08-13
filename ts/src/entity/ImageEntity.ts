@@ -37,7 +37,7 @@ class ImageEntity extends CivitaiEntityBase<Image> {
 
 
 
-  async list(this: any, reqmatch?: ImageListMatch, ctrl?: Control): Promise<Image[]> {
+  async list(this: any, reqmatch?: ImageListMatch, ctrl?: Control): Promise<ImageEntity[]> {
 
     const utility = this._utility
 

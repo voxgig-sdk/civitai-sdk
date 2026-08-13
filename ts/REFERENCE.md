@@ -166,7 +166,7 @@ const creator = client.Creator()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `string` | No |  |
-| `model_count` | `number` | No |  |
+| `modelCount` | `number` | No |  |
 | `username` | `string` | No |  |
 
 ### Operations
@@ -217,15 +217,15 @@ const image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `hash` | `string` | No |  |
 | `height` | `number` | No |  |
 | `id` | `number` | No |  |
 | `meta` | `Record<string, any>` | No |  |
 | `nsfw` | `boolean` | No |  |
-| `nsfw_level` | `string` | No |  |
-| `post_id` | `number` | No |  |
-| `stat` | `Record<string, any>` | No |  |
+| `nsfwLevel` | `string` | No |  |
+| `postId` | `number` | No |  |
+| `stats` | `Record<string, any>` | No |  |
 | `url` | `string` | No |  |
 | `username` | `string` | No |  |
 | `width` | `number` | No |  |
@@ -282,11 +282,11 @@ const model = client.Model()
 | `description` | `string` | No |  |
 | `id` | `number` | No |  |
 | `mode` | `string` | No |  |
-| `model_version` | `any[]` | No |  |
+| `modelVersions` | `any[]` | No |  |
 | `name` | `string` | No |  |
 | `nsfw` | `boolean` | No |  |
-| `stat` | `Record<string, any>` | No |  |
-| `tag` | `any[]` | No |  |
+| `stats` | `Record<string, any>` | No |  |
+| `tags` | `any[]` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -345,15 +345,15 @@ const model_version = client.ModelVersion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `description` | `string` | No |  |
-| `download_url` | `string` | No |  |
-| `file` | `any[]` | No |  |
+| `downloadUrl` | `string` | No |  |
+| `files` | `any[]` | No |  |
 | `id` | `number` | No |  |
-| `image` | `any[]` | No |  |
+| `images` | `any[]` | No |  |
 | `name` | `string` | No |  |
-| `stat` | `Record<string, any>` | No |  |
-| `trained_word` | `any[]` | No |  |
+| `stats` | `Record<string, any>` | No |  |
+| `trainedWords` | `any[]` | No |  |
 
 ### Operations
 
@@ -404,7 +404,7 @@ const tag = client.Tag()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `string` | No |  |
-| `model_count` | `number` | No |  |
+| `modelCount` | `number` | No |  |
 | `name` | `string` | No |  |
 
 ### Operations

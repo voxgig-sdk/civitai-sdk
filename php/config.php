@@ -46,7 +46,7 @@ class CivitaiConfig
             ],
             [
               'active' => true,
-              'name' => 'model_count',
+              'name' => 'modelCount',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 1,
@@ -97,6 +97,7 @@ class CivitaiConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/creators',
                   'parts' => [
@@ -127,7 +128,7 @@ class CivitaiConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'created_at',
+              'name' => 'createdAt',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -169,21 +170,21 @@ class CivitaiConfig
             ],
             [
               'active' => true,
-              'name' => 'nsfw_level',
+              'name' => 'nsfwLevel',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 6,
             ],
             [
               'active' => true,
-              'name' => 'post_id',
+              'name' => 'postId',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 7,
             ],
             [
               'active' => true,
-              'name' => 'stat',
+              'name' => 'stats',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 8,
@@ -296,6 +297,7 @@ class CivitaiConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/images',
                   'parts' => [
@@ -360,7 +362,7 @@ class CivitaiConfig
             ],
             [
               'active' => true,
-              'name' => 'model_version',
+              'name' => 'modelVersions',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 4,
@@ -381,14 +383,14 @@ class CivitaiConfig
             ],
             [
               'active' => true,
-              'name' => 'stat',
+              'name' => 'stats',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 7,
             ],
             [
               'active' => true,
-              'name' => 'tag',
+              'name' => 'tags',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 8,
@@ -559,6 +561,7 @@ class CivitaiConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/models',
                   'parts' => [
@@ -614,6 +617,7 @@ class CivitaiConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/models/{modelId}',
                   'parts' => [
@@ -648,7 +652,7 @@ class CivitaiConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'created_at',
+              'name' => 'createdAt',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -662,14 +666,14 @@ class CivitaiConfig
             ],
             [
               'active' => true,
-              'name' => 'download_url',
+              'name' => 'downloadUrl',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'file',
+              'name' => 'files',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 3,
@@ -683,7 +687,7 @@ class CivitaiConfig
             ],
             [
               'active' => true,
-              'name' => 'image',
+              'name' => 'images',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 5,
@@ -697,14 +701,14 @@ class CivitaiConfig
             ],
             [
               'active' => true,
-              'name' => 'stat',
+              'name' => 'stats',
               'req' => false,
               'type' => '`$OBJECT`',
               'index$' => 7,
             ],
             [
               'active' => true,
-              'name' => 'trained_word',
+              'name' => 'trainedWords',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 8,
@@ -731,6 +735,7 @@ class CivitaiConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/model-versions/by-hash/{hash}',
                   'parts' => [
@@ -764,6 +769,7 @@ class CivitaiConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/model-versions/{modelVersionId}',
                   'parts' => [
@@ -809,7 +815,7 @@ class CivitaiConfig
             ],
             [
               'active' => true,
-              'name' => 'model_count',
+              'name' => 'modelCount',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 1,
@@ -860,6 +866,7 @@ class CivitaiConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/tags',
                   'parts' => [

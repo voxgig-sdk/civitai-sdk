@@ -63,7 +63,7 @@ describe('CreatorEntity', async () => {
     const creator_ref01_ent = client.Creator()
     const creator_ref01_match: any = {}
 
-    const creator_ref01_list = await creator_ref01_ent.list(creator_ref01_match)
+    const creator_ref01_list = (await creator_ref01_ent.list(creator_ref01_match)).map((e: any) => e.data())
 
 
   })

@@ -97,7 +97,7 @@ class ModelEntityTest extends TestCase
             "id" => $model_ref01_data["id"],
         ];
         $model_ref01_data_dt0_loaded = $model_ref01_ent->load($model_ref01_match_dt0, null);
-        $model_ref01_data_dt0_load_result = Helpers::to_map($model_ref01_data_dt0_loaded);
+        $model_ref01_data_dt0_load_result = Helpers::to_map(is_object($model_ref01_data_dt0_loaded) && method_exists($model_ref01_data_dt0_loaded, 'data_get') ? $model_ref01_data_dt0_loaded->data_get() : $model_ref01_data_dt0_loaded);
         $this->assertNotNull($model_ref01_data_dt0_load_result);
         $this->assertEquals($model_ref01_data_dt0_load_result["id"], $model_ref01_data["id"]);
 

@@ -7,41 +7,41 @@
 
 export interface Creator {
   link?: string
-  model_count?: number
+  modelCount?: number
   username?: string
 }
 
 export interface CreatorListMatch {
   link?: string
-  model_count?: number
+  modelCount?: number
   username?: string
 }
 
 export interface Image {
-  created_at?: string
+  createdAt?: string
   hash?: string
   height?: number
   id?: number
   meta?: Record<string, any>
   nsfw?: boolean
-  nsfw_level?: string
-  post_id?: number
-  stat?: Record<string, any>
+  nsfwLevel?: string
+  postId?: number
+  stats?: Record<string, any>
   url?: string
   username?: string
   width?: number
 }
 
 export interface ImageListMatch {
-  created_at?: string
+  createdAt?: string
   hash?: string
   height?: number
   id?: number
   meta?: Record<string, any>
   nsfw?: boolean
-  nsfw_level?: string
-  post_id?: number
-  stat?: Record<string, any>
+  nsfwLevel?: string
+  postId?: number
+  stats?: Record<string, any>
   url?: string
   username?: string
   width?: number
@@ -52,11 +52,11 @@ export interface Model {
   description?: string
   id?: number
   mode?: string
-  model_version?: any[]
+  modelVersions?: any[]
   name?: string
   nsfw?: boolean
-  stat?: Record<string, any>
-  tag?: any[]
+  stats?: Record<string, any>
+  tags?: any[]
   type?: string
 }
 
@@ -69,24 +69,24 @@ export interface ModelListMatch {
   description?: string
   id?: number
   mode?: string
-  model_version?: any[]
+  modelVersions?: any[]
   name?: string
   nsfw?: boolean
-  stat?: Record<string, any>
-  tag?: any[]
+  stats?: Record<string, any>
+  tags?: any[]
   type?: string
 }
 
 export interface ModelVersion {
-  created_at?: string
+  createdAt?: string
   description?: string
-  download_url?: string
-  file?: any[]
+  downloadUrl?: string
+  files?: any[]
   id?: number
-  image?: any[]
+  images?: any[]
   name?: string
-  stat?: Record<string, any>
-  trained_word?: any[]
+  stats?: Record<string, any>
+  trainedWords?: any[]
 }
 
 export interface ModelVersionLoadMatch {
@@ -96,13 +96,13 @@ export interface ModelVersionLoadMatch {
 
 export interface Tag {
   link?: string
-  model_count?: number
+  modelCount?: number
   name?: string
 }
 
 export interface TagListMatch {
   link?: string
-  model_count?: number
+  modelCount?: number
   name?: string
 }
 

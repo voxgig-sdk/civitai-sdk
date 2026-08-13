@@ -63,13 +63,13 @@ describe('ModelEntity', async () => {
     const model_ref01_ent = client.Model()
     const model_ref01_match: any = {}
 
-    const model_ref01_list = await model_ref01_ent.list(model_ref01_match)
+    const model_ref01_list = (await model_ref01_ent.list(model_ref01_match)).map((e: any) => e.data())
 
 
     // LOAD
     const model_ref01_match_dt0: any = {}
     model_ref01_match_dt0.id = model_ref01_data.id
-    const model_ref01_data_dt0 = await model_ref01_ent.load(model_ref01_match_dt0)
+    const model_ref01_data_dt0 = (await model_ref01_ent.load(model_ref01_match_dt0)).data()
     assert(model_ref01_data_dt0.id === model_ref01_data.id)
 
 

@@ -111,7 +111,7 @@ creator = client.Creator
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `String` | No |  |
-| `model_count` | `Integer` | No |  |
+| `modelCount` | `Integer` | No |  |
 | `username` | `String` | No |  |
 
 ### Operations
@@ -164,15 +164,15 @@ image = client.Image
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `String` | No |  |
+| `createdAt` | `String` | No |  |
 | `hash` | `String` | No |  |
 | `height` | `Integer` | No |  |
 | `id` | `Integer` | No |  |
 | `meta` | `Hash` | No |  |
 | `nsfw` | `Boolean` | No |  |
-| `nsfw_level` | `String` | No |  |
-| `post_id` | `Integer` | No |  |
-| `stat` | `Hash` | No |  |
+| `nsfwLevel` | `String` | No |  |
+| `postId` | `Integer` | No |  |
+| `stats` | `Hash` | No |  |
 | `url` | `String` | No |  |
 | `username` | `String` | No |  |
 | `width` | `Integer` | No |  |
@@ -231,11 +231,11 @@ model = client.Model
 | `description` | `String` | No |  |
 | `id` | `Integer` | No |  |
 | `mode` | `String` | No |  |
-| `model_version` | `Array` | No |  |
+| `modelVersions` | `Array` | No |  |
 | `name` | `String` | No |  |
 | `nsfw` | `Boolean` | No |  |
-| `stat` | `Hash` | No |  |
-| `tag` | `Array` | No |  |
+| `stats` | `Hash` | No |  |
+| `tags` | `Array` | No |  |
 | `type` | `String` | No |  |
 
 ### Operations
@@ -296,15 +296,15 @@ model_version = client.ModelVersion
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `String` | No |  |
+| `createdAt` | `String` | No |  |
 | `description` | `String` | No |  |
-| `download_url` | `String` | No |  |
-| `file` | `Array` | No |  |
+| `downloadUrl` | `String` | No |  |
+| `files` | `Array` | No |  |
 | `id` | `Integer` | No |  |
-| `image` | `Array` | No |  |
+| `images` | `Array` | No |  |
 | `name` | `String` | No |  |
-| `stat` | `Hash` | No |  |
-| `trained_word` | `Array` | No |  |
+| `stats` | `Hash` | No |  |
+| `trainedWords` | `Array` | No |  |
 
 ### Operations
 
@@ -357,7 +357,7 @@ tag = client.Tag
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `String` | No |  |
-| `model_count` | `Integer` | No |  |
+| `modelCount` | `Integer` | No |  |
 | `name` | `String` | No |  |
 
 ### Operations

@@ -6,7 +6,7 @@ main: kit: entity: image: {
 
   fields: [
     {
-      name: "created_at"
+      name: "createdAt"
       req: false
       type: "`$STRING`"
     }
@@ -36,17 +36,17 @@ main: kit: entity: image: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "nsfw_level"
+      name: "nsfwLevel"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "post_id"
+      name: "postId"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "stat"
+      name: "stats"
       req: false
       type: "`$OBJECT`"
     }

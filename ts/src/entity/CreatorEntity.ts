@@ -37,7 +37,7 @@ class CreatorEntity extends CivitaiEntityBase<Creator> {
 
 
 
-  async list(this: any, reqmatch?: CreatorListMatch, ctrl?: Control): Promise<Creator[]> {
+  async list(this: any, reqmatch?: CreatorListMatch, ctrl?: Control): Promise<CreatorEntity[]> {
 
     const utility = this._utility
 

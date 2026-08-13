@@ -116,7 +116,7 @@ fmt.Println(creator.GetName()) // "creator"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `string` | No |  |
-| `model_count` | `int` | No |  |
+| `modelCount` | `int` | No |  |
 | `username` | `string` | No |  |
 
 ### Operations
@@ -168,15 +168,15 @@ fmt.Println(image.GetName()) // "image"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `hash` | `string` | No |  |
 | `height` | `int` | No |  |
 | `id` | `int` | No |  |
 | `meta` | `map[string]any` | No |  |
 | `nsfw` | `bool` | No |  |
-| `nsfw_level` | `string` | No |  |
-| `post_id` | `int` | No |  |
-| `stat` | `map[string]any` | No |  |
+| `nsfwLevel` | `string` | No |  |
+| `postId` | `int` | No |  |
+| `stats` | `map[string]any` | No |  |
 | `url` | `string` | No |  |
 | `username` | `string` | No |  |
 | `width` | `int` | No |  |
@@ -234,11 +234,11 @@ fmt.Println(model.GetName()) // "model"
 | `description` | `string` | No |  |
 | `id` | `int` | No |  |
 | `mode` | `string` | No |  |
-| `model_version` | `[]any` | No |  |
+| `modelVersions` | `[]any` | No |  |
 | `name` | `string` | No |  |
 | `nsfw` | `bool` | No |  |
-| `stat` | `map[string]any` | No |  |
-| `tag` | `[]any` | No |  |
+| `stats` | `map[string]any` | No |  |
+| `tags` | `[]any` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -302,15 +302,15 @@ fmt.Println(modelVersion.GetName()) // "model_version"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `description` | `string` | No |  |
-| `download_url` | `string` | No |  |
-| `file` | `[]any` | No |  |
+| `downloadUrl` | `string` | No |  |
+| `files` | `[]any` | No |  |
 | `id` | `int` | No |  |
-| `image` | `[]any` | No |  |
+| `images` | `[]any` | No |  |
 | `name` | `string` | No |  |
-| `stat` | `map[string]any` | No |  |
-| `trained_word` | `[]any` | No |  |
+| `stats` | `map[string]any` | No |  |
+| `trainedWords` | `[]any` | No |  |
 
 ### Operations
 
@@ -362,7 +362,7 @@ fmt.Println(tag.GetName()) // "tag"
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `string` | No |  |
-| `model_count` | `int` | No |  |
+| `modelCount` | `int` | No |  |
 | `name` | `string` | No |  |
 
 ### Operations

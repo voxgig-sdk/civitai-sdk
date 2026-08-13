@@ -40,7 +40,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "model_count",
+						"name": "modelCount",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 1,
@@ -91,6 +91,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/creators",
 								"parts": []any{
@@ -110,7 +111,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -121,7 +121,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "created_at",
+						"name": "createdAt",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
@@ -163,21 +163,21 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "nsfw_level",
+						"name": "nsfwLevel",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 6,
 					},
 					map[string]any{
 						"active": true,
-						"name": "post_id",
+						"name": "postId",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 7,
 					},
 					map[string]any{
 						"active": true,
-						"name": "stat",
+						"name": "stats",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 8,
@@ -290,6 +290,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/images",
 								"parts": []any{
@@ -315,7 +316,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -354,7 +354,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "model_version",
+						"name": "modelVersions",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 4,
@@ -375,14 +375,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "stat",
+						"name": "stats",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 7,
 					},
 					map[string]any{
 						"active": true,
-						"name": "tag",
+						"name": "tags",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 8,
@@ -553,6 +553,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/models",
 								"parts": []any{
@@ -587,7 +588,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 					"load": map[string]any{
 						"input": "data",
@@ -608,6 +608,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/models/{modelId}",
 								"parts": []any{
@@ -631,7 +632,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -642,7 +642,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "created_at",
+						"name": "createdAt",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
@@ -656,14 +656,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "download_url",
+						"name": "downloadUrl",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "file",
+						"name": "files",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 3,
@@ -677,7 +677,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "image",
+						"name": "images",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 5,
@@ -691,14 +691,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "stat",
+						"name": "stats",
 						"req": false,
 						"type": "`$OBJECT`",
 						"index$": 7,
 					},
 					map[string]any{
 						"active": true,
-						"name": "trained_word",
+						"name": "trainedWords",
 						"req": false,
 						"type": "`$ARRAY`",
 						"index$": 8,
@@ -725,6 +725,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/model-versions/by-hash/{hash}",
 								"parts": []any{
@@ -758,6 +759,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/model-versions/{modelVersionId}",
 								"parts": []any{
@@ -781,7 +783,6 @@ func MakeConfig() map[string]any {
 								"index$": 1,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -803,7 +804,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "model_count",
+						"name": "modelCount",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 1,
@@ -854,6 +855,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/tags",
 								"parts": []any{
@@ -873,7 +875,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

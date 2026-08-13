@@ -53,7 +53,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  creators = client.Creator.list()
+  models = client.Model.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -116,14 +116,18 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = CivitaiSDK.test
+client = CivitaiSDK.test({
+  "entity" => { "model" => { "test01" => { "id" => "test01" } } },
+})
 
-# Entity ops return the bare mock record (raises on error).
-creator = client.Creator.list()
-puts creator
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+model = client.Model.list()
+puts model
 ```
 
 ### Use a custom fetch function
@@ -246,7 +250,7 @@ returns a result `Hash` with these keys:
 | Field | Description |
 | --- | --- |
 | `link` |  |
-| `model_count` |  |
+| `modelCount` |  |
 | `username` |  |
 
 Operations: List.
@@ -257,15 +261,15 @@ API path: `/creators`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `hash` |  |
 | `height` |  |
 | `id` |  |
 | `meta` |  |
 | `nsfw` |  |
-| `nsfw_level` |  |
-| `post_id` |  |
-| `stat` |  |
+| `nsfwLevel` |  |
+| `postId` |  |
+| `stats` |  |
 | `url` |  |
 | `username` |  |
 | `width` |  |
@@ -282,11 +286,11 @@ API path: `/images`
 | `description` |  |
 | `id` |  |
 | `mode` |  |
-| `model_version` |  |
+| `modelVersions` |  |
 | `name` |  |
 | `nsfw` |  |
-| `stat` |  |
-| `tag` |  |
+| `stats` |  |
+| `tags` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -297,15 +301,15 @@ API path: `/models`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `description` |  |
-| `download_url` |  |
-| `file` |  |
+| `downloadUrl` |  |
+| `files` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `name` |  |
-| `stat` |  |
-| `trained_word` |  |
+| `stats` |  |
+| `trainedWords` |  |
 
 Operations: Load.
 
@@ -316,7 +320,7 @@ API path: `/model-versions/by-hash/{hash}`
 | Field | Description |
 | --- | --- |
 | `link` |  |
-| `model_count` |  |
+| `modelCount` |  |
 | `name` |  |
 
 Operations: List.
@@ -343,7 +347,7 @@ Create an instance: `creator = client.Creator`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `String` |  |
-| `model_count` | `Integer` |  |
+| `modelCount` | `Integer` |  |
 | `username` | `String` |  |
 
 #### Example: List
@@ -368,15 +372,15 @@ Create an instance: `image = client.Image`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `String` |  |
+| `createdAt` | `String` |  |
 | `hash` | `String` |  |
 | `height` | `Integer` |  |
 | `id` | `Integer` |  |
 | `meta` | `Hash` |  |
 | `nsfw` | `Boolean` |  |
-| `nsfw_level` | `String` |  |
-| `post_id` | `Integer` |  |
-| `stat` | `Hash` |  |
+| `nsfwLevel` | `String` |  |
+| `postId` | `Integer` |  |
+| `stats` | `Hash` |  |
 | `url` | `String` |  |
 | `username` | `String` |  |
 | `width` | `Integer` |  |
@@ -408,17 +412,17 @@ Create an instance: `model = client.Model`
 | `description` | `String` |  |
 | `id` | `Integer` |  |
 | `mode` | `String` |  |
-| `model_version` | `Array` |  |
+| `modelVersions` | `Array` |  |
 | `name` | `String` |  |
 | `nsfw` | `Boolean` |  |
-| `stat` | `Hash` |  |
-| `tag` | `Array` |  |
+| `stats` | `Hash` |  |
+| `tags` | `Array` |  |
 | `type` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Model record (raises on error).
+# load returns the ENTITY — call data_get for the Model record (raises on error).
 model = client.Model.load({ "id" => 1 })
 ```
 
@@ -444,20 +448,20 @@ Create an instance: `model_version = client.ModelVersion`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `String` |  |
+| `createdAt` | `String` |  |
 | `description` | `String` |  |
-| `download_url` | `String` |  |
-| `file` | `Array` |  |
+| `downloadUrl` | `String` |  |
+| `files` | `Array` |  |
 | `id` | `Integer` |  |
-| `image` | `Array` |  |
+| `images` | `Array` |  |
 | `name` | `String` |  |
-| `stat` | `Hash` |  |
-| `trained_word` | `Array` |  |
+| `stats` | `Hash` |  |
+| `trainedWords` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare ModelVersion record (raises on error).
+# load returns the ENTITY — call data_get for the ModelVersion record (raises on error).
 model_version = client.ModelVersion.load({ "id" => 1 })
 ```
 
@@ -477,7 +481,7 @@ Create an instance: `tag = client.Tag`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `String` |  |
-| `model_count` | `Integer` |  |
+| `modelCount` | `Integer` |  |
 | `name` | `String` |  |
 
 #### Example: List
@@ -564,11 +568,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-creator = client.Creator
-creator.list()
+model = client.Model
+model.list()
 
-# creator.data_get now returns the creator data from the last list
-# creator.match_get returns the last match criteria
+# model.data_get now returns the model data from the last list
+# model.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

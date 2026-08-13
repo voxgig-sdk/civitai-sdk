@@ -2,39 +2,39 @@
   "existing": {
     "model_version": {
       "MODEL_VERSION00": {
-        "created_at": "s5a",
+        "createdAt": "s5a",
         "description": "s5b",
-        "download_url": "s5c",
-        "file": [],
+        "downloadUrl": "s5c",
+        "files": [],
         "id": "MODEL_VERSION00",
-        "image": [],
+        "images": [],
         "name": "s60",
-        "stat": {},
-        "trained_word": [],
+        "stats": {},
+        "trainedWords": [],
         "hash": "HASH01"
       },
       "MODEL_VERSION01": {
-        "created_at": "sb4",
+        "createdAt": "sb4",
         "description": "sb5",
-        "download_url": "sb6",
-        "file": [],
+        "downloadUrl": "sb6",
+        "files": [],
         "id": "MODEL_VERSION01",
-        "image": [],
+        "images": [],
         "name": "sba",
-        "stat": {},
-        "trained_word": [],
+        "stats": {},
+        "trainedWords": [],
         "hash": "HASH01"
       },
       "MODEL_VERSION02": {
-        "created_at": "s10e",
+        "createdAt": "s10e",
         "description": "s10f",
-        "download_url": "s110",
-        "file": [],
+        "downloadUrl": "s110",
+        "files": [],
         "id": "MODEL_VERSION02",
-        "image": [],
+        "images": [],
         "name": "s114",
-        "stat": {},
-        "trained_word": [],
+        "stats": {},
+        "trainedWords": [],
         "hash": "HASH01"
       }
     }
@@ -42,14 +42,14 @@
   "new": {
     "model_version": {
       "model_version_ref01": {
-        "created_at": "s168",
+        "createdAt": "s168",
         "description": "s169",
-        "download_url": "s16a",
-        "file": [],
-        "image": [],
+        "downloadUrl": "s16a",
+        "files": [],
+        "images": [],
         "name": "s16e",
-        "stat": {},
-        "trained_word": []
+        "stats": {},
+        "trainedWords": []
       }
     }
   }

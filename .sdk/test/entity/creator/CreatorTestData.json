@@ -3,17 +3,17 @@
     "creator": {
       "CREATOR00": {
         "link": "s1e",
-        "model_count": "s1f",
+        "modelCount": "s1f",
         "username": "s20"
       },
       "CREATOR01": {
         "link": "s3c",
-        "model_count": "s3d",
+        "modelCount": "s3d",
         "username": "s3e"
       },
       "CREATOR02": {
         "link": "s5a",
-        "model_count": "s5b",
+        "modelCount": "s5b",
         "username": "s5c"
       }
     }
@@ -22,7 +22,7 @@
     "creator": {
       "creator_ref01": {
         "link": "s78",
-        "model_count": "s79",
+        "modelCount": "s79",
         "username": "s7a"
       }
     }

@@ -108,7 +108,7 @@ local creator = client:Creator(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `string` | No |  |
-| `model_count` | `number` | No |  |
+| `modelCount` | `number` | No |  |
 | `username` | `string` | No |  |
 
 ### Operations
@@ -161,15 +161,15 @@ local image = client:Image(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `hash` | `string` | No |  |
 | `height` | `number` | No |  |
 | `id` | `number` | No |  |
 | `meta` | `table` | No |  |
 | `nsfw` | `boolean` | No |  |
-| `nsfw_level` | `string` | No |  |
-| `post_id` | `number` | No |  |
-| `stat` | `table` | No |  |
+| `nsfwLevel` | `string` | No |  |
+| `postId` | `number` | No |  |
+| `stats` | `table` | No |  |
 | `url` | `string` | No |  |
 | `username` | `string` | No |  |
 | `width` | `number` | No |  |
@@ -228,11 +228,11 @@ local model = client:Model(nil)
 | `description` | `string` | No |  |
 | `id` | `number` | No |  |
 | `mode` | `string` | No |  |
-| `model_version` | `table` | No |  |
+| `modelVersions` | `table` | No |  |
 | `name` | `string` | No |  |
 | `nsfw` | `boolean` | No |  |
-| `stat` | `table` | No |  |
-| `tag` | `table` | No |  |
+| `stats` | `table` | No |  |
+| `tags` | `table` | No |  |
 | `type` | `string` | No |  |
 
 ### Operations
@@ -293,15 +293,15 @@ local model_version = client:ModelVersion(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `string` | No |  |
+| `createdAt` | `string` | No |  |
 | `description` | `string` | No |  |
-| `download_url` | `string` | No |  |
-| `file` | `table` | No |  |
+| `downloadUrl` | `string` | No |  |
+| `files` | `table` | No |  |
 | `id` | `number` | No |  |
-| `image` | `table` | No |  |
+| `images` | `table` | No |  |
 | `name` | `string` | No |  |
-| `stat` | `table` | No |  |
-| `trained_word` | `table` | No |  |
+| `stats` | `table` | No |  |
+| `trainedWords` | `table` | No |  |
 
 ### Operations
 
@@ -354,7 +354,7 @@ local tag = client:Tag(nil)
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `string` | No |  |
-| `model_count` | `number` | No |  |
+| `modelCount` | `number` | No |  |
 | `name` | `string` | No |  |
 
 ### Operations

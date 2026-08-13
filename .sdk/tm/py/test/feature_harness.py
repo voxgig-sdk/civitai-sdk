@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import CivitaiControl
-from core.error import CivitaiError
-from core.result import CivitaiResult
-from core.spec import CivitaiSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import CivitaiControl
+from projectname_sdk.core.error import CivitaiError
+from projectname_sdk.core.result import CivitaiResult
+from projectname_sdk.core.spec import CivitaiSpec
 
 
 # True when this SDK was generated with the named feature.

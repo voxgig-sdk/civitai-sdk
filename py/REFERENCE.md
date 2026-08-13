@@ -105,7 +105,7 @@ creator = client.Creator()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `str` | No |  |
-| `model_count` | `int` | No |  |
+| `modelCount` | `int` | No |  |
 | `username` | `str` | No |  |
 
 ### Operations
@@ -159,15 +159,15 @@ image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `str` | No |  |
+| `createdAt` | `str` | No |  |
 | `hash` | `str` | No |  |
 | `height` | `int` | No |  |
 | `id` | `int` | No |  |
 | `meta` | `dict` | No |  |
 | `nsfw` | `bool` | No |  |
-| `nsfw_level` | `str` | No |  |
-| `post_id` | `int` | No |  |
-| `stat` | `dict` | No |  |
+| `nsfwLevel` | `str` | No |  |
+| `postId` | `int` | No |  |
+| `stats` | `dict` | No |  |
 | `url` | `str` | No |  |
 | `username` | `str` | No |  |
 | `width` | `int` | No |  |
@@ -227,11 +227,11 @@ model = client.Model()
 | `description` | `str` | No |  |
 | `id` | `int` | No |  |
 | `mode` | `str` | No |  |
-| `model_version` | `list` | No |  |
+| `modelVersions` | `list` | No |  |
 | `name` | `str` | No |  |
 | `nsfw` | `bool` | No |  |
-| `stat` | `dict` | No |  |
-| `tag` | `list` | No |  |
+| `stats` | `dict` | No |  |
+| `tags` | `list` | No |  |
 | `type` | `str` | No |  |
 
 ### Operations
@@ -293,15 +293,15 @@ model_version = client.ModelVersion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `created_at` | `str` | No |  |
+| `createdAt` | `str` | No |  |
 | `description` | `str` | No |  |
-| `download_url` | `str` | No |  |
-| `file` | `list` | No |  |
+| `downloadUrl` | `str` | No |  |
+| `files` | `list` | No |  |
 | `id` | `int` | No |  |
-| `image` | `list` | No |  |
+| `images` | `list` | No |  |
 | `name` | `str` | No |  |
-| `stat` | `dict` | No |  |
-| `trained_word` | `list` | No |  |
+| `stats` | `dict` | No |  |
+| `trainedWords` | `list` | No |  |
 
 ### Operations
 
@@ -353,7 +353,7 @@ tag = client.Tag()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `link` | `str` | No |  |
-| `model_count` | `int` | No |  |
+| `modelCount` | `int` | No |  |
 | `name` | `str` | No |  |
 
 ### Operations

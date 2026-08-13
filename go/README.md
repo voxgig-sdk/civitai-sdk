@@ -71,12 +71,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-creators, err := client.Creator(nil).List(nil, nil)
+models, err := client.Model(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = creators
+_ = models
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -140,13 +140,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-creator, err := client.Creator(nil).List(
+model, err := client.Model(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(creator) // the returned mock data
+fmt.Println(model) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -272,7 +272,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 | Field | Description |
 | --- | --- |
 | `"link"` |  |
-| `"model_count"` |  |
+| `"modelCount"` |  |
 | `"username"` |  |
 
 Operations: List.
@@ -283,15 +283,15 @@ API path: `/creators`
 
 | Field | Description |
 | --- | --- |
-| `"created_at"` |  |
+| `"createdAt"` |  |
 | `"hash"` |  |
 | `"height"` |  |
 | `"id"` |  |
 | `"meta"` |  |
 | `"nsfw"` |  |
-| `"nsfw_level"` |  |
-| `"post_id"` |  |
-| `"stat"` |  |
+| `"nsfwLevel"` |  |
+| `"postId"` |  |
+| `"stats"` |  |
 | `"url"` |  |
 | `"username"` |  |
 | `"width"` |  |
@@ -308,11 +308,11 @@ API path: `/images`
 | `"description"` |  |
 | `"id"` |  |
 | `"mode"` |  |
-| `"model_version"` |  |
+| `"modelVersions"` |  |
 | `"name"` |  |
 | `"nsfw"` |  |
-| `"stat"` |  |
-| `"tag"` |  |
+| `"stats"` |  |
+| `"tags"` |  |
 | `"type"` |  |
 
 Operations: List, Load.
@@ -323,15 +323,15 @@ API path: `/models`
 
 | Field | Description |
 | --- | --- |
-| `"created_at"` |  |
+| `"createdAt"` |  |
 | `"description"` |  |
-| `"download_url"` |  |
-| `"file"` |  |
+| `"downloadUrl"` |  |
+| `"files"` |  |
 | `"id"` |  |
-| `"image"` |  |
+| `"images"` |  |
 | `"name"` |  |
-| `"stat"` |  |
-| `"trained_word"` |  |
+| `"stats"` |  |
+| `"trainedWords"` |  |
 
 Operations: Load.
 
@@ -342,7 +342,7 @@ API path: `/model-versions/by-hash/{hash}`
 | Field | Description |
 | --- | --- |
 | `"link"` |  |
-| `"model_count"` |  |
+| `"modelCount"` |  |
 | `"name"` |  |
 
 Operations: List.
@@ -369,7 +369,7 @@ Create an instance: `creator := client.Creator(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `string` |  |
-| `model_count` | `int` |  |
+| `modelCount` | `int` |  |
 | `username` | `string` |  |
 
 #### Example: List
@@ -397,15 +397,15 @@ Create an instance: `image := client.Image(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `hash` | `string` |  |
 | `height` | `int` |  |
 | `id` | `int` |  |
 | `meta` | `map[string]any` |  |
 | `nsfw` | `bool` |  |
-| `nsfw_level` | `string` |  |
-| `post_id` | `int` |  |
-| `stat` | `map[string]any` |  |
+| `nsfwLevel` | `string` |  |
+| `postId` | `int` |  |
+| `stats` | `map[string]any` |  |
 | `url` | `string` |  |
 | `username` | `string` |  |
 | `width` | `int` |  |
@@ -440,11 +440,11 @@ Create an instance: `model := client.Model(nil)`
 | `description` | `string` |  |
 | `id` | `int` |  |
 | `mode` | `string` |  |
-| `model_version` | `[]any` |  |
+| `modelVersions` | `[]any` |  |
 | `name` | `string` |  |
 | `nsfw` | `bool` |  |
-| `stat` | `map[string]any` |  |
-| `tag` | `[]any` |  |
+| `stats` | `map[string]any` |  |
+| `tags` | `[]any` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -482,15 +482,15 @@ Create an instance: `modelVersion := client.ModelVersion(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `description` | `string` |  |
-| `download_url` | `string` |  |
-| `file` | `[]any` |  |
+| `downloadUrl` | `string` |  |
+| `files` | `[]any` |  |
 | `id` | `int` |  |
-| `image` | `[]any` |  |
+| `images` | `[]any` |  |
 | `name` | `string` |  |
-| `stat` | `map[string]any` |  |
-| `trained_word` | `[]any` |  |
+| `stats` | `map[string]any` |  |
+| `trainedWords` | `[]any` |  |
 
 #### Example: Load
 
@@ -518,7 +518,7 @@ Create an instance: `tag := client.Tag(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `string` |  |
-| `model_count` | `int` |  |
+| `modelCount` | `int` |  |
 | `name` | `string` |  |
 
 #### Example: List
@@ -605,11 +605,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-creator := client.Creator(nil)
-creator.List(nil, nil)
+model := client.Model(nil)
+model.List(nil, nil)
 
-// creator.Data() now returns the creator data from the last list
-// creator.Match() returns the last match criteria
+// model.Data() now returns the model data from the last list
+// model.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

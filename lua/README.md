@@ -56,7 +56,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local creators, err = client:Creator():list()
+local models, err = client:Model():list()
 if err then error(err) end
 ```
 
@@ -114,7 +114,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Creator():list()
+local result, err = client:Model():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -228,9 +228,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local creator, err = client:Creator():load()
+    local model, err = client:Model():load({ id = "example_id" })
     if err then error(err) end
-    -- creator is the loaded record
+    -- model is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -242,7 +242,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 | Field | Description |
 | --- | --- |
 | `link` |  |
-| `model_count` |  |
+| `modelCount` |  |
 | `username` |  |
 
 Operations: List.
@@ -253,15 +253,15 @@ API path: `/creators`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `hash` |  |
 | `height` |  |
 | `id` |  |
 | `meta` |  |
 | `nsfw` |  |
-| `nsfw_level` |  |
-| `post_id` |  |
-| `stat` |  |
+| `nsfwLevel` |  |
+| `postId` |  |
+| `stats` |  |
 | `url` |  |
 | `username` |  |
 | `width` |  |
@@ -278,11 +278,11 @@ API path: `/images`
 | `description` |  |
 | `id` |  |
 | `mode` |  |
-| `model_version` |  |
+| `modelVersions` |  |
 | `name` |  |
 | `nsfw` |  |
-| `stat` |  |
-| `tag` |  |
+| `stats` |  |
+| `tags` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -293,15 +293,15 @@ API path: `/models`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `description` |  |
-| `download_url` |  |
-| `file` |  |
+| `downloadUrl` |  |
+| `files` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `name` |  |
-| `stat` |  |
-| `trained_word` |  |
+| `stats` |  |
+| `trainedWords` |  |
 
 Operations: Load.
 
@@ -312,7 +312,7 @@ API path: `/model-versions/by-hash/{hash}`
 | Field | Description |
 | --- | --- |
 | `link` |  |
-| `model_count` |  |
+| `modelCount` |  |
 | `name` |  |
 
 Operations: List.
@@ -339,7 +339,7 @@ Create an instance: `local creator = client:Creator(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `string` |  |
-| `model_count` | `number` |  |
+| `modelCount` | `number` |  |
 | `username` | `string` |  |
 
 #### Example: List
@@ -363,15 +363,15 @@ Create an instance: `local image = client:Image(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `hash` | `string` |  |
 | `height` | `number` |  |
 | `id` | `number` |  |
 | `meta` | `table` |  |
 | `nsfw` | `boolean` |  |
-| `nsfw_level` | `string` |  |
-| `post_id` | `number` |  |
-| `stat` | `table` |  |
+| `nsfwLevel` | `string` |  |
+| `postId` | `number` |  |
+| `stats` | `table` |  |
 | `url` | `string` |  |
 | `username` | `string` |  |
 | `width` | `number` |  |
@@ -402,11 +402,11 @@ Create an instance: `local model = client:Model(nil)`
 | `description` | `string` |  |
 | `id` | `number` |  |
 | `mode` | `string` |  |
-| `model_version` | `table` |  |
+| `modelVersions` | `table` |  |
 | `name` | `string` |  |
 | `nsfw` | `boolean` |  |
-| `stat` | `table` |  |
-| `tag` | `table` |  |
+| `stats` | `table` |  |
+| `tags` | `table` |  |
 | `type` | `string` |  |
 
 #### Example: Load
@@ -436,15 +436,15 @@ Create an instance: `local model_version = client:ModelVersion(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `string` |  |
+| `createdAt` | `string` |  |
 | `description` | `string` |  |
-| `download_url` | `string` |  |
-| `file` | `table` |  |
+| `downloadUrl` | `string` |  |
+| `files` | `table` |  |
 | `id` | `number` |  |
-| `image` | `table` |  |
+| `images` | `table` |  |
 | `name` | `string` |  |
-| `stat` | `table` |  |
-| `trained_word` | `table` |  |
+| `stats` | `table` |  |
+| `trainedWords` | `table` |  |
 
 #### Example: Load
 
@@ -468,7 +468,7 @@ Create an instance: `local tag = client:Tag(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `string` |  |
-| `model_count` | `number` |  |
+| `modelCount` | `number` |  |
 | `name` | `string` |  |
 
 #### Example: List
@@ -554,11 +554,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local creator = client:Creator()
-creator:list()
+local model = client:Model()
+model:list()
 
--- creator:data_get() now returns the creator data from the last list
--- creator:match_get() returns the last match criteria
+-- model:data_get() now returns the model data from the last list
+-- model:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

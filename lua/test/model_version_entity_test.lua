@@ -49,7 +49,7 @@ describe("ModelVersionEntity", function()
     }
     local model_version_ref01_data_dt0_loaded, err = model_version_ref01_ent:load(model_version_ref01_match_dt0, nil)
     assert.is_nil(err)
-    local model_version_ref01_data_dt0_load_result = helpers.to_map(model_version_ref01_data_dt0_loaded)
+    local model_version_ref01_data_dt0_load_result = helpers.to_map(type(model_version_ref01_data_dt0_loaded) == 'table' and model_version_ref01_data_dt0_loaded.data_get and model_version_ref01_data_dt0_loaded:data_get() or model_version_ref01_data_dt0_loaded)
     assert.is_not_nil(model_version_ref01_data_dt0_load_result)
     assert.are.equal(model_version_ref01_data_dt0_load_result["id"], model_version_ref01_data["id"])
 

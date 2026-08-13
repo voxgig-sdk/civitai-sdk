@@ -26,7 +26,7 @@ main: kit: entity: model: {
       type: "`$STRING`"
     }
     {
-      name: "model_version"
+      name: "modelVersions"
       req: false
       type: "`$ARRAY`"
     }
@@ -41,12 +41,12 @@ main: kit: entity: model: {
       type: "`$BOOLEAN`"
     }
     {
-      name: "stat"
+      name: "stats"
       req: false
       type: "`$OBJECT`"
     }
     {
-      name: "tag"
+      name: "tags"
       req: false
       type: "`$ARRAY`"
     }

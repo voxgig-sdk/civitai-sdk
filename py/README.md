@@ -60,8 +60,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    creators = client.Creator().list()
-    print(creators)
+    models = client.Model().list()
+    print(models)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -127,9 +127,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = CivitaiSDK.test()
 
-# Entity ops return the bare record and raise on error.
-creator = client.Creator().list()
-# creator contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+model = client.Model().list()
+# model contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -230,7 +231,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -253,7 +254,7 @@ On error, `ok` is `False` and `err` contains the error value.
 | Field | Description |
 | --- | --- |
 | `link` |  |
-| `model_count` |  |
+| `modelCount` |  |
 | `username` |  |
 
 Operations: List.
@@ -264,15 +265,15 @@ API path: `/creators`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `hash` |  |
 | `height` |  |
 | `id` |  |
 | `meta` |  |
 | `nsfw` |  |
-| `nsfw_level` |  |
-| `post_id` |  |
-| `stat` |  |
+| `nsfwLevel` |  |
+| `postId` |  |
+| `stats` |  |
 | `url` |  |
 | `username` |  |
 | `width` |  |
@@ -289,11 +290,11 @@ API path: `/images`
 | `description` |  |
 | `id` |  |
 | `mode` |  |
-| `model_version` |  |
+| `modelVersions` |  |
 | `name` |  |
 | `nsfw` |  |
-| `stat` |  |
-| `tag` |  |
+| `stats` |  |
+| `tags` |  |
 | `type` |  |
 
 Operations: List, Load.
@@ -304,15 +305,15 @@ API path: `/models`
 
 | Field | Description |
 | --- | --- |
-| `created_at` |  |
+| `createdAt` |  |
 | `description` |  |
-| `download_url` |  |
-| `file` |  |
+| `downloadUrl` |  |
+| `files` |  |
 | `id` |  |
-| `image` |  |
+| `images` |  |
 | `name` |  |
-| `stat` |  |
-| `trained_word` |  |
+| `stats` |  |
+| `trainedWords` |  |
 
 Operations: Load.
 
@@ -323,7 +324,7 @@ API path: `/model-versions/by-hash/{hash}`
 | Field | Description |
 | --- | --- |
 | `link` |  |
-| `model_count` |  |
+| `modelCount` |  |
 | `name` |  |
 
 Operations: List.
@@ -350,7 +351,7 @@ Create an instance: `creator = client.Creator()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `str` |  |
-| `model_count` | `int` |  |
+| `modelCount` | `int` |  |
 | `username` | `str` |  |
 
 #### Example: List
@@ -374,15 +375,15 @@ Create an instance: `image = client.Image()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `str` |  |
+| `createdAt` | `str` |  |
 | `hash` | `str` |  |
 | `height` | `int` |  |
 | `id` | `int` |  |
 | `meta` | `dict` |  |
 | `nsfw` | `bool` |  |
-| `nsfw_level` | `str` |  |
-| `post_id` | `int` |  |
-| `stat` | `dict` |  |
+| `nsfwLevel` | `str` |  |
+| `postId` | `int` |  |
+| `stats` | `dict` |  |
 | `url` | `str` |  |
 | `username` | `str` |  |
 | `width` | `int` |  |
@@ -413,11 +414,11 @@ Create an instance: `model = client.Model()`
 | `description` | `str` |  |
 | `id` | `int` |  |
 | `mode` | `str` |  |
-| `model_version` | `list` |  |
+| `modelVersions` | `list` |  |
 | `name` | `str` |  |
 | `nsfw` | `bool` |  |
-| `stat` | `dict` |  |
-| `tag` | `list` |  |
+| `stats` | `dict` |  |
+| `tags` | `list` |  |
 | `type` | `str` |  |
 
 #### Example: Load
@@ -447,15 +448,15 @@ Create an instance: `model_version = client.ModelVersion()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `created_at` | `str` |  |
+| `createdAt` | `str` |  |
 | `description` | `str` |  |
-| `download_url` | `str` |  |
-| `file` | `list` |  |
+| `downloadUrl` | `str` |  |
+| `files` | `list` |  |
 | `id` | `int` |  |
-| `image` | `list` |  |
+| `images` | `list` |  |
 | `name` | `str` |  |
-| `stat` | `dict` |  |
-| `trained_word` | `list` |  |
+| `stats` | `dict` |  |
+| `trainedWords` | `list` |  |
 
 #### Example: Load
 
@@ -479,7 +480,7 @@ Create an instance: `tag = client.Tag()`
 | Field | Type | Description |
 | --- | --- | --- |
 | `link` | `str` |  |
-| `model_count` | `int` |  |
+| `modelCount` | `int` |  |
 | `name` | `str` |  |
 
 #### Example: List
@@ -564,11 +565,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-creator = client.Creator()
-creator.list()
+model = client.Model()
+model.list()
 
-# creator.data_get() now returns the creator data from the last list
-# creator.match_get() returns the last match criteria
+# model.data_get() now returns the model data from the last list
+# model.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

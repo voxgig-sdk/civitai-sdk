@@ -63,7 +63,7 @@ describe('ModelVersionEntity', async () => {
     const model_version_ref01_ent = client.ModelVersion()
     const model_version_ref01_match_dt0: any = {}
     model_version_ref01_match_dt0.id = model_version_ref01_data.id
-    const model_version_ref01_data_dt0 = await model_version_ref01_ent.load(model_version_ref01_match_dt0)
+    const model_version_ref01_data_dt0 = (await model_version_ref01_ent.load(model_version_ref01_match_dt0)).data()
     assert(model_version_ref01_data_dt0.id === model_version_ref01_data.id)
 
 
