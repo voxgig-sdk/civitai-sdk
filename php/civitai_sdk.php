@@ -40,7 +40,7 @@ class CivitaiSDK
         $utility = new CivitaiUtility();
         $this->_utility = $utility;
 
-        $config = CivitaiConfig::make_config();
+        $config = CivitaiConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

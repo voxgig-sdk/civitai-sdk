@@ -28,7 +28,7 @@ class CivitaiSDK
     utility = CivitaiUtility.new
     @_utility = utility
 
-    config = CivitaiConfig.make_config
+    config = CivitaiConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

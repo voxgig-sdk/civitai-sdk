@@ -15,7 +15,7 @@ require_relative "../Civitai_sdk"
 module CivitaiFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = CivitaiConfig.make_config["feature"]
+    f = CivitaiConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

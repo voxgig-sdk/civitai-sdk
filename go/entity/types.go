@@ -106,8 +106,7 @@ type ModelVersion struct {
 
 // ModelVersionLoadMatch is the typed request payload for ModelVersion.LoadTyped.
 type ModelVersionLoadMatch struct {
-	Hash *string `json:"hash,omitempty"`
-	Id *int `json:"id,omitempty"`
+	Id int `json:"id"`
 }
 
 // Tag is the typed data model for the tag entity.

@@ -33,7 +33,7 @@ class ModelEntityTest < Minitest::Test
     assert_equal 3, seen.length
 
     # Inbound: streaming active -> yields each item from the feature.
-    cfg = CivitaiConfig.make_config
+    cfg = CivitaiConfig.shared_config
     if cfg["feature"].is_a?(Hash) && cfg["feature"].key?("streaming")
       sdk = CivitaiSDK.test(seed, { "feature" => { "streaming" => { "active" => true } } })
       got = []

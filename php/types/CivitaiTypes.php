@@ -115,8 +115,7 @@ class ModelVersion
 /** Request payload for ModelVersion#load. */
 class ModelVersionLoadMatch
 {
-    public ?string $hash = null;
-    public ?int $id = null;
+    public int $id;
 }
 
 /** Tag entity data model. */
