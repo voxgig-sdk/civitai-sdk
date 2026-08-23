@@ -249,9 +249,9 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
-| `modelCount` |  |
-| `username` |  |
+| `link` | Url to get all models from this user |
+| `modelCount` | The amount of models linked to this user |
+| `username` | The username of the creator |
 
 Operations: List.
 
@@ -261,18 +261,18 @@ API path: `/creators`
 
 | Field | Description |
 | --- | --- |
-| `createdAt` |  |
-| `hash` |  |
-| `height` |  |
-| `id` |  |
-| `meta` |  |
-| `nsfw` |  |
-| `nsfwLevel` |  |
-| `postId` |  |
+| `createdAt` | The date the image was posted |
+| `hash` | The blurhash of the image |
+| `height` | The height of the image |
+| `id` | The id of the image |
+| `meta` | The generation parameters parsed or input for the image |
+| `nsfw` | If the image has any mature content labels |
+| `nsfwLevel` | The NSFW level of the image |
+| `postId` | The ID of the post the image belongs to |
 | `stats` |  |
-| `url` |  |
-| `username` |  |
-| `width` |  |
+| `url` | The url of the image at its source resolution |
+| `username` | The username of the creator |
+| `width` | The width of the image |
 
 Operations: List.
 
@@ -283,15 +283,15 @@ API path: `/images`
 | Field | Description |
 | --- | --- |
 | `creator` |  |
-| `description` |  |
-| `id` |  |
-| `mode` |  |
+| `description` | The description of the model (HTML) |
+| `id` | The identifier for the model |
+| `mode` | The mode in which the model is currently on. |
 | `modelVersions` |  |
-| `name` |  |
-| `nsfw` |  |
+| `name` | The name of the model |
+| `nsfw` | Whether the model is NSFW or not |
 | `stats` |  |
-| `tags` |  |
-| `type` |  |
+| `tags` | The tags associated with the model |
+| `type` | The model type |
 
 Operations: List, Load.
 
@@ -301,15 +301,15 @@ API path: `/models`
 
 | Field | Description |
 | --- | --- |
-| `createdAt` |  |
-| `description` |  |
-| `downloadUrl` |  |
+| `createdAt` | The date in which the version was created |
+| `description` | The description of the model version (usually a changelog) |
+| `downloadUrl` | The download url to get the model file for this specific version |
 | `files` |  |
-| `id` |  |
+| `id` | The identifier for the model version |
 | `images` |  |
-| `name` |  |
+| `name` | The name of the model version |
 | `stats` |  |
-| `trainedWords` |  |
+| `trainedWords` | The words used to trigger the model |
 
 Operations: Load.
 
@@ -346,9 +346,9 @@ Create an instance: `creator = client.Creator`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `String` |  |
-| `modelCount` | `Integer` |  |
-| `username` | `String` |  |
+| `link` | `String` | Url to get all models from this user |
+| `modelCount` | `Integer` | The amount of models linked to this user |
+| `username` | `String` | The username of the creator |
 
 #### Example: List
 
@@ -372,18 +372,18 @@ Create an instance: `image = client.Image`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `String` |  |
-| `hash` | `String` |  |
-| `height` | `Integer` |  |
-| `id` | `Integer` |  |
-| `meta` | `Hash` |  |
-| `nsfw` | `Boolean` |  |
-| `nsfwLevel` | `String` |  |
-| `postId` | `Integer` |  |
+| `createdAt` | `String` | The date the image was posted |
+| `hash` | `String` | The blurhash of the image |
+| `height` | `Integer` | The height of the image |
+| `id` | `Integer` | The id of the image |
+| `meta` | `Hash` | The generation parameters parsed or input for the image |
+| `nsfw` | `Boolean` | If the image has any mature content labels |
+| `nsfwLevel` | `String` | The NSFW level of the image |
+| `postId` | `Integer` | The ID of the post the image belongs to |
 | `stats` | `Hash` |  |
-| `url` | `String` |  |
-| `username` | `String` |  |
-| `width` | `Integer` |  |
+| `url` | `String` | The url of the image at its source resolution |
+| `username` | `String` | The username of the creator |
+| `width` | `Integer` | The width of the image |
 
 #### Example: List
 
@@ -409,15 +409,15 @@ Create an instance: `model = client.Model`
 | Field | Type | Description |
 | --- | --- | --- |
 | `creator` | `Hash` |  |
-| `description` | `String` |  |
-| `id` | `Integer` |  |
-| `mode` | `String` |  |
+| `description` | `String` | The description of the model (HTML) |
+| `id` | `Integer` | The identifier for the model |
+| `mode` | `String` | The mode in which the model is currently on. |
 | `modelVersions` | `Array` |  |
-| `name` | `String` |  |
-| `nsfw` | `Boolean` |  |
+| `name` | `String` | The name of the model |
+| `nsfw` | `Boolean` | Whether the model is NSFW or not |
 | `stats` | `Hash` |  |
-| `tags` | `Array` |  |
-| `type` | `String` |  |
+| `tags` | `Array` | The tags associated with the model |
+| `type` | `String` | The model type |
 
 #### Example: Load
 
@@ -448,15 +448,15 @@ Create an instance: `model_version = client.ModelVersion`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `String` |  |
-| `description` | `String` |  |
-| `downloadUrl` | `String` |  |
+| `createdAt` | `String` | The date in which the version was created |
+| `description` | `String` | The description of the model version (usually a changelog) |
+| `downloadUrl` | `String` | The download url to get the model file for this specific version |
 | `files` | `Array` |  |
-| `id` | `Integer` |  |
+| `id` | `Integer` | The identifier for the model version |
 | `images` | `Array` |  |
-| `name` | `String` |  |
+| `name` | `String` | The name of the model version |
 | `stats` | `Hash` |  |
-| `trainedWords` | `Array` |  |
+| `trainedWords` | `Array` | The words used to trigger the model |
 
 #### Example: Load
 

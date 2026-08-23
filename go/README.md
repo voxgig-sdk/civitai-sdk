@@ -6,7 +6,7 @@ The Golang SDK for the Civitai API — an entity-oriented client using standard 
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Creator(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -271,9 +271,9 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"link"` |  |
-| `"modelCount"` |  |
-| `"username"` |  |
+| `"link"` | Url to get all models from this user |
+| `"modelCount"` | The amount of models linked to this user |
+| `"username"` | The username of the creator |
 
 Operations: List.
 
@@ -283,18 +283,18 @@ API path: `/creators`
 
 | Field | Description |
 | --- | --- |
-| `"createdAt"` |  |
-| `"hash"` |  |
-| `"height"` |  |
-| `"id"` |  |
-| `"meta"` |  |
-| `"nsfw"` |  |
-| `"nsfwLevel"` |  |
-| `"postId"` |  |
+| `"createdAt"` | The date the image was posted |
+| `"hash"` | The blurhash of the image |
+| `"height"` | The height of the image |
+| `"id"` | The id of the image |
+| `"meta"` | The generation parameters parsed or input for the image |
+| `"nsfw"` | If the image has any mature content labels |
+| `"nsfwLevel"` | The NSFW level of the image |
+| `"postId"` | The ID of the post the image belongs to |
 | `"stats"` |  |
-| `"url"` |  |
-| `"username"` |  |
-| `"width"` |  |
+| `"url"` | The url of the image at its source resolution |
+| `"username"` | The username of the creator |
+| `"width"` | The width of the image |
 
 Operations: List.
 
@@ -305,15 +305,15 @@ API path: `/images`
 | Field | Description |
 | --- | --- |
 | `"creator"` |  |
-| `"description"` |  |
-| `"id"` |  |
-| `"mode"` |  |
+| `"description"` | The description of the model (HTML) |
+| `"id"` | The identifier for the model |
+| `"mode"` | The mode in which the model is currently on. |
 | `"modelVersions"` |  |
-| `"name"` |  |
-| `"nsfw"` |  |
+| `"name"` | The name of the model |
+| `"nsfw"` | Whether the model is NSFW or not |
 | `"stats"` |  |
-| `"tags"` |  |
-| `"type"` |  |
+| `"tags"` | The tags associated with the model |
+| `"type"` | The model type |
 
 Operations: List, Load.
 
@@ -323,15 +323,15 @@ API path: `/models`
 
 | Field | Description |
 | --- | --- |
-| `"createdAt"` |  |
-| `"description"` |  |
-| `"downloadUrl"` |  |
+| `"createdAt"` | The date in which the version was created |
+| `"description"` | The description of the model version (usually a changelog) |
+| `"downloadUrl"` | The download url to get the model file for this specific version |
 | `"files"` |  |
-| `"id"` |  |
+| `"id"` | The identifier for the model version |
 | `"images"` |  |
-| `"name"` |  |
+| `"name"` | The name of the model version |
 | `"stats"` |  |
-| `"trainedWords"` |  |
+| `"trainedWords"` | The words used to trigger the model |
 
 Operations: Load.
 
@@ -368,9 +368,9 @@ Create an instance: `creator := client.Creator(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `string` |  |
-| `modelCount` | `int` |  |
-| `username` | `string` |  |
+| `link` | `string` | Url to get all models from this user |
+| `modelCount` | `int` | The amount of models linked to this user |
+| `username` | `string` | The username of the creator |
 
 #### Example: List
 
@@ -397,18 +397,18 @@ Create an instance: `image := client.Image(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `string` |  |
-| `hash` | `string` |  |
-| `height` | `int` |  |
-| `id` | `int` |  |
-| `meta` | `map[string]any` |  |
-| `nsfw` | `bool` |  |
-| `nsfwLevel` | `string` |  |
-| `postId` | `int` |  |
+| `createdAt` | `string` | The date the image was posted |
+| `hash` | `string` | The blurhash of the image |
+| `height` | `int` | The height of the image |
+| `id` | `int` | The id of the image |
+| `meta` | `map[string]any` | The generation parameters parsed or input for the image |
+| `nsfw` | `bool` | If the image has any mature content labels |
+| `nsfwLevel` | `string` | The NSFW level of the image |
+| `postId` | `int` | The ID of the post the image belongs to |
 | `stats` | `map[string]any` |  |
-| `url` | `string` |  |
-| `username` | `string` |  |
-| `width` | `int` |  |
+| `url` | `string` | The url of the image at its source resolution |
+| `username` | `string` | The username of the creator |
+| `width` | `int` | The width of the image |
 
 #### Example: List
 
@@ -437,15 +437,15 @@ Create an instance: `model := client.Model(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `creator` | `map[string]any` |  |
-| `description` | `string` |  |
-| `id` | `int` |  |
-| `mode` | `string` |  |
+| `description` | `string` | The description of the model (HTML) |
+| `id` | `int` | The identifier for the model |
+| `mode` | `string` | The mode in which the model is currently on. |
 | `modelVersions` | `[]any` |  |
-| `name` | `string` |  |
-| `nsfw` | `bool` |  |
+| `name` | `string` | The name of the model |
+| `nsfw` | `bool` | Whether the model is NSFW or not |
 | `stats` | `map[string]any` |  |
-| `tags` | `[]any` |  |
-| `type` | `string` |  |
+| `tags` | `[]any` | The tags associated with the model |
+| `type` | `string` | The model type |
 
 #### Example: Load
 
@@ -482,15 +482,15 @@ Create an instance: `modelVersion := client.ModelVersion(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `string` |  |
-| `description` | `string` |  |
-| `downloadUrl` | `string` |  |
+| `createdAt` | `string` | The date in which the version was created |
+| `description` | `string` | The description of the model version (usually a changelog) |
+| `downloadUrl` | `string` | The download url to get the model file for this specific version |
 | `files` | `[]any` |  |
-| `id` | `int` |  |
+| `id` | `int` | The identifier for the model version |
 | `images` | `[]any` |  |
-| `name` | `string` |  |
+| `name` | `string` | The name of the model version |
 | `stats` | `map[string]any` |  |
-| `trainedWords` | `[]any` |  |
+| `trainedWords` | `[]any` | The words used to trigger the model |
 
 #### Example: Load
 

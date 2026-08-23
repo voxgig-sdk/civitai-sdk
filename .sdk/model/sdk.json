@@ -36,18 +36,21 @@
               "active": true,
               "name": "link",
               "req": false,
+              "short": "Url to get all models from this user",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "modelCount",
               "req": false,
+              "short": "The amount of models linked to this user",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "username",
               "req": false,
+              "short": "The username of the creator",
               "type": "`$STRING`"
             }
           ],
@@ -124,48 +127,56 @@
               "active": true,
               "name": "createdAt",
               "req": false,
+              "short": "The date the image was posted",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "hash",
               "req": false,
+              "short": "The blurhash of the image",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "height",
               "req": false,
+              "short": "The height of the image",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "The id of the image",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "meta",
               "req": false,
+              "short": "The generation parameters parsed or input for the image",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "nsfw",
               "req": false,
+              "short": "If the image has any mature content labels",
               "type": "`$BOOLEAN`"
             },
             {
               "active": true,
               "name": "nsfwLevel",
               "req": false,
+              "short": "The NSFW level of the image",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "postId",
               "req": false,
+              "short": "The ID of the post the image belongs to",
               "type": "`$INTEGER`"
             },
             {
@@ -178,18 +189,21 @@
               "active": true,
               "name": "url",
               "req": false,
+              "short": "The url of the image at its source resolution",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "username",
               "req": false,
+              "short": "The username of the creator",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "width",
               "req": false,
+              "short": "The width of the image",
               "type": "`$INTEGER`"
             }
           ],
@@ -330,18 +344,21 @@
               "active": true,
               "name": "description",
               "req": false,
+              "short": "The description of the model (HTML)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "The identifier for the model",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "mode",
               "req": false,
+              "short": "The mode in which the model is currently on.",
               "type": "`$STRING`"
             },
             {
@@ -354,12 +371,14 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "The name of the model",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "nsfw",
               "req": false,
+              "short": "Whether the model is NSFW or not",
               "type": "`$BOOLEAN`"
             },
             {
@@ -372,12 +391,14 @@
               "active": true,
               "name": "tags",
               "req": false,
+              "short": "The tags associated with the model",
               "type": "`$ARRAY`"
             },
             {
               "active": true,
               "name": "type",
               "req": false,
+              "short": "The model type",
               "type": "`$STRING`"
             }
           ],
@@ -635,18 +656,21 @@
               "active": true,
               "name": "createdAt",
               "req": false,
+              "short": "The date in which the version was created",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "description",
               "req": false,
+              "short": "The description of the model version (usually a changelog)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "downloadUrl",
               "req": false,
+              "short": "The download url to get the model file for this specific version",
               "type": "`$STRING`"
             },
             {
@@ -659,6 +683,7 @@
               "active": true,
               "name": "id",
               "req": false,
+              "short": "The identifier for the model version",
               "type": "`$INTEGER`"
             },
             {
@@ -671,6 +696,7 @@
               "active": true,
               "name": "name",
               "req": false,
+              "short": "The name of the model version",
               "type": "`$STRING`"
             },
             {
@@ -683,6 +709,7 @@
               "active": true,
               "name": "trainedWords",
               "req": false,
+              "short": "The words used to trigger the model",
               "type": "`$ARRAY`"
             }
           ],

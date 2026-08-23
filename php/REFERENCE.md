@@ -109,9 +109,9 @@ $creator = $client->Creator();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `string` | No |  |
-| `modelCount` | `int` | No |  |
-| `username` | `string` | No |  |
+| `link` | `string` | No | Url to get all models from this user |
+| `modelCount` | `int` | No | The amount of models linked to this user |
+| `username` | `string` | No | The username of the creator |
 
 ### Operations
 
@@ -163,18 +163,18 @@ $image = $client->Image();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `string` | No |  |
-| `hash` | `string` | No |  |
-| `height` | `int` | No |  |
-| `id` | `int` | No |  |
-| `meta` | `array` | No |  |
-| `nsfw` | `bool` | No |  |
-| `nsfwLevel` | `string` | No |  |
-| `postId` | `int` | No |  |
+| `createdAt` | `string` | No | The date the image was posted |
+| `hash` | `string` | No | The blurhash of the image |
+| `height` | `int` | No | The height of the image |
+| `id` | `int` | No | The id of the image |
+| `meta` | `array` | No | The generation parameters parsed or input for the image |
+| `nsfw` | `bool` | No | If the image has any mature content labels |
+| `nsfwLevel` | `string` | No | The NSFW level of the image |
+| `postId` | `int` | No | The ID of the post the image belongs to |
 | `stats` | `array` | No |  |
-| `url` | `string` | No |  |
-| `username` | `string` | No |  |
-| `width` | `int` | No |  |
+| `url` | `string` | No | The url of the image at its source resolution |
+| `username` | `string` | No | The username of the creator |
+| `width` | `int` | No | The width of the image |
 
 ### Operations
 
@@ -227,15 +227,15 @@ $model = $client->Model();
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `creator` | `array` | No |  |
-| `description` | `string` | No |  |
-| `id` | `int` | No |  |
-| `mode` | `string` | No |  |
+| `description` | `string` | No | The description of the model (HTML) |
+| `id` | `int` | No | The identifier for the model |
+| `mode` | `string` | No | The mode in which the model is currently on. |
 | `modelVersions` | `array` | No |  |
-| `name` | `string` | No |  |
-| `nsfw` | `bool` | No |  |
+| `name` | `string` | No | The name of the model |
+| `nsfw` | `bool` | No | Whether the model is NSFW or not |
 | `stats` | `array` | No |  |
-| `tags` | `array` | No |  |
-| `type` | `string` | No |  |
+| `tags` | `array` | No | The tags associated with the model |
+| `type` | `string` | No | The model type |
 
 ### Operations
 
@@ -295,15 +295,15 @@ $model_version = $client->ModelVersion();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `string` | No |  |
-| `description` | `string` | No |  |
-| `downloadUrl` | `string` | No |  |
+| `createdAt` | `string` | No | The date in which the version was created |
+| `description` | `string` | No | The description of the model version (usually a changelog) |
+| `downloadUrl` | `string` | No | The download url to get the model file for this specific version |
 | `files` | `array` | No |  |
-| `id` | `int` | No |  |
+| `id` | `int` | No | The identifier for the model version |
 | `images` | `array` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | The name of the model version |
 | `stats` | `array` | No |  |
-| `trainedWords` | `array` | No |  |
+| `trainedWords` | `array` | No | The words used to trigger the model |
 
 ### Operations
 

@@ -165,9 +165,9 @@ const creator = client.Creator()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `string` | No |  |
-| `modelCount` | `number` | No |  |
-| `username` | `string` | No |  |
+| `link` | `string` | No | Url to get all models from this user |
+| `modelCount` | `number` | No | The amount of models linked to this user |
+| `username` | `string` | No | The username of the creator |
 
 ### Operations
 
@@ -217,18 +217,18 @@ const image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `string` | No |  |
-| `hash` | `string` | No |  |
-| `height` | `number` | No |  |
-| `id` | `number` | No |  |
-| `meta` | `Record<string, any>` | No |  |
-| `nsfw` | `boolean` | No |  |
-| `nsfwLevel` | `string` | No |  |
-| `postId` | `number` | No |  |
+| `createdAt` | `string` | No | The date the image was posted |
+| `hash` | `string` | No | The blurhash of the image |
+| `height` | `number` | No | The height of the image |
+| `id` | `number` | No | The id of the image |
+| `meta` | `Record<string, any>` | No | The generation parameters parsed or input for the image |
+| `nsfw` | `boolean` | No | If the image has any mature content labels |
+| `nsfwLevel` | `string` | No | The NSFW level of the image |
+| `postId` | `number` | No | The ID of the post the image belongs to |
 | `stats` | `Record<string, any>` | No |  |
-| `url` | `string` | No |  |
-| `username` | `string` | No |  |
-| `width` | `number` | No |  |
+| `url` | `string` | No | The url of the image at its source resolution |
+| `username` | `string` | No | The username of the creator |
+| `width` | `number` | No | The width of the image |
 
 ### Operations
 
@@ -279,15 +279,15 @@ const model = client.Model()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `creator` | `Record<string, any>` | No |  |
-| `description` | `string` | No |  |
-| `id` | `number` | No |  |
-| `mode` | `string` | No |  |
+| `description` | `string` | No | The description of the model (HTML) |
+| `id` | `number` | No | The identifier for the model |
+| `mode` | `string` | No | The mode in which the model is currently on. |
 | `modelVersions` | `any[]` | No |  |
-| `name` | `string` | No |  |
-| `nsfw` | `boolean` | No |  |
+| `name` | `string` | No | The name of the model |
+| `nsfw` | `boolean` | No | Whether the model is NSFW or not |
 | `stats` | `Record<string, any>` | No |  |
-| `tags` | `any[]` | No |  |
-| `type` | `string` | No |  |
+| `tags` | `any[]` | No | The tags associated with the model |
+| `type` | `string` | No | The model type |
 
 ### Operations
 
@@ -345,15 +345,15 @@ const model_version = client.ModelVersion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `string` | No |  |
-| `description` | `string` | No |  |
-| `downloadUrl` | `string` | No |  |
+| `createdAt` | `string` | No | The date in which the version was created |
+| `description` | `string` | No | The description of the model version (usually a changelog) |
+| `downloadUrl` | `string` | No | The download url to get the model file for this specific version |
 | `files` | `any[]` | No |  |
-| `id` | `number` | No |  |
+| `id` | `number` | No | The identifier for the model version |
 | `images` | `any[]` | No |  |
-| `name` | `string` | No |  |
+| `name` | `string` | No | The name of the model version |
 | `stats` | `Record<string, any>` | No |  |
-| `trainedWords` | `any[]` | No |  |
+| `trainedWords` | `any[]` | No | The words used to trigger the model |
 
 ### Operations
 

@@ -110,9 +110,9 @@ creator = client.Creator
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `String` | No |  |
-| `modelCount` | `Integer` | No |  |
-| `username` | `String` | No |  |
+| `link` | `String` | No | Url to get all models from this user |
+| `modelCount` | `Integer` | No | The amount of models linked to this user |
+| `username` | `String` | No | The username of the creator |
 
 ### Operations
 
@@ -164,18 +164,18 @@ image = client.Image
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `String` | No |  |
-| `hash` | `String` | No |  |
-| `height` | `Integer` | No |  |
-| `id` | `Integer` | No |  |
-| `meta` | `Hash` | No |  |
-| `nsfw` | `Boolean` | No |  |
-| `nsfwLevel` | `String` | No |  |
-| `postId` | `Integer` | No |  |
+| `createdAt` | `String` | No | The date the image was posted |
+| `hash` | `String` | No | The blurhash of the image |
+| `height` | `Integer` | No | The height of the image |
+| `id` | `Integer` | No | The id of the image |
+| `meta` | `Hash` | No | The generation parameters parsed or input for the image |
+| `nsfw` | `Boolean` | No | If the image has any mature content labels |
+| `nsfwLevel` | `String` | No | The NSFW level of the image |
+| `postId` | `Integer` | No | The ID of the post the image belongs to |
 | `stats` | `Hash` | No |  |
-| `url` | `String` | No |  |
-| `username` | `String` | No |  |
-| `width` | `Integer` | No |  |
+| `url` | `String` | No | The url of the image at its source resolution |
+| `username` | `String` | No | The username of the creator |
+| `width` | `Integer` | No | The width of the image |
 
 ### Operations
 
@@ -228,15 +228,15 @@ model = client.Model
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `creator` | `Hash` | No |  |
-| `description` | `String` | No |  |
-| `id` | `Integer` | No |  |
-| `mode` | `String` | No |  |
+| `description` | `String` | No | The description of the model (HTML) |
+| `id` | `Integer` | No | The identifier for the model |
+| `mode` | `String` | No | The mode in which the model is currently on. |
 | `modelVersions` | `Array` | No |  |
-| `name` | `String` | No |  |
-| `nsfw` | `Boolean` | No |  |
+| `name` | `String` | No | The name of the model |
+| `nsfw` | `Boolean` | No | Whether the model is NSFW or not |
 | `stats` | `Hash` | No |  |
-| `tags` | `Array` | No |  |
-| `type` | `String` | No |  |
+| `tags` | `Array` | No | The tags associated with the model |
+| `type` | `String` | No | The model type |
 
 ### Operations
 
@@ -296,15 +296,15 @@ model_version = client.ModelVersion
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `String` | No |  |
-| `description` | `String` | No |  |
-| `downloadUrl` | `String` | No |  |
+| `createdAt` | `String` | No | The date in which the version was created |
+| `description` | `String` | No | The description of the model version (usually a changelog) |
+| `downloadUrl` | `String` | No | The download url to get the model file for this specific version |
 | `files` | `Array` | No |  |
-| `id` | `Integer` | No |  |
+| `id` | `Integer` | No | The identifier for the model version |
 | `images` | `Array` | No |  |
-| `name` | `String` | No |  |
+| `name` | `String` | No | The name of the model version |
 | `stats` | `Hash` | No |  |
-| `trainedWords` | `Array` | No |  |
+| `trainedWords` | `Array` | No | The words used to trigger the model |
 
 ### Operations
 

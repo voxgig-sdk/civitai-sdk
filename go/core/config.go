@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "Civitai",
+			"slug": "civitai",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -40,14 +43,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "link",
+						"short": "Url to get all models from this user",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "modelCount",
+						"short": "The amount of models linked to this user",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "username",
+						"short": "The username of the creator",
 						"type": "`$STRING`",
 					},
 				},
@@ -111,34 +117,42 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "createdAt",
+						"short": "The date the image was posted",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "hash",
+						"short": "The blurhash of the image",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "height",
+						"short": "The height of the image",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "The id of the image",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "meta",
+						"short": "The generation parameters parsed or input for the image",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "nsfw",
+						"short": "If the image has any mature content labels",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
 						"name": "nsfwLevel",
+						"short": "The NSFW level of the image",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "postId",
+						"short": "The ID of the post the image belongs to",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -147,14 +161,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "url",
+						"short": "The url of the image at its source resolution",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "username",
+						"short": "The username of the creator",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "width",
+						"short": "The width of the image",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -264,14 +281,17 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "description",
+						"short": "The description of the model (HTML)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "The identifier for the model",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "mode",
+						"short": "The mode in which the model is currently on.",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -280,10 +300,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "The name of the model",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "nsfw",
+						"short": "Whether the model is NSFW or not",
 						"type": "`$BOOLEAN`",
 					},
 					map[string]any{
@@ -292,10 +314,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "tags",
+						"short": "The tags associated with the model",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "type",
+						"short": "The model type",
 						"type": "`$STRING`",
 					},
 				},
@@ -504,14 +528,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "createdAt",
+						"short": "The date in which the version was created",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "description",
+						"short": "The description of the model version (usually a changelog)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "downloadUrl",
+						"short": "The download url to get the model file for this specific version",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -520,6 +547,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "id",
+						"short": "The identifier for the model version",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -528,6 +556,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "name",
+						"short": "The name of the model version",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -536,6 +565,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "trainedWords",
+						"short": "The words used to trigger the model",
 						"type": "`$ARRAY`",
 					},
 				},

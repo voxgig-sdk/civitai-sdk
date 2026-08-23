@@ -104,9 +104,9 @@ creator = client.Creator()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `link` | `str` | No |  |
-| `modelCount` | `int` | No |  |
-| `username` | `str` | No |  |
+| `link` | `str` | No | Url to get all models from this user |
+| `modelCount` | `int` | No | The amount of models linked to this user |
+| `username` | `str` | No | The username of the creator |
 
 ### Operations
 
@@ -159,18 +159,18 @@ image = client.Image()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `str` | No |  |
-| `hash` | `str` | No |  |
-| `height` | `int` | No |  |
-| `id` | `int` | No |  |
-| `meta` | `dict` | No |  |
-| `nsfw` | `bool` | No |  |
-| `nsfwLevel` | `str` | No |  |
-| `postId` | `int` | No |  |
+| `createdAt` | `str` | No | The date the image was posted |
+| `hash` | `str` | No | The blurhash of the image |
+| `height` | `int` | No | The height of the image |
+| `id` | `int` | No | The id of the image |
+| `meta` | `dict` | No | The generation parameters parsed or input for the image |
+| `nsfw` | `bool` | No | If the image has any mature content labels |
+| `nsfwLevel` | `str` | No | The NSFW level of the image |
+| `postId` | `int` | No | The ID of the post the image belongs to |
 | `stats` | `dict` | No |  |
-| `url` | `str` | No |  |
-| `username` | `str` | No |  |
-| `width` | `int` | No |  |
+| `url` | `str` | No | The url of the image at its source resolution |
+| `username` | `str` | No | The username of the creator |
+| `width` | `int` | No | The width of the image |
 
 ### Operations
 
@@ -224,15 +224,15 @@ model = client.Model()
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
 | `creator` | `dict` | No |  |
-| `description` | `str` | No |  |
-| `id` | `int` | No |  |
-| `mode` | `str` | No |  |
+| `description` | `str` | No | The description of the model (HTML) |
+| `id` | `int` | No | The identifier for the model |
+| `mode` | `str` | No | The mode in which the model is currently on. |
 | `modelVersions` | `list` | No |  |
-| `name` | `str` | No |  |
-| `nsfw` | `bool` | No |  |
+| `name` | `str` | No | The name of the model |
+| `nsfw` | `bool` | No | Whether the model is NSFW or not |
 | `stats` | `dict` | No |  |
-| `tags` | `list` | No |  |
-| `type` | `str` | No |  |
+| `tags` | `list` | No | The tags associated with the model |
+| `type` | `str` | No | The model type |
 
 ### Operations
 
@@ -293,15 +293,15 @@ model_version = client.ModelVersion()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `createdAt` | `str` | No |  |
-| `description` | `str` | No |  |
-| `downloadUrl` | `str` | No |  |
+| `createdAt` | `str` | No | The date in which the version was created |
+| `description` | `str` | No | The description of the model version (usually a changelog) |
+| `downloadUrl` | `str` | No | The download url to get the model file for this specific version |
 | `files` | `list` | No |  |
-| `id` | `int` | No |  |
+| `id` | `int` | No | The identifier for the model version |
 | `images` | `list` | No |  |
-| `name` | `str` | No |  |
+| `name` | `str` | No | The name of the model version |
 | `stats` | `dict` | No |  |
-| `trainedWords` | `list` | No |  |
+| `trainedWords` | `list` | No | The words used to trigger the model |
 
 ### Operations
 

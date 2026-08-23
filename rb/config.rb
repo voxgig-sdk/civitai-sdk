@@ -19,6 +19,9 @@ module CivitaiConfig
     {
       "main" => {
         "name" => "Civitai",
+        "slug" => "civitai",
+        "version" => "0.0.1",
+        "target" => "rb",
       },
       "feature" => {
         "test" => {
@@ -48,14 +51,17 @@ module CivitaiConfig
           "fields" => [
             {
               "name" => "link",
+              "short" => "Url to get all models from this user",
               "type" => "`$STRING`",
             },
             {
               "name" => "modelCount",
+              "short" => "The amount of models linked to this user",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "username",
+              "short" => "The username of the creator",
               "type" => "`$STRING`",
             },
           ],
@@ -119,34 +125,42 @@ module CivitaiConfig
           "fields" => [
             {
               "name" => "createdAt",
+              "short" => "The date the image was posted",
               "type" => "`$STRING`",
             },
             {
               "name" => "hash",
+              "short" => "The blurhash of the image",
               "type" => "`$STRING`",
             },
             {
               "name" => "height",
+              "short" => "The height of the image",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "id",
+              "short" => "The id of the image",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "meta",
+              "short" => "The generation parameters parsed or input for the image",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "nsfw",
+              "short" => "If the image has any mature content labels",
               "type" => "`$BOOLEAN`",
             },
             {
               "name" => "nsfwLevel",
+              "short" => "The NSFW level of the image",
               "type" => "`$STRING`",
             },
             {
               "name" => "postId",
+              "short" => "The ID of the post the image belongs to",
               "type" => "`$INTEGER`",
             },
             {
@@ -155,14 +169,17 @@ module CivitaiConfig
             },
             {
               "name" => "url",
+              "short" => "The url of the image at its source resolution",
               "type" => "`$STRING`",
             },
             {
               "name" => "username",
+              "short" => "The username of the creator",
               "type" => "`$STRING`",
             },
             {
               "name" => "width",
+              "short" => "The width of the image",
               "type" => "`$INTEGER`",
             },
           ],
@@ -272,14 +289,17 @@ module CivitaiConfig
             },
             {
               "name" => "description",
+              "short" => "The description of the model (HTML)",
               "type" => "`$STRING`",
             },
             {
               "name" => "id",
+              "short" => "The identifier for the model",
               "type" => "`$INTEGER`",
             },
             {
               "name" => "mode",
+              "short" => "The mode in which the model is currently on.",
               "type" => "`$STRING`",
             },
             {
@@ -288,10 +308,12 @@ module CivitaiConfig
             },
             {
               "name" => "name",
+              "short" => "The name of the model",
               "type" => "`$STRING`",
             },
             {
               "name" => "nsfw",
+              "short" => "Whether the model is NSFW or not",
               "type" => "`$BOOLEAN`",
             },
             {
@@ -300,10 +322,12 @@ module CivitaiConfig
             },
             {
               "name" => "tags",
+              "short" => "The tags associated with the model",
               "type" => "`$ARRAY`",
             },
             {
               "name" => "type",
+              "short" => "The model type",
               "type" => "`$STRING`",
             },
           ],
@@ -512,14 +536,17 @@ module CivitaiConfig
           "fields" => [
             {
               "name" => "createdAt",
+              "short" => "The date in which the version was created",
               "type" => "`$STRING`",
             },
             {
               "name" => "description",
+              "short" => "The description of the model version (usually a changelog)",
               "type" => "`$STRING`",
             },
             {
               "name" => "downloadUrl",
+              "short" => "The download url to get the model file for this specific version",
               "type" => "`$STRING`",
             },
             {
@@ -528,6 +555,7 @@ module CivitaiConfig
             },
             {
               "name" => "id",
+              "short" => "The identifier for the model version",
               "type" => "`$INTEGER`",
             },
             {
@@ -536,6 +564,7 @@ module CivitaiConfig
             },
             {
               "name" => "name",
+              "short" => "The name of the model version",
               "type" => "`$STRING`",
             },
             {
@@ -544,6 +573,7 @@ module CivitaiConfig
             },
             {
               "name" => "trainedWords",
+              "short" => "The words used to trigger the model",
               "type" => "`$ARRAY`",
             },
           ],

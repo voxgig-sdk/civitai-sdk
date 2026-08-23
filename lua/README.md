@@ -241,9 +241,9 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `link` |  |
-| `modelCount` |  |
-| `username` |  |
+| `link` | Url to get all models from this user |
+| `modelCount` | The amount of models linked to this user |
+| `username` | The username of the creator |
 
 Operations: List.
 
@@ -253,18 +253,18 @@ API path: `/creators`
 
 | Field | Description |
 | --- | --- |
-| `createdAt` |  |
-| `hash` |  |
-| `height` |  |
-| `id` |  |
-| `meta` |  |
-| `nsfw` |  |
-| `nsfwLevel` |  |
-| `postId` |  |
+| `createdAt` | The date the image was posted |
+| `hash` | The blurhash of the image |
+| `height` | The height of the image |
+| `id` | The id of the image |
+| `meta` | The generation parameters parsed or input for the image |
+| `nsfw` | If the image has any mature content labels |
+| `nsfwLevel` | The NSFW level of the image |
+| `postId` | The ID of the post the image belongs to |
 | `stats` |  |
-| `url` |  |
-| `username` |  |
-| `width` |  |
+| `url` | The url of the image at its source resolution |
+| `username` | The username of the creator |
+| `width` | The width of the image |
 
 Operations: List.
 
@@ -275,15 +275,15 @@ API path: `/images`
 | Field | Description |
 | --- | --- |
 | `creator` |  |
-| `description` |  |
-| `id` |  |
-| `mode` |  |
+| `description` | The description of the model (HTML) |
+| `id` | The identifier for the model |
+| `mode` | The mode in which the model is currently on. |
 | `modelVersions` |  |
-| `name` |  |
-| `nsfw` |  |
+| `name` | The name of the model |
+| `nsfw` | Whether the model is NSFW or not |
 | `stats` |  |
-| `tags` |  |
-| `type` |  |
+| `tags` | The tags associated with the model |
+| `type` | The model type |
 
 Operations: List, Load.
 
@@ -293,15 +293,15 @@ API path: `/models`
 
 | Field | Description |
 | --- | --- |
-| `createdAt` |  |
-| `description` |  |
-| `downloadUrl` |  |
+| `createdAt` | The date in which the version was created |
+| `description` | The description of the model version (usually a changelog) |
+| `downloadUrl` | The download url to get the model file for this specific version |
 | `files` |  |
-| `id` |  |
+| `id` | The identifier for the model version |
 | `images` |  |
-| `name` |  |
+| `name` | The name of the model version |
 | `stats` |  |
-| `trainedWords` |  |
+| `trainedWords` | The words used to trigger the model |
 
 Operations: Load.
 
@@ -338,9 +338,9 @@ Create an instance: `local creator = client:Creator(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `link` | `string` |  |
-| `modelCount` | `number` |  |
-| `username` | `string` |  |
+| `link` | `string` | Url to get all models from this user |
+| `modelCount` | `number` | The amount of models linked to this user |
+| `username` | `string` | The username of the creator |
 
 #### Example: List
 
@@ -363,18 +363,18 @@ Create an instance: `local image = client:Image(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `string` |  |
-| `hash` | `string` |  |
-| `height` | `number` |  |
-| `id` | `number` |  |
-| `meta` | `table` |  |
-| `nsfw` | `boolean` |  |
-| `nsfwLevel` | `string` |  |
-| `postId` | `number` |  |
+| `createdAt` | `string` | The date the image was posted |
+| `hash` | `string` | The blurhash of the image |
+| `height` | `number` | The height of the image |
+| `id` | `number` | The id of the image |
+| `meta` | `table` | The generation parameters parsed or input for the image |
+| `nsfw` | `boolean` | If the image has any mature content labels |
+| `nsfwLevel` | `string` | The NSFW level of the image |
+| `postId` | `number` | The ID of the post the image belongs to |
 | `stats` | `table` |  |
-| `url` | `string` |  |
-| `username` | `string` |  |
-| `width` | `number` |  |
+| `url` | `string` | The url of the image at its source resolution |
+| `username` | `string` | The username of the creator |
+| `width` | `number` | The width of the image |
 
 #### Example: List
 
@@ -399,15 +399,15 @@ Create an instance: `local model = client:Model(nil)`
 | Field | Type | Description |
 | --- | --- | --- |
 | `creator` | `table` |  |
-| `description` | `string` |  |
-| `id` | `number` |  |
-| `mode` | `string` |  |
+| `description` | `string` | The description of the model (HTML) |
+| `id` | `number` | The identifier for the model |
+| `mode` | `string` | The mode in which the model is currently on. |
 | `modelVersions` | `table` |  |
-| `name` | `string` |  |
-| `nsfw` | `boolean` |  |
+| `name` | `string` | The name of the model |
+| `nsfw` | `boolean` | Whether the model is NSFW or not |
 | `stats` | `table` |  |
-| `tags` | `table` |  |
-| `type` | `string` |  |
+| `tags` | `table` | The tags associated with the model |
+| `type` | `string` | The model type |
 
 #### Example: Load
 
@@ -436,15 +436,15 @@ Create an instance: `local model_version = client:ModelVersion(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `createdAt` | `string` |  |
-| `description` | `string` |  |
-| `downloadUrl` | `string` |  |
+| `createdAt` | `string` | The date in which the version was created |
+| `description` | `string` | The description of the model version (usually a changelog) |
+| `downloadUrl` | `string` | The download url to get the model file for this specific version |
 | `files` | `table` |  |
-| `id` | `number` |  |
+| `id` | `number` | The identifier for the model version |
 | `images` | `table` |  |
-| `name` | `string` |  |
+| `name` | `string` | The name of the model version |
 | `stats` | `table` |  |
-| `trainedWords` | `table` |  |
+| `trainedWords` | `table` | The words used to trigger the model |
 
 #### Example: Load
 

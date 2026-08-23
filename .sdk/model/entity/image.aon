@@ -1,0 +1,190 @@
+# Entity: image
+
+main: kit: entity: image: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "createdAt"
+      req: false
+      short: "The date the image was posted"
+      type: "`$STRING`"
+    }
+    {
+      name: "hash"
+      req: false
+      short: "The blurhash of the image"
+      type: "`$STRING`"
+    }
+    {
+      name: "height"
+      req: false
+      short: "The height of the image"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "The id of the image"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "meta"
+      req: false
+      short: "The generation parameters parsed or input for the image"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "nsfw"
+      req: false
+      short: "If the image has any mature content labels"
+      type: "`$BOOLEAN`"
+    }
+    {
+      name: "nsfwLevel"
+      req: false
+      short: "The NSFW level of the image"
+      type: "`$STRING`"
+    }
+    {
+      name: "postId"
+      req: false
+      short: "The ID of the post the image belongs to"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "stats"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "url"
+      req: false
+      short: "The url of the image at its source resolution"
+      type: "`$STRING`"
+    }
+    {
+      name: "username"
+      req: false
+      short: "The username of the creator"
+      type: "`$STRING`"
+    }
+    {
+      name: "width"
+      req: false
+      short: "The width of the image"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "image"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "model_id"
+                orig: "model_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "model_version_id"
+                orig: "model_version_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "nsfw"
+                orig: "nsfw"
+                reqd: false
+                type: "`$ANY`"
+              }
+              {
+                example: 1
+                kind: "query"
+                name: "page"
+                orig: "page"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "period"
+                orig: "period"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "post_id"
+                orig: "post_id"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                kind: "query"
+                name: "sort"
+                orig: "sort"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "username"
+                orig: "username"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/images"
+          parts: [
+            "images"
+          ]
+          select: {
+            exist: [
+              "limit"
+              "model_id"
+              "model_version_id"
+              "nsfw"
+              "page"
+              "period"
+              "post_id"
+              "sort"
+              "username"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
