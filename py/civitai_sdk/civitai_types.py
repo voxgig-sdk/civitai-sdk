@@ -23,9 +23,9 @@ class Creator(TypedDict, total=False):
 
 
 class CreatorListMatch(TypedDict, total=False):
-    link: str
-    modelCount: int
-    username: str
+    limit: int
+    page: int
+    query: str
 
 
 class Image(TypedDict, total=False):
@@ -44,18 +44,15 @@ class Image(TypedDict, total=False):
 
 
 class ImageListMatch(TypedDict, total=False):
-    createdAt: str
-    hash: str
-    height: int
-    id: int
-    meta: dict
-    nsfw: bool
-    nsfwLevel: str
-    postId: int
-    stats: dict
-    url: str
+    limit: int
+    model_id: int
+    model_version_id: int
+    nsfw: Any
+    page: int
+    period: str
+    post_id: int
+    sort: str
     username: str
-    width: int
 
 
 class Model(TypedDict, total=False):
@@ -76,16 +73,24 @@ class ModelLoadMatch(TypedDict):
 
 
 class ModelListMatch(TypedDict, total=False):
-    creator: dict
-    description: str
-    id: int
-    mode: str
-    modelVersions: list
-    name: str
+    allow_commercial_use: bool
+    allow_derivatif: bool
+    allow_different_license: bool
+    allow_no_credit: bool
+    favorite: bool
+    hidden: bool
+    limit: int
     nsfw: bool
-    stats: dict
-    tags: list
-    type: str
+    page: int
+    period: str
+    primary_file_only: bool
+    query: str
+    rating: float
+    sort: str
+    supports_generation: bool
+    tag: str
+    type: list
+    username: str
 
 
 class ModelVersion(TypedDict, total=False):
@@ -111,6 +116,6 @@ class Tag(TypedDict, total=False):
 
 
 class TagListMatch(TypedDict, total=False):
-    link: str
-    modelCount: int
-    name: str
+    limit: int
+    page: int
+    query: str

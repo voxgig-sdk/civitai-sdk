@@ -12,9 +12,9 @@ export interface Creator {
 }
 
 export interface CreatorListMatch {
-  link?: string
-  modelCount?: number
-  username?: string
+  limit?: number
+  page?: number
+  query?: string
 }
 
 export interface Image {
@@ -33,18 +33,15 @@ export interface Image {
 }
 
 export interface ImageListMatch {
-  createdAt?: string
-  hash?: string
-  height?: number
-  id?: number
-  meta?: Record<string, any>
-  nsfw?: boolean
-  nsfwLevel?: string
-  postId?: number
-  stats?: Record<string, any>
-  url?: string
+  limit?: number
+  model_id?: number
+  model_version_id?: number
+  nsfw?: any
+  page?: number
+  period?: string
+  post_id?: number
+  sort?: string
   username?: string
-  width?: number
 }
 
 export interface Model {
@@ -65,16 +62,24 @@ export interface ModelLoadMatch {
 }
 
 export interface ModelListMatch {
-  creator?: Record<string, any>
-  description?: string
-  id?: number
-  mode?: string
-  modelVersions?: any[]
-  name?: string
+  allow_commercial_use?: boolean
+  allow_derivatif?: boolean
+  allow_different_license?: boolean
+  allow_no_credit?: boolean
+  favorite?: boolean
+  hidden?: boolean
+  limit?: number
   nsfw?: boolean
-  stats?: Record<string, any>
-  tags?: any[]
-  type?: string
+  page?: number
+  period?: string
+  primary_file_only?: boolean
+  query?: string
+  rating?: number
+  sort?: string
+  supports_generation?: boolean
+  tag?: string
+  type?: any[]
+  username?: string
 }
 
 export interface ModelVersion {
@@ -100,8 +105,8 @@ export interface Tag {
 }
 
 export interface TagListMatch {
-  link?: string
-  modelCount?: number
-  name?: string
+  limit?: number
+  page?: number
+  query?: string
 }
 

@@ -21,9 +21,9 @@ type Creator struct {
 
 // CreatorListMatch is the typed request payload for Creator.ListTyped.
 type CreatorListMatch struct {
-	Link *string `json:"link,omitempty"`
-	ModelCount *int `json:"modelCount,omitempty"`
-	Username *string `json:"username,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Page *int `json:"page,omitempty"`
+	Query *string `json:"query,omitempty"`
 }
 
 // Image is the typed data model for the image entity.
@@ -44,18 +44,15 @@ type Image struct {
 
 // ImageListMatch is the typed request payload for Image.ListTyped.
 type ImageListMatch struct {
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Hash *string `json:"hash,omitempty"`
-	Height *int `json:"height,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Meta *map[string]any `json:"meta,omitempty"`
-	Nsfw *bool `json:"nsfw,omitempty"`
-	NsfwLevel *string `json:"nsfwLevel,omitempty"`
-	PostId *int `json:"postId,omitempty"`
-	Stats *map[string]any `json:"stats,omitempty"`
-	Url *string `json:"url,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	ModelId *int `json:"model_id,omitempty"`
+	ModelVersionId *int `json:"model_version_id,omitempty"`
+	Nsfw *any `json:"nsfw,omitempty"`
+	Page *int `json:"page,omitempty"`
+	Period *string `json:"period,omitempty"`
+	PostId *int `json:"post_id,omitempty"`
+	Sort *string `json:"sort,omitempty"`
 	Username *string `json:"username,omitempty"`
-	Width *int `json:"width,omitempty"`
 }
 
 // Model is the typed data model for the model entity.
@@ -79,16 +76,24 @@ type ModelLoadMatch struct {
 
 // ModelListMatch is the typed request payload for Model.ListTyped.
 type ModelListMatch struct {
-	Creator *map[string]any `json:"creator,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Mode *string `json:"mode,omitempty"`
-	ModelVersions *[]any `json:"modelVersions,omitempty"`
-	Name *string `json:"name,omitempty"`
+	AllowCommercialUse *bool `json:"allow_commercial_use,omitempty"`
+	AllowDerivatif *bool `json:"allow_derivatif,omitempty"`
+	AllowDifferentLicense *bool `json:"allow_different_license,omitempty"`
+	AllowNoCredit *bool `json:"allow_no_credit,omitempty"`
+	Favorite *bool `json:"favorite,omitempty"`
+	Hidden *bool `json:"hidden,omitempty"`
+	Limit *int `json:"limit,omitempty"`
 	Nsfw *bool `json:"nsfw,omitempty"`
-	Stats *map[string]any `json:"stats,omitempty"`
-	Tags *[]any `json:"tags,omitempty"`
-	Type *string `json:"type,omitempty"`
+	Page *int `json:"page,omitempty"`
+	Period *string `json:"period,omitempty"`
+	PrimaryFileOnly *bool `json:"primary_file_only,omitempty"`
+	Query *string `json:"query,omitempty"`
+	Rating *float64 `json:"rating,omitempty"`
+	Sort *string `json:"sort,omitempty"`
+	SupportsGeneration *bool `json:"supports_generation,omitempty"`
+	Tag *string `json:"tag,omitempty"`
+	Type *[]any `json:"type,omitempty"`
+	Username *string `json:"username,omitempty"`
 }
 
 // ModelVersion is the typed data model for the model_version entity.
@@ -118,9 +123,9 @@ type Tag struct {
 
 // TagListMatch is the typed request payload for Tag.ListTyped.
 type TagListMatch struct {
-	Link *string `json:"link,omitempty"`
-	ModelCount *int `json:"modelCount,omitempty"`
-	Name *string `json:"name,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Page *int `json:"page,omitempty"`
+	Query *string `json:"query,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

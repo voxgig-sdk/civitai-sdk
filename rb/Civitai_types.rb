@@ -27,18 +27,18 @@ Creator = Struct.new(
 
 # Request payload for Creator#list.
 #
-# @!attribute [rw] link
-#   @return [String, nil]
-#
-# @!attribute [rw] modelCount
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] username
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
 #   @return [String, nil]
 CreatorListMatch = Struct.new(
-  :link,
-  :modelCount,
-  :username,
+  :limit,
+  :page,
+  :query,
   keyword_init: true
 )
 
@@ -97,54 +97,42 @@ Image = Struct.new(
 
 # Request payload for Image#list.
 #
-# @!attribute [rw] createdAt
-#   @return [String, nil]
-#
-# @!attribute [rw] hash
-#   @return [String, nil]
-#
-# @!attribute [rw] height
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] model_id
 #   @return [Integer, nil]
 #
-# @!attribute [rw] meta
-#   @return [Hash, nil]
+# @!attribute [rw] model_version_id
+#   @return [Integer, nil]
 #
 # @!attribute [rw] nsfw
-#   @return [Boolean, nil]
+#   @return [Object, nil]
 #
-# @!attribute [rw] nsfwLevel
-#   @return [String, nil]
-#
-# @!attribute [rw] postId
+# @!attribute [rw] page
 #   @return [Integer, nil]
 #
-# @!attribute [rw] stats
-#   @return [Hash, nil]
+# @!attribute [rw] period
+#   @return [String, nil]
 #
-# @!attribute [rw] url
+# @!attribute [rw] post_id
+#   @return [Integer, nil]
+#
+# @!attribute [rw] sort
 #   @return [String, nil]
 #
 # @!attribute [rw] username
 #   @return [String, nil]
-#
-# @!attribute [rw] width
-#   @return [Integer, nil]
 ImageListMatch = Struct.new(
-  :createdAt,
-  :hash,
-  :height,
-  :id,
-  :meta,
+  :limit,
+  :model_id,
+  :model_version_id,
   :nsfw,
-  :nsfwLevel,
-  :postId,
-  :stats,
-  :url,
+  :page,
+  :period,
+  :post_id,
+  :sort,
   :username,
-  :width,
   keyword_init: true
 )
 
@@ -204,46 +192,78 @@ ModelLoadMatch = Struct.new(
 
 # Request payload for Model#list.
 #
-# @!attribute [rw] creator
-#   @return [Hash, nil]
+# @!attribute [rw] allow_commercial_use
+#   @return [Boolean, nil]
 #
-# @!attribute [rw] description
-#   @return [String, nil]
+# @!attribute [rw] allow_derivatif
+#   @return [Boolean, nil]
 #
-# @!attribute [rw] id
+# @!attribute [rw] allow_different_license
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] allow_no_credit
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] favorite
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] hidden
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] limit
 #   @return [Integer, nil]
-#
-# @!attribute [rw] mode
-#   @return [String, nil]
-#
-# @!attribute [rw] modelVersions
-#   @return [Array, nil]
-#
-# @!attribute [rw] name
-#   @return [String, nil]
 #
 # @!attribute [rw] nsfw
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] stats
-#   @return [Hash, nil]
+# @!attribute [rw] page
+#   @return [Integer, nil]
 #
-# @!attribute [rw] tags
-#   @return [Array, nil]
+# @!attribute [rw] period
+#   @return [String, nil]
+#
+# @!attribute [rw] primary_file_only
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] query
+#   @return [String, nil]
+#
+# @!attribute [rw] rating
+#   @return [Float, nil]
+#
+# @!attribute [rw] sort
+#   @return [String, nil]
+#
+# @!attribute [rw] supports_generation
+#   @return [Boolean, nil]
+#
+# @!attribute [rw] tag
+#   @return [String, nil]
 #
 # @!attribute [rw] type
+#   @return [Array, nil]
+#
+# @!attribute [rw] username
 #   @return [String, nil]
 ModelListMatch = Struct.new(
-  :creator,
-  :description,
-  :id,
-  :mode,
-  :modelVersions,
-  :name,
+  :allow_commercial_use,
+  :allow_derivatif,
+  :allow_different_license,
+  :allow_no_credit,
+  :favorite,
+  :hidden,
+  :limit,
   :nsfw,
-  :stats,
-  :tags,
+  :page,
+  :period,
+  :primary_file_only,
+  :query,
+  :rating,
+  :sort,
+  :supports_generation,
+  :tag,
   :type,
+  :username,
   keyword_init: true
 )
 
@@ -316,18 +336,18 @@ Tag = Struct.new(
 
 # Request payload for Tag#list.
 #
-# @!attribute [rw] link
-#   @return [String, nil]
-#
-# @!attribute [rw] modelCount
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] name
+# @!attribute [rw] page
+#   @return [Integer, nil]
+#
+# @!attribute [rw] query
 #   @return [String, nil]
 TagListMatch = Struct.new(
-  :link,
-  :modelCount,
-  :name,
+  :limit,
+  :page,
+  :query,
   keyword_init: true
 )
 
