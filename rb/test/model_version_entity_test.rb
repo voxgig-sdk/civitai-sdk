@@ -85,7 +85,7 @@ def model_version_basic_setup(extra)
     "CIVITAI_TEST_MODEL_VERSION_ENTID" => idmap,
     "CIVITAI_TEST_LIVE" => "FALSE",
     "CIVITAI_TEST_EXPLAIN" => "FALSE",
-    "CIVITAI_APIKEY" => "NONE",
+    "CIVITAI_APIKEY" => "",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -96,6 +96,9 @@ def model_version_basic_setup(extra)
 
   if env["CIVITAI_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
+      # FIRST, so the generated fields below win: sdk-test-control.json's
+      # test.client.options adds to the live client, it does not redirect it.
+      Runner.live_client_options,
       {
         "apikey" => env["CIVITAI_APIKEY"],
       },

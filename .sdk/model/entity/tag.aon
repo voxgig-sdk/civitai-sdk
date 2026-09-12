@@ -57,8 +57,10 @@ main: kit: entity: tag: {
           }
           method: "GET"
           orig: "/tags"
-          parts: [
-            "tags"
+          segments: [
+            {
+              lit: "tags"
+            }
           ]
           select: {
             exist: [

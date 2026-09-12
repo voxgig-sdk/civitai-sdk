@@ -77,15 +77,17 @@ function model_version_direct_setup($mockres)
     $env = Runner::env_override([
         "CIVITAI_TEST_MODEL_VERSION_ENTID" => [],
         "CIVITAI_TEST_LIVE" => "FALSE",
-        "CIVITAI_APIKEY" => "NONE",
+        "CIVITAI_APIKEY" => "",
     ]);
 
     $live = $env["CIVITAI_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["CIVITAI_APIKEY"],
-        ];
+        ]);
         $client = new CivitaiSDK($merged_opts);
         return [
             "client" => $client,

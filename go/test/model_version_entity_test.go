@@ -50,7 +50,7 @@ func TestModelVersionEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		modelVersionRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.model_version", setup.data)))
+		modelVersionRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.model_version")))
 		var modelVersionRef01Data map[string]any
 		if len(modelVersionRef01DataRaw) > 0 {
 			modelVersionRef01Data = core.ToMapAny(modelVersionRef01DataRaw[0][1])
@@ -103,7 +103,7 @@ func model_versionBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"model_version01", "model_version02", "model_version03", "by_hash01", "by_hash02", "by_hash03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -123,7 +123,7 @@ func model_versionBasicSetup(extra map[string]any) *entityTestSetup {
 		"CIVITAI_TEST_MODEL_VERSION_ENTID": idmap,
 		"CIVITAI_TEST_LIVE":      "FALSE",
 		"CIVITAI_TEST_EXPLAIN":   "FALSE",
-		"CIVITAI_APIKEY":         "NONE",
+		"CIVITAI_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["CIVITAI_TEST_MODEL_VERSION_ENTID"])
@@ -132,11 +132,23 @@ func model_versionBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["CIVITAI_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["CIVITAI_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewCivitaiSDK(core.ToMapAny(mergedOpts))
 	}

@@ -88,8 +88,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/creators",
-                ["parts"] = {
-                  "creators",
+                ["segments"] = {
+                  {
+                    ["lit"] = "creators",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -102,6 +104,9 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "creators",
+                },
               },
             },
           },
@@ -113,6 +118,7 @@ local function make_config()
       ["image"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "createdAt",
             ["short"] = "The date the image was posted",
             ["type"] = "`$STRING`",
@@ -171,6 +177,10 @@ local function make_config()
             ["short"] = "The width of the image",
             ["type"] = "`$INTEGER`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "image",
         ["op"] = {
@@ -242,8 +252,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/images",
-                ["parts"] = {
-                  "images",
+                ["segments"] = {
+                  {
+                    ["lit"] = "images",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -261,6 +273,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "images",
                 },
               },
             },
@@ -319,6 +334,10 @@ local function make_config()
             ["short"] = "The model type",
             ["type"] = "`$STRING`",
           },
+        },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
         },
         ["name"] = "model",
         ["op"] = {
@@ -444,8 +463,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/models",
-                ["parts"] = {
-                  "models",
+                ["segments"] = {
+                  {
+                    ["lit"] = "models",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -473,6 +494,9 @@ local function make_config()
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
                 },
+                ["parts"] = {
+                  "models",
+                },
               },
             },
           },
@@ -495,13 +519,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/models/{modelId}",
-                ["parts"] = {
-                  "models",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["modelId"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "models",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -512,6 +540,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "models",
+                  "{id}",
                 },
               },
             },
@@ -524,6 +556,7 @@ local function make_config()
       ["model_version"] = {
         ["fields"] = {
           {
+            ["format"] = "date-time",
             ["name"] = "createdAt",
             ["short"] = "The date in which the version was created",
             ["type"] = "`$STRING`",
@@ -566,6 +599,10 @@ local function make_config()
             ["type"] = "`$ARRAY`",
           },
         },
+        ["id"] = {
+          ["field"] = "id",
+          ["name"] = "id",
+        },
         ["name"] = "model_version",
         ["op"] = {
           ["load"] = {
@@ -587,10 +624,16 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/model-versions/by-hash/{hash}",
-                ["parts"] = {
-                  "model-versions",
-                  "by-hash",
-                  "{hash}",
+                ["segments"] = {
+                  {
+                    ["lit"] = "model-versions",
+                  },
+                  {
+                    ["lit"] = "by-hash",
+                  },
+                  {
+                    ["var"] = "hash",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -600,6 +643,11 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "model-versions",
+                  "by-hash",
+                  "{hash}",
                 },
               },
               {
@@ -617,13 +665,17 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/model-versions/{modelVersionId}",
-                ["parts"] = {
-                  "model-versions",
-                  "{id}",
-                },
                 ["rename"] = {
                   ["param"] = {
                     ["modelVersionId"] = "id",
+                  },
+                },
+                ["segments"] = {
+                  {
+                    ["lit"] = "model-versions",
+                  },
+                  {
+                    ["var"] = "id",
                   },
                 },
                 ["select"] = {
@@ -634,6 +686,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "model-versions",
+                  "{id}",
                 },
               },
             },
@@ -696,8 +752,10 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/tags",
-                ["parts"] = {
-                  "tags",
+                ["segments"] = {
+                  {
+                    ["lit"] = "tags",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -709,6 +767,9 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "tags",
                 },
               },
             },

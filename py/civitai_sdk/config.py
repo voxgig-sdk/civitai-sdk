@@ -1,6 +1,14 @@
 # Civitai SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -109,8 +117,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/creators",
-                "parts": [
-                  "creators",
+                "segments": [
+                  {
+                    "lit": "creators",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -123,6 +133,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "creators",
+                ],
               },
             ],
           },
@@ -134,6 +147,7 @@ def make_config():
       "image": {
         "fields": [
           {
+            "format": "date-time",
             "name": "createdAt",
             "short": "The date the image was posted",
             "type": "`$STRING`",
@@ -193,6 +207,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "image",
         "op": {
           "list": {
@@ -263,8 +281,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/images",
-                "parts": [
-                  "images",
+                "segments": [
+                  {
+                    "lit": "images",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -283,6 +303,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "images",
+                ],
               },
             ],
           },
@@ -341,6 +364,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "model",
         "op": {
           "list": {
@@ -465,8 +492,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/models",
-                "parts": [
-                  "models",
+                "segments": [
+                  {
+                    "lit": "models",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -494,6 +523,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "models",
+                ],
               },
             ],
           },
@@ -516,15 +548,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/models/{modelId}",
-                "parts": [
-                  "models",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "modelId": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "models",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -534,6 +570,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "models",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -545,6 +585,7 @@ def make_config():
       "model_version": {
         "fields": [
           {
+            "format": "date-time",
             "name": "createdAt",
             "short": "The date in which the version was created",
             "type": "`$STRING`",
@@ -587,6 +628,10 @@ def make_config():
             "type": "`$ARRAY`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "model_version",
         "op": {
           "load": {
@@ -608,10 +653,16 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/model-versions/by-hash/{hash}",
-                "parts": [
-                  "model-versions",
-                  "by-hash",
-                  "{hash}",
+                "segments": [
+                  {
+                    "lit": "model-versions",
+                  },
+                  {
+                    "lit": "by-hash",
+                  },
+                  {
+                    "var": "hash",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -622,6 +673,11 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "model-versions",
+                  "by-hash",
+                  "{hash}",
+                ],
               },
               {
                 "args": {
@@ -638,15 +694,19 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/model-versions/{modelVersionId}",
-                "parts": [
-                  "model-versions",
-                  "{id}",
-                ],
                 "rename": {
                   "param": {
                     "modelVersionId": "id",
                   },
                 },
+                "segments": [
+                  {
+                    "lit": "model-versions",
+                  },
+                  {
+                    "var": "id",
+                  },
+                ],
                 "select": {
                   "exist": [
                     "id",
@@ -656,6 +716,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "model-versions",
+                  "{id}",
+                ],
               },
             ],
           },
@@ -717,8 +781,10 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/tags",
-                "parts": [
-                  "tags",
+                "segments": [
+                  {
+                    "lit": "tags",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -731,6 +797,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "tags",
+                ],
               },
             ],
           },

@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -132,8 +143,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/creators",
-              "parts": [
-                "creators"
+              "segments": [
+                {
+                  "lit": "creators"
+                }
               ],
               "select": {
                 "exist": [
@@ -145,7 +158,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "creators"
+              ]
             }
           ]
         }
@@ -157,6 +173,7 @@ class Config {
     "image": {
       "fields": [
         {
+          "format": "date-time",
           "name": "createdAt",
           "short": "The date the image was posted",
           "type": "`$STRING`"
@@ -216,6 +233,10 @@ class Config {
           "type": "`$INTEGER`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "image",
       "op": {
         "list": {
@@ -286,8 +307,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/images",
-              "parts": [
-                "images"
+              "segments": [
+                {
+                  "lit": "images"
+                }
               ],
               "select": {
                 "exist": [
@@ -305,7 +328,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "images"
+              ]
             }
           ]
         }
@@ -364,6 +390,10 @@ class Config {
           "type": "`$STRING`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "model",
       "op": {
         "list": {
@@ -488,8 +518,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/models",
-              "parts": [
-                "models"
+              "segments": [
+                {
+                  "lit": "models"
+                }
               ],
               "select": {
                 "exist": [
@@ -516,7 +548,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "models"
+              ]
             }
           ]
         },
@@ -539,15 +574,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/models/{modelId}",
-              "parts": [
-                "models",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "modelId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "models"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -556,7 +595,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "models",
+                "{id}"
+              ]
             }
           ]
         }
@@ -568,6 +611,7 @@ class Config {
     "model_version": {
       "fields": [
         {
+          "format": "date-time",
           "name": "createdAt",
           "short": "The date in which the version was created",
           "type": "`$STRING`"
@@ -610,6 +654,10 @@ class Config {
           "type": "`$ARRAY`"
         }
       ],
+      "id": {
+        "field": "id",
+        "name": "id"
+      },
       "name": "model_version",
       "op": {
         "load": {
@@ -631,10 +679,16 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/model-versions/by-hash/{hash}",
-              "parts": [
-                "model-versions",
-                "by-hash",
-                "{hash}"
+              "segments": [
+                {
+                  "lit": "model-versions"
+                },
+                {
+                  "lit": "by-hash"
+                },
+                {
+                  "var": "hash"
+                }
               ],
               "select": {
                 "exist": [
@@ -644,7 +698,12 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "model-versions",
+                "by-hash",
+                "{hash}"
+              ]
             },
             {
               "args": {
@@ -661,15 +720,19 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/model-versions/{modelVersionId}",
-              "parts": [
-                "model-versions",
-                "{id}"
-              ],
               "rename": {
                 "param": {
                   "modelVersionId": "id"
                 }
               },
+              "segments": [
+                {
+                  "lit": "model-versions"
+                },
+                {
+                  "var": "id"
+                }
+              ],
               "select": {
                 "exist": [
                   "id"
@@ -678,7 +741,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "model-versions",
+                "{id}"
+              ]
             }
           ]
         }
@@ -740,8 +807,10 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/tags",
-              "parts": [
-                "tags"
+              "segments": [
+                {
+                  "lit": "tags"
+                }
               ],
               "select": {
                 "exist": [
@@ -753,7 +822,10 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "tags"
+              ]
             }
           ]
         }
@@ -769,6 +841,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

@@ -6,6 +6,7 @@ main: kit: entity: model_version: {
 
   fields: [
     {
+      format: "date-time"
       name: "createdAt"
       req: false
       short: "The date in which the version was created"
@@ -82,10 +83,16 @@ main: kit: entity: model_version: {
           }
           method: "GET"
           orig: "/model-versions/by-hash/{hash}"
-          parts: [
-            "model-versions"
-            "by-hash"
-            "{hash}"
+          segments: [
+            {
+              lit: "model-versions"
+            }
+            {
+              lit: "by-hash"
+            }
+            {
+              var: "hash"
+            }
           ]
           select: {
             exist: [
@@ -111,15 +118,19 @@ main: kit: entity: model_version: {
           }
           method: "GET"
           orig: "/model-versions/{modelVersionId}"
-          parts: [
-            "model-versions"
-            "{id}"
-          ]
           rename: {
             param: {
               modelVersionId: "id"
             }
           }
+          segments: [
+            {
+              lit: "model-versions"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

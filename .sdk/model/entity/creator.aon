@@ -60,8 +60,10 @@ main: kit: entity: creator: {
           }
           method: "GET"
           orig: "/creators"
-          parts: [
-            "creators"
+          segments: [
+            {
+              lit: "creators"
+            }
           ]
           select: {
             exist: [

@@ -6,6 +6,7 @@ main: kit: entity: image: {
 
   fields: [
     {
+      format: "date-time"
       name: "createdAt"
       req: false
       short: "The date the image was posted"
@@ -160,8 +161,10 @@ main: kit: entity: image: {
           }
           method: "GET"
           orig: "/images"
-          parts: [
-            "images"
+          segments: [
+            {
+              lit: "images"
+            }
           ]
           select: {
             exist: [

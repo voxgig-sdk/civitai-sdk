@@ -209,8 +209,10 @@ main: kit: entity: model: {
           }
           method: "GET"
           orig: "/models"
-          parts: [
-            "models"
+          segments: [
+            {
+              lit: "models"
+            }
           ]
           select: {
             exist: [
@@ -258,15 +260,19 @@ main: kit: entity: model: {
           }
           method: "GET"
           orig: "/models/{modelId}"
-          parts: [
-            "models"
-            "{id}"
-          ]
           rename: {
             param: {
               modelId: "id"
             }
           }
+          segments: [
+            {
+              lit: "models"
+            }
+            {
+              var: "id"
+            }
+          ]
           select: {
             exist: [
               "id"

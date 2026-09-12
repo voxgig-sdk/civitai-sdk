@@ -100,8 +100,10 @@ module CivitaiConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/creators",
-                  "parts" => [
-                    "creators",
+                  "segments" => [
+                    {
+                      "lit" => "creators",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -114,6 +116,9 @@ module CivitaiConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "creators",
+                  ],
                 },
               ],
             },
@@ -125,6 +130,7 @@ module CivitaiConfig
         "image" => {
           "fields" => [
             {
+              "format" => "date-time",
               "name" => "createdAt",
               "short" => "The date the image was posted",
               "type" => "`$STRING`",
@@ -184,6 +190,10 @@ module CivitaiConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "image",
           "op" => {
             "list" => {
@@ -254,8 +264,10 @@ module CivitaiConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/images",
-                  "parts" => [
-                    "images",
+                  "segments" => [
+                    {
+                      "lit" => "images",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -274,6 +286,9 @@ module CivitaiConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "images",
+                  ],
                 },
               ],
             },
@@ -332,6 +347,10 @@ module CivitaiConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "model",
           "op" => {
             "list" => {
@@ -456,8 +475,10 @@ module CivitaiConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/models",
-                  "parts" => [
-                    "models",
+                  "segments" => [
+                    {
+                      "lit" => "models",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -485,6 +506,9 @@ module CivitaiConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "models",
+                  ],
                 },
               ],
             },
@@ -507,15 +531,19 @@ module CivitaiConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/models/{modelId}",
-                  "parts" => [
-                    "models",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "modelId" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "models",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -525,6 +553,10 @@ module CivitaiConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "models",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -536,6 +568,7 @@ module CivitaiConfig
         "model_version" => {
           "fields" => [
             {
+              "format" => "date-time",
               "name" => "createdAt",
               "short" => "The date in which the version was created",
               "type" => "`$STRING`",
@@ -578,6 +611,10 @@ module CivitaiConfig
               "type" => "`$ARRAY`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "model_version",
           "op" => {
             "load" => {
@@ -599,10 +636,16 @@ module CivitaiConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/model-versions/by-hash/{hash}",
-                  "parts" => [
-                    "model-versions",
-                    "by-hash",
-                    "{hash}",
+                  "segments" => [
+                    {
+                      "lit" => "model-versions",
+                    },
+                    {
+                      "lit" => "by-hash",
+                    },
+                    {
+                      "var" => "hash",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -613,6 +656,11 @@ module CivitaiConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "model-versions",
+                    "by-hash",
+                    "{hash}",
+                  ],
                 },
                 {
                   "args" => {
@@ -629,15 +677,19 @@ module CivitaiConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/model-versions/{modelVersionId}",
-                  "parts" => [
-                    "model-versions",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "modelVersionId" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "model-versions",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -647,6 +699,10 @@ module CivitaiConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "model-versions",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -708,8 +764,10 @@ module CivitaiConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/tags",
-                  "parts" => [
-                    "tags",
+                  "segments" => [
+                    {
+                      "lit" => "tags",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -722,6 +780,9 @@ module CivitaiConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "tags",
+                  ],
                 },
               ],
             },
