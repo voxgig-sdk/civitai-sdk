@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/civitai",
+  "name": "@voxgig-sdk/civitai-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the Civitai public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [

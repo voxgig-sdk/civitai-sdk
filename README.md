@@ -105,7 +105,7 @@ local results, err = client:Model():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/civitai` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/releases) |
+| TypeScript | `@voxgig-sdk/civitai-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/releases) |
 | Python | `voxgig-sdk-civitai` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/releases) |
 | PHP | `voxgig-sdk/civitai` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/civitai-sdk/go` | `go get github.com/voxgig-sdk/civitai-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Model():list()
 ### TypeScript
 
 ```ts
-import { CivitaiSDK } from '@voxgig-sdk/civitai'
+import { CivitaiSDK } from '@voxgig-sdk/civitai-sdk'
 
 const client = new CivitaiSDK({
   apikey: process.env.CIVITAI_APIKEY,

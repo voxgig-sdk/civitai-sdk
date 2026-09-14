@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { CivitaiSDK } from '@voxgig-sdk/civitai'
+import { CivitaiSDK } from '@voxgig-sdk/civitai-sdk'
 
 const client = new CivitaiSDK({
   apikey: process.env.CIVITAI_APIKEY,
@@ -618,7 +618,7 @@ civitai/
 Import the SDK from the package root:
 
 ```ts
-import { CivitaiSDK } from '@voxgig-sdk/civitai'
+import { CivitaiSDK } from '@voxgig-sdk/civitai-sdk'
 ```
 
 ### Entity state
