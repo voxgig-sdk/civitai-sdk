@@ -53,5 +53,842 @@
         "type": "s199"
       }
     }
+  },
+  "requests": {
+    "GET /models": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getModels",
+        "parameters": [
+          {
+            "description": "The number of results to be returned per page. This can be a number between 1 and 100. By default, each page will return 100 results",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 100,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The page from which to start fetching models",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Search query to filter models by name",
+            "in": "query",
+            "name": "query",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Search query to filter models by tag",
+            "in": "query",
+            "name": "tag",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Search query to filter models by user",
+            "in": "query",
+            "name": "username",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "The type of model you want to filter with. If none is specified, it will return all types",
+            "in": "query",
+            "name": "types",
+            "required": false,
+            "schema": {
+              "items": {
+                "enum": [
+                  "Checkpoint",
+                  "TextualInversion",
+                  "Hypernetwork",
+                  "AestheticGradient",
+                  "LORA",
+                  "Controlnet",
+                  "Poses"
+                ],
+                "type": "string"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "The order in which you wish to sort the results",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "enum": [
+                "Highest Rated",
+                "Most Downloaded",
+                "Newest"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The time frame in which the models will be sorted",
+            "in": "query",
+            "name": "period",
+            "required": false,
+            "schema": {
+              "enum": [
+                "AllTime",
+                "Year",
+                "Month",
+                "Week",
+                "Day"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "deprecated": true,
+            "description": "The rating you wish to filter the models with. If none is specified, it will return models with any rating (Deprecated)",
+            "in": "query",
+            "name": "rating",
+            "required": false,
+            "schema": {
+              "type": "number"
+            }
+          },
+          {
+            "description": "Filter to favorites of the authenticated user (this requires an API token or session cookie)",
+            "in": "query",
+            "name": "favorites",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Filter to hidden models of the authenticated user (this requires an API token or session cookie)",
+            "in": "query",
+            "name": "hidden",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Only include the primary file for each model (This will use your preferred format options if you use an API token or session cookie)",
+            "in": "query",
+            "name": "primaryFileOnly",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Filter to models that require or don't require crediting the creator",
+            "in": "query",
+            "name": "allowNoCredit",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Filter to models that allow or don't allow creating derivatives",
+            "in": "query",
+            "name": "allowDerivatives",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Filter to models that allow or don't allow derivatives to have a different license",
+            "in": "query",
+            "name": "allowDifferentLicenses",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "Filter to models based on their commercial permissions",
+            "in": "query",
+            "name": "allowCommercialUse",
+            "required": false,
+            "schema": {
+              "enum": [
+                "None",
+                "Image",
+                "Rent",
+                "Sell"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "If false, will return safer images and hide models that don't have safe images",
+            "in": "query",
+            "name": "nsfw",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "description": "If true, will return models that support generation",
+            "in": "query",
+            "name": "supportsGeneration",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "items": {
+                      "items": {
+                        "properties": {
+                          "creator": {
+                            "properties": {
+                              "image": {
+                                "description": "The url of the creators avatar",
+                                "nullable": true,
+                                "type": "string"
+                              },
+                              "username": {
+                                "description": "The name of the creator",
+                                "type": "string"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "description": {
+                            "description": "The description of the model (HTML)",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "The identifier for the model",
+                            "type": "integer"
+                          },
+                          "mode": {
+                            "description": "The mode in which the model is currently on. If Archived, files field will be empty. If TakenDown, images field will be empty",
+                            "enum": [
+                              "Archived",
+                              "TakenDown"
+                            ],
+                            "nullable": true,
+                            "type": "string"
+                          },
+                          "modelVersions": {
+                            "items": {
+                              "properties": {
+                                "createdAt": {
+                                  "description": "The date in which the version was created",
+                                  "format": "date-time",
+                                  "type": "string"
+                                },
+                                "description": {
+                                  "description": "The description of the model version (usually a changelog)",
+                                  "type": "string"
+                                },
+                                "downloadUrl": {
+                                  "description": "The download url to get the model file for this specific version",
+                                  "type": "string"
+                                },
+                                "files": {
+                                  "items": {
+                                    "properties": {
+                                      "metadata": {
+                                        "properties": {
+                                          "format": {
+                                            "description": "The specified model format for the file",
+                                            "enum": [
+                                              "SafeTensor",
+                                              "PickleTensor",
+                                              "Other"
+                                            ],
+                                            "type": "string"
+                                          },
+                                          "fp": {
+                                            "description": "The specified floating point for the file",
+                                            "enum": [
+                                              "fp16",
+                                              "fp32"
+                                            ],
+                                            "type": "string"
+                                          },
+                                          "size": {
+                                            "description": "The specified model size for the file",
+                                            "enum": [
+                                              "full",
+                                              "pruned"
+                                            ],
+                                            "type": "string"
+                                          }
+                                        },
+                                        "type": "object"
+                                      },
+                                      "pickleScanResult": {
+                                        "description": "Status of the pickle scan",
+                                        "enum": [
+                                          "Pending",
+                                          "Success",
+                                          "Danger",
+                                          "Error"
+                                        ],
+                                        "type": "string"
+                                      },
+                                      "primary": {
+                                        "description": "If the file is the primary file for the model version",
+                                        "type": "boolean"
+                                      },
+                                      "scannedAt": {
+                                        "description": "The date in which the file was scanned",
+                                        "format": "date-time",
+                                        "nullable": true,
+                                        "type": "string"
+                                      },
+                                      "sizeKb": {
+                                        "description": "The size of the model file in KB",
+                                        "type": "number"
+                                      },
+                                      "virusScanResult": {
+                                        "description": "Status of the virus scan",
+                                        "enum": [
+                                          "Pending",
+                                          "Success",
+                                          "Danger",
+                                          "Error"
+                                        ],
+                                        "type": "string"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                },
+                                "id": {
+                                  "description": "The identifier for the model version",
+                                  "type": "integer"
+                                },
+                                "images": {
+                                  "items": {
+                                    "properties": {
+                                      "hash": {
+                                        "description": "The blurhash of the image",
+                                        "type": "string"
+                                      },
+                                      "height": {
+                                        "description": "The original height of the image",
+                                        "type": "integer"
+                                      },
+                                      "id": {
+                                        "description": "The id for the image",
+                                        "type": "string"
+                                      },
+                                      "meta": {
+                                        "additionalProperties": true,
+                                        "description": "The generation params of the image",
+                                        "nullable": true,
+                                        "type": "object"
+                                      },
+                                      "nsfw": {
+                                        "description": "Whether or not the image is NSFW",
+                                        "type": "string"
+                                      },
+                                      "url": {
+                                        "description": "The url for the image",
+                                        "type": "string"
+                                      },
+                                      "width": {
+                                        "description": "The original width of the image",
+                                        "type": "integer"
+                                      }
+                                    },
+                                    "type": "object"
+                                  },
+                                  "type": "array"
+                                },
+                                "name": {
+                                  "description": "The name of the model version",
+                                  "type": "string"
+                                },
+                                "stats": {
+                                  "properties": {
+                                    "downloadCount": {
+                                      "description": "The number of downloads the model version has",
+                                      "type": "integer"
+                                    },
+                                    "rating": {
+                                      "description": "The average rating of the model version",
+                                      "type": "number"
+                                    },
+                                    "ratingCount": {
+                                      "description": "The number of ratings the model version has",
+                                      "type": "integer"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "trainedWords": {
+                                  "description": "The words used to trigger the model",
+                                  "items": {
+                                    "type": "string"
+                                  },
+                                  "type": "array"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "name": {
+                            "description": "The name of the model",
+                            "type": "string"
+                          },
+                          "nsfw": {
+                            "description": "Whether the model is NSFW or not",
+                            "type": "boolean"
+                          },
+                          "stats": {
+                            "properties": {
+                              "commentCount": {
+                                "description": "The number of comments the model has",
+                                "type": "integer"
+                              },
+                              "downloadCount": {
+                                "description": "The number of downloads the model has",
+                                "type": "integer"
+                              },
+                              "favoriteCount": {
+                                "description": "The number of favorites the model has",
+                                "type": "integer"
+                              },
+                              "rating": {
+                                "description": "The average rating of the model",
+                                "type": "number"
+                              },
+                              "ratingCount": {
+                                "description": "The number of ratings the model has",
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "tags": {
+                            "description": "The tags associated with the model",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          },
+                          "type": {
+                            "description": "The model type",
+                            "enum": [
+                              "Checkpoint",
+                              "TextualInversion",
+                              "Hypernetwork",
+                              "AestheticGradient",
+                              "LORA",
+                              "Controlnet",
+                              "Poses"
+                            ],
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "properties": {
+                        "currentPage": {
+                          "description": "The current page you are at",
+                          "type": "integer"
+                        },
+                        "nextPage": {
+                          "description": "The url to get the next batch of items",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The size of the batch",
+                          "type": "integer"
+                        },
+                        "prevPage": {
+                          "description": "The url to get the previous batch of items",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "totalItems": {
+                          "description": "The total number of items available",
+                          "type": "integer"
+                        },
+                        "totalPages": {
+                          "description": "The total number of pages",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          },
+          {
+            "QueryToken": []
+          },
+          {}
+        ],
+        "securitySchemes": {
+          "BearerAuth": {
+            "description": "Use your API key as a Bearer token in the Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "QueryToken": {
+            "description": "Pass your API key as a query parameter",
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    },
+    "GET /models/{modelId}": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getModelById",
+        "parameters": [
+          {
+            "description": "The ID of the model to retrieve",
+            "in": "path",
+            "name": "modelId",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "creator": {
+                      "properties": {
+                        "image": {
+                          "description": "The url of the creators avatar",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "username": {
+                          "description": "The name of the creator",
+                          "type": "string"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "description": {
+                      "description": "The description of the model (HTML)",
+                      "type": "string"
+                    },
+                    "id": {
+                      "description": "The identifier for the model",
+                      "type": "integer"
+                    },
+                    "mode": {
+                      "description": "The mode in which the model is currently on. If Archived, files field will be empty. If TakenDown, images field will be empty",
+                      "enum": [
+                        "Archived",
+                        "TakenDown"
+                      ],
+                      "nullable": true,
+                      "type": "string"
+                    },
+                    "modelVersions": {
+                      "items": {
+                        "properties": {
+                          "createdAt": {
+                            "description": "The date in which the version was created",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "description": {
+                            "description": "The description of the model version (usually a changelog)",
+                            "type": "string"
+                          },
+                          "downloadUrl": {
+                            "description": "The download url to get the model file for this specific version",
+                            "type": "string"
+                          },
+                          "files": {
+                            "items": {
+                              "properties": {
+                                "metadata": {
+                                  "properties": {
+                                    "format": {
+                                      "description": "The specified model format for the file",
+                                      "enum": [
+                                        "SafeTensor",
+                                        "PickleTensor",
+                                        "Other"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "fp": {
+                                      "description": "The specified floating point for the file",
+                                      "enum": [
+                                        "fp16",
+                                        "fp32"
+                                      ],
+                                      "type": "string"
+                                    },
+                                    "size": {
+                                      "description": "The specified model size for the file",
+                                      "enum": [
+                                        "full",
+                                        "pruned"
+                                      ],
+                                      "type": "string"
+                                    }
+                                  },
+                                  "type": "object"
+                                },
+                                "pickleScanResult": {
+                                  "description": "Status of the pickle scan",
+                                  "enum": [
+                                    "Pending",
+                                    "Success",
+                                    "Danger",
+                                    "Error"
+                                  ],
+                                  "type": "string"
+                                },
+                                "primary": {
+                                  "description": "If the file is the primary file for the model version",
+                                  "type": "boolean"
+                                },
+                                "scannedAt": {
+                                  "description": "The date in which the file was scanned",
+                                  "format": "date-time",
+                                  "nullable": true,
+                                  "type": "string"
+                                },
+                                "sizeKb": {
+                                  "description": "The size of the model file in KB",
+                                  "type": "number"
+                                },
+                                "virusScanResult": {
+                                  "description": "Status of the virus scan",
+                                  "enum": [
+                                    "Pending",
+                                    "Success",
+                                    "Danger",
+                                    "Error"
+                                  ],
+                                  "type": "string"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "id": {
+                            "description": "The identifier for the model version",
+                            "type": "integer"
+                          },
+                          "images": {
+                            "items": {
+                              "properties": {
+                                "hash": {
+                                  "description": "The blurhash of the image",
+                                  "type": "string"
+                                },
+                                "height": {
+                                  "description": "The original height of the image",
+                                  "type": "integer"
+                                },
+                                "id": {
+                                  "description": "The id for the image",
+                                  "type": "string"
+                                },
+                                "meta": {
+                                  "additionalProperties": true,
+                                  "description": "The generation params of the image",
+                                  "nullable": true,
+                                  "type": "object"
+                                },
+                                "nsfw": {
+                                  "description": "Whether or not the image is NSFW",
+                                  "type": "string"
+                                },
+                                "url": {
+                                  "description": "The url for the image",
+                                  "type": "string"
+                                },
+                                "width": {
+                                  "description": "The original width of the image",
+                                  "type": "integer"
+                                }
+                              },
+                              "type": "object"
+                            },
+                            "type": "array"
+                          },
+                          "name": {
+                            "description": "The name of the model version",
+                            "type": "string"
+                          },
+                          "stats": {
+                            "properties": {
+                              "downloadCount": {
+                                "description": "The number of downloads the model version has",
+                                "type": "integer"
+                              },
+                              "rating": {
+                                "description": "The average rating of the model version",
+                                "type": "number"
+                              },
+                              "ratingCount": {
+                                "description": "The number of ratings the model version has",
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "trainedWords": {
+                            "description": "The words used to trigger the model",
+                            "items": {
+                              "type": "string"
+                            },
+                            "type": "array"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "name": {
+                      "description": "The name of the model",
+                      "type": "string"
+                    },
+                    "nsfw": {
+                      "description": "Whether the model is NSFW or not",
+                      "type": "boolean"
+                    },
+                    "stats": {
+                      "properties": {
+                        "commentCount": {
+                          "description": "The number of comments the model has",
+                          "type": "integer"
+                        },
+                        "downloadCount": {
+                          "description": "The number of downloads the model has",
+                          "type": "integer"
+                        },
+                        "favoriteCount": {
+                          "description": "The number of favorites the model has",
+                          "type": "integer"
+                        },
+                        "rating": {
+                          "description": "The average rating of the model",
+                          "type": "number"
+                        },
+                        "ratingCount": {
+                          "description": "The number of ratings the model has",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    },
+                    "tags": {
+                      "description": "The tags associated with the model",
+                      "items": {
+                        "type": "string"
+                      },
+                      "type": "array"
+                    },
+                    "type": {
+                      "description": "The model type",
+                      "enum": [
+                        "Checkpoint",
+                        "TextualInversion",
+                        "Hypernetwork",
+                        "AestheticGradient",
+                        "LORA",
+                        "Controlnet",
+                        "Poses"
+                      ],
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          },
+          "404": {
+            "description": "Model not found"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          },
+          {
+            "QueryToken": []
+          },
+          {}
+        ],
+        "securitySchemes": {
+          "BearerAuth": {
+            "description": "Use your API key as a Bearer token in the Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "QueryToken": {
+            "description": "Pass your API key as a query parameter",
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
+      }
+    }
   }
 }

@@ -4,44 +4,44 @@
       "IMAGE00": {
         "createdAt": "s78",
         "hash": "s79",
-        "height": "s7a",
+        "height": 122,
         "id": "IMAGE00",
         "meta": {},
         "nsfw": false,
         "nsfwLevel": "s7e",
-        "postId": "s7f",
+        "postId": 127,
         "stats": {},
         "url": "s81",
         "username": "s82",
-        "width": "s83"
+        "width": 131
       },
       "IMAGE01": {
         "createdAt": "sf0",
         "hash": "sf1",
-        "height": "sf2",
+        "height": 242,
         "id": "IMAGE01",
         "meta": {},
         "nsfw": false,
         "nsfwLevel": "sf6",
-        "postId": "sf7",
+        "postId": 247,
         "stats": {},
         "url": "sf9",
         "username": "sfa",
-        "width": "sfb"
+        "width": 251
       },
       "IMAGE02": {
         "createdAt": "s168",
         "hash": "s169",
-        "height": "s16a",
+        "height": 362,
         "id": "IMAGE02",
         "meta": {},
         "nsfw": false,
         "nsfwLevel": "s16e",
-        "postId": "s16f",
+        "postId": 367,
         "stats": {},
         "url": "s171",
         "username": "s172",
-        "width": "s173"
+        "width": 371
       }
     }
   },
@@ -50,15 +50,287 @@
       "image_ref01": {
         "createdAt": "s1e0",
         "hash": "s1e1",
-        "height": "s1e2",
+        "height": 482,
         "meta": {},
         "nsfw": false,
         "nsfwLevel": "s1e6",
-        "postId": "s1e7",
+        "postId": 487,
         "stats": {},
         "url": "s1e9",
         "username": "s1ea",
-        "width": "s1eb"
+        "width": 491
+      }
+    }
+  },
+  "requests": {
+    "GET /images": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getImages",
+        "parameters": [
+          {
+            "description": "The number of results to be returned per page. This can be a number between 0 and 200. By default, each page will return 100 results.",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 200,
+              "minimum": 0,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The ID of a post to get images from",
+            "in": "query",
+            "name": "postId",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The ID of a model to get images from (model gallery)",
+            "in": "query",
+            "name": "modelId",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "The ID of a model version to get images from (model gallery filtered to version)",
+            "in": "query",
+            "name": "modelVersionId",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Filter to images from a specific user",
+            "in": "query",
+            "name": "username",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter to images that contain mature content flags or not (undefined returns all)",
+            "in": "query",
+            "name": "nsfw",
+            "required": false,
+            "schema": {
+              "oneOf": [
+                {
+                  "type": "boolean"
+                },
+                {
+                  "enum": [
+                    "None",
+                    "Soft",
+                    "Mature",
+                    "X"
+                  ],
+                  "type": "string"
+                }
+              ]
+            }
+          },
+          {
+            "description": "The order in which you wish to sort the results",
+            "in": "query",
+            "name": "sort",
+            "required": false,
+            "schema": {
+              "enum": [
+                "Most Reactions",
+                "Most Comments",
+                "Newest"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The time frame in which the images will be sorted",
+            "in": "query",
+            "name": "period",
+            "required": false,
+            "schema": {
+              "enum": [
+                "AllTime",
+                "Year",
+                "Month",
+                "Week",
+                "Day"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "The page from which to start fetching creators",
+            "in": "query",
+            "name": "page",
+            "required": false,
+            "schema": {
+              "default": 1,
+              "minimum": 1,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "items": {
+                      "items": {
+                        "properties": {
+                          "createdAt": {
+                            "description": "The date the image was posted",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "hash": {
+                            "description": "The blurhash of the image",
+                            "type": "string"
+                          },
+                          "height": {
+                            "description": "The height of the image",
+                            "type": "integer"
+                          },
+                          "id": {
+                            "description": "The id of the image",
+                            "type": "integer"
+                          },
+                          "meta": {
+                            "additionalProperties": true,
+                            "description": "The generation parameters parsed or input for the image",
+                            "nullable": true,
+                            "type": "object"
+                          },
+                          "nsfw": {
+                            "description": "If the image has any mature content labels",
+                            "type": "boolean"
+                          },
+                          "nsfwLevel": {
+                            "description": "The NSFW level of the image",
+                            "enum": [
+                              "None",
+                              "Soft",
+                              "Mature",
+                              "X"
+                            ],
+                            "type": "string"
+                          },
+                          "postId": {
+                            "description": "The ID of the post the image belongs to",
+                            "type": "integer"
+                          },
+                          "stats": {
+                            "properties": {
+                              "commentCount": {
+                                "description": "The number of comment reactions",
+                                "type": "integer"
+                              },
+                              "cryCount": {
+                                "description": "The number of cry reactions",
+                                "type": "integer"
+                              },
+                              "dislikeCount": {
+                                "description": "The number of dislike reactions",
+                                "type": "integer"
+                              },
+                              "heartCount": {
+                                "description": "The number of heart reactions",
+                                "type": "integer"
+                              },
+                              "laughCount": {
+                                "description": "The number of laugh reactions",
+                                "type": "integer"
+                              },
+                              "likeCount": {
+                                "description": "The number of like reactions",
+                                "type": "integer"
+                              }
+                            },
+                            "type": "object"
+                          },
+                          "url": {
+                            "description": "The url of the image at its source resolution",
+                            "type": "string"
+                          },
+                          "username": {
+                            "description": "The username of the creator",
+                            "type": "string"
+                          },
+                          "width": {
+                            "description": "The width of the image",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "metadata": {
+                      "properties": {
+                        "currentPage": {
+                          "description": "The current page you are at (if paging)",
+                          "type": "integer"
+                        },
+                        "nextCursor": {
+                          "description": "The id of the first image in the next batch",
+                          "nullable": true,
+                          "type": "integer"
+                        },
+                        "nextPage": {
+                          "description": "The url to get the next batch of items",
+                          "nullable": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "The size of the batch (if paging)",
+                          "type": "integer"
+                        }
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response"
+          }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          },
+          {
+            "QueryToken": []
+          },
+          {}
+        ],
+        "securitySchemes": {
+          "BearerAuth": {
+            "description": "Use your API key as a Bearer token in the Authorization header",
+            "scheme": "bearer",
+            "type": "http"
+          },
+          "QueryToken": {
+            "description": "Pass your API key as a query parameter",
+            "in": "query",
+            "name": "token",
+            "type": "apiKey"
+          }
+        },
+        "securitySource": "definition"
       }
     }
   }

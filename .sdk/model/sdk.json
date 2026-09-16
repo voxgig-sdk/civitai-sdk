@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "creator": {
           "active": true,
@@ -91,6 +155,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /creators",
+                    "json": "{\"operationId\":\"getCreators\",\"parameters\":[{\"description\":\"The number of results to be returned per page. This can be a number between 0 and 200. By default, each page will return 20 results. If set to 0, it'll return all the creators\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":20,\"maximum\":200,\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"The page from which to start fetching creators\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Search query to filter creators by username\",\"in\":\"query\",\"name\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"items\":{\"items\":{\"properties\":{\"link\":{\"description\":\"Url to get all models from this user\",\"type\":\"string\"},\"modelCount\":{\"description\":\"The amount of models linked to this user\",\"type\":\"integer\"},\"username\":{\"description\":\"The username of the creator\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"metadata\":{\"properties\":{\"currentPage\":{\"description\":\"The current page you are at\",\"type\":\"integer\"},\"nextPage\":{\"description\":\"The url to get the next batch of items\",\"nullable\":true,\"type\":\"string\"},\"pageSize\":{\"description\":\"The size of the batch\",\"type\":\"integer\"},\"prevPage\":{\"description\":\"The url to get the previous batch of items\",\"nullable\":true,\"type\":\"string\"},\"totalItems\":{\"description\":\"The total number of items available\",\"type\":\"integer\"},\"totalPages\":{\"description\":\"The total number of pages\",\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"security\":[{\"BearerAuth\":[]},{\"QueryToken\":[]},{}],\"securitySchemes\":{\"BearerAuth\":{\"description\":\"Use your API key as a Bearer token in the Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"QueryToken\":{\"description\":\"Pass your API key as a query parameter\",\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -299,6 +369,12 @@
                         "type": "`$STRING`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /images",
+                    "json": "{\"operationId\":\"getImages\",\"parameters\":[{\"description\":\"The number of results to be returned per page. This can be a number between 0 and 200. By default, each page will return 100 results.\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":100,\"maximum\":200,\"minimum\":0,\"type\":\"integer\"}},{\"description\":\"The ID of a post to get images from\",\"in\":\"query\",\"name\":\"postId\",\"required\":false,\"schema\":{\"type\":\"integer\"}},{\"description\":\"The ID of a model to get images from (model gallery)\",\"in\":\"query\",\"name\":\"modelId\",\"required\":false,\"schema\":{\"type\":\"integer\"}},{\"description\":\"The ID of a model version to get images from (model gallery filtered to version)\",\"in\":\"query\",\"name\":\"modelVersionId\",\"required\":false,\"schema\":{\"type\":\"integer\"}},{\"description\":\"Filter to images from a specific user\",\"in\":\"query\",\"name\":\"username\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Filter to images that contain mature content flags or not (undefined returns all)\",\"in\":\"query\",\"name\":\"nsfw\",\"required\":false,\"schema\":{\"oneOf\":[{\"type\":\"boolean\"},{\"enum\":[\"None\",\"Soft\",\"Mature\",\"X\"],\"type\":\"string\"}]}},{\"description\":\"The order in which you wish to sort the results\",\"in\":\"query\",\"name\":\"sort\",\"required\":false,\"schema\":{\"enum\":[\"Most Reactions\",\"Most Comments\",\"Newest\"],\"type\":\"string\"}},{\"description\":\"The time frame in which the images will be sorted\",\"in\":\"query\",\"name\":\"period\",\"required\":false,\"schema\":{\"enum\":[\"AllTime\",\"Year\",\"Month\",\"Week\",\"Day\"],\"type\":\"string\"}},{\"description\":\"The page from which to start fetching creators\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"items\":{\"items\":{\"properties\":{\"createdAt\":{\"description\":\"The date the image was posted\",\"format\":\"date-time\",\"type\":\"string\"},\"hash\":{\"description\":\"The blurhash of the image\",\"type\":\"string\"},\"height\":{\"description\":\"The height of the image\",\"type\":\"integer\"},\"id\":{\"description\":\"The id of the image\",\"type\":\"integer\"},\"meta\":{\"additionalProperties\":true,\"description\":\"The generation parameters parsed or input for the image\",\"nullable\":true,\"type\":\"object\"},\"nsfw\":{\"description\":\"If the image has any mature content labels\",\"type\":\"boolean\"},\"nsfwLevel\":{\"description\":\"The NSFW level of the image\",\"enum\":[\"None\",\"Soft\",\"Mature\",\"X\"],\"type\":\"string\"},\"postId\":{\"description\":\"The ID of the post the image belongs to\",\"type\":\"integer\"},\"stats\":{\"properties\":{\"commentCount\":{\"description\":\"The number of comment reactions\",\"type\":\"integer\"},\"cryCount\":{\"description\":\"The number of cry reactions\",\"type\":\"integer\"},\"dislikeCount\":{\"description\":\"The number of dislike reactions\",\"type\":\"integer\"},\"heartCount\":{\"description\":\"The number of heart reactions\",\"type\":\"integer\"},\"laughCount\":{\"description\":\"The number of laugh reactions\",\"type\":\"integer\"},\"likeCount\":{\"description\":\"The number of like reactions\",\"type\":\"integer\"}},\"type\":\"object\"},\"url\":{\"description\":\"The url of the image at its source resolution\",\"type\":\"string\"},\"username\":{\"description\":\"The username of the creator\",\"type\":\"string\"},\"width\":{\"description\":\"The width of the image\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"metadata\":{\"properties\":{\"currentPage\":{\"description\":\"The current page you are at (if paging)\",\"type\":\"integer\"},\"nextCursor\":{\"description\":\"The id of the first image in the next batch\",\"nullable\":true,\"type\":\"integer\"},\"nextPage\":{\"description\":\"The url to get the next batch of items\",\"nullable\":true,\"type\":\"string\"},\"pageSize\":{\"description\":\"The size of the batch (if paging)\",\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"security\":[{\"BearerAuth\":[]},{\"QueryToken\":[]},{}],\"securitySchemes\":{\"BearerAuth\":{\"description\":\"Use your API key as a Bearer token in the Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"QueryToken\":{\"description\":\"Pass your API key as a query parameter\",\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -569,6 +645,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /models",
+                    "json": "{\"operationId\":\"getModels\",\"parameters\":[{\"description\":\"The number of results to be returned per page. This can be a number between 1 and 100. By default, each page will return 100 results\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":100,\"maximum\":100,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"The page from which to start fetching models\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Search query to filter models by name\",\"in\":\"query\",\"name\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Search query to filter models by tag\",\"in\":\"query\",\"name\":\"tag\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Search query to filter models by user\",\"in\":\"query\",\"name\":\"username\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"The type of model you want to filter with. If none is specified, it will return all types\",\"in\":\"query\",\"name\":\"types\",\"required\":false,\"schema\":{\"items\":{\"enum\":[\"Checkpoint\",\"TextualInversion\",\"Hypernetwork\",\"AestheticGradient\",\"LORA\",\"Controlnet\",\"Poses\"],\"type\":\"string\"},\"type\":\"array\"}},{\"description\":\"The order in which you wish to sort the results\",\"in\":\"query\",\"name\":\"sort\",\"required\":false,\"schema\":{\"enum\":[\"Highest Rated\",\"Most Downloaded\",\"Newest\"],\"type\":\"string\"}},{\"description\":\"The time frame in which the models will be sorted\",\"in\":\"query\",\"name\":\"period\",\"required\":false,\"schema\":{\"enum\":[\"AllTime\",\"Year\",\"Month\",\"Week\",\"Day\"],\"type\":\"string\"}},{\"deprecated\":true,\"description\":\"The rating you wish to filter the models with. If none is specified, it will return models with any rating (Deprecated)\",\"in\":\"query\",\"name\":\"rating\",\"required\":false,\"schema\":{\"type\":\"number\"}},{\"description\":\"Filter to favorites of the authenticated user (this requires an API token or session cookie)\",\"in\":\"query\",\"name\":\"favorites\",\"required\":false,\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Filter to hidden models of the authenticated user (this requires an API token or session cookie)\",\"in\":\"query\",\"name\":\"hidden\",\"required\":false,\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Only include the primary file for each model (This will use your preferred format options if you use an API token or session cookie)\",\"in\":\"query\",\"name\":\"primaryFileOnly\",\"required\":false,\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Filter to models that require or don't require crediting the creator\",\"in\":\"query\",\"name\":\"allowNoCredit\",\"required\":false,\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Filter to models that allow or don't allow creating derivatives\",\"in\":\"query\",\"name\":\"allowDerivatives\",\"required\":false,\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Filter to models that allow or don't allow derivatives to have a different license\",\"in\":\"query\",\"name\":\"allowDifferentLicenses\",\"required\":false,\"schema\":{\"type\":\"boolean\"}},{\"description\":\"Filter to models based on their commercial permissions\",\"in\":\"query\",\"name\":\"allowCommercialUse\",\"required\":false,\"schema\":{\"enum\":[\"None\",\"Image\",\"Rent\",\"Sell\"],\"type\":\"string\"}},{\"description\":\"If false, will return safer images and hide models that don't have safe images\",\"in\":\"query\",\"name\":\"nsfw\",\"required\":false,\"schema\":{\"type\":\"boolean\"}},{\"description\":\"If true, will return models that support generation\",\"in\":\"query\",\"name\":\"supportsGeneration\",\"required\":false,\"schema\":{\"type\":\"boolean\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"items\":{\"items\":{\"properties\":{\"creator\":{\"properties\":{\"image\":{\"description\":\"The url of the creators avatar\",\"nullable\":true,\"type\":\"string\"},\"username\":{\"description\":\"The name of the creator\",\"type\":\"string\"}},\"type\":\"object\"},\"description\":{\"description\":\"The description of the model (HTML)\",\"type\":\"string\"},\"id\":{\"description\":\"The identifier for the model\",\"type\":\"integer\"},\"mode\":{\"description\":\"The mode in which the model is currently on. If Archived, files field will be empty. If TakenDown, images field will be empty\",\"enum\":[\"Archived\",\"TakenDown\"],\"nullable\":true,\"type\":\"string\"},\"modelVersions\":{\"items\":{\"properties\":{\"createdAt\":{\"description\":\"The date in which the version was created\",\"format\":\"date-time\",\"type\":\"string\"},\"description\":{\"description\":\"The description of the model version (usually a changelog)\",\"type\":\"string\"},\"downloadUrl\":{\"description\":\"The download url to get the model file for this specific version\",\"type\":\"string\"},\"files\":{\"items\":{\"properties\":{\"metadata\":{\"properties\":{\"format\":{\"description\":\"The specified model format for the file\",\"enum\":[\"SafeTensor\",\"PickleTensor\",\"Other\"],\"type\":\"string\"},\"fp\":{\"description\":\"The specified floating point for the file\",\"enum\":[\"fp16\",\"fp32\"],\"type\":\"string\"},\"size\":{\"description\":\"The specified model size for the file\",\"enum\":[\"full\",\"pruned\"],\"type\":\"string\"}},\"type\":\"object\"},\"pickleScanResult\":{\"description\":\"Status of the pickle scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"},\"primary\":{\"description\":\"If the file is the primary file for the model version\",\"type\":\"boolean\"},\"scannedAt\":{\"description\":\"The date in which the file was scanned\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"sizeKb\":{\"description\":\"The size of the model file in KB\",\"type\":\"number\"},\"virusScanResult\":{\"description\":\"Status of the virus scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"id\":{\"description\":\"The identifier for the model version\",\"type\":\"integer\"},\"images\":{\"items\":{\"properties\":{\"hash\":{\"description\":\"The blurhash of the image\",\"type\":\"string\"},\"height\":{\"description\":\"The original height of the image\",\"type\":\"integer\"},\"id\":{\"description\":\"The id for the image\",\"type\":\"string\"},\"meta\":{\"additionalProperties\":true,\"description\":\"The generation params of the image\",\"nullable\":true,\"type\":\"object\"},\"nsfw\":{\"description\":\"Whether or not the image is NSFW\",\"type\":\"string\"},\"url\":{\"description\":\"The url for the image\",\"type\":\"string\"},\"width\":{\"description\":\"The original width of the image\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"name\":{\"description\":\"The name of the model version\",\"type\":\"string\"},\"stats\":{\"properties\":{\"downloadCount\":{\"description\":\"The number of downloads the model version has\",\"type\":\"integer\"},\"rating\":{\"description\":\"The average rating of the model version\",\"type\":\"number\"},\"ratingCount\":{\"description\":\"The number of ratings the model version has\",\"type\":\"integer\"}},\"type\":\"object\"},\"trainedWords\":{\"description\":\"The words used to trigger the model\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"},\"name\":{\"description\":\"The name of the model\",\"type\":\"string\"},\"nsfw\":{\"description\":\"Whether the model is NSFW or not\",\"type\":\"boolean\"},\"stats\":{\"properties\":{\"commentCount\":{\"description\":\"The number of comments the model has\",\"type\":\"integer\"},\"downloadCount\":{\"description\":\"The number of downloads the model has\",\"type\":\"integer\"},\"favoriteCount\":{\"description\":\"The number of favorites the model has\",\"type\":\"integer\"},\"rating\":{\"description\":\"The average rating of the model\",\"type\":\"number\"},\"ratingCount\":{\"description\":\"The number of ratings the model has\",\"type\":\"integer\"}},\"type\":\"object\"},\"tags\":{\"description\":\"The tags associated with the model\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"type\":{\"description\":\"The model type\",\"enum\":[\"Checkpoint\",\"TextualInversion\",\"Hypernetwork\",\"AestheticGradient\",\"LORA\",\"Controlnet\",\"Poses\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"metadata\":{\"properties\":{\"currentPage\":{\"description\":\"The current page you are at\",\"type\":\"integer\"},\"nextPage\":{\"description\":\"The url to get the next batch of items\",\"nullable\":true,\"type\":\"string\"},\"pageSize\":{\"description\":\"The size of the batch\",\"type\":\"integer\"},\"prevPage\":{\"description\":\"The url to get the previous batch of items\",\"nullable\":true,\"type\":\"string\"},\"totalItems\":{\"description\":\"The total number of items available\",\"type\":\"integer\"},\"totalPages\":{\"description\":\"The total number of pages\",\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"security\":[{\"BearerAuth\":[]},{\"QueryToken\":[]},{}],\"securitySchemes\":{\"BearerAuth\":{\"description\":\"Use your API key as a Bearer token in the Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"QueryToken\":{\"description\":\"Pass your API key as a query parameter\",\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/models",
@@ -623,6 +705,12 @@
                         "type": "`$INTEGER`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /models/{modelId}",
+                    "json": "{\"operationId\":\"getModelById\",\"parameters\":[{\"description\":\"The ID of the model to retrieve\",\"in\":\"path\",\"name\":\"modelId\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"creator\":{\"properties\":{\"image\":{\"description\":\"The url of the creators avatar\",\"nullable\":true,\"type\":\"string\"},\"username\":{\"description\":\"The name of the creator\",\"type\":\"string\"}},\"type\":\"object\"},\"description\":{\"description\":\"The description of the model (HTML)\",\"type\":\"string\"},\"id\":{\"description\":\"The identifier for the model\",\"type\":\"integer\"},\"mode\":{\"description\":\"The mode in which the model is currently on. If Archived, files field will be empty. If TakenDown, images field will be empty\",\"enum\":[\"Archived\",\"TakenDown\"],\"nullable\":true,\"type\":\"string\"},\"modelVersions\":{\"items\":{\"properties\":{\"createdAt\":{\"description\":\"The date in which the version was created\",\"format\":\"date-time\",\"type\":\"string\"},\"description\":{\"description\":\"The description of the model version (usually a changelog)\",\"type\":\"string\"},\"downloadUrl\":{\"description\":\"The download url to get the model file for this specific version\",\"type\":\"string\"},\"files\":{\"items\":{\"properties\":{\"metadata\":{\"properties\":{\"format\":{\"description\":\"The specified model format for the file\",\"enum\":[\"SafeTensor\",\"PickleTensor\",\"Other\"],\"type\":\"string\"},\"fp\":{\"description\":\"The specified floating point for the file\",\"enum\":[\"fp16\",\"fp32\"],\"type\":\"string\"},\"size\":{\"description\":\"The specified model size for the file\",\"enum\":[\"full\",\"pruned\"],\"type\":\"string\"}},\"type\":\"object\"},\"pickleScanResult\":{\"description\":\"Status of the pickle scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"},\"primary\":{\"description\":\"If the file is the primary file for the model version\",\"type\":\"boolean\"},\"scannedAt\":{\"description\":\"The date in which the file was scanned\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"sizeKb\":{\"description\":\"The size of the model file in KB\",\"type\":\"number\"},\"virusScanResult\":{\"description\":\"Status of the virus scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"id\":{\"description\":\"The identifier for the model version\",\"type\":\"integer\"},\"images\":{\"items\":{\"properties\":{\"hash\":{\"description\":\"The blurhash of the image\",\"type\":\"string\"},\"height\":{\"description\":\"The original height of the image\",\"type\":\"integer\"},\"id\":{\"description\":\"The id for the image\",\"type\":\"string\"},\"meta\":{\"additionalProperties\":true,\"description\":\"The generation params of the image\",\"nullable\":true,\"type\":\"object\"},\"nsfw\":{\"description\":\"Whether or not the image is NSFW\",\"type\":\"string\"},\"url\":{\"description\":\"The url for the image\",\"type\":\"string\"},\"width\":{\"description\":\"The original width of the image\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"name\":{\"description\":\"The name of the model version\",\"type\":\"string\"},\"stats\":{\"properties\":{\"downloadCount\":{\"description\":\"The number of downloads the model version has\",\"type\":\"integer\"},\"rating\":{\"description\":\"The average rating of the model version\",\"type\":\"number\"},\"ratingCount\":{\"description\":\"The number of ratings the model version has\",\"type\":\"integer\"}},\"type\":\"object\"},\"trainedWords\":{\"description\":\"The words used to trigger the model\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"},\"type\":\"array\"},\"name\":{\"description\":\"The name of the model\",\"type\":\"string\"},\"nsfw\":{\"description\":\"Whether the model is NSFW or not\",\"type\":\"boolean\"},\"stats\":{\"properties\":{\"commentCount\":{\"description\":\"The number of comments the model has\",\"type\":\"integer\"},\"downloadCount\":{\"description\":\"The number of downloads the model has\",\"type\":\"integer\"},\"favoriteCount\":{\"description\":\"The number of favorites the model has\",\"type\":\"integer\"},\"rating\":{\"description\":\"The average rating of the model\",\"type\":\"number\"},\"ratingCount\":{\"description\":\"The number of ratings the model has\",\"type\":\"integer\"}},\"type\":\"object\"},\"tags\":{\"description\":\"The tags associated with the model\",\"items\":{\"type\":\"string\"},\"type\":\"array\"},\"type\":{\"description\":\"The model type\",\"enum\":[\"Checkpoint\",\"TextualInversion\",\"Hypernetwork\",\"AestheticGradient\",\"LORA\",\"Controlnet\",\"Poses\"],\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Model not found\"}},\"security\":[{\"BearerAuth\":[]},{\"QueryToken\":[]},{}],\"securitySchemes\":{\"BearerAuth\":{\"description\":\"Use your API key as a Bearer token in the Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"QueryToken\":{\"description\":\"Pass your API key as a query parameter\",\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -749,6 +837,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /model-versions/by-hash/{hash}",
+                    "json": "{\"operationId\":\"getModelVersionByHash\",\"parameters\":[{\"description\":\"The hash of the model version to retrieve\",\"in\":\"path\",\"name\":\"hash\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"createdAt\":{\"description\":\"The date in which the version was created\",\"format\":\"date-time\",\"type\":\"string\"},\"description\":{\"description\":\"The description of the model version (usually a changelog)\",\"type\":\"string\"},\"downloadUrl\":{\"description\":\"The download url to get the model file for this specific version\",\"type\":\"string\"},\"files\":{\"items\":{\"properties\":{\"metadata\":{\"properties\":{\"format\":{\"description\":\"The specified model format for the file\",\"enum\":[\"SafeTensor\",\"PickleTensor\",\"Other\"],\"type\":\"string\"},\"fp\":{\"description\":\"The specified floating point for the file\",\"enum\":[\"fp16\",\"fp32\"],\"type\":\"string\"},\"size\":{\"description\":\"The specified model size for the file\",\"enum\":[\"full\",\"pruned\"],\"type\":\"string\"}},\"type\":\"object\"},\"pickleScanResult\":{\"description\":\"Status of the pickle scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"},\"primary\":{\"description\":\"If the file is the primary file for the model version\",\"type\":\"boolean\"},\"scannedAt\":{\"description\":\"The date in which the file was scanned\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"sizeKb\":{\"description\":\"The size of the model file in KB\",\"type\":\"number\"},\"virusScanResult\":{\"description\":\"Status of the virus scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"id\":{\"description\":\"The identifier for the model version\",\"type\":\"integer\"},\"images\":{\"items\":{\"properties\":{\"hash\":{\"description\":\"The blurhash of the image\",\"type\":\"string\"},\"height\":{\"description\":\"The original height of the image\",\"type\":\"integer\"},\"id\":{\"description\":\"The id for the image\",\"type\":\"string\"},\"meta\":{\"additionalProperties\":true,\"description\":\"The generation params of the image\",\"nullable\":true,\"type\":\"object\"},\"nsfw\":{\"description\":\"Whether or not the image is NSFW\",\"type\":\"string\"},\"url\":{\"description\":\"The url for the image\",\"type\":\"string\"},\"width\":{\"description\":\"The original width of the image\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"name\":{\"description\":\"The name of the model version\",\"type\":\"string\"},\"stats\":{\"properties\":{\"downloadCount\":{\"description\":\"The number of downloads the model version has\",\"type\":\"integer\"},\"rating\":{\"description\":\"The average rating of the model version\",\"type\":\"number\"},\"ratingCount\":{\"description\":\"The number of ratings the model version has\",\"type\":\"integer\"}},\"type\":\"object\"},\"trainedWords\":{\"description\":\"The words used to trigger the model\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Model version not found\"}},\"security\":[{\"BearerAuth\":[]},{\"QueryToken\":[]},{}],\"securitySchemes\":{\"BearerAuth\":{\"description\":\"Use your API key as a Bearer token in the Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"QueryToken\":{\"description\":\"Pass your API key as a query parameter\",\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/model-versions/by-hash/{hash}",
@@ -786,6 +880,12 @@
                         "type": "`$INTEGER`"
                       }
                     ]
+                  },
+                  "contract": {
+                    "id": "GET /model-versions/{modelVersionId}",
+                    "json": "{\"operationId\":\"getModelVersionById\",\"parameters\":[{\"description\":\"The ID of the model version to retrieve\",\"in\":\"path\",\"name\":\"modelVersionId\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"createdAt\":{\"description\":\"The date in which the version was created\",\"format\":\"date-time\",\"type\":\"string\"},\"description\":{\"description\":\"The description of the model version (usually a changelog)\",\"type\":\"string\"},\"downloadUrl\":{\"description\":\"The download url to get the model file for this specific version\",\"type\":\"string\"},\"files\":{\"items\":{\"properties\":{\"metadata\":{\"properties\":{\"format\":{\"description\":\"The specified model format for the file\",\"enum\":[\"SafeTensor\",\"PickleTensor\",\"Other\"],\"type\":\"string\"},\"fp\":{\"description\":\"The specified floating point for the file\",\"enum\":[\"fp16\",\"fp32\"],\"type\":\"string\"},\"size\":{\"description\":\"The specified model size for the file\",\"enum\":[\"full\",\"pruned\"],\"type\":\"string\"}},\"type\":\"object\"},\"pickleScanResult\":{\"description\":\"Status of the pickle scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"},\"primary\":{\"description\":\"If the file is the primary file for the model version\",\"type\":\"boolean\"},\"scannedAt\":{\"description\":\"The date in which the file was scanned\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"sizeKb\":{\"description\":\"The size of the model file in KB\",\"type\":\"number\"},\"virusScanResult\":{\"description\":\"Status of the virus scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"id\":{\"description\":\"The identifier for the model version\",\"type\":\"integer\"},\"images\":{\"items\":{\"properties\":{\"hash\":{\"description\":\"The blurhash of the image\",\"type\":\"string\"},\"height\":{\"description\":\"The original height of the image\",\"type\":\"integer\"},\"id\":{\"description\":\"The id for the image\",\"type\":\"string\"},\"meta\":{\"additionalProperties\":true,\"description\":\"The generation params of the image\",\"nullable\":true,\"type\":\"object\"},\"nsfw\":{\"description\":\"Whether or not the image is NSFW\",\"type\":\"string\"},\"url\":{\"description\":\"The url for the image\",\"type\":\"string\"},\"width\":{\"description\":\"The original width of the image\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"name\":{\"description\":\"The name of the model version\",\"type\":\"string\"},\"stats\":{\"properties\":{\"downloadCount\":{\"description\":\"The number of downloads the model version has\",\"type\":\"integer\"},\"rating\":{\"description\":\"The average rating of the model version\",\"type\":\"number\"},\"ratingCount\":{\"description\":\"The number of ratings the model version has\",\"type\":\"integer\"}},\"type\":\"object\"},\"trainedWords\":{\"description\":\"The words used to trigger the model\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Model version not found\"}},\"security\":[{\"BearerAuth\":[]},{\"QueryToken\":[]},{}],\"securitySchemes\":{\"BearerAuth\":{\"description\":\"Use your API key as a Bearer token in the Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"QueryToken\":{\"description\":\"Pass your API key as a query parameter\",\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
                   },
                   "kind": "http",
                   "method": "GET",
@@ -887,6 +987,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /tags",
+                    "json": "{\"operationId\":\"getTags\",\"parameters\":[{\"description\":\"The number of results to be returned per page\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":20,\"maximum\":200,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"The page from which to start fetching tags\",\"in\":\"query\",\"name\":\"page\",\"required\":false,\"schema\":{\"default\":1,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Search query to filter tags\",\"in\":\"query\",\"name\":\"query\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"items\":{\"items\":{\"properties\":{\"link\":{\"type\":\"string\"},\"modelCount\":{\"type\":\"integer\"},\"name\":{\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"metadata\":{\"properties\":{\"currentPage\":{\"description\":\"The current page you are at\",\"type\":\"integer\"},\"nextPage\":{\"description\":\"The url to get the next batch of items\",\"nullable\":true,\"type\":\"string\"},\"pageSize\":{\"description\":\"The size of the batch\",\"type\":\"integer\"},\"prevPage\":{\"description\":\"The url to get the previous batch of items\",\"nullable\":true,\"type\":\"string\"},\"totalItems\":{\"description\":\"The total number of items available\",\"type\":\"integer\"},\"totalPages\":{\"description\":\"The total number of pages\",\"type\":\"integer\"}},\"type\":\"object\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"}},\"security\":[{\"BearerAuth\":[]},{\"QueryToken\":[]},{}],\"securitySchemes\":{\"BearerAuth\":{\"description\":\"Use your API key as a Bearer token in the Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"QueryToken\":{\"description\":\"Pass your API key as a query parameter\",\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/tags",
@@ -916,13 +1022,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -1012,6 +1328,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -1201,6 +1613,48 @@
         "website": "https://civitai.com"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -1755,6 +2209,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1796,7 +2251,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

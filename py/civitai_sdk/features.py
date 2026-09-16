@@ -1,12 +1,18 @@
 # Civitai SDK feature factory
 
 from civitai_sdk.feature.base_feature import CivitaiBaseFeature
+from civitai_sdk.feature.ratelimit_feature import CivitaiRatelimitFeature
+from civitai_sdk.feature.retry_feature import CivitaiRetryFeature
 from civitai_sdk.feature.test_feature import CivitaiTestFeature
+from civitai_sdk.feature.timeout_feature import CivitaiTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: CivitaiBaseFeature(),
+    "ratelimit": lambda: CivitaiRatelimitFeature(),
+    "retry": lambda: CivitaiRetryFeature(),
     "test": lambda: CivitaiTestFeature(),
+    "timeout": lambda: CivitaiTimeoutFeature(),
 }
 
 

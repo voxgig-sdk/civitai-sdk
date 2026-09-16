@@ -40,6 +40,8 @@ const node_path_1 = __importDefault(require("node:path"));
 const Fs = __importStar(require("node:fs"));
 const node_test_1 = require("node:test");
 const node_assert_1 = __importDefault(require("node:assert"));
+const live_runner_1 = require("../../live-runner");
+const live_entity_1 = require("../../live-entity");
 const __1 = require("../../..");
 const utility_1 = require("../../utility");
 // AFTER the imports on purpose: TypeScript hoists `import` above any
@@ -59,16 +61,12 @@ const utility_1 = require("../../utility");
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.CIVITAI_TEST_LIVE;
         for (const op of ['load']) {
-            if ((0, utility_1.maybeSkipControl)(t, 'entityOp', 'model_version.' + op, live))
+            if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'model_version.' + op, live))
                 return;
         }
         const setup = basicSetup();
-        // The basic flow consumes synthetic IDs and field values from the
-        // fixture (entity TestData.json). Those don't exist on the live API.
-        // Skip live runs unless the user provided a real ENTID env override.
-        if (setup.syntheticOnly) {
-            t.skip('live entity test uses synthetic IDs from fixture — set CIVITAI_TEST_MODEL_VERSION_ENTID JSON to run live');
-            return;
+        if (setup.live) {
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": [{ "active": true, "format": "date-time", "name": "createdAt", "req": false, "short": "The date in which the version was created", "type": "`$STRING`", "index$": 0 }, { "active": true, "name": "description", "req": false, "short": "The description of the model version (usually a changelog)", "type": "`$STRING`", "index$": 1 }, { "active": true, "name": "downloadUrl", "req": false, "short": "The download url to get the model file for this specific version", "type": "`$STRING`", "index$": 2 }, { "active": true, "name": "files", "req": false, "type": "`$ARRAY`", "index$": 3 }, { "active": true, "name": "id", "req": false, "short": "The identifier for the model version", "type": "`$INTEGER`", "index$": 4 }, { "active": true, "name": "images", "req": false, "type": "`$ARRAY`", "index$": 5 }, { "active": true, "name": "name", "req": false, "short": "The name of the model version", "type": "`$STRING`", "index$": 6 }, { "active": true, "name": "stats", "req": false, "type": "`$OBJECT`", "index$": 7 }, { "active": true, "name": "trainedWords", "req": false, "short": "The words used to trigger the model", "type": "`$ARRAY`", "index$": 8 }], "id": { "field": "id", "name": "id" }, "name": "model_version", "op": { "load": { "input": "data", "name": "load", "points": [{ "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "hash", "orig": "hash", "reqd": true, "type": "`$STRING`", "index$": 0 }] }, "contract": { "id": "GET /model-versions/by-hash/{hash}", "json": "{\"operationId\":\"getModelVersionByHash\",\"parameters\":[{\"description\":\"The hash of the model version to retrieve\",\"in\":\"path\",\"name\":\"hash\",\"required\":true,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"createdAt\":{\"description\":\"The date in which the version was created\",\"format\":\"date-time\",\"type\":\"string\"},\"description\":{\"description\":\"The description of the model version (usually a changelog)\",\"type\":\"string\"},\"downloadUrl\":{\"description\":\"The download url to get the model file for this specific version\",\"type\":\"string\"},\"files\":{\"items\":{\"properties\":{\"metadata\":{\"properties\":{\"format\":{\"description\":\"The specified model format for the file\",\"enum\":[\"SafeTensor\",\"PickleTensor\",\"Other\"],\"type\":\"string\"},\"fp\":{\"description\":\"The specified floating point for the file\",\"enum\":[\"fp16\",\"fp32\"],\"type\":\"string\"},\"size\":{\"description\":\"The specified model size for the file\",\"enum\":[\"full\",\"pruned\"],\"type\":\"string\"}},\"type\":\"object\"},\"pickleScanResult\":{\"description\":\"Status of the pickle scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"},\"primary\":{\"description\":\"If the file is the primary file for the model version\",\"type\":\"boolean\"},\"scannedAt\":{\"description\":\"The date in which the file was scanned\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"sizeKb\":{\"description\":\"The size of the model file in KB\",\"type\":\"number\"},\"virusScanResult\":{\"description\":\"Status of the virus scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"id\":{\"description\":\"The identifier for the model version\",\"type\":\"integer\"},\"images\":{\"items\":{\"properties\":{\"hash\":{\"description\":\"The blurhash of the image\",\"type\":\"string\"},\"height\":{\"description\":\"The original height of the image\",\"type\":\"integer\"},\"id\":{\"description\":\"The id for the image\",\"type\":\"string\"},\"meta\":{\"additionalProperties\":true,\"description\":\"The generation params of the image\",\"nullable\":true,\"type\":\"object\"},\"nsfw\":{\"description\":\"Whether or not the image is NSFW\",\"type\":\"string\"},\"url\":{\"description\":\"The url for the image\",\"type\":\"string\"},\"width\":{\"description\":\"The original width of the image\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"name\":{\"description\":\"The name of the model version\",\"type\":\"string\"},\"stats\":{\"properties\":{\"downloadCount\":{\"description\":\"The number of downloads the model version has\",\"type\":\"integer\"},\"rating\":{\"description\":\"The average rating of the model version\",\"type\":\"number\"},\"ratingCount\":{\"description\":\"The number of ratings the model version has\",\"type\":\"integer\"}},\"type\":\"object\"},\"trainedWords\":{\"description\":\"The words used to trigger the model\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Model version not found\"}},\"security\":[{\"BearerAuth\":[]},{\"QueryToken\":[]},{}],\"securitySchemes\":{\"BearerAuth\":{\"description\":\"Use your API key as a Bearer token in the Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"QueryToken\":{\"description\":\"Pass your API key as a query parameter\",\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/model-versions/by-hash/{hash}", "segments": [{ "lit": "model-versions" }, { "lit": "by-hash" }, { "var": "hash" }], "select": { "exist": ["hash"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }, { "active": true, "args": { "params": [{ "active": true, "kind": "param", "name": "id", "orig": "model_version_id", "reqd": true, "type": "`$INTEGER`", "index$": 0 }] }, "contract": { "id": "GET /model-versions/{modelVersionId}", "json": "{\"operationId\":\"getModelVersionById\",\"parameters\":[{\"description\":\"The ID of the model version to retrieve\",\"in\":\"path\",\"name\":\"modelVersionId\",\"required\":true,\"schema\":{\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"createdAt\":{\"description\":\"The date in which the version was created\",\"format\":\"date-time\",\"type\":\"string\"},\"description\":{\"description\":\"The description of the model version (usually a changelog)\",\"type\":\"string\"},\"downloadUrl\":{\"description\":\"The download url to get the model file for this specific version\",\"type\":\"string\"},\"files\":{\"items\":{\"properties\":{\"metadata\":{\"properties\":{\"format\":{\"description\":\"The specified model format for the file\",\"enum\":[\"SafeTensor\",\"PickleTensor\",\"Other\"],\"type\":\"string\"},\"fp\":{\"description\":\"The specified floating point for the file\",\"enum\":[\"fp16\",\"fp32\"],\"type\":\"string\"},\"size\":{\"description\":\"The specified model size for the file\",\"enum\":[\"full\",\"pruned\"],\"type\":\"string\"}},\"type\":\"object\"},\"pickleScanResult\":{\"description\":\"Status of the pickle scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"},\"primary\":{\"description\":\"If the file is the primary file for the model version\",\"type\":\"boolean\"},\"scannedAt\":{\"description\":\"The date in which the file was scanned\",\"format\":\"date-time\",\"nullable\":true,\"type\":\"string\"},\"sizeKb\":{\"description\":\"The size of the model file in KB\",\"type\":\"number\"},\"virusScanResult\":{\"description\":\"Status of the virus scan\",\"enum\":[\"Pending\",\"Success\",\"Danger\",\"Error\"],\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"},\"id\":{\"description\":\"The identifier for the model version\",\"type\":\"integer\"},\"images\":{\"items\":{\"properties\":{\"hash\":{\"description\":\"The blurhash of the image\",\"type\":\"string\"},\"height\":{\"description\":\"The original height of the image\",\"type\":\"integer\"},\"id\":{\"description\":\"The id for the image\",\"type\":\"string\"},\"meta\":{\"additionalProperties\":true,\"description\":\"The generation params of the image\",\"nullable\":true,\"type\":\"object\"},\"nsfw\":{\"description\":\"Whether or not the image is NSFW\",\"type\":\"string\"},\"url\":{\"description\":\"The url for the image\",\"type\":\"string\"},\"width\":{\"description\":\"The original width of the image\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"name\":{\"description\":\"The name of the model version\",\"type\":\"string\"},\"stats\":{\"properties\":{\"downloadCount\":{\"description\":\"The number of downloads the model version has\",\"type\":\"integer\"},\"rating\":{\"description\":\"The average rating of the model version\",\"type\":\"number\"},\"ratingCount\":{\"description\":\"The number of ratings the model version has\",\"type\":\"integer\"}},\"type\":\"object\"},\"trainedWords\":{\"description\":\"The words used to trigger the model\",\"items\":{\"type\":\"string\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response\"},\"404\":{\"description\":\"Model version not found\"}},\"security\":[{\"BearerAuth\":[]},{\"QueryToken\":[]},{}],\"securitySchemes\":{\"BearerAuth\":{\"description\":\"Use your API key as a Bearer token in the Authorization header\",\"scheme\":\"bearer\",\"type\":\"http\"},\"QueryToken\":{\"description\":\"Pass your API key as a query parameter\",\"in\":\"query\",\"name\":\"token\",\"type\":\"apiKey\"}},\"securitySource\":\"definition\"}", "source": "openapi3", "version": 1 }, "kind": "http", "method": "GET", "orig": "/model-versions/{modelVersionId}", "rename": { "param": { "modelVersionId": "id" } }, "segments": [{ "lit": "model-versions" }, { "var": "id" }], "select": { "exist": ["id"] }, "transform": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [["by_hash"]] }, "key$": "model_version", "name__orig": "model_version", "Name": "ModelVersion", "name_": "model_version", "name-": "model-version", "NAME": "MODEL_VERSION", "index$": 3 }, { "active": true, "entity": "model_version", "key$": "BasicModelVersionFlow", "kind": "basic", "name": "BasicModelVersionFlow", "param": {}, "step": [{ "active": true, "data": {}, "input": { "ref": "model_version_ref01", "srcdatavar": "model_version_ref01_data", "suffix": "_dt0" }, "match": { "id": "model_version01" }, "op": "load", "spec": [], "valid": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-model_version_ref01" } }], "index$": 0 }] }, 'ModelVersion');
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -103,12 +101,6 @@ function basicSetup(extra) {
                 '`$VAL`': ['`$FORMAT`', 'upper', '`$COPY`']
             }]
     });
-    // Detect whether the user provided a real ENTID JSON via env var. The
-    // basic flow consumes synthetic IDs from the fixture file; without an
-    // override those synthetic IDs reach the live API and 4xx. Surface this
-    // to the test so it can skip rather than fail.
-    const idmapEnvVal = process.env['CIVITAI_TEST_MODEL_VERSION_ENTID'];
-    const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{');
     const env = (0, utility_1.envOverride)({
         'CIVITAI_TEST_MODEL_VERSION_ENTID': idmap,
         'CIVITAI_TEST_LIVE': 'FALSE',
@@ -117,7 +109,13 @@ function basicSetup(extra) {
     });
     idmap = env['CIVITAI_TEST_MODEL_VERSION_ENTID'];
     const live = 'TRUE' === env.CIVITAI_TEST_LIVE;
+    const transport = (0, live_runner_1.createLiveTransport)();
     if (live) {
+        const rawIds = process.env['CIVITAI_TEST_MODEL_VERSION_ENTID'];
+        idmap = rawIds && rawIds.trim() ? JSON.parse(rawIds) : {};
+        if (!idmap || Array.isArray(idmap) || typeof idmap !== 'object') {
+            throw new Error('Live ENTID must be a JSON object');
+        }
         client = new __1.CivitaiSDK(merge([
             // FIRST, so the generated fields below win: sdk-test-control.json's
             // test.client.options adds to the live client, it does not redirect it.
@@ -130,7 +128,8 @@ function basicSetup(extra) {
             // argument at all - so a bare 'extra' silently discarded the apikey
             // and server values above and handed the SDK undefined. Harmless
             // while there was nothing in that object; not harmless now.
-            extra || {}
+            extra || {},
+            { system: { fetch: transport.fetch } }
         ]));
     }
     const setup = {
@@ -142,7 +141,7 @@ function basicSetup(extra) {
         data: entityData,
         explain: 'TRUE' === env.CIVITAI_TEST_EXPLAIN,
         live,
-        syntheticOnly: live && !idmapOverridden,
+        transport,
         now: Date.now(),
     };
     return setup;
