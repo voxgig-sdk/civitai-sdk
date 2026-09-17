@@ -1,7 +1,7 @@
 # Entity Models
 
-@"creator.aon"
-@"image.aon"
-@"model.aon"
-@"model_version.aon"
-@"tag.aon"
+@"./creator.aon"
+@"./image.aon"
+@"./model.aon"
+@"./model_version.aon"
+@"./tag.aon"

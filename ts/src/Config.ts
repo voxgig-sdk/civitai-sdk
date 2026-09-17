@@ -131,21 +131,21 @@ class Config {
 
     entity: {
       
-      creator: {
-      },
-
-      image: {
-      },
-
-      model: {
-      },
-
-      model_version: {
-      },
-
-      tag: {
-      },
-
+        creator: {
+        },
+  
+        image: {
+        },
+  
+        model: {
+        },
+  
+        model_version: {
+        },
+  
+        tag: {
+        },
+  
     }
   }
 

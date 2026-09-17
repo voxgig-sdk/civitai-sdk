@@ -105,12 +105,12 @@ local results, err = client:Model():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/civitai-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/releases) |
-| Python | `voxgig-sdk-civitai` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/releases) |
-| PHP | `voxgig-sdk/civitai` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/releases) |
+| TypeScript | `@voxgig-sdk/civitai-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/tags) |
+| Python | `voxgig-sdk-civitai` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/tags) |
+| PHP | `voxgig-sdk/civitai` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/civitai-sdk/go` | `go get github.com/voxgig-sdk/civitai-sdk/go@latest` |
-| Ruby | `voxgig-sdk-civitai` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/releases) |
-| Lua | `voxgig-sdk-civitai` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/releases) |
+| Ruby | `voxgig-sdk-civitai` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/tags) |
+| Lua | `voxgig-sdk-civitai` | publish pending — [install from git tag](https://github.com/voxgig-sdk/civitai-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/civitai-sdk/go-cli` | `go install github.com/voxgig-sdk/civitai-sdk/go-cli/cmd/civitai@latest` |
 | Go MCP server | `github.com/voxgig-sdk/civitai-sdk/go-mcp` | `go get github.com/voxgig-sdk/civitai-sdk/go-mcp@latest` |
 
