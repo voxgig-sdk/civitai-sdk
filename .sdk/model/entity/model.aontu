@@ -1,0 +1,312 @@
+# Entity: model
+
+main: kit: entity: model: {
+
+  alias: field: {}
+
+  fields: {
+    creator: {
+      h: "Creator"
+      n: "creator"
+      r: false
+      t: "`$OBJECT`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "The description of the model (HTML)"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The identifier for the model"
+      t: "`$INTEGER`"
+    }
+    mode: {
+      h: "Mode"
+      n: "mode"
+      r: false
+      sh: "The mode in which the model is currently on."
+      t: "`$STRING`"
+    }
+    modelVersions: {
+      h: "Model Versions"
+      n: "modelVersions"
+      r: false
+      t: "`$ARRAY`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the model"
+      t: "`$STRING`"
+    }
+    nsfw: {
+      h: "Nsfw"
+      n: "nsfw"
+      r: false
+      sh: "Whether the model is NSFW or not"
+      t: "`$BOOLEAN`"
+    }
+    stats: {
+      h: "Stats"
+      n: "stats"
+      r: false
+      t: "`$OBJECT`"
+    }
+    tags: {
+      h: "Tags"
+      n: "tags"
+      r: false
+      sh: "The tags associated with the model"
+      t: "`$ARRAY`"
+    }
+    type: {
+      h: "Type"
+      n: "type"
+      r: false
+      sh: "The model type"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "model"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /models"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "allow_commercial_use"
+                or: "allow_commercial_use"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "allow_derivative"
+                or: "allow_derivative"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "allow_different_license"
+                or: "allow_different_license"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "allow_no_credit"
+                or: "allow_no_credit"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "favorite"
+                or: "favorite"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "hidden"
+                or: "hidden"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 100
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "nsfw"
+                or: "nsfw"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "period"
+                or: "period"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "primary_file_only"
+                or: "primary_file_only"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "rating"
+                or: "rating"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "supports_generation"
+                or: "supports_generation"
+                r: false
+                t: "`$BOOLEAN`"
+              }
+              {
+                k: "query"
+                n: "tag"
+                or: "tag"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "type"
+                or: "type"
+                r: false
+                t: "`$ARRAY`"
+              }
+              {
+                k: "query"
+                n: "username"
+                or: "username"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/models"
+          q: {
+            exist: [
+              "allow_commercial_use"
+              "allow_derivative"
+              "allow_different_license"
+              "allow_no_credit"
+              "favorite"
+              "hidden"
+              "limit"
+              "nsfw"
+              "page"
+              "period"
+              "primary_file_only"
+              "query"
+              "rating"
+              "sort"
+              "supports_generation"
+              "tag"
+              "type"
+              "username"
+            ]
+          }
+          s: [
+            {
+              lit: "models"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /models/{modelId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "model_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/models/{modelId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              modelId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "models"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

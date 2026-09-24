@@ -1,0 +1,169 @@
+# Entity: model_version
+
+main: kit: entity: model_version: {
+
+  alias: field: {}
+
+  fields: {
+    createdAt: {
+      fo: "date-time"
+      h: "Created At"
+      n: "createdAt"
+      r: false
+      sh: "The date in which the version was created"
+      t: "`$STRING`"
+    }
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "The description of the model version (usually a changelog)"
+      t: "`$STRING`"
+    }
+    downloadUrl: {
+      h: "Download Url"
+      n: "downloadUrl"
+      r: false
+      sh: "The download url to get the model file for this specific version"
+      t: "`$STRING`"
+    }
+    files: {
+      h: "Files"
+      n: "files"
+      r: false
+      t: "`$ARRAY`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The identifier for the model version"
+      t: "`$INTEGER`"
+    }
+    images: {
+      h: "Images"
+      n: "images"
+      r: false
+      t: "`$ARRAY`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "The name of the model version"
+      t: "`$STRING`"
+    }
+    stats: {
+      h: "Stats"
+      n: "stats"
+      r: false
+      t: "`$OBJECT`"
+    }
+    trainedWords: {
+      h: "Trained Words"
+      n: "trainedWords"
+      r: false
+      sh: "The words used to trigger the model"
+      t: "`$ARRAY`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "model_version"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /model-versions/by-hash/{hash}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "hash"
+                or: "hash"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/model-versions/by-hash/{hash}"
+          q: {
+            exist: [
+              "hash"
+            ]
+          }
+          s: [
+            {
+              lit: "model-versions"
+            }
+            {
+              lit: "by-hash"
+            }
+            {
+              var: "hash"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          co: {
+            id: "GET /model-versions/{modelVersionId}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                k: "param"
+                n: "id"
+                or: "model_version_id"
+                r: true
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/model-versions/{modelVersionId}"
+          q: {
+            exist: [
+              "id"
+            ]
+          }
+          r: {
+            param: {
+              modelVersionId: "id"
+            }
+          }
+          s: [
+            {
+              lit: "model-versions"
+            }
+            {
+              var: "id"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

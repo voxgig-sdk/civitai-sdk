@@ -74,7 +74,7 @@ function model_version_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["model_version01", "model_version02", "model_version03", "by_hash01", "by_hash02", "by_hash03"] as $k) {
+    foreach (["model_version01", "model_version02", "model_version03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

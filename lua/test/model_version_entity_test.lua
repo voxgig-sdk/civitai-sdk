@@ -76,7 +76,7 @@ function model_version_basic_setup(extra)
 
   -- Generate idmap via transform.
   local idmap = vs.transform(
-    { "model_version01", "model_version02", "model_version03", "by_hash01", "by_hash02", "by_hash03" },
+    { "model_version01", "model_version02", "model_version03" },
     {
       ["`$PACK`"] = { "", {
         ["`$KEY`"] = "`$COPY`",

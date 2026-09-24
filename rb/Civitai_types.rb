@@ -2,8 +2,8 @@
 
 # Typed models for the Civitai SDK.
 #
-# GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-# params (op.<name>.points[].args.params[]). Member types come from the
+# GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+# params (op.<name>.points[].g.params[]). Member types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Ruby types are unenforced; these YARD
 # annotations document the shapes. Do not edit by hand.
@@ -195,7 +195,7 @@ ModelLoadMatch = Struct.new(
 # @!attribute [rw] allow_commercial_use
 #   @return [Boolean, nil]
 #
-# @!attribute [rw] allow_derivatif
+# @!attribute [rw] allow_derivative
 #   @return [Boolean, nil]
 #
 # @!attribute [rw] allow_different_license
@@ -247,7 +247,7 @@ ModelLoadMatch = Struct.new(
 #   @return [String, nil]
 ModelListMatch = Struct.new(
   :allow_commercial_use,
-  :allow_derivatif,
+  :allow_derivative,
   :allow_different_license,
   :allow_no_credit,
   :favorite,

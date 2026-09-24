@@ -19,7 +19,6 @@ import type {
   ImageListMatch,
 } from '../CivitaiTypes'
 
-// TODO: needs Entity superclass
 class ImageEntity extends CivitaiEntityBase<Image> {
 
   constructor(client: CivitaiSDK, entopts: any) {

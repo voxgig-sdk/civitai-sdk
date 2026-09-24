@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CreatorEntity = void 0;
 const CivitaiEntityBase_1 = require("../CivitaiEntityBase");
-// TODO: needs Entity superclass
 class CreatorEntity extends CivitaiEntityBase_1.CivitaiEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

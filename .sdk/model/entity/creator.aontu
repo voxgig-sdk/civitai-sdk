@@ -1,0 +1,94 @@
+# Entity: creator
+
+main: kit: entity: creator: {
+
+  alias: field: {}
+
+  fields: {
+    link: {
+      h: "Link"
+      n: "link"
+      r: false
+      sh: "Url to get all models from this user"
+      t: "`$STRING`"
+    }
+    modelCount: {
+      h: "Model Count"
+      n: "modelCount"
+      r: false
+      sh: "The amount of models linked to this user"
+      t: "`$INTEGER`"
+    }
+    username: {
+      h: "Username"
+      n: "username"
+      r: false
+      sh: "The username of the creator"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "creator"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /creators"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 20
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "query"
+                or: "query"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/creators"
+          q: {
+            exist: [
+              "limit"
+              "page"
+              "query"
+            ]
+          }
+          s: [
+            {
+              lit: "creators"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

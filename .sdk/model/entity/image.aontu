@@ -1,0 +1,210 @@
+# Entity: image
+
+main: kit: entity: image: {
+
+  alias: field: {}
+
+  fields: {
+    createdAt: {
+      fo: "date-time"
+      h: "Created At"
+      n: "createdAt"
+      r: false
+      sh: "The date the image was posted"
+      t: "`$STRING`"
+    }
+    hash: {
+      h: "Hash"
+      n: "hash"
+      r: false
+      sh: "The blurhash of the image"
+      t: "`$STRING`"
+    }
+    height: {
+      h: "Height"
+      n: "height"
+      r: false
+      sh: "The height of the image"
+      t: "`$INTEGER`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "The id of the image"
+      t: "`$INTEGER`"
+    }
+    meta: {
+      h: "Meta"
+      n: "meta"
+      r: false
+      sh: "The generation parameters parsed or input for the image"
+      t: "`$OBJECT`"
+    }
+    nsfw: {
+      h: "Nsfw"
+      n: "nsfw"
+      r: false
+      sh: "If the image has any mature content labels"
+      t: "`$BOOLEAN`"
+    }
+    nsfwLevel: {
+      h: "Nsfw Level"
+      n: "nsfwLevel"
+      r: false
+      sh: "The NSFW level of the image"
+      t: "`$STRING`"
+    }
+    postId: {
+      h: "Post Id"
+      n: "postId"
+      r: false
+      sh: "The ID of the post the image belongs to"
+      t: "`$INTEGER`"
+    }
+    stats: {
+      h: "Stats"
+      n: "stats"
+      r: false
+      t: "`$OBJECT`"
+    }
+    url: {
+      h: "Url"
+      n: "url"
+      r: false
+      sh: "The url of the image at its source resolution"
+      t: "`$STRING`"
+    }
+    username: {
+      h: "Username"
+      n: "username"
+      r: false
+      sh: "The username of the creator"
+      t: "`$STRING`"
+    }
+    width: {
+      h: "Width"
+      n: "width"
+      r: false
+      sh: "The width of the image"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "image"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /images"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                ex: 100
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "model_id"
+                or: "model_id"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "model_version_id"
+                or: "model_version_id"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "nsfw"
+                or: "nsfw"
+                r: false
+                t: "`$ANY`"
+              }
+              {
+                ex: 1
+                k: "query"
+                n: "page"
+                or: "page"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "period"
+                or: "period"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "post_id"
+                or: "post_id"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                k: "query"
+                n: "sort"
+                or: "sort"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "username"
+                or: "username"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/images"
+          q: {
+            exist: [
+              "limit"
+              "model_id"
+              "model_version_id"
+              "nsfw"
+              "page"
+              "period"
+              "post_id"
+              "sort"
+              "username"
+            ]
+          }
+          s: [
+            {
+              lit: "images"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

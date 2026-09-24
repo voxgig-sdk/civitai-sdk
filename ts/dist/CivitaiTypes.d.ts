@@ -50,7 +50,7 @@ export interface ModelLoadMatch {
 }
 export interface ModelListMatch {
     allow_commercial_use?: boolean;
-    allow_derivatif?: boolean;
+    allow_derivative?: boolean;
     allow_different_license?: boolean;
     allow_no_credit?: boolean;
     favorite?: boolean;

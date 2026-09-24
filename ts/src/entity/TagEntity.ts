@@ -19,7 +19,6 @@ import type {
   TagListMatch,
 } from '../CivitaiTypes'
 
-// TODO: needs Entity superclass
 class TagEntity extends CivitaiEntityBase<Tag> {
 
   constructor(client: CivitaiSDK, entopts: any) {

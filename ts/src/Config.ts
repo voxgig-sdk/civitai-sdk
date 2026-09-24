@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -155,18 +148,21 @@ class Config {
       "fields": [
         {
           "name": "link",
-          "short": "Url to get all models from this user",
-          "type": "`$STRING`"
+          "title": "Link",
+          "type": "`$STRING`",
+          "short": "Url to get all models from this user"
         },
         {
           "name": "modelCount",
-          "short": "The amount of models linked to this user",
-          "type": "`$INTEGER`"
+          "title": "Model Count",
+          "type": "`$INTEGER`",
+          "short": "The amount of models linked to this user"
         },
         {
           "name": "username",
-          "short": "The username of the creator",
-          "type": "`$STRING`"
+          "title": "Username",
+          "type": "`$STRING`",
+          "short": "The username of the creator"
         }
       ],
       "name": "creator",
@@ -176,30 +172,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 20,
-                    "kind": "query",
-                    "name": "limit",
-                    "orig": "limit",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/creators",
@@ -208,20 +180,45 @@ class Config {
                   "lit": "creators"
                 }
               ],
+              "parts": [
+                "creators"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "limit",
+                    "orig": "limit",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 20
+                  },
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "limit",
                   "page",
                   "query"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "creators"
-              ]
+              }
             }
           ]
         }
@@ -233,64 +230,76 @@ class Config {
     "image": {
       "fields": [
         {
-          "format": "date-time",
           "name": "createdAt",
+          "title": "Created At",
+          "type": "`$STRING`",
           "short": "The date the image was posted",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "hash",
-          "short": "The blurhash of the image",
-          "type": "`$STRING`"
+          "title": "Hash",
+          "type": "`$STRING`",
+          "short": "The blurhash of the image"
         },
         {
           "name": "height",
-          "short": "The height of the image",
-          "type": "`$INTEGER`"
+          "title": "Height",
+          "type": "`$INTEGER`",
+          "short": "The height of the image"
         },
         {
           "name": "id",
-          "short": "The id of the image",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "The id of the image"
         },
         {
           "name": "meta",
-          "short": "The generation parameters parsed or input for the image",
-          "type": "`$OBJECT`"
+          "title": "Meta",
+          "type": "`$OBJECT`",
+          "short": "The generation parameters parsed or input for the image"
         },
         {
           "name": "nsfw",
-          "short": "If the image has any mature content labels",
-          "type": "`$BOOLEAN`"
+          "title": "Nsfw",
+          "type": "`$BOOLEAN`",
+          "short": "If the image has any mature content labels"
         },
         {
           "name": "nsfwLevel",
-          "short": "The NSFW level of the image",
-          "type": "`$STRING`"
+          "title": "Nsfw Level",
+          "type": "`$STRING`",
+          "short": "The NSFW level of the image"
         },
         {
           "name": "postId",
-          "short": "The ID of the post the image belongs to",
-          "type": "`$INTEGER`"
+          "title": "Post Id",
+          "type": "`$INTEGER`",
+          "short": "The ID of the post the image belongs to"
         },
         {
           "name": "stats",
+          "title": "Stats",
           "type": "`$OBJECT`"
         },
         {
           "name": "url",
-          "short": "The url of the image at its source resolution",
-          "type": "`$STRING`"
+          "title": "Url",
+          "type": "`$STRING`",
+          "short": "The url of the image at its source resolution"
         },
         {
           "name": "username",
-          "short": "The username of the creator",
-          "type": "`$STRING`"
+          "title": "Username",
+          "type": "`$STRING`",
+          "short": "The username of the creator"
         },
         {
           "name": "width",
-          "short": "The width of the image",
-          "type": "`$INTEGER`"
+          "title": "Width",
+          "type": "`$INTEGER`",
+          "short": "The width of the image"
         }
       ],
       "id": {
@@ -304,66 +313,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 100,
-                    "kind": "query",
-                    "name": "limit",
-                    "orig": "limit",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "model_id",
-                    "orig": "model_id",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "model_version_id",
-                    "orig": "model_version_id",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "nsfw",
-                    "orig": "nsfw",
-                    "type": "`$ANY`"
-                  },
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "period",
-                    "orig": "period",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "post_id",
-                    "orig": "post_id",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "username",
-                    "orig": "username",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/images",
@@ -372,6 +321,74 @@ class Config {
                   "lit": "images"
                 }
               ],
+              "parts": [
+                "images"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "limit",
+                    "orig": "limit",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 100
+                  },
+                  {
+                    "name": "model_id",
+                    "orig": "model_id",
+                    "type": "`$INTEGER`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "model_version_id",
+                    "orig": "model_version_id",
+                    "type": "`$INTEGER`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "nsfw",
+                    "orig": "nsfw",
+                    "type": "`$ANY`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "period",
+                    "orig": "period",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "post_id",
+                    "orig": "post_id",
+                    "type": "`$INTEGER`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "username",
+                    "orig": "username",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "limit",
@@ -384,14 +401,7 @@ class Config {
                   "sort",
                   "username"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "images"
-              ]
+              }
             }
           ]
         }
@@ -404,50 +414,60 @@ class Config {
       "fields": [
         {
           "name": "creator",
+          "title": "Creator",
           "type": "`$OBJECT`"
         },
         {
           "name": "description",
-          "short": "The description of the model (HTML)",
-          "type": "`$STRING`"
+          "title": "Description",
+          "type": "`$STRING`",
+          "short": "The description of the model (HTML)"
         },
         {
           "name": "id",
-          "short": "The identifier for the model",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "The identifier for the model"
         },
         {
           "name": "mode",
-          "short": "The mode in which the model is currently on.",
-          "type": "`$STRING`"
+          "title": "Mode",
+          "type": "`$STRING`",
+          "short": "The mode in which the model is currently on."
         },
         {
           "name": "modelVersions",
+          "title": "Model Versions",
           "type": "`$ARRAY`"
         },
         {
           "name": "name",
-          "short": "The name of the model",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "The name of the model"
         },
         {
           "name": "nsfw",
-          "short": "Whether the model is NSFW or not",
-          "type": "`$BOOLEAN`"
+          "title": "Nsfw",
+          "type": "`$BOOLEAN`",
+          "short": "Whether the model is NSFW or not"
         },
         {
           "name": "stats",
+          "title": "Stats",
           "type": "`$OBJECT`"
         },
         {
           "name": "tags",
-          "short": "The tags associated with the model",
-          "type": "`$ARRAY`"
+          "title": "Tags",
+          "type": "`$ARRAY`",
+          "short": "The tags associated with the model"
         },
         {
           "name": "type",
-          "short": "The model type",
-          "type": "`$STRING`"
+          "title": "Type",
+          "type": "`$STRING`",
+          "short": "The model type"
         }
       ],
       "id": {
@@ -461,120 +481,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "allow_commercial_use",
-                    "orig": "allow_commercial_use",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "allow_derivatif",
-                    "orig": "allow_derivatif",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "allow_different_license",
-                    "orig": "allow_different_license",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "allow_no_credit",
-                    "orig": "allow_no_credit",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "favorite",
-                    "orig": "favorite",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "hidden",
-                    "orig": "hidden",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "example": 100,
-                    "kind": "query",
-                    "name": "limit",
-                    "orig": "limit",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "nsfw",
-                    "orig": "nsfw",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "period",
-                    "orig": "period",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "primary_file_only",
-                    "orig": "primary_file_only",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "rating",
-                    "orig": "rating",
-                    "type": "`$NUMBER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "sort",
-                    "orig": "sort",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "supports_generation",
-                    "orig": "supports_generation",
-                    "type": "`$BOOLEAN`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "tag",
-                    "orig": "tag",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "type",
-                    "orig": "type",
-                    "type": "`$ARRAY`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "username",
-                    "orig": "username",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/models",
@@ -583,10 +489,132 @@ class Config {
                   "lit": "models"
                 }
               ],
+              "parts": [
+                "models"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "allow_commercial_use",
+                    "orig": "allow_commercial_use",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "allow_derivative",
+                    "orig": "allow_derivative",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "allow_different_license",
+                    "orig": "allow_different_license",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "allow_no_credit",
+                    "orig": "allow_no_credit",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "favorite",
+                    "orig": "favorite",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "hidden",
+                    "orig": "hidden",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "limit",
+                    "orig": "limit",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 100
+                  },
+                  {
+                    "name": "nsfw",
+                    "orig": "nsfw",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "period",
+                    "orig": "period",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "primary_file_only",
+                    "orig": "primary_file_only",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "rating",
+                    "orig": "rating",
+                    "type": "`$NUMBER`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "sort",
+                    "orig": "sort",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "supports_generation",
+                    "orig": "supports_generation",
+                    "type": "`$BOOLEAN`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "tag",
+                    "orig": "tag",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "type",
+                    "orig": "type",
+                    "type": "`$ARRAY`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "username",
+                    "orig": "username",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "allow_commercial_use",
-                  "allow_derivatif",
+                  "allow_derivative",
                   "allow_different_license",
                   "allow_no_credit",
                   "favorite",
@@ -604,14 +632,7 @@ class Config {
                   "type",
                   "username"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "models"
-              ]
+              }
             }
           ]
         },
@@ -620,25 +641,9 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "id",
-                    "orig": "model_id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/models/{modelId}",
-              "rename": {
-                "param": {
-                  "modelId": "id"
-                }
-              },
               "segments": [
                 {
                   "lit": "models"
@@ -647,19 +652,35 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
+              "parts": [
+                "models",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "modelId": "id"
+                }
               },
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "models",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "model_id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
@@ -671,47 +692,56 @@ class Config {
     "model_version": {
       "fields": [
         {
-          "format": "date-time",
           "name": "createdAt",
+          "title": "Created At",
+          "type": "`$STRING`",
           "short": "The date in which the version was created",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "description",
-          "short": "The description of the model version (usually a changelog)",
-          "type": "`$STRING`"
+          "title": "Description",
+          "type": "`$STRING`",
+          "short": "The description of the model version (usually a changelog)"
         },
         {
           "name": "downloadUrl",
-          "short": "The download url to get the model file for this specific version",
-          "type": "`$STRING`"
+          "title": "Download Url",
+          "type": "`$STRING`",
+          "short": "The download url to get the model file for this specific version"
         },
         {
           "name": "files",
+          "title": "Files",
           "type": "`$ARRAY`"
         },
         {
           "name": "id",
-          "short": "The identifier for the model version",
-          "type": "`$INTEGER`"
+          "title": "Id",
+          "type": "`$INTEGER`",
+          "short": "The identifier for the model version"
         },
         {
           "name": "images",
+          "title": "Images",
           "type": "`$ARRAY`"
         },
         {
           "name": "name",
-          "short": "The name of the model version",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "The name of the model version"
         },
         {
           "name": "stats",
+          "title": "Stats",
           "type": "`$OBJECT`"
         },
         {
           "name": "trainedWords",
-          "short": "The words used to trigger the model",
-          "type": "`$ARRAY`"
+          "title": "Trained Words",
+          "type": "`$ARRAY`",
+          "short": "The words used to trigger the model"
         }
       ],
       "id": {
@@ -725,17 +755,6 @@ class Config {
           "name": "load",
           "points": [
             {
-              "args": {
-                "params": [
-                  {
-                    "kind": "param",
-                    "name": "hash",
-                    "orig": "hash",
-                    "reqd": true,
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/model-versions/by-hash/{hash}",
@@ -750,41 +769,37 @@ class Config {
                   "var": "hash"
                 }
               ],
-              "select": {
-                "exist": [
-                  "hash"
-                ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
               "parts": [
                 "model-versions",
                 "by-hash",
                 "{hash}"
-              ]
-            },
-            {
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
               "args": {
                 "params": [
                   {
+                    "name": "hash",
+                    "orig": "hash",
+                    "type": "`$STRING`",
                     "kind": "param",
-                    "name": "id",
-                    "orig": "model_version_id",
-                    "reqd": true,
-                    "type": "`$INTEGER`"
+                    "reqd": true
                   }
                 ]
               },
+              "select": {
+                "exist": [
+                  "hash"
+                ]
+              }
+            },
+            {
               "kind": "http",
               "method": "GET",
               "orig": "/model-versions/{modelVersionId}",
-              "rename": {
-                "param": {
-                  "modelVersionId": "id"
-                }
-              },
               "segments": [
                 {
                   "lit": "model-versions"
@@ -793,43 +808,58 @@ class Config {
                   "var": "id"
                 }
               ],
-              "select": {
-                "exist": [
-                  "id"
-                ]
+              "parts": [
+                "model-versions",
+                "{id}"
+              ],
+              "rename": {
+                "param": {
+                  "modelVersionId": "id"
+                }
               },
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "model-versions",
-                "{id}"
-              ]
+              "args": {
+                "params": [
+                  {
+                    "name": "id",
+                    "orig": "model_version_id",
+                    "type": "`$INTEGER`",
+                    "kind": "param",
+                    "reqd": true
+                  }
+                ]
+              },
+              "select": {
+                "exist": [
+                  "id"
+                ]
+              }
             }
           ]
         }
       },
       "relations": {
-        "ancestors": [
-          [
-            "by_hash"
-          ]
-        ]
+        "ancestors": []
       }
     },
     "tag": {
       "fields": [
         {
           "name": "link",
+          "title": "Link",
           "type": "`$STRING`"
         },
         {
           "name": "modelCount",
+          "title": "Model Count",
           "type": "`$INTEGER`"
         },
         {
           "name": "name",
+          "title": "Name",
           "type": "`$STRING`"
         }
       ],
@@ -840,30 +870,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "example": 20,
-                    "kind": "query",
-                    "name": "limit",
-                    "orig": "limit",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 1,
-                    "kind": "query",
-                    "name": "page",
-                    "orig": "page",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "query",
-                    "orig": "query",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/tags",
@@ -872,20 +878,45 @@ class Config {
                   "lit": "tags"
                 }
               ],
+              "parts": [
+                "tags"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "limit",
+                    "orig": "limit",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 20
+                  },
+                  {
+                    "name": "page",
+                    "orig": "page",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 1
+                  },
+                  {
+                    "name": "query",
+                    "orig": "query",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "limit",
                   "page",
                   "query"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body`"
-              },
-              "parts": [
-                "tags"
-              ]
+              }
             }
           ]
         }

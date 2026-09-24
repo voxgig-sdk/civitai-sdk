@@ -1,7 +1,7 @@
 -- Typed models for the Civitai SDK (LuaLS annotations).
 --
--- GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
--- params (op.<name>.points[].args.params[]). Field/param types come from the
+-- GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+-- params (op.<name>.points[].g.params[]). Field/param types come from the
 -- canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 -- @voxgig/apidef VALID_CANON). Annotations only — no runtime effect. Do not
 -- edit by hand.
@@ -58,7 +58,7 @@
 
 ---@class ModelListMatch
 ---@field allow_commercial_use? boolean
----@field allow_derivatif? boolean
+---@field allow_derivative? boolean
 ---@field allow_different_license? boolean
 ---@field allow_no_credit? boolean
 ---@field favorite? boolean

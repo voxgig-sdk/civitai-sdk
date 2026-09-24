@@ -45,7 +45,7 @@ local creators, err = client:Creator():list()
 if err then error(err) end
 
 for _, item in ipairs(creators) do
-  print(item["link"])
+  print(item)
 end
 ```
 

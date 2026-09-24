@@ -98,18 +98,21 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "link",
-						"short": "Url to get all models from this user",
+						"title": "Link",
 						"type": "`$STRING`",
+						"short": "Url to get all models from this user",
 					},
 					map[string]any{
 						"name": "modelCount",
-						"short": "The amount of models linked to this user",
+						"title": "Model Count",
 						"type": "`$INTEGER`",
+						"short": "The amount of models linked to this user",
 					},
 					map[string]any{
 						"name": "username",
-						"short": "The username of the creator",
+						"title": "Username",
 						"type": "`$STRING`",
+						"short": "The username of the creator",
 					},
 				},
 				"name": "creator",
@@ -119,30 +122,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 20,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/creators",
@@ -151,19 +130,44 @@ func MakeConfig() map[string]any {
 										"lit": "creators",
 									},
 								},
+								"parts": []any{
+									"creators",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 20,
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"limit",
 										"page",
 										"query",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"creators",
 								},
 							},
 						},
@@ -176,64 +180,76 @@ func MakeConfig() map[string]any {
 			"image": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "date-time",
 						"name": "createdAt",
-						"short": "The date the image was posted",
+						"title": "Created At",
 						"type": "`$STRING`",
+						"short": "The date the image was posted",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "hash",
-						"short": "The blurhash of the image",
+						"title": "Hash",
 						"type": "`$STRING`",
+						"short": "The blurhash of the image",
 					},
 					map[string]any{
 						"name": "height",
-						"short": "The height of the image",
+						"title": "Height",
 						"type": "`$INTEGER`",
+						"short": "The height of the image",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "The id of the image",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "The id of the image",
 					},
 					map[string]any{
 						"name": "meta",
-						"short": "The generation parameters parsed or input for the image",
+						"title": "Meta",
 						"type": "`$OBJECT`",
+						"short": "The generation parameters parsed or input for the image",
 					},
 					map[string]any{
 						"name": "nsfw",
-						"short": "If the image has any mature content labels",
+						"title": "Nsfw",
 						"type": "`$BOOLEAN`",
+						"short": "If the image has any mature content labels",
 					},
 					map[string]any{
 						"name": "nsfwLevel",
-						"short": "The NSFW level of the image",
+						"title": "Nsfw Level",
 						"type": "`$STRING`",
+						"short": "The NSFW level of the image",
 					},
 					map[string]any{
 						"name": "postId",
-						"short": "The ID of the post the image belongs to",
+						"title": "Post Id",
 						"type": "`$INTEGER`",
+						"short": "The ID of the post the image belongs to",
 					},
 					map[string]any{
 						"name": "stats",
+						"title": "Stats",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "url",
-						"short": "The url of the image at its source resolution",
+						"title": "Url",
 						"type": "`$STRING`",
+						"short": "The url of the image at its source resolution",
 					},
 					map[string]any{
 						"name": "username",
-						"short": "The username of the creator",
+						"title": "Username",
 						"type": "`$STRING`",
+						"short": "The username of the creator",
 					},
 					map[string]any{
 						"name": "width",
-						"short": "The width of the image",
+						"title": "Width",
 						"type": "`$INTEGER`",
+						"short": "The width of the image",
 					},
 				},
 				"id": map[string]any{
@@ -247,72 +263,80 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 100,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "model_id",
-											"orig": "model_id",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "model_version_id",
-											"orig": "model_version_id",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "nsfw",
-											"orig": "nsfw",
-											"type": "`$ANY`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "period",
-											"orig": "period",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "post_id",
-											"orig": "post_id",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "username",
-											"orig": "username",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/images",
 								"segments": []any{
 									map[string]any{
 										"lit": "images",
+									},
+								},
+								"parts": []any{
+									"images",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 100,
+										},
+										map[string]any{
+											"name": "model_id",
+											"orig": "model_id",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "model_version_id",
+											"orig": "model_version_id",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "nsfw",
+											"orig": "nsfw",
+											"type": "`$ANY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "period",
+											"orig": "period",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "post_id",
+											"orig": "post_id",
+											"type": "`$INTEGER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "username",
+											"orig": "username",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -328,13 +352,6 @@ func MakeConfig() map[string]any {
 										"username",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"images",
-								},
 							},
 						},
 					},
@@ -347,50 +364,60 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "creator",
+						"title": "Creator",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "The description of the model (HTML)",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "The description of the model (HTML)",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "The identifier for the model",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "The identifier for the model",
 					},
 					map[string]any{
 						"name": "mode",
-						"short": "The mode in which the model is currently on.",
+						"title": "Mode",
 						"type": "`$STRING`",
+						"short": "The mode in which the model is currently on.",
 					},
 					map[string]any{
 						"name": "modelVersions",
+						"title": "Model Versions",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "The name of the model",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "The name of the model",
 					},
 					map[string]any{
 						"name": "nsfw",
-						"short": "Whether the model is NSFW or not",
+						"title": "Nsfw",
 						"type": "`$BOOLEAN`",
+						"short": "Whether the model is NSFW or not",
 					},
 					map[string]any{
 						"name": "stats",
+						"title": "Stats",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "tags",
-						"short": "The tags associated with the model",
+						"title": "Tags",
 						"type": "`$ARRAY`",
+						"short": "The tags associated with the model",
 					},
 					map[string]any{
 						"name": "type",
-						"short": "The model type",
+						"title": "Type",
 						"type": "`$STRING`",
+						"short": "The model type",
 					},
 				},
 				"id": map[string]any{
@@ -404,120 +431,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "allow_commercial_use",
-											"orig": "allow_commercial_use",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "allow_derivatif",
-											"orig": "allow_derivatif",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "allow_different_license",
-											"orig": "allow_different_license",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "allow_no_credit",
-											"orig": "allow_no_credit",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "favorite",
-											"orig": "favorite",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "hidden",
-											"orig": "hidden",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": 100,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "nsfw",
-											"orig": "nsfw",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "period",
-											"orig": "period",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "primary_file_only",
-											"orig": "primary_file_only",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "rating",
-											"orig": "rating",
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "sort",
-											"orig": "sort",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "supports_generation",
-											"orig": "supports_generation",
-											"type": "`$BOOLEAN`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "tag",
-											"orig": "tag",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "type",
-											"orig": "type",
-											"type": "`$ARRAY`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "username",
-											"orig": "username",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/models",
@@ -526,10 +439,132 @@ func MakeConfig() map[string]any {
 										"lit": "models",
 									},
 								},
+								"parts": []any{
+									"models",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "allow_commercial_use",
+											"orig": "allow_commercial_use",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "allow_derivative",
+											"orig": "allow_derivative",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "allow_different_license",
+											"orig": "allow_different_license",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "allow_no_credit",
+											"orig": "allow_no_credit",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "favorite",
+											"orig": "favorite",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "hidden",
+											"orig": "hidden",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 100,
+										},
+										map[string]any{
+											"name": "nsfw",
+											"orig": "nsfw",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "period",
+											"orig": "period",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "primary_file_only",
+											"orig": "primary_file_only",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "rating",
+											"orig": "rating",
+											"type": "`$NUMBER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "sort",
+											"orig": "sort",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "supports_generation",
+											"orig": "supports_generation",
+											"type": "`$BOOLEAN`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "tag",
+											"orig": "tag",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "type",
+											"orig": "type",
+											"type": "`$ARRAY`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "username",
+											"orig": "username",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"allow_commercial_use",
-										"allow_derivatif",
+										"allow_derivative",
 										"allow_different_license",
 										"allow_no_credit",
 										"favorite",
@@ -548,13 +583,6 @@ func MakeConfig() map[string]any {
 										"username",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"models",
-								},
 							},
 						},
 					},
@@ -563,25 +591,9 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "id",
-											"orig": "model_id",
-											"reqd": true,
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/models/{modelId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"modelId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "models",
@@ -590,18 +602,34 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"models",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"modelId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"models",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "model_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
@@ -614,47 +642,56 @@ func MakeConfig() map[string]any {
 			"model_version": map[string]any{
 				"fields": []any{
 					map[string]any{
-						"format": "date-time",
 						"name": "createdAt",
-						"short": "The date in which the version was created",
+						"title": "Created At",
 						"type": "`$STRING`",
+						"short": "The date in which the version was created",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "description",
-						"short": "The description of the model version (usually a changelog)",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "The description of the model version (usually a changelog)",
 					},
 					map[string]any{
 						"name": "downloadUrl",
-						"short": "The download url to get the model file for this specific version",
+						"title": "Download Url",
 						"type": "`$STRING`",
+						"short": "The download url to get the model file for this specific version",
 					},
 					map[string]any{
 						"name": "files",
+						"title": "Files",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "The identifier for the model version",
+						"title": "Id",
 						"type": "`$INTEGER`",
+						"short": "The identifier for the model version",
 					},
 					map[string]any{
 						"name": "images",
+						"title": "Images",
 						"type": "`$ARRAY`",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "The name of the model version",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "The name of the model version",
 					},
 					map[string]any{
 						"name": "stats",
+						"title": "Stats",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "trainedWords",
-						"short": "The words used to trigger the model",
+						"title": "Trained Words",
 						"type": "`$ARRAY`",
+						"short": "The words used to trigger the model",
 					},
 				},
 				"id": map[string]any{
@@ -668,17 +705,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"kind": "param",
-											"name": "hash",
-											"orig": "hash",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/model-versions/by-hash/{hash}",
@@ -693,41 +719,37 @@ func MakeConfig() map[string]any {
 										"var": "hash",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"hash",
-									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"model-versions",
 									"by-hash",
 									"{hash}",
 								},
-							},
-							map[string]any{
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
+											"name": "hash",
+											"orig": "hash",
+											"type": "`$STRING`",
 											"kind": "param",
-											"name": "id",
-											"orig": "model_version_id",
 											"reqd": true,
-											"type": "`$INTEGER`",
 										},
 									},
 								},
+								"select": map[string]any{
+									"exist": []any{
+										"hash",
+									},
+								},
+							},
+							map[string]any{
 								"kind": "http",
 								"method": "GET",
 								"orig": "/model-versions/{modelVersionId}",
-								"rename": map[string]any{
-									"param": map[string]any{
-										"modelVersionId": "id",
-									},
-								},
 								"segments": []any{
 									map[string]any{
 										"lit": "model-versions",
@@ -736,43 +758,58 @@ func MakeConfig() map[string]any {
 										"var": "id",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"id",
+								"parts": []any{
+									"model-versions",
+									"{id}",
+								},
+								"rename": map[string]any{
+									"param": map[string]any{
+										"modelVersionId": "id",
 									},
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"model-versions",
-									"{id}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "id",
+											"orig": "model_version_id",
+											"type": "`$INTEGER`",
+											"kind": "param",
+											"reqd": true,
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"id",
+									},
 								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"by_hash",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 			"tag": map[string]any{
 				"fields": []any{
 					map[string]any{
 						"name": "link",
+						"title": "Link",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "modelCount",
+						"title": "Model Count",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"title": "Name",
 						"type": "`$STRING`",
 					},
 				},
@@ -783,30 +820,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"example": 20,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 1,
-											"kind": "query",
-											"name": "page",
-											"orig": "page",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "query",
-											"orig": "query",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/tags",
@@ -815,19 +828,44 @@ func MakeConfig() map[string]any {
 										"lit": "tags",
 									},
 								},
+								"parts": []any{
+									"tags",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 20,
+										},
+										map[string]any{
+											"name": "page",
+											"orig": "page",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 1,
+										},
+										map[string]any{
+											"name": "query",
+											"orig": "query",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"limit",
 										"page",
 										"query",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"tags",
 								},
 							},
 						},

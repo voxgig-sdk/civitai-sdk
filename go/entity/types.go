@@ -1,7 +1,7 @@
 // Typed models for the Civitai SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,9 +14,6 @@ import (
 
 // Creator is the typed data model for the creator entity.
 type Creator struct {
-	Link *string `json:"link,omitempty"`
-	ModelCount *int `json:"modelCount,omitempty"`
-	Username *string `json:"username,omitempty"`
 }
 
 // CreatorListMatch is the typed request payload for Creator.ListTyped.
@@ -28,18 +25,6 @@ type CreatorListMatch struct {
 
 // Image is the typed data model for the image entity.
 type Image struct {
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Hash *string `json:"hash,omitempty"`
-	Height *int `json:"height,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Meta *map[string]any `json:"meta,omitempty"`
-	Nsfw *bool `json:"nsfw,omitempty"`
-	NsfwLevel *string `json:"nsfwLevel,omitempty"`
-	PostId *int `json:"postId,omitempty"`
-	Stats *map[string]any `json:"stats,omitempty"`
-	Url *string `json:"url,omitempty"`
-	Username *string `json:"username,omitempty"`
-	Width *int `json:"width,omitempty"`
 }
 
 // ImageListMatch is the typed request payload for Image.ListTyped.
@@ -57,16 +42,6 @@ type ImageListMatch struct {
 
 // Model is the typed data model for the model entity.
 type Model struct {
-	Creator *map[string]any `json:"creator,omitempty"`
-	Description *string `json:"description,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Mode *string `json:"mode,omitempty"`
-	ModelVersions *[]any `json:"modelVersions,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Nsfw *bool `json:"nsfw,omitempty"`
-	Stats *map[string]any `json:"stats,omitempty"`
-	Tags *[]any `json:"tags,omitempty"`
-	Type *string `json:"type,omitempty"`
 }
 
 // ModelLoadMatch is the typed request payload for Model.LoadTyped.
@@ -77,7 +52,7 @@ type ModelLoadMatch struct {
 // ModelListMatch is the typed request payload for Model.ListTyped.
 type ModelListMatch struct {
 	AllowCommercialUse *bool `json:"allow_commercial_use,omitempty"`
-	AllowDerivatif *bool `json:"allow_derivatif,omitempty"`
+	AllowDerivative *bool `json:"allow_derivative,omitempty"`
 	AllowDifferentLicense *bool `json:"allow_different_license,omitempty"`
 	AllowNoCredit *bool `json:"allow_no_credit,omitempty"`
 	Favorite *bool `json:"favorite,omitempty"`
@@ -98,15 +73,6 @@ type ModelListMatch struct {
 
 // ModelVersion is the typed data model for the model_version entity.
 type ModelVersion struct {
-	CreatedAt *string `json:"createdAt,omitempty"`
-	Description *string `json:"description,omitempty"`
-	DownloadUrl *string `json:"downloadUrl,omitempty"`
-	Files *[]any `json:"files,omitempty"`
-	Id *int `json:"id,omitempty"`
-	Images *[]any `json:"images,omitempty"`
-	Name *string `json:"name,omitempty"`
-	Stats *map[string]any `json:"stats,omitempty"`
-	TrainedWords *[]any `json:"trainedWords,omitempty"`
 }
 
 // ModelVersionLoadMatch is the typed request payload for ModelVersion.LoadTyped.
@@ -116,9 +82,6 @@ type ModelVersionLoadMatch struct {
 
 // Tag is the typed data model for the tag entity.
 type Tag struct {
-	Link *string `json:"link,omitempty"`
-	ModelCount *int `json:"modelCount,omitempty"`
-	Name *string `json:"name,omitempty"`
 }
 
 // TagListMatch is the typed request payload for Tag.ListTyped.

@@ -19,7 +19,6 @@ import type {
   CreatorListMatch,
 } from '../CivitaiTypes'
 
-// TODO: needs Entity superclass
 class CreatorEntity extends CivitaiEntityBase<Creator> {
 
   constructor(client: CivitaiSDK, entopts: any) {

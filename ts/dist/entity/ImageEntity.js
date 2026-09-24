@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ImageEntity = void 0;
 const CivitaiEntityBase_1 = require("../CivitaiEntityBase");
-// TODO: needs Entity superclass
 class ImageEntity extends CivitaiEntityBase_1.CivitaiEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

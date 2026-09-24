@@ -1,0 +1,32 @@
+# BasicModelVersionFlow
+
+main: kit: flow: BasicModelVersionFlow:
+{
+  entity: "model_version",
+  kind: "basic",
+  name: "BasicModelVersionFlow",
+  step: [
+    {
+      i: {
+        ref: "model_version_ref01",
+        srcdatavar: "model_version_ref01_data",
+        suffix: "_dt0"
+      }
+
+      m: {
+        id: "model_version01"
+      }
+
+      o: "load",
+      v: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-model_version_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicModelVersionFlow"
+}
