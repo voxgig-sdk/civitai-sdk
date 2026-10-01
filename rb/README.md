@@ -12,9 +12,18 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`):
+GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/civitai-sdk/releases)), or
+from a clone:
 
-- Releases: [https://github.com/voxgig-sdk/civitai-sdk/releases](https://github.com/voxgig-sdk/civitai-sdk/releases)
+```bash
+git clone https://github.com/voxgig-sdk/civitai-sdk
+```
+
+Then add it to your `Gemfile` by path, and run `bundle install`:
+
+```ruby
+gem "voxgig-sdk-civitai-sdk", path: "./civitai-sdk/rb"
+```
 
 
 ## Tutorial: your first API call

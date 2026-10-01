@@ -129,7 +129,7 @@ main: kit: entity: model_version: {
               {
                 k: "param"
                 n: "id"
-                or: "model_version_id"
+                or: "modelVersionId"
                 r: true
                 t: "`$INTEGER`"
               }

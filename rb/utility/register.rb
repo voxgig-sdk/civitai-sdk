@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 CivitaiUtility.registrar = ->(u) {
   u.clean = CivitaiUtilities::Clean
+  u.clean_add = CivitaiUtilities::CleanAdd
+  u.clean_explain = CivitaiUtilities::CleanExplain
   u.done = CivitaiUtilities::Done
   u.make_error = CivitaiUtilities::MakeError
   u.feature_add = CivitaiUtilities::FeatureAdd

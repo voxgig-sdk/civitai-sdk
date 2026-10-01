@@ -183,7 +183,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.items`"
                   }
                 }
               ]
@@ -328,7 +328,7 @@
                         "a": true,
                         "k": "query",
                         "n": "model_id",
-                        "or": "model_id",
+                        "or": "modelId",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -336,7 +336,7 @@
                         "a": true,
                         "k": "query",
                         "n": "model_version_id",
-                        "or": "model_version_id",
+                        "or": "modelVersionId",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -369,7 +369,7 @@
                         "a": true,
                         "k": "query",
                         "n": "post_id",
-                        "or": "post_id",
+                        "or": "postId",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -415,7 +415,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.items`"
                   }
                 }
               ]
@@ -532,7 +532,7 @@
                         "a": true,
                         "k": "query",
                         "n": "allow_commercial_use",
-                        "or": "allow_commercial_use",
+                        "or": "allowCommercialUse",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -540,7 +540,7 @@
                         "a": true,
                         "k": "query",
                         "n": "allow_derivative",
-                        "or": "allow_derivative",
+                        "or": "allowDerivatives",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -548,7 +548,7 @@
                         "a": true,
                         "k": "query",
                         "n": "allow_different_license",
-                        "or": "allow_different_license",
+                        "or": "allowDifferentLicenses",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -556,7 +556,7 @@
                         "a": true,
                         "k": "query",
                         "n": "allow_no_credit",
-                        "or": "allow_no_credit",
+                        "or": "allowNoCredit",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -564,7 +564,7 @@
                         "a": true,
                         "k": "query",
                         "n": "favorite",
-                        "or": "favorite",
+                        "or": "favorites",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -614,7 +614,7 @@
                         "a": true,
                         "k": "query",
                         "n": "primary_file_only",
-                        "or": "primary_file_only",
+                        "or": "primaryFileOnly",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -646,7 +646,7 @@
                         "a": true,
                         "k": "query",
                         "n": "supports_generation",
-                        "or": "supports_generation",
+                        "or": "supportsGeneration",
                         "r": false,
                         "t": "`$BOOLEAN`"
                       },
@@ -662,7 +662,7 @@
                         "a": true,
                         "k": "query",
                         "n": "type",
-                        "or": "type",
+                        "or": "types",
                         "r": false,
                         "t": "`$ARRAY`"
                       },
@@ -709,7 +709,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.items`"
                   }
                 }
               ]
@@ -731,7 +731,7 @@
                         "a": true,
                         "k": "param",
                         "n": "id",
-                        "or": "model_id",
+                        "or": "modelId",
                         "r": true,
                         "t": "`$INTEGER`"
                       }
@@ -914,7 +914,7 @@
                         "a": true,
                         "k": "param",
                         "n": "id",
-                        "or": "model_version_id",
+                        "or": "modelVersionId",
                         "r": true,
                         "t": "`$INTEGER`"
                       }
@@ -1042,7 +1042,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.items`"
                   }
                 }
               ]
@@ -1663,7 +1663,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

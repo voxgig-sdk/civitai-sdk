@@ -161,7 +161,7 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.items`",
                 },
                 "args": {
                   "query": [
@@ -302,7 +302,7 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.items`",
                 },
                 "args": {
                   "query": [
@@ -315,13 +315,13 @@ def make_config():
                     },
                     {
                       "name": "model_id",
-                      "orig": "model_id",
+                      "orig": "modelId",
                       "type": "`$INTEGER`",
                       "kind": "query",
                     },
                     {
                       "name": "model_version_id",
-                      "orig": "model_version_id",
+                      "orig": "modelVersionId",
                       "type": "`$INTEGER`",
                       "kind": "query",
                     },
@@ -346,7 +346,7 @@ def make_config():
                     },
                     {
                       "name": "post_id",
-                      "orig": "post_id",
+                      "orig": "postId",
                       "type": "`$INTEGER`",
                       "kind": "query",
                     },
@@ -470,37 +470,37 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.items`",
                 },
                 "args": {
                   "query": [
                     {
                       "name": "allow_commercial_use",
-                      "orig": "allow_commercial_use",
+                      "orig": "allowCommercialUse",
                       "type": "`$BOOLEAN`",
                       "kind": "query",
                     },
                     {
                       "name": "allow_derivative",
-                      "orig": "allow_derivative",
+                      "orig": "allowDerivatives",
                       "type": "`$BOOLEAN`",
                       "kind": "query",
                     },
                     {
                       "name": "allow_different_license",
-                      "orig": "allow_different_license",
+                      "orig": "allowDifferentLicenses",
                       "type": "`$BOOLEAN`",
                       "kind": "query",
                     },
                     {
                       "name": "allow_no_credit",
-                      "orig": "allow_no_credit",
+                      "orig": "allowNoCredit",
                       "type": "`$BOOLEAN`",
                       "kind": "query",
                     },
                     {
                       "name": "favorite",
-                      "orig": "favorite",
+                      "orig": "favorites",
                       "type": "`$BOOLEAN`",
                       "kind": "query",
                     },
@@ -538,7 +538,7 @@ def make_config():
                     },
                     {
                       "name": "primary_file_only",
-                      "orig": "primary_file_only",
+                      "orig": "primaryFileOnly",
                       "type": "`$BOOLEAN`",
                       "kind": "query",
                     },
@@ -562,7 +562,7 @@ def make_config():
                     },
                     {
                       "name": "supports_generation",
-                      "orig": "supports_generation",
+                      "orig": "supportsGeneration",
                       "type": "`$BOOLEAN`",
                       "kind": "query",
                     },
@@ -574,7 +574,7 @@ def make_config():
                     },
                     {
                       "name": "type",
-                      "orig": "type",
+                      "orig": "types",
                       "type": "`$ARRAY`",
                       "kind": "query",
                     },
@@ -644,7 +644,7 @@ def make_config():
                   "params": [
                     {
                       "name": "id",
-                      "orig": "model_id",
+                      "orig": "modelId",
                       "type": "`$INTEGER`",
                       "kind": "param",
                       "reqd": True,
@@ -800,7 +800,7 @@ def make_config():
                   "params": [
                     {
                       "name": "id",
-                      "orig": "model_version_id",
+                      "orig": "modelVersionId",
                       "type": "`$INTEGER`",
                       "kind": "param",
                       "reqd": True,
@@ -859,7 +859,7 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.items`",
                 },
                 "args": {
                   "query": [

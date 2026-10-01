@@ -79,7 +79,7 @@ main: kit: entity: tag: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
       ]

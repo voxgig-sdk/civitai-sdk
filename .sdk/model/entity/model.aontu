@@ -95,35 +95,35 @@ main: kit: entity: model: {
               {
                 k: "query"
                 n: "allow_commercial_use"
-                or: "allow_commercial_use"
+                or: "allowCommercialUse"
                 r: false
                 t: "`$BOOLEAN`"
               }
               {
                 k: "query"
                 n: "allow_derivative"
-                or: "allow_derivative"
+                or: "allowDerivatives"
                 r: false
                 t: "`$BOOLEAN`"
               }
               {
                 k: "query"
                 n: "allow_different_license"
-                or: "allow_different_license"
+                or: "allowDifferentLicenses"
                 r: false
                 t: "`$BOOLEAN`"
               }
               {
                 k: "query"
                 n: "allow_no_credit"
-                or: "allow_no_credit"
+                or: "allowNoCredit"
                 r: false
                 t: "`$BOOLEAN`"
               }
               {
                 k: "query"
                 n: "favorite"
-                or: "favorite"
+                or: "favorites"
                 r: false
                 t: "`$BOOLEAN`"
               }
@@ -167,7 +167,7 @@ main: kit: entity: model: {
               {
                 k: "query"
                 n: "primary_file_only"
-                or: "primary_file_only"
+                or: "primaryFileOnly"
                 r: false
                 t: "`$BOOLEAN`"
               }
@@ -195,7 +195,7 @@ main: kit: entity: model: {
               {
                 k: "query"
                 n: "supports_generation"
-                or: "supports_generation"
+                or: "supportsGeneration"
                 r: false
                 t: "`$BOOLEAN`"
               }
@@ -209,7 +209,7 @@ main: kit: entity: model: {
               {
                 k: "query"
                 n: "type"
-                or: "type"
+                or: "types"
                 r: false
                 t: "`$ARRAY`"
               }
@@ -253,7 +253,7 @@ main: kit: entity: model: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
       ]
@@ -272,7 +272,7 @@ main: kit: entity: model: {
               {
                 k: "param"
                 n: "id"
-                or: "model_id"
+                or: "modelId"
                 r: true
                 t: "`$INTEGER`"
               }

@@ -136,7 +136,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.items`",
 								},
 								"args": map[string]any{
 									"query": []any{
@@ -277,7 +277,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.items`",
 								},
 								"args": map[string]any{
 									"query": []any{
@@ -290,13 +290,13 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "model_id",
-											"orig": "model_id",
+											"orig": "modelId",
 											"type": "`$INTEGER`",
 											"kind": "query",
 										},
 										map[string]any{
 											"name": "model_version_id",
-											"orig": "model_version_id",
+											"orig": "modelVersionId",
 											"type": "`$INTEGER`",
 											"kind": "query",
 										},
@@ -321,7 +321,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "post_id",
-											"orig": "post_id",
+											"orig": "postId",
 											"type": "`$INTEGER`",
 											"kind": "query",
 										},
@@ -445,37 +445,37 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.items`",
 								},
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
 											"name": "allow_commercial_use",
-											"orig": "allow_commercial_use",
+											"orig": "allowCommercialUse",
 											"type": "`$BOOLEAN`",
 											"kind": "query",
 										},
 										map[string]any{
 											"name": "allow_derivative",
-											"orig": "allow_derivative",
+											"orig": "allowDerivatives",
 											"type": "`$BOOLEAN`",
 											"kind": "query",
 										},
 										map[string]any{
 											"name": "allow_different_license",
-											"orig": "allow_different_license",
+											"orig": "allowDifferentLicenses",
 											"type": "`$BOOLEAN`",
 											"kind": "query",
 										},
 										map[string]any{
 											"name": "allow_no_credit",
-											"orig": "allow_no_credit",
+											"orig": "allowNoCredit",
 											"type": "`$BOOLEAN`",
 											"kind": "query",
 										},
 										map[string]any{
 											"name": "favorite",
-											"orig": "favorite",
+											"orig": "favorites",
 											"type": "`$BOOLEAN`",
 											"kind": "query",
 										},
@@ -513,7 +513,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "primary_file_only",
-											"orig": "primary_file_only",
+											"orig": "primaryFileOnly",
 											"type": "`$BOOLEAN`",
 											"kind": "query",
 										},
@@ -537,7 +537,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "supports_generation",
-											"orig": "supports_generation",
+											"orig": "supportsGeneration",
 											"type": "`$BOOLEAN`",
 											"kind": "query",
 										},
@@ -549,7 +549,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "type",
-											"orig": "type",
+											"orig": "types",
 											"type": "`$ARRAY`",
 											"kind": "query",
 										},
@@ -619,7 +619,7 @@ func MakeConfig() map[string]any {
 									"params": []any{
 										map[string]any{
 											"name": "id",
-											"orig": "model_id",
+											"orig": "modelId",
 											"type": "`$INTEGER`",
 											"kind": "param",
 											"reqd": true,
@@ -775,7 +775,7 @@ func MakeConfig() map[string]any {
 									"params": []any{
 										map[string]any{
 											"name": "id",
-											"orig": "model_version_id",
+											"orig": "modelVersionId",
 											"type": "`$INTEGER`",
 											"kind": "param",
 											"reqd": true,
@@ -834,7 +834,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.items`",
 								},
 								"args": map[string]any{
 									"query": []any{

@@ -120,14 +120,14 @@ main: kit: entity: image: {
               {
                 k: "query"
                 n: "model_id"
-                or: "model_id"
+                or: "modelId"
                 r: false
                 t: "`$INTEGER`"
               }
               {
                 k: "query"
                 n: "model_version_id"
-                or: "model_version_id"
+                or: "modelVersionId"
                 r: false
                 t: "`$INTEGER`"
               }
@@ -156,7 +156,7 @@ main: kit: entity: image: {
               {
                 k: "query"
                 n: "post_id"
-                or: "post_id"
+                or: "postId"
                 r: false
                 t: "`$INTEGER`"
               }
@@ -198,7 +198,7 @@ main: kit: entity: image: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.items`"
           }
         }
       ]

@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 CivitaiUtility::setRegistrar(function (CivitaiUtility $u): void {
     $u->clean = [CivitaiClean::class, 'call'];
+    $u->clean_add = [CivitaiClean::class, 'add'];
+    $u->clean_explain = [CivitaiDone::class, 'clean_explain'];
     $u->done = [CivitaiDone::class, 'call'];
     $u->make_error = [CivitaiMakeError::class, 'call'];
     $u->feature_add = [CivitaiFeatureAdd::class, 'call'];

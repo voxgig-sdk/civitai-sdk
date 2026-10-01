@@ -11,18 +11,21 @@ guide: {
   entity: creator: {
     path: "/creators": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
   }
 
   entity: image: {
     path: "/images": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
   }
 
   entity: model: {
     path: "/models": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
     path: "/models/{modelId}": {
       rename: param: "modelId": *"id"
@@ -43,6 +46,7 @@ guide: {
   entity: tag: {
     path: "/tags": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.items`")|top
     }
   }
 
