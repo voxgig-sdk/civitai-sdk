@@ -168,14 +168,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/creators",
-                  "q": {
-                    "exist": [
-                      "limit",
-                      "page",
-                      "query"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "creators"
@@ -394,20 +392,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/images",
-                  "q": {
-                    "exist": [
-                      "limit",
-                      "model_id",
-                      "model_version_id",
-                      "nsfw",
-                      "page",
-                      "period",
-                      "post_id",
-                      "sort",
-                      "username"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "images"
@@ -679,29 +669,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/models",
-                  "q": {
-                    "exist": [
-                      "allow_commercial_use",
-                      "allow_derivative",
-                      "allow_different_license",
-                      "allow_no_credit",
-                      "favorite",
-                      "hidden",
-                      "limit",
-                      "nsfw",
-                      "page",
-                      "period",
-                      "primary_file_only",
-                      "query",
-                      "rating",
-                      "sort",
-                      "supports_generation",
-                      "tag",
-                      "type",
-                      "username"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "models"
@@ -729,6 +702,7 @@
                     "params": [
                       {
                         "a": true,
+                        "ex": 257749,
                         "k": "param",
                         "n": "id",
                         "or": "modelId",
@@ -749,6 +723,10 @@
                     "param": {
                       "modelId": "id"
                     }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
                   },
                   "s": [
                     {
@@ -868,6 +846,7 @@
                     "params": [
                       {
                         "a": true,
+                        "ex": "67AB2FD8EC439A89B3FEDB15CC65F54336AF163C7EB5E4F2ACC98F090A29B0B3",
                         "k": "param",
                         "n": "hash",
                         "or": "hash",
@@ -885,6 +864,10 @@
                     ]
                   },
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "model-versions"
@@ -912,6 +895,7 @@
                     "params": [
                       {
                         "a": true,
+                        "ex": 290640,
                         "k": "param",
                         "n": "id",
                         "or": "modelVersionId",
@@ -932,6 +916,10 @@
                     "param": {
                       "modelVersionId": "id"
                     }
+                  },
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
                   },
                   "s": [
                     {
@@ -1027,14 +1015,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/tags",
-                  "q": {
-                    "exist": [
-                      "limit",
-                      "page",
-                      "query"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "tags"
@@ -1375,6 +1361,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -1631,6 +1618,17 @@
         "description": "REST API for accessing Civitai creators, images, models, model versions, and tags. Provides endpoints for retrieving specific resources like models by ID or model versions by hash.",
         "meta_source": "https://www.freepublicapis.com",
         "security": {
+          "alternatives": [
+            [
+              {
+                "in": "query",
+                "name": "token",
+                "prefix": "",
+                "scheme": "QueryToken",
+                "type": "apiKey"
+              }
+            ]
+          ],
           "in": "header",
           "name": "Authorization",
           "prefix": "Bearer",
@@ -1652,7 +1650,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -1705,6 +1703,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -1935,7 +1938,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -2312,6 +2318,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

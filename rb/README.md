@@ -12,7 +12,7 @@ The SDK exposes the API as capitalised, semantic **Entities** — for example `c
 
 ## Install
 This package is not yet published to RubyGems. Install it from the
-GitHub release tag (`rb/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/civitai-sdk/releases)), or
+GitHub release tag (`rb/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/civitai-sdk/tags)), or
 from a clone:
 
 ```bash
@@ -45,10 +45,11 @@ client = CivitaiSDK.new({
 
 ```ruby
 begin
-  # list returns an Array of Creator records — iterate directly.
+  # list returns an Array of Creator entities, one per record; data_get reads the record.
   creators = client.Creator.list
   creators.each do |item|
-    puts "#{item["link"]}"
+    record = item.data_get
+    puts "#{record["link"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -133,10 +134,10 @@ client = CivitaiSDK.test({
   "entity" => { "model" => { "test01" => { "id" => "test01" } } },
 })
 
-# Entity ops return the ENTITY (raises on error);
-# call data_get for the mock record.
-model = client.Model.list()
-puts model
+# list returns an Array of Model entities, one per mock record (raises on
+# error); data_get reads each record.
+models = client.Model.list()
+models.each { |item| puts item.data_get }
 ```
 
 ### Use a custom fetch function
@@ -226,8 +227,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all). Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch = nil, ctrl) -> Array` | List entities matching the criteria (call with no argument to list all), one per record. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -237,9 +238,10 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the result data directly. On failure they
-raise a `CivitaiError` (a `StandardError` subclass), so wrap
-calls in `begin`/`rescue` where you need to handle errors.
+Entity operations return the entity, and `list` an `Array` of entities, one
+per record; an entity's `data_get` reads its record. On failure they raise a
+`CivitaiError` (a `StandardError` subclass), so wrap calls in
+`begin`/`rescue` where you need to handle errors.
 
 The `direct` escape hatch is the exception: it never raises and instead
 returns a result `Hash` with these keys:
@@ -362,8 +364,9 @@ Create an instance: `creator = client.Creator`
 #### Example: List
 
 ```ruby
-# list returns an Array of Creator records (raises on error).
+# list returns an Array of Creator entities, one per record (raises on error).
 creators = client.Creator.list
+creators.each { |item| puts item.data_get }
 ```
 
 
@@ -397,8 +400,9 @@ Create an instance: `image = client.Image`
 #### Example: List
 
 ```ruby
-# list returns an Array of Image records (raises on error).
+# list returns an Array of Image entities, one per record (raises on error).
 images = client.Image.list
+images.each { |item| puts item.data_get }
 ```
 
 
@@ -438,8 +442,9 @@ model = client.Model.load({ "id" => 1 })
 #### Example: List
 
 ```ruby
-# list returns an Array of Model records (raises on error).
+# list returns an Array of Model entities, one per record (raises on error).
 models = client.Model.list
+models.each { |item| puts item.data_get }
 ```
 
 
@@ -496,8 +501,9 @@ Create an instance: `tag = client.Tag`
 #### Example: List
 
 ```ruby
-# list returns an Array of Tag records (raises on error).
+# list returns an Array of Tag entities, one per record (raises on error).
 tags = client.Tag.list
+tags.each { |item| puts item.data_get }
 ```
 
 ## Features

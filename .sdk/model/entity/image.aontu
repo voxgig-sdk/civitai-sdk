@@ -178,18 +178,9 @@ main: kit: entity: image: {
           }
           m: "GET"
           o: "/images"
-          q: {
-            exist: [
-              "limit"
-              "model_id"
-              "model_version_id"
-              "nsfw"
-              "page"
-              "period"
-              "post_id"
-              "sort"
-              "username"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

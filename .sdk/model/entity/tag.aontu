@@ -65,12 +65,9 @@ main: kit: entity: tag: {
           }
           m: "GET"
           o: "/tags"
-          q: {
-            exist: [
-              "limit"
-              "page"
-              "query"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

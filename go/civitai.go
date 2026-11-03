@@ -13,7 +13,12 @@ type Context = core.Context
 type Utility = core.Utility
 type Feature = core.Feature
 type Entity = core.Entity
-type CivitaiEntity = core.CivitaiEntity
+type CivitaiEntityBase = core.CivitaiEntityBase
+
+// Deprecated: use CivitaiEntityBase.
+type CivitaiEntity = core.CivitaiEntityBase
+
+type StreamItem = core.StreamItem
 type FetcherFunc = core.FetcherFunc
 type Spec = core.Spec
 type Result = core.Result
@@ -41,19 +46,19 @@ func init() {
 	core.NewTimeoutFeatureFunc = func() core.Feature {
 		return feature.NewTimeoutFeature()
 	}
-	core.NewCreatorEntityFunc = func(client *core.CivitaiSDK, entopts map[string]any) core.CivitaiEntity {
+	core.NewCreatorEntityFunc = func(client *core.CivitaiSDK, entopts map[string]any) core.CivitaiEntityBase {
 		return entity.NewCreatorEntity(client, entopts)
 	}
-	core.NewImageEntityFunc = func(client *core.CivitaiSDK, entopts map[string]any) core.CivitaiEntity {
+	core.NewImageEntityFunc = func(client *core.CivitaiSDK, entopts map[string]any) core.CivitaiEntityBase {
 		return entity.NewImageEntity(client, entopts)
 	}
-	core.NewModelEntityFunc = func(client *core.CivitaiSDK, entopts map[string]any) core.CivitaiEntity {
+	core.NewModelEntityFunc = func(client *core.CivitaiSDK, entopts map[string]any) core.CivitaiEntityBase {
 		return entity.NewModelEntity(client, entopts)
 	}
-	core.NewModelVersionEntityFunc = func(client *core.CivitaiSDK, entopts map[string]any) core.CivitaiEntity {
+	core.NewModelVersionEntityFunc = func(client *core.CivitaiSDK, entopts map[string]any) core.CivitaiEntityBase {
 		return entity.NewModelVersionEntity(client, entopts)
 	}
-	core.NewTagEntityFunc = func(client *core.CivitaiSDK, entopts map[string]any) core.CivitaiEntity {
+	core.NewTagEntityFunc = func(client *core.CivitaiSDK, entopts map[string]any) core.CivitaiEntityBase {
 		return entity.NewTagEntity(client, entopts)
 	}
 }

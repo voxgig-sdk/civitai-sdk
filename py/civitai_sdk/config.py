@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -187,12 +188,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "limit",
-                    "page",
-                    "query",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -330,6 +329,7 @@ def make_config():
                       "orig": "nsfw",
                       "type": "`$ANY`",
                       "kind": "query",
+                      "field": True,
                     },
                     {
                       "name": "page",
@@ -361,21 +361,14 @@ def make_config():
                       "orig": "username",
                       "type": "`$STRING`",
                       "kind": "query",
+                      "field": True,
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "limit",
-                    "model_id",
-                    "model_version_id",
-                    "nsfw",
-                    "page",
-                    "period",
-                    "post_id",
-                    "sort",
-                    "username",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -522,6 +515,7 @@ def make_config():
                       "orig": "nsfw",
                       "type": "`$BOOLEAN`",
                       "kind": "query",
+                      "field": True,
                     },
                     {
                       "name": "page",
@@ -577,6 +571,7 @@ def make_config():
                       "orig": "types",
                       "type": "`$ARRAY`",
                       "kind": "query",
+                      "field": True,
                     },
                     {
                       "name": "username",
@@ -586,27 +581,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "allow_commercial_use",
-                    "allow_derivative",
-                    "allow_different_license",
-                    "allow_no_credit",
-                    "favorite",
-                    "hidden",
-                    "limit",
-                    "nsfw",
-                    "page",
-                    "period",
-                    "primary_file_only",
-                    "query",
-                    "rating",
-                    "sort",
-                    "supports_generation",
-                    "tag",
-                    "type",
-                    "username",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -648,6 +626,7 @@ def make_config():
                       "type": "`$INTEGER`",
                       "kind": "param",
                       "reqd": True,
+                      "example": 257749,
                     },
                   ],
                 },
@@ -655,6 +634,10 @@ def make_config():
                   "exist": [
                     "id",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -762,6 +745,7 @@ def make_config():
                       "type": "`$STRING`",
                       "kind": "param",
                       "reqd": True,
+                      "example": "67AB2FD8EC439A89B3FEDB15CC65F54336AF163C7EB5E4F2ACC98F090A29B0B3",
                     },
                   ],
                 },
@@ -769,6 +753,10 @@ def make_config():
                   "exist": [
                     "hash",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
               {
@@ -804,6 +792,7 @@ def make_config():
                       "type": "`$INTEGER`",
                       "kind": "param",
                       "reqd": True,
+                      "example": 290640,
                     },
                   ],
                 },
@@ -811,6 +800,10 @@ def make_config():
                   "exist": [
                     "id",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -885,12 +878,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "limit",
-                    "page",
-                    "query",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],

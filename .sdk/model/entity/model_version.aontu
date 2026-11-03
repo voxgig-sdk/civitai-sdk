@@ -87,6 +87,7 @@ main: kit: entity: model_version: {
           g: {
             params: [
               {
+                ex: "67AB2FD8EC439A89B3FEDB15CC65F54336AF163C7EB5E4F2ACC98F090A29B0B3"
                 k: "param"
                 n: "hash"
                 or: "hash"
@@ -101,6 +102,10 @@ main: kit: entity: model_version: {
             exist: [
               "hash"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -127,6 +132,7 @@ main: kit: entity: model_version: {
           g: {
             params: [
               {
+                ex: 290640
                 k: "param"
                 n: "id"
                 or: "modelVersionId"
@@ -146,6 +152,10 @@ main: kit: entity: model_version: {
             param: {
               modelVersionId: "id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

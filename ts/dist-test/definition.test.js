@@ -16,33 +16,51 @@ const PLAN = [
         "path": "/creators",
         "args": [],
         "select": {
-            "limit": "v1",
-            "page": "v1",
+            "limit": 20,
+            "page": 1,
             "query": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "limit",
             "page",
             "query"
+        ],
+        "queryArgs": [
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "page",
+                "wire": "page"
+            },
+            {
+                "name": "query",
+                "wire": "query"
+            }
         ],
         "auth": [],
         "status": 200,
         "sample": {
             "items": [
                 {
-                    "link": "x",
+                    "username": "x",
                     "modelCount": 1,
-                    "username": "x"
+                    "link": "x"
                 }
             ],
             "metadata": {
-                "currentPage": 1,
-                "nextPage": "x",
-                "pageSize": 1,
-                "prevPage": "x",
                 "totalItems": 1,
-                "totalPages": 1
+                "currentPage": 1,
+                "pageSize": 1,
+                "totalPages": 1,
+                "nextPage": "x",
+                "prevPage": "x"
             }
         },
         "idField": "id"
@@ -55,17 +73,21 @@ const PLAN = [
         "path": "/images",
         "args": [],
         "select": {
-            "limit": "v1",
+            "limit": 100,
             "model_id": "v1",
             "model_version_id": "v1",
             "nsfw": "v1",
-            "page": "v1",
+            "page": 1,
             "period": "v1",
             "post_id": "v1",
             "sort": "v1",
             "username": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "limit",
             "postId",
@@ -77,37 +99,75 @@ const PLAN = [
             "period",
             "page"
         ],
+        "queryArgs": [
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "model_id",
+                "wire": "modelId"
+            },
+            {
+                "name": "model_version_id",
+                "wire": "modelVersionId"
+            },
+            {
+                "name": "nsfw",
+                "wire": "nsfw"
+            },
+            {
+                "name": "page",
+                "wire": "page"
+            },
+            {
+                "name": "period",
+                "wire": "period"
+            },
+            {
+                "name": "post_id",
+                "wire": "postId"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            },
+            {
+                "name": "username",
+                "wire": "username"
+            }
+        ],
         "auth": [],
         "status": 200,
         "sample": {
             "items": [
                 {
-                    "createdAt": "2026-01-01T00:00:00Z",
-                    "hash": "x",
-                    "height": 1,
                     "id": 1,
-                    "meta": {},
+                    "url": "x",
+                    "hash": "x",
+                    "width": 1,
+                    "height": 1,
                     "nsfw": true,
                     "nsfwLevel": "None",
+                    "createdAt": "2026-01-01T00:00:00Z",
                     "postId": 1,
                     "stats": {
-                        "commentCount": 1,
                         "cryCount": 1,
+                        "laughCount": 1,
+                        "likeCount": 1,
                         "dislikeCount": 1,
                         "heartCount": 1,
-                        "laughCount": 1,
-                        "likeCount": 1
+                        "commentCount": 1
                     },
-                    "url": "x",
-                    "username": "x",
-                    "width": 1
+                    "meta": {},
+                    "username": "x"
                 }
             ],
             "metadata": {
-                "currentPage": 1,
                 "nextCursor": 1,
-                "nextPage": "x",
-                "pageSize": 1
+                "currentPage": 1,
+                "pageSize": 1,
+                "nextPage": "x"
             }
         },
         "idField": "id"
@@ -126,9 +186,9 @@ const PLAN = [
             "allow_no_credit": "v1",
             "favorite": "v1",
             "hidden": "v1",
-            "limit": "v1",
+            "limit": 100,
             "nsfw": "v1",
-            "page": "v1",
+            "page": 1,
             "period": "v1",
             "primary_file_only": "v1",
             "query": "v1",
@@ -140,6 +200,10 @@ const PLAN = [
             "username": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "limit",
             "page",
@@ -160,63 +224,137 @@ const PLAN = [
             "nsfw",
             "supportsGeneration"
         ],
+        "queryArgs": [
+            {
+                "name": "allow_commercial_use",
+                "wire": "allowCommercialUse"
+            },
+            {
+                "name": "allow_derivative",
+                "wire": "allowDerivatives"
+            },
+            {
+                "name": "allow_different_license",
+                "wire": "allowDifferentLicenses"
+            },
+            {
+                "name": "allow_no_credit",
+                "wire": "allowNoCredit"
+            },
+            {
+                "name": "favorite",
+                "wire": "favorites"
+            },
+            {
+                "name": "hidden",
+                "wire": "hidden"
+            },
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "nsfw",
+                "wire": "nsfw"
+            },
+            {
+                "name": "page",
+                "wire": "page"
+            },
+            {
+                "name": "period",
+                "wire": "period"
+            },
+            {
+                "name": "primary_file_only",
+                "wire": "primaryFileOnly"
+            },
+            {
+                "name": "query",
+                "wire": "query"
+            },
+            {
+                "name": "rating",
+                "wire": "rating"
+            },
+            {
+                "name": "sort",
+                "wire": "sort"
+            },
+            {
+                "name": "supports_generation",
+                "wire": "supportsGeneration"
+            },
+            {
+                "name": "tag",
+                "wire": "tag"
+            },
+            {
+                "name": "type",
+                "wire": "types"
+            },
+            {
+                "name": "username",
+                "wire": "username"
+            }
+        ],
         "auth": [],
         "status": 200,
         "sample": {
             "items": [
                 {
-                    "creator": {
-                        "image": "x",
-                        "username": "x"
-                    },
-                    "description": "x",
                     "id": 1,
-                    "mode": "Archived",
-                    "modelVersions": [
-                        {
-                            "createdAt": "2026-01-01T00:00:00Z",
-                            "description": "x",
-                            "downloadUrl": "x",
-                            "files": [
-                                {}
-                            ],
-                            "id": 1,
-                            "images": [
-                                {}
-                            ],
-                            "name": "x",
-                            "stats": {
-                                "downloadCount": 1,
-                                "rating": 1,
-                                "ratingCount": 1
-                            },
-                            "trainedWords": [
-                                "x"
-                            ]
-                        }
-                    ],
                     "name": "x",
+                    "description": "x",
+                    "type": "Checkpoint",
                     "nsfw": true,
-                    "stats": {
-                        "commentCount": 1,
-                        "downloadCount": 1,
-                        "favoriteCount": 1,
-                        "rating": 1,
-                        "ratingCount": 1
-                    },
                     "tags": [
                         "x"
                     ],
-                    "type": "Checkpoint"
+                    "mode": "Archived",
+                    "creator": {
+                        "username": "x",
+                        "image": "x"
+                    },
+                    "stats": {
+                        "downloadCount": 1,
+                        "favoriteCount": 1,
+                        "commentCount": 1,
+                        "ratingCount": 1,
+                        "rating": 1
+                    },
+                    "modelVersions": [
+                        {
+                            "id": 1,
+                            "name": "x",
+                            "description": "x",
+                            "createdAt": "2026-01-01T00:00:00Z",
+                            "downloadUrl": "x",
+                            "trainedWords": [
+                                "x"
+                            ],
+                            "files": [
+                                {}
+                            ],
+                            "images": [
+                                {}
+                            ],
+                            "stats": {
+                                "downloadCount": 1,
+                                "ratingCount": 1,
+                                "rating": 1
+                            }
+                        }
+                    ]
                 }
             ],
             "metadata": {
-                "currentPage": 1,
-                "nextPage": "x",
-                "pageSize": 1,
-                "prevPage": "x",
                 "totalItems": 1,
-                "totalPages": 1
+                "currentPage": 1,
+                "pageSize": 1,
+                "totalPages": 1,
+                "nextPage": "x",
+                "prevPage": "x"
             }
         },
         "idField": "id"
@@ -231,12 +369,17 @@ const PLAN = [
             {
                 "name": "id",
                 "wire": "modelId",
-                "value": "p1"
+                "value": 257749
             }
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": [],
         "status": 200,
         "sample": {
@@ -250,56 +393,56 @@ const PLAN = [
             ],
             "mode": "Archived",
             "creator": {
-                "image": "x",
-                "username": "x"
+                "username": "x",
+                "image": "x"
             },
             "stats": {
-                "commentCount": 1,
                 "downloadCount": 1,
                 "favoriteCount": 1,
-                "rating": 1,
-                "ratingCount": 1
+                "commentCount": 1,
+                "ratingCount": 1,
+                "rating": 1
             },
             "modelVersions": [
                 {
-                    "createdAt": "2026-01-01T00:00:00Z",
-                    "description": "x",
-                    "downloadUrl": "x",
-                    "files": [
-                        {
-                            "metadata": {
-                                "format": "SafeTensor",
-                                "fp": "fp16",
-                                "size": "full"
-                            },
-                            "pickleScanResult": "Pending",
-                            "primary": true,
-                            "scannedAt": "2026-01-01T00:00:00Z",
-                            "sizeKb": 1,
-                            "virusScanResult": "Pending"
-                        }
-                    ],
                     "id": 1,
-                    "images": [
-                        {
-                            "hash": "x",
-                            "height": 1,
-                            "id": "x",
-                            "meta": {},
-                            "nsfw": "x",
-                            "url": "x",
-                            "width": 1
-                        }
-                    ],
                     "name": "x",
-                    "stats": {
-                        "downloadCount": 1,
-                        "rating": 1,
-                        "ratingCount": 1
-                    },
+                    "description": "x",
+                    "createdAt": "2026-01-01T00:00:00Z",
+                    "downloadUrl": "x",
                     "trainedWords": [
                         "x"
-                    ]
+                    ],
+                    "files": [
+                        {
+                            "sizeKb": 1,
+                            "pickleScanResult": "Pending",
+                            "virusScanResult": "Pending",
+                            "scannedAt": "2026-01-01T00:00:00Z",
+                            "primary": true,
+                            "metadata": {
+                                "fp": "fp16",
+                                "size": "full",
+                                "format": "SafeTensor"
+                            }
+                        }
+                    ],
+                    "images": [
+                        {
+                            "id": "x",
+                            "url": "x",
+                            "nsfw": "x",
+                            "width": 1,
+                            "height": 1,
+                            "hash": "x",
+                            "meta": {}
+                        }
+                    ],
+                    "stats": {
+                        "downloadCount": 1,
+                        "ratingCount": 1,
+                        "rating": 1
+                    }
                 }
             ]
         },
@@ -315,12 +458,17 @@ const PLAN = [
             {
                 "name": "hash",
                 "wire": "hash",
-                "value": "p1"
+                "value": "67AB2FD8EC439A89B3FEDB15CC65F54336AF163C7EB5E4F2ACC98F090A29B0B3"
             }
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": [],
         "status": 200,
         "sample": {
@@ -334,33 +482,33 @@ const PLAN = [
             ],
             "files": [
                 {
-                    "metadata": {
-                        "format": "SafeTensor",
-                        "fp": "fp16",
-                        "size": "full"
-                    },
-                    "pickleScanResult": "Pending",
-                    "primary": true,
-                    "scannedAt": "2026-01-01T00:00:00Z",
                     "sizeKb": 1,
-                    "virusScanResult": "Pending"
+                    "pickleScanResult": "Pending",
+                    "virusScanResult": "Pending",
+                    "scannedAt": "2026-01-01T00:00:00Z",
+                    "primary": true,
+                    "metadata": {
+                        "fp": "fp16",
+                        "size": "full",
+                        "format": "SafeTensor"
+                    }
                 }
             ],
             "images": [
                 {
-                    "hash": "x",
-                    "height": 1,
                     "id": "x",
-                    "meta": {},
-                    "nsfw": "x",
                     "url": "x",
-                    "width": 1
+                    "nsfw": "x",
+                    "width": 1,
+                    "height": 1,
+                    "hash": "x",
+                    "meta": {}
                 }
             ],
             "stats": {
                 "downloadCount": 1,
-                "rating": 1,
-                "ratingCount": 1
+                "ratingCount": 1,
+                "rating": 1
             }
         },
         "idField": "id"
@@ -375,12 +523,17 @@ const PLAN = [
             {
                 "name": "id",
                 "wire": "modelVersionId",
-                "value": "p1"
+                "value": 290640
             }
         ],
         "select": {},
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [],
+        "queryArgs": [],
         "auth": [],
         "status": 200,
         "sample": {
@@ -394,33 +547,33 @@ const PLAN = [
             ],
             "files": [
                 {
-                    "metadata": {
-                        "format": "SafeTensor",
-                        "fp": "fp16",
-                        "size": "full"
-                    },
-                    "pickleScanResult": "Pending",
-                    "primary": true,
-                    "scannedAt": "2026-01-01T00:00:00Z",
                     "sizeKb": 1,
-                    "virusScanResult": "Pending"
+                    "pickleScanResult": "Pending",
+                    "virusScanResult": "Pending",
+                    "scannedAt": "2026-01-01T00:00:00Z",
+                    "primary": true,
+                    "metadata": {
+                        "fp": "fp16",
+                        "size": "full",
+                        "format": "SafeTensor"
+                    }
                 }
             ],
             "images": [
                 {
-                    "hash": "x",
-                    "height": 1,
                     "id": "x",
-                    "meta": {},
-                    "nsfw": "x",
                     "url": "x",
-                    "width": 1
+                    "nsfw": "x",
+                    "width": 1,
+                    "height": 1,
+                    "hash": "x",
+                    "meta": {}
                 }
             ],
             "stats": {
                 "downloadCount": 1,
-                "rating": 1,
-                "ratingCount": 1
+                "ratingCount": 1,
+                "rating": 1
             }
         },
         "idField": "id"
@@ -433,33 +586,51 @@ const PLAN = [
         "path": "/tags",
         "args": [],
         "select": {
-            "limit": "v1",
-            "page": "v1",
+            "limit": 20,
+            "page": 1,
             "query": "v1"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "limit",
             "page",
             "query"
+        ],
+        "queryArgs": [
+            {
+                "name": "limit",
+                "wire": "limit"
+            },
+            {
+                "name": "page",
+                "wire": "page"
+            },
+            {
+                "name": "query",
+                "wire": "query"
+            }
         ],
         "auth": [],
         "status": 200,
         "sample": {
             "items": [
                 {
-                    "link": "x",
+                    "name": "x",
                     "modelCount": 1,
-                    "name": "x"
+                    "link": "x"
                 }
             ],
             "metadata": {
-                "currentPage": 1,
-                "nextPage": "x",
-                "pageSize": 1,
-                "prevPage": "x",
                 "totalItems": 1,
-                "totalPages": 1
+                "currentPage": 1,
+                "pageSize": 1,
+                "totalPages": 1,
+                "nextPage": "x",
+                "prevPage": "x"
             }
         },
         "idField": "id"

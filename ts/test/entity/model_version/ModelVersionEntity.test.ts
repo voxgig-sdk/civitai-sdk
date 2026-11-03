@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { CivitaiSDK, BaseFeature, stdutil } from '../../..'
+import { CivitaiSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('ModelVersionEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = CivitaiSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.ModelVersion().load({"id":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.CIVITAI_TEST_LIVE
@@ -51,7 +63,7 @@ describe('ModelVersionEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"createdAt":{"a":true,"fo":"date-time","h":"Created At","n":"createdAt","r":false,"sh":"The date in which the version was created","t":"`$STRING`","key$":"createdAt","index$":0},"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"The description of the model version (usually a changelog)","t":"`$STRING`","key$":"description","index$":1},"downloadUrl":{"a":true,"h":"Download Url","n":"downloadUrl","r":false,"sh":"The download url to get the model file for this specific version","t":"`$STRING`","key$":"downloadUrl","index$":2},"files":{"a":true,"h":"Files","n":"files","r":false,"t":"`$ARRAY`","key$":"files","index$":3},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"The identifier for the model version","t":"`$INTEGER`","key$":"id","index$":4},"images":{"a":true,"h":"Images","n":"images","r":false,"t":"`$ARRAY`","key$":"images","index$":5},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"The name of the model version","t":"`$STRING`","key$":"name","index$":6},"stats":{"a":true,"h":"Stats","n":"stats","r":false,"t":"`$OBJECT`","key$":"stats","index$":7},"trainedWords":{"a":true,"h":"Trained Words","n":"trainedWords","r":false,"sh":"The words used to trigger the model","t":"`$ARRAY`","key$":"trainedWords","index$":8}},"id":{"field":"id","name":"id"},"name":"model_version","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /model-versions/by-hash/{hash}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"hash","or":"hash","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/model-versions/by-hash/{hash}","q":{"exist":["hash"]},"r":{},"s":[{"lit":"model-versions"},{"lit":"by-hash"},{"var":"hash"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"GET /model-versions/{modelVersionId}","source":"openapi3","version":2},"g":{"params":[{"a":true,"k":"param","n":"id","or":"modelVersionId","r":true,"t":"`$INTEGER`","index$":0}]},"k":"http","m":"GET","o":"/model-versions/{modelVersionId}","q":{"exist":["id"]},"r":{"param":{"modelVersionId":"id"}},"s":[{"lit":"model-versions"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"model_version","name__orig":"model_version","Name":"ModelVersion","name_":"model_version","name-":"model-version","NAME":"MODEL_VERSION","index$":3}, {"active":true,"entity":"model_version","key$":"BasicModelVersionFlow","kind":"basic","name":"BasicModelVersionFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"model_version_ref01","srcdatavar":"model_version_ref01_data","suffix":"_dt0"},"m":{"id":"model_version01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-model_version_ref01"}}],"index$":0}]}, 'ModelVersion', {"GET /model-versions/by-hash/{hash}":{"protocol":"http","parameters":[{"name":"hash","in":"path","description":"The hash of the model version to retrieve","required":true,"schema":{"type":"string"},"index$":0}]},"GET /model-versions/{modelVersionId}":{"protocol":"http","parameters":[{"name":"modelVersionId","in":"path","description":"The ID of the model version to retrieve","required":true,"schema":{"type":"integer"},"index$":0}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"createdAt":{"a":true,"fo":"date-time","h":"Created At","n":"createdAt","r":false,"sh":"The date in which the version was created","t":"`$STRING`","key$":"createdAt","index$":0},"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"The description of the model version (usually a changelog)","t":"`$STRING`","key$":"description","index$":1},"downloadUrl":{"a":true,"h":"Download Url","n":"downloadUrl","r":false,"sh":"The download url to get the model file for this specific version","t":"`$STRING`","key$":"downloadUrl","index$":2},"files":{"a":true,"h":"Files","n":"files","r":false,"t":"`$ARRAY`","key$":"files","index$":3},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"The identifier for the model version","t":"`$INTEGER`","key$":"id","index$":4},"images":{"a":true,"h":"Images","n":"images","r":false,"t":"`$ARRAY`","key$":"images","index$":5},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"The name of the model version","t":"`$STRING`","key$":"name","index$":6},"stats":{"a":true,"h":"Stats","n":"stats","r":false,"t":"`$OBJECT`","key$":"stats","index$":7},"trainedWords":{"a":true,"h":"Trained Words","n":"trainedWords","r":false,"sh":"The words used to trigger the model","t":"`$ARRAY`","key$":"trainedWords","index$":8}},"id":{"field":"id","name":"id"},"name":"model_version","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /model-versions/by-hash/{hash}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":"67AB2FD8EC439A89B3FEDB15CC65F54336AF163C7EB5E4F2ACC98F090A29B0B3","k":"param","n":"hash","or":"hash","r":true,"t":"`$STRING`","index$":0}]},"k":"http","m":"GET","o":"/model-versions/by-hash/{hash}","q":{"exist":["hash"]},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"model-versions"},{"lit":"by-hash"},{"var":"hash"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0},{"a":true,"co":{"id":"GET /model-versions/{modelVersionId}","source":"openapi3","version":2},"g":{"params":[{"a":true,"ex":290640,"k":"param","n":"id","or":"modelVersionId","r":true,"t":"`$INTEGER`","index$":0}]},"k":"http","m":"GET","o":"/model-versions/{modelVersionId}","q":{"exist":["id"]},"r":{"param":{"modelVersionId":"id"}},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"model-versions"},{"var":"id"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":1}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"model_version","name__orig":"model_version","Name":"ModelVersion","name_":"model_version","name-":"model-version","NAME":"MODEL_VERSION","index$":3}, {"active":true,"entity":"model_version","key$":"BasicModelVersionFlow","kind":"basic","name":"BasicModelVersionFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"model_version_ref01","srcdatavar":"model_version_ref01_data","suffix":"_dt0"},"m":{"id":"model_version01"},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-model_version_ref01"}}],"index$":0,"route":"GET /model-versions/{modelVersionId}","record":{}}]}, 'ModelVersion', {"GET /model-versions/by-hash/{hash}":{"protocol":"http","parameters":[{"name":"hash","in":"path","description":"The hash of the model version to retrieve","required":true,"schema":{"type":"string"},"example":"67AB2FD8EC439A89B3FEDB15CC65F54336AF163C7EB5E4F2ACC98F090A29B0B3","index$":0}]},"GET /model-versions/{modelVersionId}":{"protocol":"http","parameters":[{"name":"modelVersionId","in":"path","description":"The ID of the model version to retrieve","required":true,"schema":{"type":"integer"},"example":290640,"index$":0}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -73,6 +85,12 @@ describe('ModelVersionEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

@@ -102,6 +102,7 @@ class Config {
       },
       "optspec": {
         "clearTimer": "`$FUNCTION`",
+        "now": "`$FUNCTION`",
         "setTimer": "`$FUNCTION`"
       },
       "strict": false,
@@ -212,12 +213,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "limit",
-                  "page",
-                  "query"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -354,7 +353,8 @@ class Config {
                     "name": "nsfw",
                     "orig": "nsfw",
                     "type": "`$ANY`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   },
                   {
                     "name": "page",
@@ -385,22 +385,15 @@ class Config {
                     "name": "username",
                     "orig": "username",
                     "type": "`$STRING`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "limit",
-                  "model_id",
-                  "model_version_id",
-                  "nsfw",
-                  "page",
-                  "period",
-                  "post_id",
-                  "sort",
-                  "username"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -546,7 +539,8 @@ class Config {
                     "name": "nsfw",
                     "orig": "nsfw",
                     "type": "`$BOOLEAN`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   },
                   {
                     "name": "page",
@@ -601,7 +595,8 @@ class Config {
                     "name": "type",
                     "orig": "types",
                     "type": "`$ARRAY`",
-                    "kind": "query"
+                    "kind": "query",
+                    "field": true
                   },
                   {
                     "name": "username",
@@ -611,27 +606,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "allow_commercial_use",
-                  "allow_derivative",
-                  "allow_different_license",
-                  "allow_no_credit",
-                  "favorite",
-                  "hidden",
-                  "limit",
-                  "nsfw",
-                  "page",
-                  "period",
-                  "primary_file_only",
-                  "query",
-                  "rating",
-                  "sort",
-                  "supports_generation",
-                  "tag",
-                  "type",
-                  "username"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -672,7 +650,8 @@ class Config {
                     "orig": "modelId",
                     "type": "`$INTEGER`",
                     "kind": "param",
-                    "reqd": true
+                    "reqd": true,
+                    "example": 257749
                   }
                 ]
               },
@@ -680,6 +659,10 @@ class Config {
                 "exist": [
                   "id"
                 ]
+              },
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -786,7 +769,8 @@ class Config {
                     "orig": "hash",
                     "type": "`$STRING`",
                     "kind": "param",
-                    "reqd": true
+                    "reqd": true,
+                    "example": "67AB2FD8EC439A89B3FEDB15CC65F54336AF163C7EB5E4F2ACC98F090A29B0B3"
                   }
                 ]
               },
@@ -794,6 +778,10 @@ class Config {
                 "exist": [
                   "hash"
                 ]
+              },
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             },
             {
@@ -828,7 +816,8 @@ class Config {
                     "orig": "modelVersionId",
                     "type": "`$INTEGER`",
                     "kind": "param",
-                    "reqd": true
+                    "reqd": true,
+                    "example": 290640
                   }
                 ]
               },
@@ -836,6 +825,10 @@ class Config {
                 "exist": [
                   "id"
                 ]
+              },
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]
@@ -910,12 +903,10 @@ class Config {
                   }
                 ]
               },
-              "select": {
-                "exist": [
-                  "limit",
-                  "page",
-                  "query"
-                ]
+              "select": {},
+              "response": {
+                "kind": "json",
+                "media": "application/json"
               }
             }
           ]

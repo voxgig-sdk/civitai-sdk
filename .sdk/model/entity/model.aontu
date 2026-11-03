@@ -224,27 +224,9 @@ main: kit: entity: model: {
           }
           m: "GET"
           o: "/models"
-          q: {
-            exist: [
-              "allow_commercial_use"
-              "allow_derivative"
-              "allow_different_license"
-              "allow_no_credit"
-              "favorite"
-              "hidden"
-              "limit"
-              "nsfw"
-              "page"
-              "period"
-              "primary_file_only"
-              "query"
-              "rating"
-              "sort"
-              "supports_generation"
-              "tag"
-              "type"
-              "username"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
@@ -270,6 +252,7 @@ main: kit: entity: model: {
           g: {
             params: [
               {
+                ex: 257749
                 k: "param"
                 n: "id"
                 or: "modelId"
@@ -289,6 +272,10 @@ main: kit: entity: model: {
             param: {
               modelId: "id"
             }
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

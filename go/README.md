@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/civitai-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/civitai-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/civitai-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -35,9 +35,10 @@ loading a specific record.
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -53,13 +54,13 @@ func main() {
         "apikey": os.Getenv("CIVITAI_APIKEY"),
     })
 
-    // List creator records — the value is the array of records itself.
+    // List creator records — the value is a []any of entities, one per record.
     creators, err := client.Creator(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
     for _, item := range creators.([]any) {
-        fmt.Println(item)
+        fmt.Println(item.(sdk.Entity).Data())
     }
 }
 ```
@@ -140,13 +141,16 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-model, err := client.Model(nil).List(
+models, err := client.Model(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(model) // the returned mock data
+// A []any of entities, one per mock record.
+for _, item := range models.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ### Use a custom fetch function
@@ -225,20 +229,20 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `Creator` | `(data map[string]any) CivitaiEntity` | Create a Creator entity instance. |
-| `Image` | `(data map[string]any) CivitaiEntity` | Create an Image entity instance. |
-| `Model` | `(data map[string]any) CivitaiEntity` | Create a Model entity instance. |
-| `ModelVersion` | `(data map[string]any) CivitaiEntity` | Create a ModelVersion entity instance. |
-| `Tag` | `(data map[string]any) CivitaiEntity` | Create a Tag entity instance. |
+| `Creator` | `(data map[string]any) CivitaiEntityBase` | Create a Creator entity instance. |
+| `Image` | `(data map[string]any) CivitaiEntityBase` | Create an Image entity instance. |
+| `Model` | `(data map[string]any) CivitaiEntityBase` | Create a Model entity instance. |
+| `ModelVersion` | `(data map[string]any) CivitaiEntityBase` | Create a ModelVersion entity instance. |
+| `Tag` | `(data map[string]any) CivitaiEntityBase` | Create a Tag entity instance. |
 
-### Entity interface (CivitaiEntity)
+### Entity interface (CivitaiEntityBase)
 
-All entities implement the `CivitaiEntity` interface.
+All entities implement the `CivitaiEntityBase` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
+| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria, one per record. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -246,21 +250,21 @@ All entities implement the `CivitaiEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
+| `Load` | the entity, whose `Data()` reads its record (`map[string]any`) |
+| `List` | a `[]any` of entities, one per record |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    creator, err := client.Creator(nil).List(map[string]any{/* fields */}, nil)
+    creator, err := client.Creator(nil).List(nil, nil)
     if err != nil { /* handle */ }
-    // creator is the returned record
+    // creator is a []any of entities, one per record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -379,7 +383,10 @@ creators, err := client.Creator(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(creators) // the array of records
+// A []any of entities, one per record.
+for _, item := range creators.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -417,7 +424,10 @@ images, err := client.Image(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(images) // the array of records
+// A []any of entities, one per record.
+for _, item := range images.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -454,7 +464,7 @@ model, err := client.Model(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(model) // the loaded record
+fmt.Println(model.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 #### Example: List
@@ -464,7 +474,10 @@ models, err := client.Model(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(models) // the array of records
+// A []any of entities, one per record.
+for _, item := range models.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -499,7 +512,7 @@ modelVersion, err := client.ModelVersion(nil).Load(map[string]any{"id": 1}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(modelVersion) // the loaded record
+fmt.Println(modelVersion.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -528,7 +541,10 @@ tags, err := client.Tag(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(tags) // the array of records
+// A []any of entities, one per record.
+for _, item := range tags.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ## Features
@@ -665,7 +681,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 

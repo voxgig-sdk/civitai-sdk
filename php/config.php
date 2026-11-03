@@ -93,6 +93,7 @@ class CivitaiConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -184,12 +185,10 @@ class CivitaiConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'limit',
-                      'page',
-                      'query',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -327,6 +326,7 @@ class CivitaiConfig
                         'orig' => 'nsfw',
                         'type' => '`$ANY`',
                         'kind' => 'query',
+                        'field' => true,
                       ],
                       [
                         'name' => 'page',
@@ -358,21 +358,14 @@ class CivitaiConfig
                         'orig' => 'username',
                         'type' => '`$STRING`',
                         'kind' => 'query',
+                        'field' => true,
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'limit',
-                      'model_id',
-                      'model_version_id',
-                      'nsfw',
-                      'page',
-                      'period',
-                      'post_id',
-                      'sort',
-                      'username',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -519,6 +512,7 @@ class CivitaiConfig
                         'orig' => 'nsfw',
                         'type' => '`$BOOLEAN`',
                         'kind' => 'query',
+                        'field' => true,
                       ],
                       [
                         'name' => 'page',
@@ -574,6 +568,7 @@ class CivitaiConfig
                         'orig' => 'types',
                         'type' => '`$ARRAY`',
                         'kind' => 'query',
+                        'field' => true,
                       ],
                       [
                         'name' => 'username',
@@ -583,27 +578,10 @@ class CivitaiConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'allow_commercial_use',
-                      'allow_derivative',
-                      'allow_different_license',
-                      'allow_no_credit',
-                      'favorite',
-                      'hidden',
-                      'limit',
-                      'nsfw',
-                      'page',
-                      'period',
-                      'primary_file_only',
-                      'query',
-                      'rating',
-                      'sort',
-                      'supports_generation',
-                      'tag',
-                      'type',
-                      'username',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -645,6 +623,7 @@ class CivitaiConfig
                         'type' => '`$INTEGER`',
                         'kind' => 'param',
                         'reqd' => true,
+                        'example' => 257749,
                       ],
                     ],
                   ],
@@ -652,6 +631,10 @@ class CivitaiConfig
                     'exist' => [
                       'id',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -759,6 +742,7 @@ class CivitaiConfig
                         'type' => '`$STRING`',
                         'kind' => 'param',
                         'reqd' => true,
+                        'example' => '67AB2FD8EC439A89B3FEDB15CC65F54336AF163C7EB5E4F2ACC98F090A29B0B3',
                       ],
                     ],
                   ],
@@ -766,6 +750,10 @@ class CivitaiConfig
                     'exist' => [
                       'hash',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
                 [
@@ -801,6 +789,7 @@ class CivitaiConfig
                         'type' => '`$INTEGER`',
                         'kind' => 'param',
                         'reqd' => true,
+                        'example' => 290640,
                       ],
                     ],
                   ],
@@ -808,6 +797,10 @@ class CivitaiConfig
                     'exist' => [
                       'id',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],
@@ -882,12 +875,10 @@ class CivitaiConfig
                       ],
                     ],
                   ],
-                  'select' => [
-                    'exist' => [
-                      'limit',
-                      'page',
-                      'query',
-                    ],
+                  'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

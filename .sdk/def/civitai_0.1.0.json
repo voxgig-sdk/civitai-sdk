@@ -501,7 +501,8 @@
             "required": true,
             "schema": {
               "type": "integer"
-            }
+            },
+            "example": 257749
           }
         ],
         "responses": {
@@ -537,7 +538,8 @@
             "required": true,
             "schema": {
               "type": "integer"
-            }
+            },
+            "example": 290640
           }
         ],
         "responses": {
@@ -573,7 +575,8 @@
             "required": true,
             "schema": {
               "type": "string"
-            }
+            },
+            "example": "67AB2FD8EC439A89B3FEDB15CC65F54336AF163C7EB5E4F2ACC98F090A29B0B3"
           }
         ],
         "responses": {

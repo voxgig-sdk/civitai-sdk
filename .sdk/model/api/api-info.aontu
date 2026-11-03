@@ -10,6 +10,17 @@ main: {
       }
       description: "REST API for accessing Civitai creators, images, models, model versions, and tags. Provides endpoints for retrieving specific resources like models by ID or model versions by hash."
       security: {
+        alternatives: [
+          [
+            {
+              in: "query"
+              name: "token"
+              prefix: ""
+              scheme: "QueryToken"
+              type: "apiKey"
+            }
+          ]
+        ]
         in: "header"
         name: "Authorization"
         prefix: "Bearer"

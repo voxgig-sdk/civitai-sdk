@@ -3,5 +3,32 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Civitai API v1 Production Server",
+      "Pass your API key as a query parameter",
+      "REST API for accessing Civitai creators, images, models, model versions, and tags. Provides endpoints for retrieving specific resources like models by ID or model versions by hash.",
+      "Successful response",
+      "The amount of models linked to this user",
+      "The blurhash of the image",
+      "The date in which the version was created",
+      "The date the image was posted",
+      "The description of the model (HTML)",
+      "The description of the model version (usually a changelog)",
+      "The download url to get the model file for this specific version",
+      "The generation parameters parsed or input for the image",
+      "The height of the image",
+      "The id of the image",
+      "The identifier for the model",
+      "The identifier for the model version",
+      "The mode in which the model is currently on. If Archived, files field will be empty. If TakenDown, images field will be empty",
+      "The name of the model",
+      "The name of the model version",
+      "The username of the creator",
+      "Url to get all models from this user",
+      "Use your API key as a Bearer token in the Authorization header",
+      "Whether the model is NSFW or not"
+    ]
+  }
 }

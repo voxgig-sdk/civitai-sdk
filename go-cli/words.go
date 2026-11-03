@@ -75,7 +75,7 @@ func runOp(client *sdk.CivitaiSDK, op string, query *eng.Value, entityAtom eng.V
 
 // entityFor dispatches on the lowercase entity name. The generator
 // emits one `case "<name>":` per entity defined in the SDK model.
-func entityFor(client *sdk.CivitaiSDK, name string) (sdk.CivitaiEntity, error) {
+func entityFor(client *sdk.CivitaiSDK, name string) (sdk.CivitaiEntityBase, error) {
 	switch strings.ToLower(name) {
 	case "creator":
 		return client.Creator(nil), nil

@@ -68,12 +68,9 @@ main: kit: entity: creator: {
           }
           m: "GET"
           o: "/creators"
-          q: {
-            exist: [
-              "limit"
-              "page"
-              "query"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {
